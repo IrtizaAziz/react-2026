@@ -1,0 +1,1 @@
+experiment_id,timestamp,parent_experiment,model,hypothesis,change_description,validation_method,n_folds,seed,cv_mean,cv_std,fold_scores,public_lb,private_lb,parameters,oof_path,prediction_path,submission_path,git_commit,status,conclusion,notes,training_seconds,provenance_path,kaggle_notebook_version

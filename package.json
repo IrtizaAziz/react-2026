@@ -1,0 +1,20 @@
+{
+  "name": "react-2026",
+  "version": "1.0.0",
+  "description": "A local-first competition workspace. Task, target, metric, metric direction, and validation remain unset until launch. Read **AGENTS.md**, **COMPETITION.md**, and **CURRENT_STATE.md** before working.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "mcp:kaggle": "playwright-mcp --user-data-dir \"C:\\Users\\IRTIZA\\.codex\\playwright-edge-profile\" --executable-path \"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/mcp": "^0.0.80"
+  }
+}

@@ -1,0 +1,291 @@
+"""Isolated synthetic plumbing checks; no external data or competition experiments."""
+import contextlib
+import copy
+import csv
+from dataclasses import replace
+import importlib
+import io
+import json
+import os
+from pathlib import Path
+import pickle
+import subprocess
+import sys
+import tempfile
+import unittest
+from unittest.mock import patch
+import warnings
+
+import numpy as np
+import pandas as pd
+
+from src.audit import audit, sampled_table
+from src.config import Config, ROOT, load_config
+from src.ensemble import blend_experiments, compatible_artifacts
+from src.export_notebook import export_notebook, code, markdown, notebook
+from src.features import build_pipeline
+from src.metrics import score, metric_definition
+from src.predict import predict_experiment, read_predictions, save_predictions
+from src.replay import compare_predictions
+from src.submission import build_submission, generate_submission, validate_probabilities
+from src.train import train_experiment
+from src.utils import checked_record, read_json, save_json, sha256
+from src.validation import make_splits
+
+
+class StarterTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.temporary = tempfile.TemporaryDirectory(prefix="react-synthetic-")
+        cls.root = Path(cls.temporary.name)
+        raw = cls.root / "data/raw"
+        raw.mkdir(parents=True)
+        cls.training = pd.DataFrame({"id": [f"{i:03d}" for i in range(12)],
+                                     "number": np.arange(12, dtype=float),
+                                     "category": [f"unique_{i}" for i in range(12)],
+                                     "target": ["no", "yes"] * 6})
+        cls.training.loc[2, "number"] = np.nan
+        cls.test = pd.DataFrame({"id": ["101", "102", "103"], "number": [2., 5., np.nan], "category": ["new", "unique_1", None]})
+        cls.sample = pd.DataFrame({"id": ["103", "101", "102"], "target": [0., 0., 0.]})
+        cls.training.to_csv(raw / "train.csv", index=False)
+        cls.test.to_csv(raw / "test.csv", index=False)
+        cls.sample.to_csv(raw / "sample_submission.csv", index=False)
+        cls.config = Config(train_file="data/raw/train.csv", test_file="data/raw/test.csv", sample_file="data/raw/sample_submission.csv",
+                            target="target", id_columns=["id"], features=["number", "category"], task="classification",
+                            metric="log_loss", metric_direction="lower", prediction_kind="probability", class_order=["no", "yes"],
+                            validation_type="stratified", validation_rationale="Synthetic plumbing test only, no competition strategy", n_splits=2,
+                            shuffle=True, seed=42, model="logistic", submission_columns=["target"], submission_kind="probability",
+                            submission_alignment="id", positive_class="yes", smoke_test=True)
+        with contextlib.redirect_stdout(io.StringIO()), patch("src.predict.load_test", side_effect=AssertionError("Test data was opened during training")):
+            cls.record = train_experiment(cls.config, "SMOKE001", "Check plumbing", "Tiny synthetic integration fixture", root=cls.root)
+        with contextlib.redirect_stdout(io.StringIO()):
+            cls.record = predict_experiment(cls.root, "SMOKE001", aggregation="mean")
+        cls.submission = generate_submission(cls.root, "SMOKE001", description="smoke")
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.temporary.cleanup()
+
+    def test_imports_and_help(self):
+        for name in ("config", "audit", "data", "validation", "metrics", "features", "train", "predict", "ensemble", "submission", "utils", "export_notebook"):
+            importlib.import_module("src." + name)
+        for name in ("audit", "train", "predict", "ensemble", "submission", "export_notebook"):
+            result = subprocess.run([sys.executable, str(ROOT / "src" / f"{name}.py"), "--help"], capture_output=True, text=True)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertIn("usage:", result.stdout)
+
+    def test_unset_configuration_fails_before_reserving_id(self):
+        with self.assertRaisesRegex(ValueError, "Configure after launch"):
+            train_experiment(Config(), "E001", "question", "change", root=self.root)
+        self.assertFalse((self.root / "outputs/reports/E001.json").exists())
+
+    def test_core_result_and_fold_local_preprocessing(self):
+        record = checked_record(self.root, "SMOKE001")
+        self.assertNotIn(b"\r\n", self.submission.read_bytes())
+        self.assertNotIn(b"\r\n", (self.root / record["oof_path"]).read_bytes())
+        self.assertEqual(record["oof_coverage"], 1)
+        self.assertEqual(len(record["fold_scores"]), 2)
+        saved = read_json(self.root / record["splits_path"])
+        for fold, pair in enumerate(saved["splits"]):
+            with (self.root / record["model_paths"][fold]).open("rb") as handle:
+                model = pickle.load(handle)
+            learned = set(model.named_steps["preprocess"].named_transformers_["categorical"].named_steps["encode"].categories_[0])
+            validation_only = set(self.training.iloc[pair["valid"]]["category"])
+            self.assertFalse(learned & validation_only)
+        frame, values, meta = read_predictions(self.root / record["prediction_path"])
+        self.assertEqual(frame["id"].tolist(), ["101", "102", "103"])
+        np.testing.assert_allclose(values.sum(axis=1), 1)
+        self.assertEqual(meta["class_order"], ["no", "yes"])
+        output = pd.read_csv(self.submission, dtype={"id": "string"})
+        self.assertEqual(output["id"].tolist(), ["103", "101", "102"])
+        np.testing.assert_allclose(output["target"], values[[2, 0, 1], 1])
+        with (self.root / "experiments/experiments.csv").open(newline="", encoding="utf-8") as handle:
+            rows = list(csv.DictReader(handle))
+        row = next(r for r in rows if r["experiment_id"] == "SMOKE001")
+        self.assertEqual(row["public_lb"], "")
+        self.assertEqual(row["conclusion"], "")
+
+    def test_no_overwrites(self):
+        before = sha256(self.submission)
+        with self.assertRaises(FileExistsError):
+            generate_submission(self.root, "SMOKE001", description="smoke")
+        self.assertEqual(before, sha256(self.submission))
+        with self.assertRaises(FileExistsError):
+            train_experiment(self.config, "SMOKE001", "same ID", "must stop", root=self.root)
+        with self.assertRaises(FileExistsError):
+            predict_experiment(self.root, "SMOKE001", aggregation="mean")
+
+    def test_failed_run_keeps_id(self):
+        with patch("src.train.clone", side_effect=RuntimeError("injected failure")):
+            with self.assertRaisesRegex(RuntimeError, "injected"):
+                train_experiment(self.config, "SMOKE099", "Failure handling", "Injected failure before fit", root=self.root)
+        self.assertEqual(read_json(self.root / "outputs/reports/SMOKE099.json")["status"], "failed")
+        with self.assertRaises(FileExistsError):
+            train_experiment(self.config, "SMOKE099", "Retry", "ID must remain reserved", root=self.root)
+
+    def test_metrics_and_probability_contracts(self):
+        regression = Config(metric="rmse", metric_direction="lower", prediction_kind="value")
+        self.assertAlmostEqual(score([1, 3], [2, 1], regression), np.sqrt(2.5))
+        self.assertAlmostEqual(score(["no", "yes"], [[.8, .2], [.1, .9]], self.config), -np.log(.8*.9)/2)
+        accuracy = replace(self.config, metric="accuracy", metric_direction="higher", label_threshold=.5)
+        self.assertEqual(score(["no", "yes"], [[.8, .2], [.1, .9]], accuracy), 1)
+        auc = replace(self.config, metric="roc_auc", metric_direction="higher")
+        self.assertEqual(score(["no", "yes"], [[.8, .2], [.1, .9]], auc), 1)
+        for values in ([[1.1, -.1]], [[np.nan, 1]], [[.1, .1]]):
+            with self.assertRaises(ValueError):
+                validate_probabilities(values, sums=True)
+        with self.assertRaises(ValueError):
+            metric_definition(replace(self.config, metric="f1", metric_direction="higher"))
+        with self.assertRaises(ValueError):
+            metric_definition(replace(self.config, metric_direction="higher"))
+
+    def test_replay_accepts_equivalent_predictions_with_different_hashes(self):
+        with tempfile.TemporaryDirectory() as directory:
+            directory = Path(directory)
+            frame = pd.DataFrame({"id": ["a", "b"]})
+            values = np.array([[.9, .1], [.2, .8]])
+            expected, actual = directory / "expected.csv", directory / "actual.csv"
+            save_predictions(expected, frame, values, self.config, {"synthetic": True})
+            save_predictions(actual, frame, values, self.config, {"synthetic": True})
+            actual.write_bytes(actual.read_bytes().replace(b"\n", b"\r\n"))
+            metadata = read_json(actual.with_suffix(".meta.json"))
+            metadata["sha256"] = sha256(actual)
+            save_json(actual.with_suffix(".meta.json"), metadata)
+            report = compare_predictions(expected, actual, rtol=1e-7, atol=1e-9)
+            self.assertNotEqual(report["expected_sha256"], report["actual_sha256"])
+            self.assertTrue(report["reproduced"])
+            self.assertEqual(report["values_outside_tolerance"], 0)
+
+    def test_replay_rejects_predictions_outside_tolerance(self):
+        with tempfile.TemporaryDirectory() as directory:
+            directory = Path(directory)
+            frame = pd.DataFrame({"id": ["a", "b"]})
+            expected, actual = directory / "expected.csv", directory / "actual.csv"
+            save_predictions(expected, frame, np.array([[.9, .1], [.2, .8]]), self.config, {"synthetic": True})
+            save_predictions(actual, frame, np.array([[.9, .1], [.2, .8001]]), self.config, {"synthetic": True})
+            report = compare_predictions(expected, actual, rtol=1e-7, atol=1e-9)
+            self.assertFalse(report["reproduced"])
+            self.assertGreater(report["values_outside_tolerance"], 0)
+
+    def test_submission_rejects_ambiguity_and_bad_ids(self):
+        frame, predictions, metadata = read_predictions(self.root / self.record["prediction_path"])
+        duplicate = self.sample.copy()
+        duplicate.loc[1, "id"] = duplicate.loc[0, "id"]
+        with self.assertRaisesRegex(ValueError, "unique"):
+            build_submission(duplicate, frame, predictions, metadata, self.config)
+        missing = self.sample.copy()
+        missing.loc[0, "id"] = "999"
+        with self.assertRaisesRegex(ValueError, "different IDs"):
+            build_submission(missing, frame, predictions, metadata, self.config)
+        with self.assertRaises(ValueError):
+            build_submission(self.sample, frame, predictions, metadata, replace(self.config, submission_alignment=None))
+        with self.assertRaises(ValueError):
+            build_submission(self.sample, frame, predictions, metadata, replace(self.config, submission_columns=["wrong"]))
+
+    def test_splits_reuse_groups_and_time(self):
+        record = checked_record(self.root, "SMOKE001")
+        split_path = self.root / record["splits_path"]
+        first = make_splits(self.training, self.config, record["train_fingerprint"], reuse=split_path)
+        second = make_splits(self.training, self.config, record["train_fingerprint"])
+        self.assertEqual(first[2], second[2])
+        with self.assertRaisesRegex(ValueError, "do not match"):
+            make_splits(self.training, self.config, {"changed": True}, reuse=split_path)
+        frame = self.training.assign(group=np.repeat(np.arange(6), 2), time=np.arange(12)[::-1])
+        for kind in ("kfold", "group", "stratified_group"):
+            config = replace(self.config, validation_type=kind, group_column="group", shuffle=False)
+            pairs, _, _ = make_splits(frame, config, {"synthetic": True})
+            for training, valid in pairs:
+                self.assertFalse(set(training) & set(valid))
+                if "group" in kind:
+                    self.assertFalse(set(frame.iloc[training].group) & set(frame.iloc[valid].group))
+        temporal = replace(self.config, validation_type="time", shuffle=False, time_column="time", time_gap=1,
+                           task="regression", prediction_kind="value", class_order=[])
+        pairs, assignments, _ = make_splits(frame, temporal, {"synthetic": True})
+        self.assertTrue((assignments == -1).any())
+        for training, valid in pairs:
+            self.assertLess(frame.iloc[training].time.max(), frame.iloc[valid].time.min())
+        frame["time"] = 1
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")
+            with self.assertRaisesRegex(ValueError, "tied"):
+                make_splits(frame, temporal, {"synthetic": True})
+        with patch("src.validation.model_selection.StratifiedGroupKFold", None):
+            with self.assertRaisesRegex(ImportError, "no fallback"):
+                make_splits(frame, replace(self.config, validation_type="stratified_group", group_column="group"), {})
+
+    def test_audit_ambiguity_sample_labels_and_duplicates(self):
+        with tempfile.TemporaryDirectory() as directory, contextlib.redirect_stdout(io.StringIO()):
+            root = Path(directory)
+            empty = audit(root)
+            self.assertIn("No competition files", empty)
+            raw = root / "data/raw"
+            raw.mkdir(parents=True)
+            train = pd.DataFrame({"id": [1, 2, 3, 4], "x": [2, 2, 7, 8], "y": [0, 1, 1, 0]})
+            train.to_csv(raw / "train.csv", index=False)
+            pd.DataFrame({"id": [5, 6], "x": [2, 8]}).to_csv(raw / "test.csv", index=False)
+            report = audit(root)
+            self.assertIn("Target uncertain", report)
+            pd.DataFrame({"id": [5, 6], "y": [0, 0]}).to_csv(raw / "sample_submission.csv", index=False)
+            report = audit(root, full=True)
+            self.assertIn("conflicting labels: 1", report)
+            self.assertIn("No labels transferred", report)
+            report = audit(root, max_rows=2)
+            self.assertIn("SAMPLED", report)
+            self.assertIn("lower bounds", report)
+            self.assertGreater(len(list((root / "reports").glob("data_audit_*.md"))), 0)
+            one, total = sampled_table(raw / "train.csv", 2, 42)
+            two, _ = sampled_table(raw / "train.csv", 2, 42)
+            pd.testing.assert_frame_equal(one, two)
+            self.assertEqual(total, 4)
+
+    def test_optional_models_fail_cleanly_without_installing(self):
+        with patch("src.features.importlib.import_module", side_effect=ImportError("not installed")):
+            for name in ("catboost", "lightgbm", "xgboost"):
+                with self.assertRaisesRegex(ImportError, "Install explicitly"):
+                    build_pipeline(replace(self.config, model=name))
+        with self.assertRaisesRegex(ValueError, "no predict_proba"):
+            build_pipeline(replace(self.config, model="tfidf_linear"))
+
+    def test_ensemble_and_exported_notebook_replay(self):
+        # A second fixture artifact copies the same fitted run. No second model is
+        # selected or tuned; this exercises two-member orchestration only.
+        fixture = copy.deepcopy(checked_record(self.root, "SMOKE001"))
+        fixture["experiment_id"] = "SMOKE002"
+        fixture.pop("submissions", None)
+        fixture.pop("submission_path", None)
+        save_json(self.root / "outputs/reports/SMOKE002.json", fixture, exclusive=True)
+        with self.assertRaises(ValueError):
+            blend_experiments(self.root, "SMOKE005", ["SMOKE001", "SMOKE002"], [.6, .6], "Bad weights", "Must reject")
+        with contextlib.redirect_stdout(io.StringIO()):
+            record = blend_experiments(self.root, "SMOKE003", ["SMOKE001", "SMOKE002"], [.5, .5], "Blend plumbing", "Explicit equal-weight fixture blend", method="mean", predict_test=True)
+        self.assertAlmostEqual(record["cv_mean"], self.record["cv_mean"])
+        generate_submission(self.root, "SMOKE003", description="blend_smoke")
+        item = read_predictions(self.root / self.record["oof_path"])
+        modified = (item[0], item[1], {**item[2], "class_order": ["yes", "no"]})
+        with self.assertRaisesRegex(ValueError, "class_order"):
+            compatible_artifacts([item, modified])
+        exported = export_notebook(self.root, "SMOKE003")
+        document = read_json(exported)
+        rehearsal_path = os.environ.get("REACT_SMOKE_NOTEBOOK")
+        if rehearsal_path:
+            payload = {name: (self.root / "data/raw" / name).read_bytes().decode("utf-8") for name in ("train.csv", "test.csv", "sample_submission.csv")}
+            setup = "import json\nfrom pathlib import Path\nimport tempfile\nDEMO_ROOT = Path(tempfile.mkdtemp(prefix='react-synthetic-rehearsal-', dir=globals().get('SMOKE_PARENT')))\nREPLAY_ROOT = DEMO_ROOT / 'replay'\nREPLAY_INPUTS = {}\nFIXTURES = json.loads(" + repr(json.dumps(payload)) + ")\nfor name, text in FIXTURES.items():\n    path = DEMO_ROOT / name\n    path.write_text(text, encoding='utf-8', newline='')\n    REPLAY_INPUTS['data/raw/' + name] = str(path)\nprint('Synthetic files and replay artifacts:', DEMO_ROOT)\n"
+            rehearsal = notebook([markdown("# Synthetic Kaggle rehearsal — no competition data\n\nThis contains only 12 generated training rows and 3 generated inference rows. SMOKE002 duplicates the first fixture solely to test ensemble orchestration. Scores have no competition meaning. Run all cells privately and Save Version to verify runtime access and source portability. Do not upload these CSVs to a competition."), code(setup), *document["cells"]])
+            save_json(Path(rehearsal_path), rehearsal, exclusive=True)
+            document = rehearsal
+        replay_root = self.root / "notebook_replay"
+        namespace = {"REPLAY_ROOT": replay_root, "REPLAY_INPUTS": {str(Path("data/raw") / name).replace('\\', '/'): str(self.root / "data/raw" / name) for name in ("train.csv", "test.csv", "sample_submission.csv")}}
+        namespace["SMOKE_PARENT"] = str(self.root)
+        with contextlib.redirect_stdout(io.StringIO()):
+            for cell in document["cells"]:
+                if cell["cell_type"] == "code":
+                    text = "".join(cell["source"])
+                    exec(compile(text, "<exported-notebook>", "exec"), namespace)
+        replay_root = namespace["REPLAY_ROOT"]
+        replay = checked_record(replay_root, "SMOKE003")
+        self.assertEqual(sha256(self.root / record["prediction_path"]), sha256(replay_root / replay["prediction_path"]))
+        self.assertEqual(len(list((replay_root / "submissions").glob("*.csv"))), 2)
+
+
+if __name__ == "__main__":
+    unittest.main()
