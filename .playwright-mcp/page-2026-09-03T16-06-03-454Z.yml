@@ -1,0 +1,408 @@
+- generic [ref=f3e2]:
+  - navigation "Main Kaggle page navigation" [ref=f3e505]:
+    - generic [ref=f3e5]:
+      - button "Navigation menu" [ref=f3e506] [cursor=pointer]: menu
+      - link "Skip to content" [ref=f3e507] [cursor=pointer]:
+        - /url: "#site-content"
+        - text: Skip tocontent
+      - link "Return to Kaggle home page" [ref=f3e508] [cursor=pointer]:
+        - /url: /
+    - button "Create" [ref=f3e509] [cursor=pointer]
+    - generic [ref=f3e19]:
+      - generic [ref=f3e21]:
+        - list [ref=f3e22]:
+          - listitem "Home List Item" [ref=f3e510]:
+            - link "Home" [ref=f3e511] [cursor=pointer]:
+              - /url: /
+              - generic [ref=f3e26]:
+                - generic [aria-hidden] [ref=f3e29]: explore
+                - paragraph [ref=f3e31]: Home
+          - listitem "Competitions List Item" [ref=f3e512]:
+            - link "Competitions" [ref=f3e513] [cursor=pointer]:
+              - /url: /competitions
+              - generic [ref=f3e35]:
+                - generic [aria-hidden] [ref=f3e38]: emoji_events
+                - paragraph [ref=f3e40]: Competitions
+          - listitem "Benchmarks List Item" [ref=f3e514]:
+            - link "Benchmarks" [ref=f3e515] [cursor=pointer]:
+              - /url: /benchmarks
+              - generic [ref=f3e44]:
+                - generic [aria-hidden] [ref=f3e47]: leaderboard
+                - paragraph [ref=f3e49]: Benchmarks
+          - listitem "Game Arena List Item" [ref=f3e516]:
+            - link "Game Arena" [ref=f3e517] [cursor=pointer]:
+              - /url: /game-arena
+              - generic [ref=f3e53]:
+                - generic [aria-hidden] [ref=f3e56]: smart_toy
+                - paragraph [ref=f3e58]: Game Arena
+        - list [ref=f3e59]:
+          - listitem "Data Hub List Item" [ref=f3e518]:
+            - generic [ref=f3e61]:
+              - link "Data Hub" [ref=f3e519] [cursor=pointer]:
+                - /url: "#"
+                - generic [ref=f3e63]:
+                  - generic [aria-hidden] [ref=f3e66]: code
+                  - paragraph [ref=f3e68]: Data Hub
+              - button "Expand" [ref=f3e520] [cursor=pointer]: expand_more
+        - list [ref=f3e71]:
+          - listitem "More on Kaggle List Item" [ref=f3e521]:
+            - generic [ref=f3e73]:
+              - link "More on Kaggle" [ref=f3e522] [cursor=pointer]:
+                - /url: "#"
+                - generic [ref=f3e75]:
+                  - generic [aria-hidden] [ref=f3e78]: format_list_bulleted
+                  - paragraph [ref=f3e80]: More
+              - button "Expand" [ref=f3e523] [cursor=pointer]: expand_more
+      - button "Open Active Events dialog 2 View Active Events" [ref=f3e524] [cursor=pointer]:
+        - generic [ref=f3e85]:
+          - generic "Open Active Events dialog" [ref=f3e525]: auto_awesome_motion
+          - generic [ref=f3e247]: "2"
+        - paragraph [ref=f3e87]: View Active Events
+  - main [ref=f3e88]:
+    - generic [ref=f3e90]:
+      - generic [ref=f3e93]:
+        - generic [ref=f3e94]:
+          - heading [level=1] [ref=f3e526]:
+            - generic [ref=f3e99]:
+              - generic [ref=f3e100]:
+                - 'textbox "Title: notebook0938d6650f" [ref=f3e527]': notebook0938d6650f
+                - group [aria-hidden]
+              - paragraph:
+                - alert
+          - generic [ref=f3e104]:
+            - button "File" [ref=f3e528]
+            - button "Edit" [ref=f3e529]
+            - button "View" [ref=f3e530]
+            - button "Run" [ref=f3e531]
+            - button "Settings" [ref=f3e532]
+            - button "Add-ons" [ref=f3e533]
+            - button "Help" [ref=f3e534]
+        - button "Share" [ref=f3e535] [cursor=pointer]:
+          - generic [aria-hidden] [ref=f3e114]: people
+        - generic [ref=f3e250]:
+          - button "Save Version" [ref=f3e536] [cursor=pointer]:
+            - generic [aria-hidden] [ref=f3e254]: update
+          - button "Show Versions" [ref=f3e537] [cursor=pointer]:
+            - generic [ref=f3e259]: "2"
+      - generic [ref=f3e117]:
+        - generic [ref=f3e118]:
+          - button "Add cell" [ref=f3e538] [cursor=pointer]:
+            - generic [ref=f3e121]: add
+          - button "Add cell options" [ref=f3e539] [cursor=pointer]:
+            - generic [ref=f3e124]: arrow_drop_down
+          - button "Cut cell" [ref=f3e540] [cursor=pointer]:
+            - generic [ref=f3e128]: content_cut
+          - button "Copy cell" [ref=f3e541] [cursor=pointer]:
+            - generic [ref=f3e131]: content_copy
+          - button "Paste cell" [ref=f3e542] [cursor=pointer]:
+            - generic [ref=f3e134]: content_paste
+          - button "Run current cell" [disabled] [ref=f3e543]:
+            - generic [ref=f3e138]: play_arrow
+          - button "Stop execution" [ref=f3e581] [cursor=pointer]:
+            - generic [ref=f3e141]: stop
+            - generic [ref=f3e142]: Cancel Run
+          - button "Show options" [ref=f3e545] [cursor=pointer]:
+            - generic [ref=f3e260]: Code
+            - generic [aria-hidden] [ref=f3e145]: arrow_drop_down
+        - generic [ref=f3e147]:
+          - button "Running Draft Session (8m) HDD CPU RAM" [ref=f3e580] [cursor=pointer]:
+            - generic [ref=f3e149]:
+              - generic [ref=f3e150]:
+                - generic "Running" [ref=f3e547]: circle
+                - generic [ref=f3e152]: Draft Session
+              - generic [ref=f3e153]: (8m)
+            - generic "Disk Space Usage" [ref=f3e548]: HDD
+            - generic "CPU Usage" [ref=f3e549]: CPU
+            - generic "RAM Usage" [ref=f3e550]: RAM
+          - button "Stop session" [ref=f3e551] [cursor=pointer]: power_settings_new
+          - button "Factory reset" [ref=f3e552] [cursor=pointer]: loop
+          - button "More settings" [ref=f3e553] [cursor=pointer]: more_vert
+      - document [ref=f3e265]:
+        - iframe [active] [ref=f3e266]:
+          - main [ref=f4e4]:
+            - region "notebook content" [ref=f4e7]:
+              - feed "Cells" [ref=f4e10]:
+                - generic "Markdown Cell Content" [ref=f4e11]:
+                  - generic [ref=f4e20]:
+                    - generic [ref=f4e21] [cursor=pointer]:
+                      - generic:
+                        - generic "Cell hasn't been executed yet"
+                    - generic [ref=f4e22]:
+                      - heading "Synthetic Kaggle rehearsal — no competition data" [level=1] [ref=f4e23]
+                      - paragraph [ref=f4e24]: This contains only 12 generated training rows and 3 generated inference rows. SMOKE002 duplicates the first fixture solely to test ensemble orchestration. Scores have no competition meaning. Run all cells privately and Save Version to verify runtime access and source portability. Do not upload these CSVs to a competition.
+                  - generic [ref=f4e28]:
+                    - button "add Code" [ref=f4e29] [cursor=pointer]:
+                      - generic [ref=f4e30]: add
+                      - text: Code
+                    - button "add Markdown" [ref=f4e31] [cursor=pointer]:
+                      - generic [ref=f4e32]: add
+                      - text: Markdown
+                - generic "Code Cell Content with Output" [ref=f4e33]:
+                  - generic [ref=f4e37]:
+                    - generic [ref=f4e38] [cursor=pointer]:
+                      - text: "[1]:"
+                      - generic "Cell executed in 0.013s at 9:57pm" [ref=f4e277]: "[1]:"
+                    - textbox [ref=f4e45]:
+                      - generic [ref=f4e46]: import json
+                      - generic [ref=f4e47]: from pathlib import Path
+                      - generic [ref=f4e48]: import tempfile
+                      - generic [ref=f4e49]: DEMO_ROOT = Path(tempfile.mkdtemp(prefix='react-synthetic-rehearsal-', dir=globals().get('SMOKE_PARENT')))
+                      - generic [ref=f4e50]: REPLAY_ROOT = DEMO_ROOT / 'replay'
+                      - generic [ref=f4e51]: "REPLAY_INPUTS = {}"
+                      - generic [ref=f4e52]: "FIXTURES = json.loads('{\"train.csv\": \"id,number,category,target\\\\r\\\\n000,0.0,unique_0,no\\\\r\\\\n001,1.0,unique_1,yes\\\\r\\\\n002,,unique_2,no\\\\r\\\\n003,3.0,unique_3,yes\\\\r\\\\n004,4.0,unique_4,no\\\\r\\\\n005,5.0,unique_5,yes\\\\r\\\\n006,6.0,unique_6,no\\\\r\\\\n007,7.0,unique_7,yes\\\\r\\\\n008,8.0,unique_8,no\\\\r\\\\n009,9.0,unique_9,yes\\\\r\\\\n010,10.0,unique_10,no\\\\r\\\\n011,11.0,unique_11,yes\\\\r\\\\n\", \"test.csv\": \"id,number,category\\\\r\\\\n101,2.0,new\\\\r\\\\n102,5.0,unique_1\\\\r\\\\n103,,\\\\r\\\\n\", \"sample_submission.csv\": \"id,target\\\\r\\\\n103,0.0\\\\r\\\\n101,0.0\\\\r\\\\n102,0.0\\\\r\\\\n\"}')"
+                      - generic [ref=f4e53]: "for name, text in FIXTURES.items():"
+                      - generic [ref=f4e54]: path = DEMO_ROOT / name
+                      - generic [ref=f4e55]: path.write_text(text, encoding='utf-8', newline='')
+                      - generic [ref=f4e56]: REPLAY_INPUTS['data/raw/' + name] = str(path)
+                      - generic [ref=f4e57]: print('Synthetic files and replay artifacts:', DEMO_ROOT)
+                  - generic [ref=f4e59]: "Synthetic files and replay artifacts: /tmp/react-synthetic-rehearsal-3hvbbteg"
+                  - generic [ref=f4e70]:
+                    - button "add Code" [ref=f4e71] [cursor=pointer]:
+                      - generic [ref=f4e72]: add
+                      - text: Code
+                    - button "add Markdown" [ref=f4e73] [cursor=pointer]:
+                      - generic [ref=f4e74]: add
+                      - text: Markdown
+                - generic "Code Cell Content with Output" [active] [ref=f4e319]:
+                  - generic [ref=f4e290] [cursor=pointer]:
+                    - button "Move Cell Up" [ref=f4e291]: arrow_upward
+                    - button "Move Cell Down" [ref=f4e292]: arrow_downward
+                    - button "Delete Cell" [ref=f4e293]: delete
+                  - generic [ref=f4e294]:
+                    - generic [ref=f4e295] [cursor=pointer]
+                    - generic [ref=f4e297]:
+                      - generic [ref=f4e298] [cursor=pointer]:
+                        - text: "[*]:"
+                        - generic "Cell execution started at 10:01pm" [ref=f4e320]:
+                          - generic [ref=f4e321]:
+                            - progressbar "Loading" [ref=f4e322]
+                            - progressbar "Loading" [ref=f4e325]
+                      - textbox [ref=f4e309]:
+                        - generic [ref=f4e310]: "for name in [\"catboost\", \"lightgbm\", \"xgboost\"]:"
+                        - generic [ref=f4e331]: "try:"
+                        - generic [ref=f4e332]: mod = __import__(name)
+                        - generic [ref=f4e333]: print(name, mod.__version__)
+                        - generic [ref=f4e334]: "except Exception as e:"
+                        - generic [ref=f4e335]:
+                          - text: print
+                          - generic [ref=f4e336]: (
+                          - text: name, "UNAVAILABLE", type(e).__name__
+                          - generic [ref=f4e337]: )
+                  - generic [ref=f4e338]:
+                    - generic [ref=f4e339] [cursor=pointer]
+                    - generic [ref=f4e341]: catboost 1.2.10
+                  - generic [ref=f4e314]:
+                    - button "add Code" [ref=f4e315] [cursor=pointer]:
+                      - generic [ref=f4e316]: add
+                      - text: Code
+                    - button "add Markdown" [ref=f4e317] [cursor=pointer]:
+                      - generic [ref=f4e318]: add
+                      - text: Markdown
+                - generic "Markdown Cell Content" [ref=f4e75]:
+                  - generic [ref=f4e79]:
+                    - generic [ref=f4e80] [cursor=pointer]:
+                      - generic:
+                        - generic "Cell hasn't been executed yet"
+                    - generic [ref=f4e81]:
+                      - heading "REACT 2026 — reproduce SMOKE003" [level=1] [ref=f4e82]
+                      - paragraph [ref=f4e83]: This notebook embeds the saved source for each experiment. It loads only mapped organizer files. Run from a fresh kernel and a new output directory. No Kaggle upload is implemented.
+                      - paragraph [ref=f4e84]: "For a serious candidate: commit local code, run this notebook, verify every artifact, Save Version, then record and privately share that exact version with the organizers. Do not share with other teams."
+                  - generic [ref=f4e88]:
+                    - button "add Code" [ref=f4e89] [cursor=pointer]:
+                      - generic [ref=f4e90]: add
+                      - text: Code
+                    - button "add Markdown" [ref=f4e91] [cursor=pointer]:
+                      - generic [ref=f4e92]: add
+                      - text: Markdown
+                - generic "Markdown Cell Content" [ref=f4e93]:
+                  - generic [ref=f4e97]:
+                    - generic [ref=f4e98] [cursor=pointer]:
+                      - generic:
+                        - generic "Cell hasn't been executed yet"
+                    - generic [ref=f4e99]:
+                      - heading "Runtime and disclosures" [level=2] [ref=f4e100]
+                      - paragraph [ref=f4e101]:
+                        - text: The frozen bundle records Python, package versions, source hashes, model parameters, seeds, and exact folds. Inspect
+                        - code [ref=f4e102]: BUNDLE['experiments'][i]['environment']
+                        - text: and install the recorded required packages explicitly if needed. Optional model libraries are not installed automatically. Numerical differences cause replay verification to stop.
+                      - paragraph [ref=f4e103]: "Pretrained models: none in the starter. If activated later, record source, exact public model name/revision, and loading code directly in this notebook and the method summary."
+                  - generic [ref=f4e107]:
+                    - button "add Code" [ref=f4e108] [cursor=pointer]:
+                      - generic [ref=f4e109]: add
+                      - text: Code
+                    - button "add Markdown" [ref=f4e110] [cursor=pointer]:
+                      - generic [ref=f4e111]: add
+                      - text: Markdown
+                - generic "Code Cell Content with Output" [ref=f4e112]:
+                  - generic [ref=f4e116]:
+                    - generic [ref=f4e117] [cursor=pointer]:
+                      - text: "[2]:"
+                      - generic "Cell executed in 0.152s at 8:23pm" [ref=f4e266]: "[2]:"
+                    - textbox [ref=f4e124]:
+                      - generic [ref=f4e125]: import json
+                      - generic [ref=f4e126]: from pathlib import Path
+                      - generic [ref=f4e127]: "BUNDLE = json.loads('{\\n \"candidate\": \"SMOKE003\",\\n \"experiments\": [\\n {\\n \"record\": {\\n \"experiment_id\": \"SMOKE001\",\\n \"timestamp\": \"2026-09-03T13:07:21.138548+00:00\",\\n \"status\": \"completed\",\\n \"hypothesis\": \"Check plumbing\",\\n \"change_description\": \"Tiny synthetic integration fixture\",\\n \"parent_experiment\": null,\\n \"model\": \"logistic\",\\n \"config\": {\\n \"train_file\": \"data/raw/train.csv\",\\n \"test_file\": \"data/raw/test.csv\",\\n \"sample_file\": \"data/raw/sample_submission.csv\",\\n \"target\": \"target\",\\n \"id_columns\": [\\n \"id\"\\n ],\\n \"features\": [\\n \"number\",\\n \"category\"\\n ],\\n \"task\": \"classification\",\\n \"metric\": \"log_loss\",\\n \"metric_direction\": \"lower\",\\n \"metric_params\": {},\\n \"custom_metric\": null,\\n \"custom_metric_kind\": null,\\n \"prediction_kind\": \"probability\",\\n \"class_order\": [\\n \"no\",\\n \"yes\"\\n ],\\n \"validation_type\": \"stratified\",\\n \"validation_rationale\": \"Synthetic plumbing test only, no competition strategy\",\\n \"n_splits\": 2,\\n \"shuffle\": true,\\n \"seed\": 42,\\n \"group_column\": null,\\n \"time_column\": null,\\n \"time_gap\": 0,\\n \"splits_file\": null,\\n \"model\": \"logistic\",\\n \"model_params\": {},\\n \"text_column\": null,\\n \"predict_test\": false,\\n \"aggregation\": null,\\n \"submission_columns\": [\\n \"target\"\\n ],\\n \"submission_kind\": \"probability\",\\n \"submission_alignment\": \"id\",\\n \"positive_class\": \"yes\",\\n \"label_threshold\": null,\\n \"smoke_test\": true\\n },\\n \"parameters\": {},\\n \"validation_method\": \"stratified\",\\n \"n_folds\": 2,\\n \"seed\": 42,\\n \"provenance_path\": \"outputs/reports/SMOKE001/\",\\n \"git_commit\": null,\\n \"git_dirty\": null,\\n \"git_note\": \"No committed Git version; commit befor"
+                      - generic [ref=f4e129]: print([(e['record']['experiment_id'], e['environment']['python']) for e in BUNDLE['experiments']])
+                  - generic [ref=f4e131]: "[('SMOKE001', '3.14.4'), ('SMOKE002', '3.14.4'), ('SMOKE003', '3.14.4')]"
+                  - generic [ref=f4e142]:
+                    - button "add Code" [ref=f4e143] [cursor=pointer]:
+                      - generic [ref=f4e144]: add
+                      - text: Code
+                    - button "add Markdown" [ref=f4e145] [cursor=pointer]:
+                      - generic [ref=f4e146]: add
+                      - text: Markdown
+                - generic "Markdown Cell Content" [ref=f4e147]:
+                  - generic [ref=f4e151]:
+                    - generic [ref=f4e152] [cursor=pointer]:
+                      - generic:
+                        - generic "Cell hasn't been executed yet"
+                    - generic [ref=f4e153]:
+                      - heading "Map competition inputs" [level=2] [ref=f4e154]
+                      - paragraph [ref=f4e155]:
+                        - text: Replace each
+                        - code [ref=f4e156]: None
+                        - text: with its
+                        - code [ref=f4e157]: /kaggle/input/...
+                        - text: path. These are paths to the same organizer files, not new data. Choose a fresh writable RUN_ROOT for every execution. The original input paths are provenance labels only.
+                  - generic [ref=f4e161]:
+                    - button "add Code" [ref=f4e162] [cursor=pointer]:
+                      - generic [ref=f4e163]: add
+                      - text: Code
+                    - button "add Markdown" [ref=f4e164] [cursor=pointer]:
+                      - generic [ref=f4e165]: add
+                      - text: Markdown
+                - generic "Code Cell Content" [ref=f4e166]:
+                  - generic [ref=f4e170]:
+                    - generic [ref=f4e171] [cursor=pointer]:
+                      - text: "[ ]:"
+                      - generic "Cell hasn't been executed yet" [ref=f4e173]: "[ ]:"
+                    - textbox [ref=f4e178]:
+                      - generic [ref=f4e179]: RUN_ROOT = Path(globals().get('REPLAY_ROOT', '/kaggle/working/react-replay-SMOKE003')).resolve()
+                      - generic [ref=f4e180]: "INPUT_FILES = globals().get('REPLAY_INPUTS', json.loads('{\\n \"data/raw/train.csv\": null,\\n \"data/raw/test.csv\": null,\\n \"data/raw/sample_submission.csv\": null\\n}'))"
+                  - generic [ref=f4e185]:
+                    - button "add Code" [ref=f4e186] [cursor=pointer]:
+                      - generic [ref=f4e187]: add
+                      - text: Code
+                    - button "add Markdown" [ref=f4e188] [cursor=pointer]:
+                      - generic [ref=f4e189]: add
+                      - text: Markdown
+                - generic "Code Cell Content" [ref=f4e190]:
+                  - generic [ref=f4e194]:
+                    - generic [ref=f4e195] [cursor=pointer]:
+                      - text: "[ ]:"
+                      - generic "Cell hasn't been executed yet" [ref=f4e197]: "[ ]:"
+                    - textbox [ref=f4e202]:
+                      - generic [ref=f4e203]: import json
+                      - generic [ref=f4e204]: import os
+                      - generic [ref=f4e205]: import subprocess
+                      - generic [ref=f4e206]: import sys
+                      - generic [ref=f4e207]: from pathlib import Path
+                      - generic [ref=f4e209]: "for original, replacement in INPUT_FILES.items():"
+                      - generic [ref=f4e210]: "if not replacement or not Path(replacement).is_file():"
+                      - generic [ref=f4e211]: "raise ValueError(f\"Map organizer input {original!r} to an existing file before replay\")"
+                      - generic [ref=f4e212]: RUN_ROOT.mkdir(parents=True, exist_ok=False)
+                      - generic [ref=f4e214]: "for item in BUNDLE[\"experiments\"]:"
+                      - generic [ref=f4e215]: record = item["record"]
+                      - generic [ref=f4e216]: experiment = record["experiment_id"]
+                      - generic [ref=f4e217]: execution = RUN_ROOT / "execution_sources" / experiment
+                      - generic [ref=f4e218]: source = execution / "src"
+                      - generic [ref=f4e219]: source.mkdir(parents=True)
+                      - generic [ref=f4e220]: "for name, content in item[\"source\"].items():"
+                      - generic [ref=f4e221]: (source / name).write_text(content, encoding="utf-8", newline="")
+                      - generic [ref=f4e222]: settings = dict(record["config"])
+                      - generic [ref=f4e223]: "for key in (\"train_file\", \"test_file\", \"sample_file\"):"
+                      - generic [ref=f4e224]: "if settings.get(key) in INPUT_FILES:"
+                      - generic [ref=f4e225]: settings[key] = str(INPUT_FILES[settings[key]])
+                      - generic [ref=f4e226]: settings["predict_test"] = False
+                      - generic [ref=f4e227]: saved_splits = execution / "splits.json"
+                      - generic [ref=f4e228]: saved_splits.write_text(json.dumps(item["splits"]), encoding="utf-8")
+                      - generic [ref=f4e229]: settings["splits_file"] = str(saved_splits)
+                      - generic [ref=f4e230]: cfg_path = execution / "replay_config.json"
+                      - generic [ref=f4e231]: cfg_path.write_text(json.dumps(settings), encoding="utf-8")
+                      - generic [ref=f4e232]: item_path = execution / "expected.json"
+                      - generic [ref=f4e233]: item_path.write_text(json.dumps(item), encoding="utf-8")
+                      - generic [ref=f4e234]: runner = r'''import json, sys
+                      - generic [ref=f4e235]: from pathlib import Path
+                      - generic [ref=f4e236]: from src.config import load_config
+                      - generic [ref=f4e237]: from src.train import train_experiment
+                      - generic [ref=f4e238]: from src.predict import predict_experiment
+                  - generic [ref=f4e243]:
+                    - button "add Code" [ref=f4e244] [cursor=pointer]:
+                      - generic [ref=f4e245]: add
+                      - text: Code
+                    - button "add Markdown" [ref=f4e246] [cursor=pointer]:
+                      - generic [ref=f4e247]: add
+                      - text: Markdown
+                - generic "Markdown Cell Content" [ref=f4e248]:
+                  - generic [ref=f4e252]:
+                    - generic [ref=f4e253] [cursor=pointer]:
+                      - generic:
+                        - generic "Cell hasn't been executed yet"
+                    - generic [ref=f4e254]:
+                      - heading "Commit and record the exact version" [level=2] [ref=f4e255]
+                      - paragraph [ref=f4e256]: Confirm all VERIFIED messages and generated CSVs under RUN_ROOT/submissions. Save a committed Kaggle Notebook version that runs training and inference. Add its exact version URL to experiments/experiments.csv, the candidate report, and submission sidecar. Upload a CSV only on explicit human instruction. Up to two final selections remain human decisions. Never replace a prior candidate or infer a successful replay from a completed training cell alone.
+                  - generic [ref=f4e260]:
+                    - button "add Code" [ref=f4e261] [cursor=pointer]:
+                      - generic [ref=f4e262]: add
+                      - text: Code
+                    - button "add Markdown" [ref=f4e263] [cursor=pointer]:
+                      - generic [ref=f4e264]: add
+                      - text: Markdown
+      - generic [ref=f3e167]:
+        - button "Open console" [ref=f3e554] [cursor=pointer]: terminal
+        - button "Open command palette" [ref=f3e555] [cursor=pointer]: keyboard
+      - generic [ref=f3e170]:
+        - generic [ref=f3e172]:
+          - separator [ref=f3e174]
+          - generic [ref=f3e176]:
+            - heading "Notebook" [level=2] [ref=f3e556]
+            - generic [ref=f3e179]:
+              - generic [ref=f3e180] [cursor=pointer]:
+                - heading "Input" [level=3] [ref=f3e557]
+                - button "Collapse Input" [expanded] [ref=f3e558]: keyboard_arrow_up
+              - generic [ref=f3e186]:
+                - generic [ref=f3e187]:
+                  - button "Add Input" [ref=f3e559] [cursor=pointer]:
+                    - generic [aria-hidden] [ref=f3e189]: add
+                  - button "Upload" [ref=f3e560] [cursor=pointer]:
+                    - generic [aria-hidden] [ref=f3e192]: upload
+                - generic [ref=f3e267]:
+                  - heading "No input attached" [level=2] [ref=f3e561]
+                  - paragraph [ref=f3e269]: Attach a Kaggle dataset, model, or competition
+            - generic [ref=f3e194]:
+              - generic [ref=f3e195] [cursor=pointer]:
+                - heading "Output (376KiB / 19.5GiB)" [level=3] [ref=f3e562]
+                - button "Collapse Output (376KiB / 19.5GiB)" [expanded] [ref=f3e563]: keyboard_arrow_up
+              - list [ref=f3e203]:
+                - listitem [ref=f3e204]:
+                  - generic [ref=f3e205]:
+                    - button "arrow_right" [ref=f3e564]
+                    - generic [ref=f3e209]: folder
+                    - paragraph [ref=f3e213]: /kaggle/working
+                    - generic [ref=f3e215]:
+                      - button "Copy directory path (/kaggle/working)" [ref=f3e565] [cursor=pointer]: content_copy
+                      - button "Refresh directory contents (/kaggle/working)" [ref=f3e566] [cursor=pointer]: directory_sync
+            - generic [ref=f3e221]:
+              - generic [ref=f3e222] [cursor=pointer]:
+                - heading "Table of contents" [level=3] [ref=f3e567]
+                - button "Collapse Table of contents" [expanded] [ref=f3e568]: keyboard_arrow_up
+              - tablist [ref=f3e310]:
+                - tab "Synthetic Kaggle rehearsal — no competition data, 1 of 5" [selected] [ref=f3e569] [cursor=pointer]:
+                  - generic [ref=f3e312]: Synthetic Kaggle rehearsal — no competition data
+                - tab "REACT 2026 — reproduce SMOKE003, 2 of 5" [ref=f3e570] [cursor=pointer]:
+                  - generic [ref=f3e314]: REACT 2026 — reproduce SMOKE003
+                - tab "Runtime and disclosures, 3 of 5" [ref=f3e571] [cursor=pointer]:
+                  - generic [ref=f3e316]: Runtime and disclosures
+                - tab "Map competition inputs, 4 of 5" [ref=f3e572] [cursor=pointer]:
+                  - generic [ref=f3e318]: Map competition inputs
+                - tab "Commit and record the exact version, 5 of 5" [ref=f3e573] [cursor=pointer]:
+                  - generic [ref=f3e320]: Commit and record the exact version
+            - generic [ref=f3e233] [cursor=pointer]:
+              - heading "Session options" [level=3] [ref=f3e574]
+              - button "Expand Session options" [ref=f3e575]: keyboard_arrow_down
+            - generic [ref=f3e238] [cursor=pointer]:
+              - heading "Schedule a notebook to run" [level=3] [ref=f3e576]
+              - button "Expand Schedule a notebook to run" [ref=f3e577]: keyboard_arrow_down
+        - button "Collapse Sidebar" [ref=f3e578] [cursor=pointer]:
+          - generic "Collapse Sidebar" [ref=f3e579]: arrow_right
+  - alert [ref=f3e245]: Session started.

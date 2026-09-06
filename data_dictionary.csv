@@ -1,0 +1,14 @@
+column,type,description
+transaction_id,string,Unique transaction identifier.
+customer_id,string,Anonymous customer identifier.
+timestamp,datetime (YYYY-MM-DD HH:MM:SS),"Transaction time. Use this to build time-aware, leakage-safe features."
+amount_bdt,float,Transaction amount in Bangladeshi Taka (BDT).
+merchant_id,string,Anonymous merchant identifier.
+merchant_category,categorical,"Merchant category (e.g. grocery, electronics, telecom_topup). May be missing."
+device_id,string,Anonymous device/channel identifier used for the transaction.
+device_type,categorical,"Device/channel type (mobile_app, web, pos_terminal, atm, ussd). May be missing."
+location,categorical,Coarse transaction location code. May be missing.
+payment_method,categorical,"Payment method used (mobile_wallet, debit_card, credit_card, bank_transfer, qr_code)."
+transaction_type,categorical,"Type of transaction (purchase, bill_payment, p2p_transfer, cash_withdrawal, topup)."
+account_age_days,integer,"Customer account age, in days, at the time of the transaction."
+fraud,binary (0/1),Target variable. Present in train.csv only. 1 = fraudulent transaction.

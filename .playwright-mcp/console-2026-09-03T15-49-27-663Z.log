@@ -1,0 +1,593 @@
+[    1102ms] [LOG]  _                       _       
+| |    Welcome to       | |      
+| | __ ___   __ _  __ _ | | ___  
+| |/ /|__ \ / _` |/ _` || |/ _ \ 
+|   < / _  | (_| | (_| || |  __/ 
+|_|\_\\__,_|\__, |\__, ||_|\___| 
+             __/ | __/ |         
+            |___/ |___/          
+ @ https://www.kaggle.com/static/assets/app.js?v=8044b92b0d4a36e8:0
+[    1892ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://www.kaggle.com/api/i/user_secrets.UserSecretsService/GetGitHubAccessInfo:0
+[    2273ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://www.kaggle.com/api/i/user_secrets.UserSecretsService/GetDriveAccessInfo:0
+[    2274ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://www.kaggle.com/api/i/user_secrets.UserSecretsService/GetDriveAccessInfo:0
+[    5462ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://www.kaggle.com/api/i/user_secrets.UserSecretsService/GetDriveAccessInfo:0
+[    7094ms] [WARNING] Navigo router library will have soon a major upgrade to version 8.0.0. If you don't have time for such migration please stick with the latest 7.1.2 version. To avoid seeing this message set a strict 7.1.2 in your package.json file. @ https://kkb-production.jupyter-proxy.kaggle.net/static/assets/jupyterlabinjected.ff1d8bc85b5850c7.js?208f6b4441b61cce:6
+[    7820ms] [ERROR] Yjs was already imported. This breaks constructor checks and will lead to issues! - https://github.com/yjs/yjs/issues/438 @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/7957.bundle.js:0
+[    9821ms] [WARNING] Language pack 'en_US' not installed! @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/7819.bundle.js:0
+[    9833ms] [WARNING] Deprecated shortcut selectors: ".jp-Notebook:focus" was replaced with ".jp-Notebook.jp-mod-commandMode:not(.jp-mod-readWrite) :focus" in JupyterLab 4.1 (present in ".jp-Notebook:focus")
+".jp-Notebook:focus.jp-mod-commandMode" was replaced with ".jp-Notebook.jp-mod-commandMode:not(.jp-mod-readWrite) :focus" in JupyterLab 4.1 (present in ".jp-Notebook:focus.jp-mod-commandMode")
+
+The selectors will be substituted transparently this time, but need to be updated at source before next major release. @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/5649.bundle.js:0
+[    9855ms] [WARNING] Deprecated shortcut selectors: "[data-jp-kernel-user]:focus" was replaced with "[data-jp-kernel-user]:not(.jp-mod-readWrite) :focus:not(:read-write)" in JupyterLab 4.1 (present in "[data-jp-kernel-user]:focus")
+
+The selectors will be substituted transparently this time, but need to be updated at source before next major release. @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/5649.bundle.js:0
+[    9880ms] [WARNING] Completion provider with identifier CompletionProvider:context is already registered @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/2944.bundle.js:0
+[    9880ms] [WARNING] Completion provider with identifier CompletionProvider:kernel is already registered @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/2944.bundle.js:0
+[    9945ms] [WARNING] Could not retrieve current context null @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[    9948ms] [WARNING] Could not retrieve current context null @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[    9948ms] [WARNING] Could not get context @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[    9948ms] [WARNING] Could not retrieve current context null @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[    9948ms] [WARNING] Could not get context @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[    9948ms] [WARNING] Could not retrieve current context null @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[    9948ms] [WARNING] Could not get context @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[    9956ms] [WARNING] Could not retrieve current context null @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[    9958ms] [WARNING] Could not retrieve current context null @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[    9958ms] [WARNING] Could not get context @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[    9958ms] [WARNING] Could not retrieve current context null @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[    9958ms] [WARNING] Could not get context @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[    9958ms] [WARNING] Could not retrieve current context null @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[    9958ms] [WARNING] Could not get context @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[    9962ms] [WARNING] Could not retrieve current context null @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[    9963ms] [WARNING] Could not retrieve current context null @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[    9964ms] [WARNING] Could not get context @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[    9964ms] [WARNING] Could not retrieve current context null @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[    9964ms] [WARNING] Could not get context @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[    9964ms] [WARNING] Could not retrieve current context null @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[    9964ms] [WARNING] Could not get context @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[    9985ms] [WARNING] [Object] @ :0
+[   10037ms] [WARNING] TypeError: Cannot convert undefined or null to object
+    at Object.entries (<anonymous>)
+    at Z.fetchSessions (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:1:32855) @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[   10042ms] [WARNING] Could not retrieve current context null @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10044ms] [WARNING] Could not retrieve current context null @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10044ms] [WARNING] Could not get context @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10044ms] [WARNING] Could not retrieve current context null @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10044ms] [WARNING] Could not get context @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10044ms] [WARNING] Could not retrieve current context null @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10044ms] [WARNING] Could not get context @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10048ms] [WARNING] Could not retrieve current context null @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10050ms] [WARNING] Could not retrieve current context null @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10050ms] [WARNING] Could not get context @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10050ms] [WARNING] Could not retrieve current context null @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10050ms] [WARNING] Could not get context @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10050ms] [WARNING] Could not retrieve current context null @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10050ms] [WARNING] Could not get context @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10054ms] Error: Handler not found for Jupyter API interception: GET - https://kkb-production.jupyter-proxy.kaggle.net/lab/api/settings/@jupyter-widgets/jupyterlab-manager:plugin?1788450577655
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/assets/jupyterlabinjected.ff1d8bc85b5850c7.js?208f6b4441b61cce:7:615419
+[   10055ms] Error: Handler not found for Jupyter API interception: GET - https://kkb-production.jupyter-proxy.kaggle.net/lab/api/settings/@jupyterlab/completer-extension:inline-completer?1788450577658
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/assets/jupyterlabinjected.ff1d8bc85b5850c7.js?208f6b4441b61cce:7:615419
+[   10093ms] [LOG] Editor not found in _editorToSourceLine map @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[   10094ms] [WARNING] Could not retrieve current context P @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10094ms] [LOG] Editor not found in _editorToSourceLine map @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[   10095ms] [WARNING] Could not retrieve current context P @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10095ms] [WARNING] Could not get context @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10095ms] [LOG] Editor not found in _editorToSourceLine map @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[   10095ms] [WARNING] Could not retrieve current context P @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10095ms] [WARNING] Could not get context @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10095ms] [LOG] Editor not found in _editorToSourceLine map @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[   10095ms] [WARNING] Could not retrieve current context P @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10095ms] [WARNING] Could not get context @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10100ms] [LOG] LSP Initialized @ https://kkb-production.jupyter-proxy.kaggle.net/static/assets/jupyterlabinjected.ff1d8bc85b5850c7.js?208f6b4441b61cce:9
+[   10110ms] [ERROR] WebSocket connection to 'wss://kkb-production.jupyter-proxy.kaggle.net/api/events/subscribe' failed: Error during WebSocket handshake: Unexpected response code: 404 @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3676.bundle.js:0
+[   10117ms] [LOG] Editor not found in _editorToSourceLine map @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[   10117ms] [WARNING] Could not retrieve current context P @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10118ms] [LOG] Editor not found in _editorToSourceLine map @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[   10118ms] [WARNING] Could not retrieve current context P @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10119ms] [WARNING] Could not get context @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10119ms] [LOG] Editor not found in _editorToSourceLine map @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[   10119ms] [WARNING] Could not retrieve current context P @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10119ms] [WARNING] Could not get context @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10119ms] [LOG] Editor not found in _editorToSourceLine map @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[   10119ms] [WARNING] Could not retrieve current context P @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10119ms] [WARNING] Could not get context @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10135ms] [LOG] Editor not found in _editorToSourceLine map @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[   10135ms] [WARNING] Could not retrieve current context P @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10136ms] [LOG] Editor not found in _editorToSourceLine map @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[   10136ms] [WARNING] Could not retrieve current context P @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10136ms] [WARNING] Could not get context @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10136ms] [LOG] Editor not found in _editorToSourceLine map @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[   10136ms] [WARNING] Could not retrieve current context P @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10137ms] [WARNING] Could not get context @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10137ms] [LOG] Editor not found in _editorToSourceLine map @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[   10137ms] [WARNING] Could not retrieve current context P @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10137ms] [WARNING] Could not get context @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10191ms] Error: Unexpected result from Jupyter API interception: PUT - https://kkb-production.jupyter-proxy.kaggle.net/lab/api/settings/@jupyterlab/docmanager-extension:plugin?1788450577763 {"status":500,"statusText":"","text":"'PUT' not implemented for this handler","headers":{"content-type":"text/plain;charset=UTF-8"}}
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/assets/jupyterlabinjected.ff1d8bc85b5850c7.js?208f6b4441b61cce:7:615559
+[   10191ms] Error: Unexpected result from Jupyter API interception: PUT - https://kkb-production.jupyter-proxy.kaggle.net/lab/api/settings/@jupyterlab/docmanager-extension:plugin?1788450577764 {"status":500,"statusText":"","text":"'PUT' not implemented for this handler","headers":{"content-type":"text/plain;charset=UTF-8"}}
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/assets/jupyterlabinjected.ff1d8bc85b5850c7.js?208f6b4441b61cce:7:615559
+[   10219ms] [LOG] Editor not found in _editorToSourceLine map @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[   10219ms] [WARNING] Could not retrieve current context P @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10220ms] [LOG] Editor not found in _editorToSourceLine map @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[   10220ms] [WARNING] Could not retrieve current context P @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10220ms] [WARNING] Could not get context @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10221ms] [LOG] Editor not found in _editorToSourceLine map @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[   10221ms] [WARNING] Could not retrieve current context P @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10221ms] [WARNING] Could not get context @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10221ms] [LOG] Editor not found in _editorToSourceLine map @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[   10221ms] [WARNING] Could not retrieve current context P @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10221ms] [WARNING] Could not get context @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10545ms] [LOG] Editor not found in _editorToSourceLine map @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[   10545ms] [WARNING] Could not retrieve current context P @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10547ms] [LOG] Editor not found in _editorToSourceLine map @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[   10547ms] [WARNING] Could not retrieve current context P @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10548ms] [WARNING] Could not get context @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10548ms] [LOG] Editor not found in _editorToSourceLine map @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[   10548ms] [WARNING] Could not retrieve current context P @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10548ms] [WARNING] Could not get context @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10548ms] [LOG] Editor not found in _editorToSourceLine map @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[   10548ms] [WARNING] Could not retrieve current context P @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   10548ms] [WARNING] Could not get context @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   11014ms] [LOG] Editor not found in _editorToSourceLine map @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[   11014ms] [WARNING] Could not retrieve current context P @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   11015ms] [LOG] Editor not found in _editorToSourceLine map @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[   11015ms] [WARNING] Could not retrieve current context P @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   11015ms] [WARNING] Could not get context @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   11016ms] [LOG] Editor not found in _editorToSourceLine map @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[   11016ms] [WARNING] Could not retrieve current context P @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   11016ms] [WARNING] Could not get context @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   11016ms] [LOG] Editor not found in _editorToSourceLine map @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[   11016ms] [WARNING] Could not retrieve current context P @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   11016ms] [WARNING] Could not get context @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   11062ms] NotFoundError: Failed to execute 'removeChild' on 'Node': The node to be removed is not a child of this node.
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/8579.bundle.js:1:6402
+[   11190ms] [LOG] Editor not found in _editorToSourceLine map @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[   11190ms] [WARNING] Could not retrieve current context P @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   11191ms] [LOG] Editor not found in _editorToSourceLine map @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[   11191ms] [WARNING] Could not retrieve current context P @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   11191ms] [WARNING] Could not get context @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   11192ms] [LOG] Editor not found in _editorToSourceLine map @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[   11192ms] [WARNING] Could not retrieve current context P @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   11192ms] [WARNING] Could not get context @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   11192ms] [LOG] Editor not found in _editorToSourceLine map @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[   11192ms] [WARNING] Could not retrieve current context P @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   11192ms] [WARNING] Could not get context @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   11242ms] [ERROR] WebSocket connection to 'wss://kkb-production.jupyter-proxy.kaggle.net/api/events/subscribe' failed: Error during WebSocket handshake: Unexpected response code: 404 @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3676.bundle.js:0
+[   11350ms] TypeError: Cannot read properties of null (reading 'onAfterShow')
+    at _5 (https://kkb-production.jupyter-proxy.kaggle.net/static/assets/jupyterlabinjected.ff1d8bc85b5850c7.js?208f6b4441b61cce:10:359228)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/assets/jupyterlabinjected.ff1d8bc85b5850c7.js?208f6b4441b61cce:10:361290
+    at Array.forEach (<anonymous>)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/assets/jupyterlabinjected.ff1d8bc85b5850c7.js?208f6b4441b61cce:10:361262
+    at u (https://kkb-production.jupyter-proxy.kaggle.net/static/assets/jupyterlabinjected.ff1d8bc85b5850c7.js?208f6b4441b61cce:10:360733)
+    at Object.<anonymous> (https://kkb-production.jupyter-proxy.kaggle.net/static/assets/jupyterlabinjected.ff1d8bc85b5850c7.js?208f6b4441b61cce:10:360020)
+    at _6 (https://kkb-production.jupyter-proxy.kaggle.net/static/assets/jupyterlabinjected.ff1d8bc85b5850c7.js?208f6b4441b61cce:10:359340)
+    at s (https://kkb-production.jupyter-proxy.kaggle.net/static/assets/jupyterlabinjected.ff1d8bc85b5850c7.js?208f6b4441b61cce:10:359538)
+[   11408ms] [LOG] Editor not found in _editorToSourceLine map @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[   11408ms] [WARNING] Could not retrieve current context P @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   11410ms] [LOG] Editor not found in _editorToSourceLine map @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[   11410ms] [WARNING] Could not retrieve current context P @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   11410ms] [WARNING] Could not get context @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   11410ms] [LOG] Editor not found in _editorToSourceLine map @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[   11411ms] [WARNING] Could not retrieve current context P @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   11411ms] [WARNING] Could not get context @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   11411ms] [LOG] Editor not found in _editorToSourceLine map @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[   11411ms] [WARNING] Could not retrieve current context P @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   11411ms] [WARNING] Could not get context @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   11424ms] [LOG] Editor not found in _editorToSourceLine map @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[   11424ms] [WARNING] Could not retrieve current context P @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   11426ms] [LOG] Editor not found in _editorToSourceLine map @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[   11426ms] [WARNING] Could not retrieve current context P @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   11426ms] [WARNING] Could not get context @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   11426ms] [LOG] Editor not found in _editorToSourceLine map @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[   11427ms] [WARNING] Could not retrieve current context P @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   11427ms] [WARNING] Could not get context @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   11427ms] [LOG] Editor not found in _editorToSourceLine map @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[   11427ms] [WARNING] Could not retrieve current context P @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   11427ms] [WARNING] Could not get context @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[   11518ms] TypeError: Cannot read properties of undefined (reading 'type')
+    at be (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/374.bundle.js:1:120715)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/374.bundle.js:1:119134
+    at Array.forEach (<anonymous>)
+    at l (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/374.bundle.js:1:119093)
+    at c (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/374.bundle.js:1:120191)
+    at a (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/409.bundle.js:1:2625)
+    at e.emit (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/409.bundle.js:1:2354)
+    at o.emit (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/409.bundle.js:1:334)
+    at Ce._onCellInViewportChanged (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/374.bundle.js:1:74310)
+    at a (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/409.bundle.js:1:2625)
+[   13228ms] [ERROR] WebSocket connection to 'wss://kkb-production.jupyter-proxy.kaggle.net/api/events/subscribe' failed: Error during WebSocket handshake: Unexpected response code: 404 @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3676.bundle.js:0
+[   16686ms] [ERROR] WebSocket connection to 'wss://kkb-production.jupyter-proxy.kaggle.net/api/events/subscribe' failed: Error during WebSocket handshake: Unexpected response code: 404 @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3676.bundle.js:0
+[   21986ms] [TABLE] [Object] @ https://kkb-production.jupyter-proxy.kaggle.net/static/assets/jupyterlabinjected.ff1d8bc85b5850c7.js?208f6b4441b61cce:9
+[   21986ms] [TABLE] [o] @ https://kkb-production.jupyter-proxy.kaggle.net/static/assets/jupyterlabinjected.ff1d8bc85b5850c7.js?208f6b4441b61cce:9
+[   23095ms] [ERROR] WebSocket connection to 'wss://kkb-production.jupyter-proxy.kaggle.net/api/events/subscribe' failed: Error during WebSocket handshake: Unexpected response code: 404 @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3676.bundle.js:0
+[   30816ms] [ERROR] WebSocket connection to 'wss://kkb-production.jupyter-proxy.kaggle.net/api/events/subscribe' failed: Error during WebSocket handshake: Unexpected response code: 404 @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3676.bundle.js:0
+[   39708ms] [ERROR] WebSocket connection to 'wss://kkb-production.jupyter-proxy.kaggle.net/api/events/subscribe' failed: Error during WebSocket handshake: Unexpected response code: 404 @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3676.bundle.js:0
+[   55864ms] [ERROR] WebSocket connection to 'wss://kkb-production.jupyter-proxy.kaggle.net/api/events/subscribe' failed: Error during WebSocket handshake: Unexpected response code: 404 @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3676.bundle.js:0
+[  201964ms] [WARNING] Cell has not been bootstrapped: f8cc3d77-f30f-4229-9b46-1eefd85f84b8. @ https://kkb-production.jupyter-proxy.kaggle.net/static/assets/jupyterlabinjected.ff1d8bc85b5850c7.js?208f6b4441b61cce:6
+[  201964ms] [WARNING] Cell has not been bootstrapped: fec24829-0fc7-4da7-9786-823289d7a1a3. @ https://kkb-production.jupyter-proxy.kaggle.net/static/assets/jupyterlabinjected.ff1d8bc85b5850c7.js?208f6b4441b61cce:6
+[  201965ms] [WARNING] RACE DETECTED:INJECTING CELLS @ https://kkb-production.jupyter-proxy.kaggle.net/static/assets/jupyterlabinjected.ff1d8bc85b5850c7.js?208f6b4441b61cce:6
+[  201999ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  202213ms] [WARNING] Could not get highlights: TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Wt.requestHighlights (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:112615)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[  202213ms] [WARNING] Could not get highlights: TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Wt.requestHighlights (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:112615)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[  202213ms] [WARNING] Could not get highlights: TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Wt.requestHighlights (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:112615)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[  206210ms] [WARNING] Could not get highlights: TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Wt.requestHighlights (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:112615)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[  209941ms] [LOG] Firestore session MjMZt3tzu34pt58uN4QVbwArJ2PDHZCwYaNBHx54-347041598-webtier status ALLOCATED @ https://www.kaggle.com/static/assets/KernelEditor.bc2650c15b8a0f7f.js:0
+[  222266ms] [INFO] INSIDE connectKernel (JL) @ https://kkb-production.jupyter-proxy.kaggle.net/static/assets/jupyterlabinjected.ff1d8bc85b5850c7.js?208f6b4441b61cce:9
+[  222266ms] [LOG] Connecting python3 kernel through https://kkb-production.jupyter-proxy.kaggle.net/k/347041598/eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwidHlwIjoiSldUIn0..GpRy3k2TMiMU2AVG97HzAQ.zQgWyJbvi2p9cQJjCgbwU6SGdIpD9nqiUFq_JennEQ5gxGnn8e9gIa-knnVzJVNrUaVOR0a33ppkiCtEtTRu8LmX1OwPCTRq78aGBrqcgbNakJDuyR0XO1RkzNDXQ6hUFpcsoE8SCYHtjAt3WUucDXarJiDiFDESBIsboWiN2frzNAGVLHCqHT3Q-EQaFNr8Y3uaEkG2GmqTq5l7C7EVrWem7VmtTj9U4a6f_y2OoAnECH24Ks2MpLbWnfYdUrdU.HNiFPqZd92MmARAlWnQWWQ/proxy. @ https://kkb-production.jupyter-proxy.kaggle.net/static/assets/jupyterlabinjected.ff1d8bc85b5850c7.js?208f6b4441b61cce:9
+[  222268ms] [LOG] setWSURL: Refreshing running... @ https://kkb-production.jupyter-proxy.kaggle.net/static/assets/jupyterlabinjected.ff1d8bc85b5850c7.js?208f6b4441b61cce:9
+[  222817ms] [LOG] setWSURL: model connection... @ https://kkb-production.jupyter-proxy.kaggle.net/static/assets/jupyterlabinjected.ff1d8bc85b5850c7.js?208f6b4441b61cce:9
+[  222821ms] [LOG] setWSURL: model connected! @ https://kkb-production.jupyter-proxy.kaggle.net/static/assets/jupyterlabinjected.ff1d8bc85b5850c7.js?208f6b4441b61cce:9
+[  222826ms] [WARNING] Specification not available for server pylsp @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[  223553ms] [LOG] Firestore session MjMZt3tzu34pt58uN4QVbwArJ2PDHZCwYaNBHx54-347041598-webtier status EXECUTING @ https://www.kaggle.com/static/assets/KernelEditor.bc2650c15b8a0f7f.js:0
+[  253201ms] [LOG] Connection to __notebook_source__.ipynb timed out after 30 seconds, will continue retrying for another 5 minutes @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[  316601ms] [ERROR] WebSocket connection to 'wss://kkb-production.jupyter-proxy.kaggle.net/api/events/subscribe' failed: WebSocket opening handshake timed out @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3676.bundle.js:0
+[  318750ms] [LOG] Editor not found in _editorToSourceLine map @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[  318750ms] [LOG] Editor not found in _editorToSourceLine map @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[  318751ms] [LOG] Editor not found in _editorToSourceLine map @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[  318943ms] [WARNING] Specification not available for server pylsp @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[  318943ms] [WARNING] Editor accessor not found from node, falling back to activeEditor @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[  318943ms] [WARNING] Editor accessor not found from node, falling back to activeEditor @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[  318943ms] [WARNING] Editor accessor not found from node, falling back to activeEditor @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[  318943ms] [WARNING] Editor accessor not found from node, falling back to activeEditor @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[  318943ms] [WARNING] Editor accessor not found from node, falling back to activeEditor @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:0
+[  319126ms] [WARNING] Failed to fetch ipywidgets through the "jupyter.widget.control" comm channel, fallback to fetching individual model state. Reason: Control comm was closed too early @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-widgets/jupyterlab-manager/static/327.68dbf8491690b3aff1e7.js?v=68dbf8491690b3aff1e7:0
+[  324118ms] [WARNING] Specification not available for server pylsp @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[  324118ms] [WARNING] Specification not available for server pylsp @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[  324119ms] [WARNING] Specification not available for server pylsp @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[  324123ms] [WARNING] Specification not available for server pylsp @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[  324127ms] [WARNING] Specification not available for server pylsp @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[  324127ms] [WARNING] Specification not available for server pylsp @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[  324129ms] [WARNING] Specification not available for server pylsp @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[  324402ms] [ERROR] TypeError: Cannot read properties of null (reading 'join')
+    at get value (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:1:36047)
+    at z.documentChanged (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:1:4566)
+    at z.onConnected (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:1:5265)
+    at async z._connect (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:1:7579)
+    at async z.connectDocument (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:1:6151) @ :0
+[  324402ms] [LOG] LSP is connected @ https://kkb-production.jupyter-proxy.kaggle.net/static/assets/jupyterlabinjected.ff1d8bc85b5850c7.js?208f6b4441b61cce:9
+[  325214ms] [WARNING] Specification not available for server pylsp @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[  332503ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  332509ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  332515ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  332522ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  332528ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  332533ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  332539ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  337056ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  337062ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  337068ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  337074ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  338536ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  338542ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  338548ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  338554ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  338560ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  338566ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  338572ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  338579ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  338584ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  338590ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  338596ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  432487ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  432493ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  432500ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  432505ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  432517ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  432523ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  432535ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  432542ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  432553ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  432560ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  432566ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  432578ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  432947ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  432978ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  433736ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  433742ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  433754ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  433760ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  433766ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  433772ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  433778ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  433785ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  433790ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  433802ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  433810ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  440098ms] [LOG] Firestore session MjMZt3tzu34pt58uN4QVbwArJ2PDHZCwYaNBHx54-347041598-webtier status CLOSING @ https://www.kaggle.com/static/assets/KernelEditor.bc2650c15b8a0f7f.js:0
+[  440145ms] [LOG] Shutting down kernel... @ https://kkb-production.jupyter-proxy.kaggle.net/static/assets/jupyterlabinjected.ff1d8bc85b5850c7.js?208f6b4441b61cce:9
+[  450866ms] [ERROR] [Error: Reader received error. Reason: Error during socket reconnect: code = 1006, reason = 
+    at …, undefined, undefined] @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[  450866ms] [ERROR] Connection closed by the server @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[  450867ms] [ERROR] Connection unexpectedly disconnected @ https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/3512.bundle.js:0
+[  464656ms] [ERROR] WebSocket connection to 'wss://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/api/events/subscribe' failed: Error during WebSocket handshake: Unexpected response code: 404 @ https://kkb-production.jupyter-proxy.kaggle.net/static/assets/jupyterlabinjected.ff1d8bc85b5850c7.js?208f6b4441b61cce:9
+[  464793ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  464799ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  464804ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  464811ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  464817ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  464823ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  464829ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  464835ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  468550ms] [ERROR] WebSocket connection to 'wss://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/api/events/subscribe' failed: Error during WebSocket handshake: Unexpected response code: 404 @ https://kkb-production.jupyter-proxy.kaggle.net/static/assets/jupyterlabinjected.ff1d8bc85b5850c7.js?208f6b4441b61cce:9
+[  478519ms] [ERROR] WebSocket connection to 'wss://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/api/events/subscribe' failed: Error during WebSocket handshake: Unexpected response code: 404 @ https://kkb-production.jupyter-proxy.kaggle.net/static/assets/jupyterlabinjected.ff1d8bc85b5850c7.js?208f6b4441b61cce:9
+[  486662ms] [ERROR] WebSocket connection to 'wss://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/api/events/subscribe' failed: Error during WebSocket handshake: Unexpected response code: 404 @ https://kkb-production.jupyter-proxy.kaggle.net/static/assets/jupyterlabinjected.ff1d8bc85b5850c7.js?208f6b4441b61cce:9
+[  498565ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  498571ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  498578ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  498583ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  498590ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  498596ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  498602ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  498607ms] [WARNING] TypeError: Cannot read properties of undefined (reading 'isReady')
+    at Xt.getHover (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/lab/extensions/@jupyter-lsp/jupyterlab-lsp/static/661.bd239b6ff6d2fd9fcb36.js?v=bd239b6ff6d2fd9fcb36:1:121245)
+    at r.factory [as _factory] (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:4482)
+    at r._execute (https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:3059)
+    at https://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/v-dd191da75eaf47ebd98e8d4b4aa37398/notebook/4271.bundle.js:1:2510 @ :0
+[  505323ms] [ERROR] WebSocket connection to 'wss://kkb-production.jupyter-proxy.kaggle.net/static/dist/jupyterlab/api/events/subscribe' failed: Error during WebSocket handshake: Unexpected response code: 404 @ https://kkb-production.jupyter-proxy.kaggle.net/static/assets/jupyterlabinjected.ff1d8bc85b5850c7.js?208f6b4441b61cce:9

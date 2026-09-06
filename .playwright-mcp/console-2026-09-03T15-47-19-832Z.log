@@ -1,0 +1,55 @@
+[     506ms] [ERROR] Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector @ https://accounts.google.com/gsi/client:0
+[     508ms] [ERROR] Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector @ https://fonts.googleapis.com/css?family=Inter:400,400i,500,500i,600,600i,700,700i&display=swap:0
+[     509ms] [ERROR] Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector @ https://fonts.googleapis.com/css2?family=Google+Symbols:FILL,wght@0..1,300..700&display=block:0
+[     572ms] [ERROR] Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector @ https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700:0
+[     572ms] [ERROR] Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector @ https://fonts.googleapis.com/css2?family=Google+Symbols:wght,FILL@300..700,0..1:0
+[     572ms] [ERROR] Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector @ https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght,MONO@0,300..800,1;1,300..800,1&family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap:0
+[     572ms] [ERROR] Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector @ https://use.typekit.net/tql2nih.css:0
+[     995ms] [ERROR] Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector @ https://www.googletagmanager.com/gtag/js?id=G-T7QHS60L4Q:0
+[     998ms] [ERROR] Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector @ https://apis.google.com/js/api.js:0
+[    1225ms] [LOG]  _                       _       
+| |    Welcome to       | |      
+| | __ ___   __ _  __ _ | | ___  
+| |/ /|__ \ / _` |/ _` || |/ _ \ 
+|   < / _  | (_| | (_| || |  __/ 
+|_|\_\\__,_|\__, |\__, ||_|\___| 
+             __/ | __/ |         
+            |___/ |___/          
+ @ https://www.kaggle.com/static/assets/app.js?v=8044b92b0d4a36e8:0
+[    1258ms] [WARNING] No `HydrateFallback` element provided to render during initial hydration @ https://www.kaggle.com/static/assets/vendor.js?v=6fd563a9772abf67:255
+[    2129ms] [ERROR] Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector @ https://storage.googleapis.com/kaggle-avatars/thumbnails/default-thumb.png:0
+[    2129ms] [ERROR] Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector @ https://storage.googleapis.com/kaggle-organizations/855/thumbnail.png:0
+[    2599ms] [ERROR] Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector @ https://storage.googleapis.com/kaggle-organizations/855/thumbnail.png:0
+[    2675ms] [ERROR] Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector @ https://identitytoolkit.googleapis.com/v1/accounts:signInWithCustomToken?key=AIzaSyD260rHHEeMVDGVqyWq0yszmLJ-5Cgkqrk:0
+[    2677ms] FirebaseError: Firebase: Error (auth/internal-error).
+    at g (https://www.kaggle.com/static/assets/6803.64af35880ecb1baf.js:1:24993)
+    at f (https://www.kaggle.com/static/assets/6803.64af35880ecb1baf.js:1:24825)
+    at N (https://www.kaggle.com/static/assets/6803.64af35880ecb1baf.js:1:29965)
+    at async D (https://www.kaggle.com/static/assets/6803.64af35880ecb1baf.js:1:30045)
+    at async eG (https://www.kaggle.com/static/assets/6803.64af35880ecb1baf.js:1:63136)
+[    2681ms] [ERROR] Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector @ https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyD260rHHEeMVDGVqyWq0yszmLJ-5Cgkqrk:0
+[    2950ms] [ERROR] Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector @ https://storage.googleapis.com/kaggle-media/Images/Header_560x280_04-2.png:0
+[    2950ms] [ERROR] Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector @ https://storage.googleapis.com/kaggle-media/blog/research-grant.png:0
+[    2950ms] [ERROR] Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector @ https://storage.googleapis.com/kaggle-media/Images/Screenshot%202026-05-07%2010.45.18%20AM.png:0
+[    2950ms] [ERROR] Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector @ https://storage.googleapis.com/kaggle-media/Images/8zbkDTPPpNqJeaE.png:0
+[    3010ms] [ERROR] Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector @ https://storage.googleapis.com/kaggle-organizations/3733/thumbnail.png:0
+[    3010ms] [ERROR] Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector @ https://storage.googleapis.com/kaggle-organizations/5151/thumbnail.png?t=2025-05-29-13-32-45:0
+[    3010ms] [ERROR] Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector @ https://storage.googleapis.com/kaggle-organizations/4/thumbnail.png:0
+[    3043ms] [ERROR] Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector @ https://storage.googleapis.com/kaggle-competitions/kaggle/154281/logos/header.png?GoogleAccessId=web-data@kaggle-161607.iam.gserviceaccount.com&Expires=1788467729&Signature=dN3EK%2F2OBYT9m4Lpityjd882MUuIUh4zSNR8cHm31C1oWnQdCyyT8hJMQYhxohWjhdniDdR6T9wCMUmmXmAbK6aje3ED8brdZTBaO62NuOFRbKfsGd0SQeW%2FxYRgLhd0l6tlctRcZRuabfK7SqE8F3Z%2BIDekuTGnoDOX1tvyVGrdNx%2BDj%2BBfbVK3TIVOVGbLP6m%2FHoN80PRQ0Px075f9ToaSpXl0SxqGpcouf2FdH7VFs%2FA480FVNAyZtxNjp8IGBywOW%2FgW2UzYDQClcMfrf2YUF8crrqJBSndOWbZdGlBY0OwmhGDAS%2BDsu7%2B4MFO9B0QcYeilCe5EMUI%2Blyt8BQ%3D%3D&t=2026-07-13-23-52-22:0
+[    3043ms] [ERROR] Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector @ https://storage.googleapis.com/kaggle-organizations/1817/thumbnail.png:0
+[    3116ms] [ERROR] Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector @ https://storage.googleapis.com/kaggle-competitions/kaggle/147734/logos/header.png?GoogleAccessId=web-data@kaggle-161607.iam.gserviceaccount.com&Expires=1788469683&Signature=LPRgdDs9wjSDaDKltay5xItxRfIPwCFKNCzrgftcjORZujNI3LnxLs1jAW%2FqeoyD9CqXsWNp52w7Vbdmt9rnwQHdmf%2Fz%2BRipT2%2FQZs5y4Rfg3SeSMZUkaEFbfZ7RYUKvZ9ke1%2BnADgGIWzQHKG%2FzZwSBJSEHcbBRjKNQAo5Z0Hl%2FlDhM95yO0%2FpY9AvGyJ5%2B8t%2FZ%2F9R46lL612ZDVbr%2BR%2B7abiJhM%2BdyNS58nwZ8kTZDjH90%2Fo2s98ZPwtK0zODBwnithYigc44C3y222coDwFODwDwb5iq8HykPyEHoMxMi9SLIp3pdfzHeBDG5VhANUqW1s1R8mxkdR6LFG79rYA%3D%3D&t=2026-06-09-23-19-07:0
+[    3116ms] [ERROR] Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector @ https://storage.googleapis.com/kaggle-organizations/4/thumbnail.png:0
+[    3116ms] [ERROR] Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector @ https://storage.googleapis.com/kaggle-competitions/kaggle/136605/logos/header.png?GoogleAccessId=web-data@kaggle-161607.iam.gserviceaccount.com&Expires=1788481117&Signature=Iq9tA4MLIrIxkclgWsT%2FIs3ElsamY%2Fz6O9uOGulGQ3Jcny%2BGgPpfbDTJJ6XoWczc%2FMSBvzY%2F6W7W%2FxZ4P%2FD2zPlCgEegiCG90aStmOvchNJouYPGxD834ru0GDrWKcKui6Lud1cLrajjP3KBhJE2GEm7wxMIyyTi2zVhS0yoGN90Y69TDYF84ee6QGfPaEa6ohivG0fLG2od50RntguCYtXvEpe9ESAJ0MdRwsUroX1eALVDftMDkGMj%2FB0GQpkl3m60tNDJKUpN3WxYH8ciZkGxrWHC4pVVwwkTEaSL43GRrdoJLJanwpg333RaWa6S%2Fcimh8zvNriDy2Fl11aOzQ%3D%3D&t=2026-05-27-14-39-44:0
+[    3116ms] [ERROR] Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector @ https://storage.googleapis.com/kaggle-organizations/5324/thumbnail.png?t=2026-04-22-22-05-28:0
+[   16453ms] [ERROR] Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector @ https://analytics.kaggle.io/record-events:0
+[   16453ms] [WARNING] An issue occurred flushing the events queue. TypeError: Failed to fetch
+    at https://www.kaggle.com/static/assets/app.js?v=8044b92b0d4a36e8:1:1786561
+    at Object.<anonymous> (https://www.kaggle.com/static/assets/app.js?v=8044b92b0d4a36e8:1:1785643)
+    at _ (https://www.kaggle.com/static/assets/app.js?v=8044b92b0d4a36e8:1:1780076)
+    at i (https://www.kaggle.com/static/assets/app.js?v=8044b92b0d4a36e8:1:1786840)
+    at https://www.kaggle.com/static/assets/app.js?v=8044b92b0d4a36e8:1:1786899
+    at new Promise (<anonymous>)
+    at https://www.kaggle.com/static/assets/app.js?v=8044b92b0d4a36e8:1:1786781
+    at r (https://www.kaggle.com/static/assets/app.js?v=8044b92b0d4a36e8:1:1786912)
+    at https://www.kaggle.com/static/assets/app.js?v=8044b92b0d4a36e8:1:1787919
+    at Object.<anonymous> (https://www.kaggle.com/static/assets/app.js?v=8044b92b0d4a36e8:1:1782203) @ https://www.kaggle.com/static/assets/app.js?v=8044b92b0d4a36e8:0

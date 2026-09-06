@@ -1,0 +1,270 @@
+- generic [ref=f6e1]:
+  - generic [ref=f6e2]:
+    - navigation "Main Kaggle page navigation" [ref=f6e3]:
+      - generic [ref=f6e5]:
+        - button "Navigation menu" [ref=f6e7] [cursor=pointer]: menu
+        - link "Skip to content" [ref=f6e8] [cursor=pointer]:
+          - /url: "#site-content"
+          - text: Skip tocontent
+        - link "Return to Kaggle home page" [ref=f6e10] [cursor=pointer]:
+          - /url: /
+      - button "Create" [ref=f6e12] [cursor=pointer]
+      - generic [ref=f6e19]:
+        - generic [ref=f6e21]:
+          - list [ref=f6e22]:
+            - listitem "Home List Item" [ref=f6e23]:
+              - link "Home" [ref=f6e25] [cursor=pointer]:
+                - /url: /
+                - generic [ref=f6e26]:
+                  - generic [aria-hidden] [ref=f6e29]: explore
+                  - paragraph [ref=f6e31]: Home
+            - listitem "Competitions List Item" [ref=f6e32]:
+              - link "Competitions" [ref=f6e34] [cursor=pointer]:
+                - /url: /competitions
+                - generic [ref=f6e35]:
+                  - generic [aria-hidden] [ref=f6e38]: emoji_events
+                  - paragraph [ref=f6e40]: Competitions
+            - listitem "Benchmarks List Item" [ref=f6e41]:
+              - link "Benchmarks" [ref=f6e43] [cursor=pointer]:
+                - /url: /benchmarks
+                - generic [ref=f6e44]:
+                  - generic [aria-hidden] [ref=f6e47]: leaderboard
+                  - paragraph [ref=f6e49]: Benchmarks
+            - listitem "Game Arena List Item" [ref=f6e50]:
+              - link "Game Arena" [ref=f6e52] [cursor=pointer]:
+                - /url: /game-arena
+                - generic [ref=f6e53]:
+                  - generic [aria-hidden] [ref=f6e56]: smart_toy
+                  - paragraph [ref=f6e58]: Game Arena
+          - list [ref=f6e59]:
+            - listitem "Data Hub List Item" [ref=f6e60]:
+              - generic [ref=f6e61]:
+                - link "Data Hub" [ref=f6e62] [cursor=pointer]:
+                  - /url: "#"
+                  - generic [ref=f6e63]:
+                    - generic [aria-hidden] [ref=f6e66]: code
+                    - paragraph [ref=f6e68]: Data Hub
+                - button "Expand" [ref=f6e70] [cursor=pointer]: expand_more
+          - list [ref=f6e71]:
+            - listitem "More on Kaggle List Item" [ref=f6e72]:
+              - generic [ref=f6e73]:
+                - link "More on Kaggle" [ref=f6e74] [cursor=pointer]:
+                  - /url: "#"
+                  - generic [ref=f6e75]:
+                    - generic [aria-hidden] [ref=f6e78]: format_list_bulleted
+                    - paragraph [ref=f6e80]: More
+                - button "Expand" [ref=f6e82] [cursor=pointer]: expand_more
+        - button "Open Active Events dialog 2 View Active Events" [ref=f6e246] [cursor=pointer]:
+          - generic [ref=f6e85]:
+            - generic "Open Active Events dialog" [ref=f6e86]: auto_awesome_motion
+            - generic [ref=f6e247]: "2"
+          - paragraph [ref=f6e87]: View Active Events
+    - main [ref=f6e88]:
+      - generic [ref=f6e90]:
+        - generic [ref=f6e93]:
+          - generic [ref=f6e94]:
+            - generic [ref=f6e95]:
+              - heading [level=1] [ref=f6e248]:
+                - generic [ref=f6e99]:
+                  - generic [ref=f6e100]:
+                    - 'textbox "Title: notebook26d7328478" [ref=f6e249]': notebook26d7328478
+                    - group [aria-hidden]
+                  - paragraph:
+                    - alert
+              - generic [ref=f6e102]: Draft saved
+            - generic [ref=f6e104]:
+              - button "File" [ref=f6e105]
+              - button "Edit" [ref=f6e106]
+              - button "View" [ref=f6e107]
+              - button "Run" [ref=f6e108]
+              - button "Settings" [ref=f6e109]
+              - button "Add-ons" [ref=f6e110]
+              - button "Help" [ref=f6e111]
+          - button "Share" [ref=f6e113] [cursor=pointer]:
+            - generic [aria-hidden] [ref=f6e114]: people
+          - generic [ref=f6e250]:
+            - button "Save Version" [ref=f6e253] [cursor=pointer]:
+              - generic [aria-hidden] [ref=f6e254]: update
+            - button "Show Versions" [ref=f6e258] [cursor=pointer]:
+              - generic [ref=f6e259]: "0"
+        - generic [ref=f6e117]:
+          - generic [ref=f6e118]:
+            - button "Add cell" [ref=f6e120] [cursor=pointer]:
+              - generic [ref=f6e121]: add
+            - button "Add cell options" [ref=f6e123] [cursor=pointer]:
+              - generic [ref=f6e124]: arrow_drop_down
+            - button "Cut cell" [ref=f6e127] [cursor=pointer]:
+              - generic [ref=f6e128]: content_cut
+            - button "Copy cell" [ref=f6e130] [cursor=pointer]:
+              - generic [ref=f6e131]: content_copy
+            - button "Paste cell" [ref=f6e133] [cursor=pointer]:
+              - generic [ref=f6e134]: content_paste
+            - button "Run current cell" [ref=f6e137] [cursor=pointer]:
+              - generic [ref=f6e138]: play_arrow
+            - button "Run All" [ref=f6e140] [cursor=pointer]:
+              - generic [ref=f6e141]: fast_forward
+            - button "Show options" [ref=f6e144] [cursor=pointer]:
+              - generic [ref=f6e260]: Code
+              - generic [aria-hidden] [ref=f6e145]: arrow_drop_down
+          - generic [ref=f6e147]:
+            - button "off (run a cell to start) Draft Session off (run a cell to start)" [ref=f6e261]:
+              - generic [ref=f6e149]:
+                - generic [ref=f6e150]:
+                  - generic "off (run a cell to start)" [ref=f6e262]: circle
+                  - generic [ref=f6e152]: Draft Session
+                - generic [ref=f6e153]: off (run a cell to start)
+            - button "Start session" [ref=f6e263] [cursor=pointer]: power_settings_new
+            - button "Factory reset" [disabled] [ref=f6e157]: loop
+            - button "More settings" [ref=f6e264] [cursor=pointer]: more_vert
+        - document [ref=f6e265]:
+          - iframe [ref=f6e266]:
+            - main [ref=f7e4]:
+              - region "notebook content" [ref=f7e7]:
+                - feed "Cells" [ref=f7e10]:
+                  - generic "Code Cell Content" [ref=f7e11]:
+                    - generic [ref=f7e13] [cursor=pointer]:
+                      - button "Move Cell Up" [disabled] [ref=f7e14]: arrow_upward
+                      - button "Move Cell Down" [disabled] [ref=f7e15]: arrow_downward
+                      - button "Delete Cell" [disabled] [ref=f7e16]: delete
+                    - generic [ref=f7e17]:
+                      - generic [ref=f7e18] [cursor=pointer]
+                      - generic [ref=f7e20]:
+                        - generic [ref=f7e21] [cursor=pointer]:
+                          - text: "[ ]:"
+                          - generic "Cell hasn't been executed yet" [ref=f7e23]:
+                            - button "Execute cell. Cell hasn't been executed yet" [ref=f7e25]:
+                              - generic "Execute cell. Cell hasn't been executed yet" [ref=f7e26]: play_arrow
+                        - textbox [ref=f7e32]:
+                          - generic [ref=f7e33]: "# This Python 3 environment comes with many helpful analytics libraries installed"
+                          - generic [ref=f7e34]: "# It is defined by the kaggle/python Docker image: https://github.com/kaggle/docker-python"
+                          - generic [ref=f7e35]: "# For example, here's several helpful packages to load"
+                          - generic [ref=f7e37]: "import numpy as np # linear algebra"
+                          - generic [ref=f7e38]: "import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)"
+                          - generic [ref=f7e40]: "# Input data files are available in the read-only \"../input/\" directory"
+                          - generic [ref=f7e41]: "# For example, running this (by clicking run or pressing Shift+Enter) will list all files under the input directory"
+                          - generic [ref=f7e43]: import os
+                          - generic [ref=f7e44]: "for dirname, _, filenames in os.walk('/kaggle/input'):"
+                          - generic [ref=f7e45]: "for filename in filenames:"
+                          - generic [ref=f7e46]: print(os.path.join(dirname, filename))
+                          - generic [ref=f7e48]: "# You can write up to 20GB to the current directory (/kaggle/working/) that gets preserved as output when you create a version using \"Save & Run All\""
+                          - generic [ref=f7e49]: "# You can also write temporary files to /kaggle/temp/, but they won't be saved outside of the current session"
+                          - generic [ref=f7e51]: "# Use the kagglehub client library to attach Kaggle resources like competitions, datasets, and models to your session"
+                          - generic [ref=f7e52]: "# Learn more about kagglehub: https://github.com/Kaggle/kagglehub/blob/main/README.md"
+                          - generic [ref=f7e54]: import kagglehub
+                          - generic [ref=f7e55]: "# kagglehub.dataset_download('<owner>/<dataset-slug>')"
+                    - generic [ref=f7e59]:
+                      - button "add Code" [ref=f7e60] [cursor=pointer]:
+                        - generic [ref=f7e61]: add
+                        - text: Code
+                      - button "add Markdown" [ref=f7e62] [cursor=pointer]:
+                        - generic [ref=f7e63]: add
+                        - text: Markdown
+        - generic [ref=f6e167]:
+          - button "Open console" [ref=f6e168] [cursor=pointer]: terminal
+          - button "Open command palette" [ref=f6e169] [cursor=pointer]: keyboard
+        - generic [ref=f6e170]:
+          - generic [ref=f6e172]:
+            - separator [ref=f6e174]
+            - generic [ref=f6e176]:
+              - heading "Notebook" [level=2] [ref=f6e178]
+              - generic [ref=f6e179]:
+                - generic [ref=f6e180] [cursor=pointer]:
+                  - heading "Input" [level=3] [ref=f6e182]
+                  - button "Collapse Input" [expanded] [ref=f6e183]: keyboard_arrow_up
+                - generic [ref=f6e186]:
+                  - generic [ref=f6e187]:
+                    - button "Add Input" [ref=f6e188] [cursor=pointer]:
+                      - generic [aria-hidden] [ref=f6e189]: add
+                    - button "Upload" [ref=f6e191] [cursor=pointer]:
+                      - generic [aria-hidden] [ref=f6e192]: upload
+                  - generic [ref=f6e267]:
+                    - heading "No input attached" [level=2] [ref=f6e268]
+                    - paragraph [ref=f6e269]: Attach a Kaggle dataset, model, or competition
+              - generic [ref=f6e194]:
+                - generic [ref=f6e195] [cursor=pointer]:
+                  - heading "Output" [level=3] [ref=f6e197]
+                  - button "Collapse Output" [expanded] [ref=f6e198]: keyboard_arrow_up
+                - list [ref=f6e203]:
+                  - listitem [ref=f6e204]:
+                    - generic [ref=f6e205]:
+                      - button "arrow_right" [ref=f6e206]
+                      - generic [ref=f6e209]: folder
+                      - paragraph [ref=f6e213]: /kaggle/working
+                      - generic [ref=f6e215]:
+                        - button "Copy directory path (/kaggle/working)" [ref=f6e218] [cursor=pointer]: content_copy
+                        - button "Refresh directory contents (/kaggle/working)" [ref=f6e220] [cursor=pointer]: directory_sync
+              - generic [ref=f6e221]:
+                - generic [ref=f6e222] [cursor=pointer]:
+                  - heading "Table of contents" [level=3] [ref=f6e224]
+                  - button "Collapse Table of contents" [expanded] [ref=f6e225]: keyboard_arrow_up
+                - generic [ref=f6e229]:
+                  - heading "No sections detected" [level=6] [ref=f6e230]
+                  - paragraph [ref=f6e231]: Add markdown headers to add a section
+              - generic [ref=f6e233] [cursor=pointer]:
+                - heading "Session options" [level=3] [ref=f6e235]
+                - button "Expand Session options" [ref=f6e236]: keyboard_arrow_down
+              - generic [ref=f6e238] [cursor=pointer]:
+                - heading "Schedule a notebook to run" [level=3] [ref=f6e240]
+                - button "Expand Schedule a notebook to run" [ref=f6e241]: keyboard_arrow_down
+          - button "Collapse Sidebar" [ref=f6e242] [cursor=pointer]:
+            - generic "Collapse Sidebar" [ref=f6e244]: arrow_right
+    - alert [ref=f6e245]
+  - tooltip [ref=f6e270]:
+    - generic [ref=f6e274]:
+      - menuitem [active] [ref=f6e275] [cursor=pointer]:
+        - generic [ref=f6e276]:
+          - generic [aria-hidden] [ref=f6e277]: add
+          - paragraph [ref=f6e278]: New Notebook
+      - menuitem [ref=f6e279] [cursor=pointer]:
+        - generic [ref=f6e280]:
+          - generic [aria-hidden] [ref=f6e281]: file_upload
+          - paragraph [ref=f6e282]: Import Notebook
+      - menuitem [ref=f6e283] [cursor=pointer]:
+        - generic [ref=f6e284]:
+          - generic [aria-hidden] [ref=f6e285]: file_download
+          - paragraph [ref=f6e286]: Download Notebook
+      - menuitem [ref=f6e287] [cursor=pointer]:
+        - paragraph [ref=f6e289]: Link to Colab
+      - menuitem [ref=f6e290] [cursor=pointer]:
+        - generic [ref=f6e291]:
+          - generic [aria-hidden] [ref=f6e292]: colab
+          - paragraph [ref=f6e293]: Open in Colab
+      - menuitem [ref=f6e294] [cursor=pointer]:
+        - paragraph [ref=f6e296]: Link to GitHub
+      - menuitem [ref=f6e298] [cursor=pointer]:
+        - paragraph [ref=f6e300]: Set as Utility Script
+      - menuitem [ref=f6e301] [cursor=pointer]:
+        - paragraph [ref=f6e303]: Set as Benchmark Task
+      - menuitem [ref=f6e305] [cursor=pointer]:
+        - generic [ref=f6e306]:
+          - generic [aria-hidden] [ref=f6e307]: table_chart
+          - paragraph [ref=f6e308]: Add input
+      - menuitem [ref=f6e310] [cursor=pointer]:
+        - paragraph [ref=f6e312]: Upload input
+        - generic [aria-hidden] [ref=f6e313]: arrow_right
+      - menuitem [ref=f6e316] [cursor=pointer]:
+        - generic [ref=f6e317]:
+          - generic [aria-hidden] [ref=f6e318]: create
+          - paragraph [ref=f6e319]: Language
+        - generic [aria-hidden] [ref=f6e320]: arrow_right
+      - menuitem [ref=f6e322] [cursor=pointer]:
+        - generic [ref=f6e323]:
+          - generic [aria-hidden] [ref=f6e324]: code
+          - paragraph [ref=f6e325]: Editor Type
+        - generic [aria-hidden] [ref=f6e326]: arrow_right
+      - menuitem [ref=f6e327] [cursor=pointer]:
+        - generic [ref=f6e328]:
+          - generic [aria-hidden] [ref=f6e329]: people
+          - paragraph [ref=f6e330]: Share
+      - menuitem [ref=f6e332] [cursor=pointer]:
+        - generic [ref=f6e333]:
+          - generic [aria-hidden] [ref=f6e334]: update
+          - paragraph [ref=f6e335]: Save Version
+      - menuitem [ref=f6e336] [cursor=pointer]:
+        - paragraph [ref=f6e338]: Version history
+      - menuitem [ref=f6e340] [cursor=pointer]:
+        - paragraph [ref=f6e342]: Rename Notebook
+      - menuitem [ref=f6e344] [cursor=pointer]:
+        - generic [ref=f6e345]:
+          - generic [aria-hidden] [ref=f6e346]: delete
+          - paragraph [ref=f6e347]: Delete Notebook

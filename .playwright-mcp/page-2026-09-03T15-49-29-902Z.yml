@@ -1,0 +1,157 @@
+- generic [ref=e2]:
+  - navigation "Main Kaggle page navigation" [ref=e3]:
+    - generic [ref=e5]:
+      - button "Navigation menu" [ref=e7] [cursor=pointer]: menu
+      - link "Skip to content" [ref=e8] [cursor=pointer]:
+        - /url: "#site-content"
+        - text: Skip tocontent
+      - link "Return to Kaggle home page" [ref=e10] [cursor=pointer]:
+        - /url: /
+    - button "Create" [ref=e12] [cursor=pointer]
+    - generic [ref=e19]:
+      - generic [ref=e21]:
+        - list [ref=e22]:
+          - listitem "Home List Item" [ref=e23]:
+            - link "Home" [ref=e25] [cursor=pointer]:
+              - /url: /
+              - generic [ref=e26]:
+                - generic [aria-hidden] [ref=e29]: explore
+                - paragraph [ref=e31]: Home
+          - listitem "Competitions List Item" [ref=e32]:
+            - link "Competitions" [ref=e34] [cursor=pointer]:
+              - /url: /competitions
+              - generic [ref=e35]:
+                - generic [aria-hidden] [ref=e38]: emoji_events
+                - paragraph [ref=e40]: Competitions
+          - listitem "Benchmarks List Item" [ref=e41]:
+            - link "Benchmarks" [ref=e43] [cursor=pointer]:
+              - /url: /benchmarks
+              - generic [ref=e44]:
+                - generic [aria-hidden] [ref=e47]: leaderboard
+                - paragraph [ref=e49]: Benchmarks
+          - listitem "Game Arena List Item" [ref=e50]:
+            - link "Game Arena" [ref=e52] [cursor=pointer]:
+              - /url: /game-arena
+              - generic [ref=e53]:
+                - generic [aria-hidden] [ref=e56]: smart_toy
+                - paragraph [ref=e58]: Game Arena
+        - list [ref=e59]:
+          - listitem "Data Hub List Item" [ref=e60]:
+            - generic [ref=e61]:
+              - link "Data Hub" [ref=e62] [cursor=pointer]:
+                - /url: "#"
+                - generic [ref=e63]:
+                  - generic [aria-hidden] [ref=e66]: code
+                  - paragraph [ref=e68]: Data Hub
+              - button "Expand" [ref=e70] [cursor=pointer]: expand_more
+        - list [ref=e71]:
+          - listitem "More on Kaggle List Item" [ref=e72]:
+            - generic [ref=e73]:
+              - link "More on Kaggle" [ref=e74] [cursor=pointer]:
+                - /url: "#"
+                - generic [ref=e75]:
+                  - generic [aria-hidden] [ref=e78]: format_list_bulleted
+                  - paragraph [ref=e80]: More
+              - button "Expand" [ref=e82] [cursor=pointer]: expand_more
+      - button "Open Active Events dialog View Active Events" [ref=e84] [cursor=pointer]:
+        - generic "Open Active Events dialog" [ref=e86]: auto_awesome_motion
+        - paragraph [ref=e87]: View Active Events
+  - main [ref=e88]:
+    - generic [ref=e90]:
+      - generic [ref=e93]:
+        - generic [ref=e94]:
+          - generic [ref=e95]:
+            - heading [level=1] [ref=e98]:
+              - generic [ref=e99]:
+                - generic [ref=e100]:
+                  - 'textbox "Title: null" [ref=e101]'
+                  - group [aria-hidden]
+                - paragraph:
+                  - alert
+            - generic [ref=e102]: Draft saved
+          - generic [ref=e104]:
+            - button "File" [ref=e105]
+            - button "Edit" [ref=e106]
+            - button "View" [ref=e107]
+            - button "Run" [ref=e108]
+            - button "Settings" [ref=e109]
+            - button "Add-ons" [ref=e110]
+            - button "Help" [ref=e111]
+        - button "Share" [ref=e113] [cursor=pointer]:
+          - generic [aria-hidden] [ref=e114]: people
+      - generic [ref=e117]:
+        - generic [ref=e118]:
+          - button "Add cell" [disabled] [ref=e120]:
+            - generic [ref=e121]: add
+          - button "Add cell options" [ref=e123] [cursor=pointer]:
+            - generic [ref=e124]: arrow_drop_down
+          - button "Cut cell" [disabled] [ref=e127]:
+            - generic [ref=e128]: content_cut
+          - button "Copy cell" [disabled] [ref=e130]:
+            - generic [ref=e131]: content_copy
+          - button "Paste cell" [disabled] [ref=e133]:
+            - generic [ref=e134]: content_paste
+          - button "Run current cell" [disabled] [ref=e137]:
+            - generic [ref=e138]: play_arrow
+          - button "Run All" [disabled] [ref=e140]:
+            - generic [ref=e141]: fast_forward
+          - button "Show options" [ref=e144] [cursor=pointer]:
+            - generic [aria-hidden] [ref=e145]: arrow_drop_down
+        - generic [ref=e147]:
+          - button "Loading Editor Loading …" [ref=e148]:
+            - generic [ref=e149]:
+              - generic [ref=e150]:
+                - generic "Loading" [ref=e151]: circle
+                - generic [ref=e152]: Editor
+              - generic [ref=e153]:
+                - text: Loading
+                - generic [ref=e154]: …
+          - button "Start session" [disabled] [ref=e156]: power_settings_new
+          - button "Factory reset" [disabled] [ref=e157]: loop
+          - button "More settings" [disabled] [ref=e158]: more_vert
+      - generic [ref=e167]:
+        - button "Open console" [ref=e168] [cursor=pointer]: terminal
+        - button "Open command palette" [disabled] [ref=e169]: keyboard
+      - generic [ref=e170]:
+        - generic [ref=e172]:
+          - separator [ref=e174]
+          - generic [ref=e176]:
+            - heading "Notebook" [level=2] [ref=e178]
+            - generic [ref=e179]:
+              - generic [ref=e180] [cursor=pointer]:
+                - heading "Input" [level=3] [ref=e182]
+                - button "Collapse Input" [expanded] [ref=e183]: keyboard_arrow_up
+              - generic [ref=e187]:
+                - button "Add Input" [ref=e188] [cursor=pointer]:
+                  - generic [aria-hidden] [ref=e189]: add
+                - button "Upload" [ref=e191] [cursor=pointer]:
+                  - generic [aria-hidden] [ref=e192]: upload
+            - generic [ref=e194]:
+              - generic [ref=e195] [cursor=pointer]:
+                - heading "Output" [level=3] [ref=e197]
+                - button "Collapse Output" [expanded] [ref=e198]: keyboard_arrow_up
+              - list [ref=e203]:
+                - listitem [ref=e204]:
+                  - generic [ref=e205]:
+                    - button "arrow_right" [ref=e206]
+                    - generic [ref=e209]: folder
+                    - paragraph [ref=e213]: /kaggle/working
+                    - generic [ref=e215]:
+                      - button "Copy directory path (/kaggle/working)" [ref=e218] [cursor=pointer]: content_copy
+                      - button "Refresh directory contents (/kaggle/working)" [ref=e220] [cursor=pointer]: directory_sync
+            - generic [ref=e221]:
+              - generic [ref=e222] [cursor=pointer]:
+                - heading "Table of contents" [level=3] [ref=e224]
+                - button "Collapse Table of contents" [expanded] [ref=e225]: keyboard_arrow_up
+              - generic [ref=e229]:
+                - heading "No sections detected" [level=6] [ref=e230]
+                - paragraph [ref=e231]: Add markdown headers to add a section
+            - generic [ref=e233] [cursor=pointer]:
+              - heading "Session options" [level=3] [ref=e235]
+              - button "Expand Session options" [ref=e236]: keyboard_arrow_down
+            - generic [ref=e238] [cursor=pointer]:
+              - heading "Schedule a notebook to run" [level=3] [ref=e240]
+              - button "Expand Schedule a notebook to run" [ref=e241]: keyboard_arrow_down
+        - button "Collapse Sidebar" [ref=e242] [cursor=pointer]:
+          - generic "Collapse Sidebar" [ref=e244]: arrow_right
+  - alert [ref=e245]
