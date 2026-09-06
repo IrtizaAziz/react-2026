@@ -1,0 +1,35 @@
+{
+  "prediction_kind": "probability",
+  "class_order": [
+    0,
+    1
+  ],
+  "prediction_columns": [
+    "pred_0",
+    "pred_1"
+  ],
+  "id_columns": [
+    "PassengerId"
+  ],
+  "data_fingerprint": {
+    "sha256": "7d118fef8b6ccf7f81111877bc388536f7b1e498a655e3d649d19aaa010e9f6f",
+    "rows": 891,
+    "columns": [
+      "PassengerId",
+      "Survived",
+      "Pclass",
+      "Name",
+      "Sex",
+      "Age",
+      "SibSp",
+      "Parch",
+      "Ticket",
+      "Fare",
+      "Cabin",
+      "Embarked"
+    ]
+  },
+  "identity_hash": "c389ccdfcfd5882126361a1dd2792cb1c82d5655b9fb67413bbd738e729dc1fb",
+  "split_signature": "c8757e74ad71a45c9f11daef6b77bea44260963183472e118d34dd8448464497",
+  "sha256": "e53afb3a6cd6728092806cfbfbacfe9a5f2fdcecad805a76bb18bfc481e433db"
+}
