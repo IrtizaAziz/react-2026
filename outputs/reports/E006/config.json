@@ -1,0 +1,73 @@
+{
+  "train_file": "data/raw/train.csv",
+  "test_file": "data/raw/test.csv",
+  "sample_file": "data/raw/gender_submission.csv",
+  "target": "Survived",
+  "id_columns": [
+    "PassengerId"
+  ],
+  "features": [
+    "Pclass",
+    "Sex",
+    "Age",
+    "SibSp",
+    "Parch",
+    "Fare",
+    "Embarked",
+    "FamilySize",
+    "IsAlone",
+    "Title"
+  ],
+  "row_features": [
+    "FamilySize",
+    "IsAlone",
+    "Title"
+  ],
+  "categorical_features": [
+    "Pclass",
+    "Sex",
+    "Embarked",
+    "IsAlone",
+    "Title"
+  ],
+  "task": "classification",
+  "metric": "accuracy",
+  "metric_direction": "higher",
+  "metric_params": {},
+  "custom_metric": null,
+  "custom_metric_kind": null,
+  "prediction_kind": "probability",
+  "class_order": [
+    0,
+    1
+  ],
+  "validation_type": "stratified",
+  "validation_rationale": "Accepted E001-only validation: StratifiedKFold with five folds, shuffle=True, and seed=42 for the simple non-entity baseline.",
+  "n_splits": 5,
+  "shuffle": true,
+  "seed": 42,
+  "group_column": null,
+  "time_column": null,
+  "time_gap": 0,
+  "splits_file": "outputs/reports/E001/splits.json",
+  "model": "catboost",
+  "model_params": {
+    "iterations": 300,
+    "depth": 5,
+    "learning_rate": 0.05,
+    "l2_leaf_reg": 5.0,
+    "loss_function": "Logloss",
+    "thread_count": 1
+  },
+  "text_column": null,
+  "predict_test": true,
+  "aggregation": "mean",
+  "submission_columns": [
+    "Survived"
+  ],
+  "submission_kind": "label",
+  "submission_alignment": "id",
+  "positive_class": 1,
+  "label_threshold": 0.5,
+  "smoke_test": false
+}

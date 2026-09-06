@@ -1,0 +1,87 @@
+[
+  {
+    "iterations": 300,
+    "learning_rate": 0.05,
+    "depth": 5,
+    "l2_leaf_reg": 5.0,
+    "loss_function": "Logloss",
+    "thread_count": 1,
+    "random_seed": 42,
+    "verbose": false,
+    "allow_writing_files": false,
+    "cat_features": [
+      5,
+      6,
+      7,
+      8
+    ]
+  },
+  {
+    "iterations": 300,
+    "learning_rate": 0.05,
+    "depth": 5,
+    "l2_leaf_reg": 5.0,
+    "loss_function": "Logloss",
+    "thread_count": 1,
+    "random_seed": 42,
+    "verbose": false,
+    "allow_writing_files": false,
+    "cat_features": [
+      5,
+      6,
+      7,
+      8
+    ]
+  },
+  {
+    "iterations": 300,
+    "learning_rate": 0.05,
+    "depth": 5,
+    "l2_leaf_reg": 5.0,
+    "loss_function": "Logloss",
+    "thread_count": 1,
+    "random_seed": 42,
+    "verbose": false,
+    "allow_writing_files": false,
+    "cat_features": [
+      5,
+      6,
+      7,
+      8
+    ]
+  },
+  {
+    "iterations": 300,
+    "learning_rate": 0.05,
+    "depth": 5,
+    "l2_leaf_reg": 5.0,
+    "loss_function": "Logloss",
+    "thread_count": 1,
+    "random_seed": 42,
+    "verbose": false,
+    "allow_writing_files": false,
+    "cat_features": [
+      5,
+      6,
+      7,
+      8
+    ]
+  },
+  {
+    "iterations": 300,
+    "learning_rate": 0.05,
+    "depth": 5,
+    "l2_leaf_reg": 5.0,
+    "loss_function": "Logloss",
+    "thread_count": 1,
+    "random_seed": 42,
+    "verbose": false,
+    "allow_writing_files": false,
+    "cat_features": [
+      5,
+      6,
+      7,
+      8
+    ]
+  }
+]

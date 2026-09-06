@@ -1,0 +1,8 @@
+# Install only in an environment compatible with the core runtime.
+catboost
+lightgbm
+xgboost
+# AutoGluon is intentionally isolated because its dependency footprint is large.
+# autogluon.tabular
+# pytabkit
+# mljar-supervised

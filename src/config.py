@@ -14,6 +14,8 @@ class Config:
     target: str | None = None
     id_columns: list[str] = field(default_factory=list)
     features: list[str] | None = None
+    row_features: list[str] = field(default_factory=list)  # explicit deterministic features derived per row
+    categorical_features: list[str] = field(default_factory=list)  # explicit native categorical features for supported models
     task: str | None = None  # regression | classification
     metric: str | None = None
     metric_direction: str | None = None  # higher | lower; check Evaluation
@@ -30,6 +32,7 @@ class Config:
     group_column: str | None = None
     time_column: str | None = None
     time_gap: int = 0
+    time_valid_fraction: float = 0.2
     splits_file: str | None = None
     model: str | None = None
     model_params: dict = field(default_factory=dict)
@@ -63,10 +66,19 @@ class Config:
             raise ValueError("task must be regression or classification")
         if self.metric_direction not in {"higher", "lower"}:
             raise ValueError("metric_direction must be higher or lower")
-        if self.n_splits < 2:
-            raise ValueError("n_splits must be at least 2")
+        if self.n_splits < (1 if self.validation_type == "time_holdout" else 2):
+            raise ValueError("time_holdout requires n_splits=1; other validation requires at least 2 folds")
+        if not 0 < self.time_valid_fraction < 1:
+            raise ValueError("time_valid_fraction must be between 0 and 1")
         if len(set(self.features)) != len(self.features) or self.target in self.features:
             raise ValueError("Features must be unique and cannot include the target")
+        supported_row_features = {"FamilySize", "IsAlone", "Title"}
+        if not set(self.row_features) <= supported_row_features:
+            raise ValueError(f"Unsupported row_features: {sorted(set(self.row_features) - supported_row_features)}")
+        if not set(self.row_features) <= set(self.features):
+            raise ValueError("row_features must be included in features")
+        if not set(self.categorical_features) <= set(self.features):
+            raise ValueError("categorical_features must be included in features")
         if len(set(self.id_columns)) != len(self.id_columns) or any(c in {"__row__", "__fold__"} or c.startswith("pred_") for c in self.id_columns):
             raise ValueError("ID columns must be unique and cannot use reserved artifact column names")
         if set(self.id_columns) & set(self.features):

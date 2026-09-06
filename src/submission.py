@@ -17,6 +17,7 @@ from .predict import read_predictions
 from .utils import checked_record, finish_record, save_frame, save_json, sha256
 
 SUBMISSION_FIELDS = ("sample_file", "submission_columns", "submission_kind", "submission_alignment", "positive_class", "label_threshold")
+FRAUD_SUBMISSION_COLUMNS = ["transaction_id", "fraud"]
 
 
 def validate_probabilities(values, *, sums=False):
@@ -35,6 +36,10 @@ def build_submission(sample, artifact, predictions, metadata, config):
     expected = [c for c in sample.columns if c not in config.id_columns]
     if expected != config.submission_columns:
         raise ValueError("Configured prediction columns/order do not exactly match sample submission")
+    if config.target == "fraud" and list(sample.columns) != FRAUD_SUBMISSION_COLUMNS:
+        raise ValueError("Fraud launch schema must exactly match sample_submission: transaction_id,fraud")
+    if config.target == "fraud" and config.submission_columns != ["fraud"]:
+        raise ValueError("Fraud launch requires exactly one probability column named fraud")
     if any(str(c).lower().startswith("unnamed:") for c in sample):
         raise ValueError("Sample contains an apparent accidental index column; inspect the official format")
     if metadata["prediction_kind"] != config.prediction_kind or metadata["class_order"] != config.class_order or metadata["id_columns"] != config.id_columns:
@@ -92,6 +97,8 @@ def build_submission(sample, artifact, predictions, metadata, config):
         raise ValueError("Submission predictions contain missing values")
     if config.submission_kind != "label" and not np.isfinite(values.astype(float)).all():
         raise ValueError("Submission predictions contain non-finite values")
+    if config.target == "fraud" and ((values < 0).any() or (values > 1).any()):
+        raise ValueError("Fraud probabilities must be in [0, 1]")
     result = sample.copy()
     for i, column in enumerate(config.submission_columns):
         result[column] = values[:, i]

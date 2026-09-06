@@ -1,0 +1,135 @@
+{
+  "experiment_id": "E003",
+  "timestamp": "2026-09-04T10:57:56.365772+00:00",
+  "status": "failed",
+  "hypothesis": "A nonlinear gradient-boosted tree model may capture interactions between passenger class, sex, age, fare, and family structure that Logistic Regression cannot represent, while using exactly the same information.",
+  "change_description": "Replace E002 logistic regression with conservative CatBoostClassifier training (300 iterations, depth 5, learning rate 0.05, l2_leaf_reg 5.0); retain E002 information and saved folds, with native categorical handling for Pclass, Sex, Embarked, and IsAlone.",
+  "parent_experiment": "E002",
+  "model": "catboost",
+  "config": {
+    "train_file": "data/raw/train.csv",
+    "test_file": "data/raw/test.csv",
+    "sample_file": "data/raw/gender_submission.csv",
+    "target": "Survived",
+    "id_columns": [
+      "PassengerId"
+    ],
+    "features": [
+      "Pclass",
+      "Sex",
+      "Age",
+      "SibSp",
+      "Parch",
+      "Fare",
+      "Embarked",
+      "FamilySize",
+      "IsAlone"
+    ],
+    "row_features": [
+      "FamilySize",
+      "IsAlone"
+    ],
+    "categorical_features": [
+      "Pclass",
+      "Sex",
+      "Embarked",
+      "IsAlone"
+    ],
+    "task": "classification",
+    "metric": "accuracy",
+    "metric_direction": "higher",
+    "metric_params": {},
+    "custom_metric": null,
+    "custom_metric_kind": null,
+    "prediction_kind": "probability",
+    "class_order": [
+      0,
+      1
+    ],
+    "validation_type": "stratified",
+    "validation_rationale": "Accepted E001-only validation: StratifiedKFold with five folds, shuffle=True, and seed=42 for the simple non-entity baseline.",
+    "n_splits": 5,
+    "shuffle": true,
+    "seed": 42,
+    "group_column": null,
+    "time_column": null,
+    "time_gap": 0,
+    "splits_file": "outputs/reports/E001/splits.json",
+    "model": "catboost",
+    "model_params": {
+      "iterations": 300,
+      "depth": 5,
+      "learning_rate": 0.05,
+      "l2_leaf_reg": 5.0,
+      "loss_function": "Logloss",
+      "thread_count": 1
+    },
+    "text_column": null,
+    "predict_test": true,
+    "aggregation": "mean",
+    "submission_columns": [
+      "Survived"
+    ],
+    "submission_kind": "label",
+    "submission_alignment": "id",
+    "positive_class": 1,
+    "label_threshold": 0.5,
+    "smoke_test": false
+  },
+  "parameters": {
+    "iterations": 300,
+    "depth": 5,
+    "learning_rate": 0.05,
+    "l2_leaf_reg": 5.0,
+    "loss_function": "Logloss",
+    "thread_count": 1
+  },
+  "validation_method": "stratified",
+  "n_folds": 5,
+  "seed": 42,
+  "provenance_path": "outputs/reports/E003/",
+  "git_commit": "d01c63347865adb64ac6de6d67ec298fa11c8fbf",
+  "git_dirty": true,
+  "git_note": null,
+  "source_hashes": {
+    "__init__.py": "a9aeb022698dcebd09ee1a054d513e28a0cb349fb61a2788fbf4765a8232b54c",
+    "audit.py": "6912f91334c265cd1c4541f5668bf94a880cb69fb13047fb5425608bf513c850",
+    "config.py": "99b0ffb7e89801811ae63db267a30d763a732ad45e666b6d222e658dbee92ec4",
+    "data.py": "cee5b3e7a031e0e76ece336bbd659a3e0b5d5393fe5872c6ca9966e2fbe86ec9",
+    "ensemble.py": "a5c25d7bc790af46fe8a4b8694320dd5ed1aea3113c4f3a96f8b1bed01d62bf4",
+    "export_notebook.py": "85e2401c284e7d3f82f4e3498ca4074a5423cf0cccd7fc4f0ce7a45d92c7bf07",
+    "features.py": "30971e997676abc2f3bfa1abd85ec334ef7d991b8e94dee33f78c99974cc4e41",
+    "metrics.py": "1caa11d7c514b3de41cf5f2add27b79dd1613f5aa740e9d1a06f2d7e282cb01b",
+    "predict.py": "7b9c7ee39d66da3ec796afb47c417f1593ed5779707031c7ec83e94322a33ad1",
+    "replay.py": "cc27f59e198d44a924e19f1bc03a55a7bd1782c3f32d561020ccb463aafc51ce",
+    "submission.py": "f8c9c9b6fe997f338f720289e37645fbcad4ecd8051a8278643969b4a9160364",
+    "train.py": "51ef0284d01f53a34d27db801d073351d0bbb4b77173b3138622d987f7525e19",
+    "utils.py": "5d80e068f8c36889db45493ef0391f6bfef0e7db12d17fcf34588b8dde92409d",
+    "validation.py": "0b58930c5a9f69444ff73c0e6cc41fac6bf0bb4faefa7c1f5bbe272f822c9780"
+  },
+  "train_fingerprint": {
+    "sha256": "7d118fef8b6ccf7f81111877bc388536f7b1e498a655e3d649d19aaa010e9f6f",
+    "rows": 891,
+    "columns": [
+      "PassengerId",
+      "Survived",
+      "Pclass",
+      "Name",
+      "Sex",
+      "Age",
+      "SibSp",
+      "Parch",
+      "Ticket",
+      "Fare",
+      "Cabin",
+      "Embarked"
+    ]
+  },
+  "split_signature": "c8757e74ad71a45c9f11daef6b77bea44260963183472e118d34dd8448464497",
+  "splits_path": "outputs/reports/E003/splits.json",
+  "model_paths": [],
+  "model_hashes": {},
+  "error": "RuntimeError: Cannot clone object CatBoostClassifier(allow_writing_files=False, cat_features=['Pclass', 'Sex', 'Embarked', 'IsAlone'], depth=5, iterations=300, l2_leaf_reg=5.0, learning_rate=0.05, loss_function='Logloss', random_seed=42, thread_count=1, verbose=False), as the constructor either does not set or modifies parameter cat_features",
+  "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\IRTIZA\\Downloads\\Datathon\\react-2026\\src\\train.py\", line 54, in train_experiment\n    pipeline = clone(template)\n  File \"C:\\Users\\IRTIZA\\Downloads\\Datathon\\react-2026\\.venv\\Lib\\site-packages\\sklearn\\base.py\", line 96, in clone\n    return estimator.__sklearn_clone__()\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\IRTIZA\\Downloads\\Datathon\\react-2026\\.venv\\Lib\\site-packages\\sklearn\\base.py\", line 445, in __sklearn_clone__\n    return _clone_parametrized(self)\n  File \"C:\\Users\\IRTIZA\\Downloads\\Datathon\\react-2026\\.venv\\Lib\\site-packages\\sklearn\\base.py\", line 129, in _clone_parametrized\n    new_object_params[name] = clone(param, safe=False)\n                              ~~~~~^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\IRTIZA\\Downloads\\Datathon\\react-2026\\.venv\\Lib\\site-packages\\sklearn\\base.py\", line 97, in clone\n    return _clone_parametrized(estimator, safe=safe)\n  File \"C:\\Users\\IRTIZA\\Downloads\\Datathon\\react-2026\\.venv\\Lib\\site-packages\\sklearn\\base.py\", line 107, in _clone_parametrized\n    return estimator_type([clone(e, safe=safe) for e in estimator])\n                           ~~~~~^^^^^^^^^^^^^^\n  File \"C:\\Users\\IRTIZA\\Downloads\\Datathon\\react-2026\\.venv\\Lib\\site-packages\\sklearn\\base.py\", line 97, in clone\n    return _clone_parametrized(estimator, safe=safe)\n  File \"C:\\Users\\IRTIZA\\Downloads\\Datathon\\react-2026\\.venv\\Lib\\site-packages\\sklearn\\base.py\", line 107, in _clone_parametrized\n    return estimator_type([clone(e, safe=safe) for e in estimator])\n                           ~~~~~^^^^^^^^^^^^^^\n  File \"C:\\Users\\IRTIZA\\Downloads\\Datathon\\react-2026\\.venv\\Lib\\site-packages\\sklearn\\base.py\", line 97, in clone\n    return _clone_parametrized(estimator, safe=safe)\n  File \"C:\\Users\\IRTIZA\\Downloads\\Datathon\\react-2026\\.venv\\Lib\\site-packages\\sklearn\\base.py\", line 151, in _clone_parametrized\n    raise RuntimeError(\n    ...<2 lines>...\n    )\nRuntimeError: Cannot clone object CatBoostClassifier(allow_writing_files=False, cat_features=['Pclass', 'Sex', 'Embarked', 'IsAlone'], depth=5, iterations=300, l2_leaf_reg=5.0, learning_rate=0.05, loss_function='Logloss', random_seed=42, thread_count=1, verbose=False), as the constructor either does not set or modifies parameter cat_features\n",
+  "training_seconds": 0.1745496000003186
+}

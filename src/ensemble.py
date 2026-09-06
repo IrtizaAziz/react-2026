@@ -9,6 +9,7 @@ import argparse
 from pathlib import Path
 import time
 import numpy as np
+from scipy.stats import rankdata
 from .config import Config, ROOT
 from .data import load_training
 from .metrics import score
@@ -17,6 +18,19 @@ from .utils import checked_record, environment, finish_record, read_json, reserv
 
 COMPATIBLE_FIELDS = ("target", "task", "metric", "metric_direction", "metric_params", "custom_metric", "custom_metric_kind",
                      "prediction_kind", "class_order", "positive_class", "label_threshold", "id_columns")
+
+
+def rank_average(items, config):
+    """Average within-column ranks only for explicitly ranking-compatible metrics."""
+    if config.metric not in {"roc_auc", "average_precision"}:
+        raise ValueError("Rank averaging is reserved for ranking metrics; use mean/weighted for this metric")
+    arrays = [np.asarray(item, dtype=float) for item in items]
+    arrays = [a[:, None] if a.ndim == 1 else a for a in arrays]
+    ranked = [np.column_stack([rankdata(a[:, i], method="average") for i in range(a.shape[1])]) for a in arrays]
+    result = np.mean(ranked, axis=0)
+    if config.prediction_kind == "probability":
+        result = result / result.sum(axis=1, keepdims=True)
+    return result[:, 0] if config.prediction_kind == "decision" else result
 
 
 def compatible_artifacts(items):
@@ -39,8 +53,10 @@ def blend_experiments(root, experiment, members, weights, hypothesis, change, *,
         raise ValueError("Provide at least two distinct member IDs and one weight per member")
     if not np.isfinite(weights).all() or (weights < 0).any() or not np.isclose(weights.sum(), 1, atol=1e-8, rtol=0):
         raise ValueError("Weights must be finite, nonnegative, and sum to one; they are never automatically normalized")
-    if method not in {"mean", "weighted"} or (method == "mean" and not np.allclose(weights, 1/len(members), rtol=0, atol=1e-8)):
-        raise ValueError("Arithmetic mean requires explicit equal weights; method must be mean or weighted")
+    if method not in {"mean", "weighted", "rank"} or (method == "mean" and not np.allclose(weights, 1/len(members), rtol=0, atol=1e-8)):
+        raise ValueError("Method must be mean, weighted, or rank; arithmetic mean requires equal weights")
+    if method == "rank" and not np.allclose(weights, 1/len(members), rtol=0, atol=1e-8):
+        raise ValueError("Rank averaging uses equal member weights")
     records = [checked_record(root, member) for member in members]
     config = Config(**records[0]["config"])
     if config.prediction_kind == "label":
@@ -76,7 +92,7 @@ def blend_experiments(root, experiment, members, weights, hypothesis, change, *,
         save_json(provenance / "environment.json", environment(), exclusive=True)
         split_payload = read_json(root / records[0]["splits_path"])
         save_json(provenance / "splits.json", split_payload, exclusive=True)
-        blended = sum(weight * item[1] for weight, item in zip(weights, oofs))
+        blended = rank_average([item[1] for item in oofs], config) if method == "rank" else sum(weight * item[1] for weight, item in zip(weights, oofs))
         assignment = oof_frame["__fold__"].to_numpy()
         fold_scores = [score(frame.loc[assignment == fold, config.target], blended[assignment == fold], config) for fold in range(config.n_splits)]
         oof_path = f"outputs/oof/{experiment}.csv"
@@ -87,7 +103,7 @@ def blend_experiments(root, experiment, members, weights, hypothesis, change, *,
                       cv_std_definition="population std (ddof=0)", oof_coverage=float(np.mean(assignment >= 0)))
         if test_items:
             test_frame, test_meta = compatible_artifacts(test_items)
-            predictions = sum(weight * item[1] for weight, item in zip(weights, test_items))
+            predictions = rank_average([item[1] for item in test_items], config) if method == "rank" else sum(weight * item[1] for weight, item in zip(weights, test_items))
             path = f"outputs/predictions/{experiment}.csv"
             save_predictions(root / path, test_frame, predictions, config, test_meta["data_fingerprint"])
             record.update(prediction_path=path, test_fingerprint=test_meta["data_fingerprint"])
@@ -107,7 +123,7 @@ def main():
     parser.add_argument("--experiment", required=True)
     parser.add_argument("--members", nargs="+", required=True)
     parser.add_argument("--weights", nargs="+", type=float, required=True)
-    parser.add_argument("--method", choices=["mean", "weighted"], default="weighted")
+    parser.add_argument("--method", choices=["mean", "weighted", "rank"], default="weighted")
     parser.add_argument("--hypothesis", required=True)
     parser.add_argument("--change", required=True)
     parser.add_argument("--predict-test", action="store_true")

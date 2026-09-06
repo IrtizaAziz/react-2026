@@ -1,6 +1,6 @@
 # REACT 2026 starter
 
-A local-first competition workspace. Task, target, metric, metric direction, and validation remain unset until launch. Read **AGENTS.md**, **COMPETITION.md**, and **CURRENT_STATE.md** before working.
+A local-first competition workspace. The live notice confirms fraud detection and time-ordered data, but the exact metric, timestamp semantics, and final validation remain unset until Kaggle Evaluation/Data are inspected. Read **AGENTS.md**, **COMPETITION.md**, and **CURRENT_STATE.md** before working.
 
 ## Install and verify
 
@@ -42,6 +42,7 @@ Edit that JSON (or `DEFAULT_CONFIG` in `src/config.py`). Set:
 - `metric`, `metric_direction` (`higher`/`lower`), and any official metric parameters. Built-in names: `mae`, `mse`, `rmse`, `r2`, `accuracy`, `f1`, `precision`, `recall`, `log_loss`, `roc_auc`, `average_precision`. They are helpers, not the official definition.
 - `prediction_kind`: `value`, `probability`, `label`, or `decision`. Classification requires explicit `class_order`; binary ranking/label conversion also needs `positive_class`. Binary probability-to-label conversion requires `label_threshold`. Multiclass probability columns follow `class_order`; argmax chooses the first class in a tie.
 - `validation_type`: `kfold`, `stratified`, `group`, `stratified_group`, or `time`; also `validation_rationale`, `n_splits`, and `shuffle`. Group methods require `group_column`; time requires `time_column`, no shuffle, and optional `time_gap` in rows. Time CV sorts stably, rejects tied boundary timestamps, and reports irregular spacing. Initial unvalidated rows keep fold -1 and missing OOF predictions.
+- For the live fraud task, use `time_holdout` with `n_splits=1` for a chronological holdout or `time` for expanding-window validation. Both require `shuffle=false`; `time_gap` is configurable and must be justified from leakage analysis. Do not use shuffled random CV by default.
 - `model`, `model_params`, and explicit seed (starter default 42). Model names: `linear`, `logistic`, `random_forest`, `extra_trees`, `catboost`, `lightgbm`, `xgboost`, `tfidf_logistic`, `tfidf_linear`. For TF-IDF set `features` to `[text_column]`. The tabular starter uses fold-local imputation, scaling, and one-hot encoding even for optional boosters; native categorical handling is a future controlled experiment.
 
 For a custom official metric, add `src/official_metric.py` with `score(y_true, predictions, **params) -> float`, set `metric="custom"`, `custom_metric="src.official_metric:score"`, `custom_metric_kind`, and direction. The function receives original training labels and configured prediction outputs. Test it against the official example. No runtime guess selects a metric or averaging convention.
@@ -53,10 +54,26 @@ IDs are reserved for alignment and excluded from baseline features. Before exper
 Only after configuration is established:
 
 ```powershell
-python src/train.py --config config.json --model catboost --experiment E001 --seed 42 --hypothesis "Document the question being tested" --change "Document the single controlled change" --no-test-inference
+python src/train.py --config config.json --model catboost --experiment R001 --seed 42 --hypothesis "Establish a time-aware baseline" --change "Initial model after launch audit" --no-test-inference
 ```
 
 Every meaningful experiment has a new E ID, including failed runs. Set `splits_file` to a prior `outputs/reports/E001/splits.json` for identical folds; reuse rejects changed inputs or settings. Inputs are fingerprinted by exact file bytes, so reserialized files count as changed.
+
+## Compare and screen
+
+Rank completed experiments by direction-aware CV score:
+
+```powershell
+python src/compare.py
+```
+
+Cheap-screen a candidate on a saved representative fold before promoting it to full CV:
+
+```powershell
+python src/screen.py --experiment E005 --fold 0
+```
+
+Screening is directional evidence only; it does not create an experiment or replace full CV.
 
 - `experiments/experiments.csv`: compact ledger; enter conclusions, notes, leaderboard scores, and exact notebook-version URLs manually.
 - `outputs/reports/E001.json`: configuration, CV, status, timings, artifact links, source hashes, Git provenance.
@@ -90,12 +107,12 @@ This produces a descriptive `sub_E001_..._cv....csv` and a provenance sidecar. G
 python src/ensemble.py --experiment E003 --members E001 E002 --weights 0.6 0.4 --hypothesis "Compare complementary OOF errors" --change "Blend the two saved candidates" --predict-test
 ```
 
-Provide distinct IDs and nonnegative weights summing to one. Arithmetic mean uses `--method mean` and explicit equal weights. Members must have identical data identities, folds, coverage, metric semantics, and class mapping. Test blending is opt-in and requires member predictions. OOF scores are recomputed using organizer training labels. Rank averaging and public-LB weight tuning are not implemented.
+Provide distinct IDs and nonnegative weights summing to one. Arithmetic mean uses `--method mean` and explicit equal weights. Members must have identical data identities, folds, coverage, metric semantics, and class mapping. Test blending is opt-in and requires member predictions. OOF scores are recomputed using organizer training labels. `--method rank` is guarded to ranking metrics only; public-LB weight tuning is not implemented.
 
 ## Reproduce on Kaggle
 
 ```powershell
-python src/export_notebook.py --experiment E003
+python src/export_notebook.py --experiment R001
 ```
 
 The uniquely named notebook embeds the immutable saved source for the selected experiment and all ensemble ancestors, plus configurations, exact folds, hashes, and environment versions. It contains no competition data. The exported notebook runs each saved source version in an isolated Python process; it never imports the changing local checkout.

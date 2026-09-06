@@ -31,6 +31,7 @@ from src.submission import build_submission, generate_submission, validate_proba
 from src.train import train_experiment
 from src.utils import checked_record, read_json, save_json, sha256
 from src.validation import make_splits
+from src.temporal import past_group_count, past_group_mean
 
 
 class StarterTests(unittest.TestCase):
@@ -182,6 +183,19 @@ class StarterTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             build_submission(self.sample, frame, predictions, metadata, replace(self.config, submission_columns=["wrong"]))
 
+    def test_fraud_submission_contract(self):
+        config = replace(self.config, target="fraud", id_columns=["transaction_id"], submission_columns=["fraud"],
+                         submission_kind="probability", submission_alignment="id", positive_class="yes")
+        sample = pd.DataFrame({"transaction_id": ["b", "a"], "fraud": [0., 0.]})
+        artifact = pd.DataFrame({"__row__": [0, 1], "transaction_id": ["a", "b"]})
+        predictions = np.array([[.1, .9], [.8, .2]])
+        metadata = {"prediction_kind": "probability", "class_order": ["no", "yes"], "id_columns": ["transaction_id"]}
+        output = build_submission(sample, artifact, predictions, metadata, config)
+        self.assertEqual(list(output.columns), ["transaction_id", "fraud"])
+        np.testing.assert_allclose(output["fraud"], [.2, .9])
+        with self.assertRaises(ValueError):
+            build_submission(sample, artifact, np.array([[-1, 2], [.8, .2]]), metadata, config)
+
     def test_splits_reuse_groups_and_time(self):
         record = checked_record(self.root, "SMOKE001")
         split_path = self.root / record["splits_path"]
@@ -212,6 +226,19 @@ class StarterTests(unittest.TestCase):
         with patch("src.validation.model_selection.StratifiedGroupKFold", None):
             with self.assertRaisesRegex(ImportError, "no fallback"):
                 make_splits(frame, replace(self.config, validation_type="stratified_group", group_column="group"), {})
+
+    def test_time_holdout_and_past_only_helpers(self):
+        frame = self.training.assign(time=np.arange(12), entity=["a", "a", "b", "b", "a", "a", "b", "b", "a", "a", "b", "b"], value=np.arange(12, dtype=float))
+        temporal = replace(self.config, validation_type="time_holdout", validation_rationale="Synthetic chronological holdout", n_splits=1,
+                           shuffle=False, time_column="time", time_valid_fraction=.25, time_gap=1)
+        pairs, assignment, _ = make_splits(frame, temporal, {"synthetic": True})
+        train, valid = pairs[0]
+        self.assertLess(frame.iloc[train].time.max(), frame.iloc[valid].time.min())
+        self.assertTrue((assignment[valid] == 0).all())
+        self.assertEqual(past_group_count(frame, "entity", "time").tolist()[:4], [0, 1, 0, 1])
+        means = past_group_mean(frame, "entity", "value", "time")
+        self.assertTrue(np.isnan(means.iloc[0]))
+        self.assertEqual(means.iloc[1], 0)
 
     def test_audit_ambiguity_sample_labels_and_duplicates(self):
         with tempfile.TemporaryDirectory() as directory, contextlib.redirect_stdout(io.StringIO()):

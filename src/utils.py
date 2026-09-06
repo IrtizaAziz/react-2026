@@ -11,6 +11,7 @@ import subprocess
 from datetime import datetime, timezone
 
 TRACKER_COLUMNS = "experiment_id timestamp parent_experiment model hypothesis change_description validation_method n_folds seed cv_mean cv_std fold_scores public_lb private_lb parameters oof_path prediction_path submission_path git_commit status conclusion notes training_seconds provenance_path kaggle_notebook_version".split()
+EXPERIMENT_STATUSES = {"candidate", "promoted", "rejected", "failed", "submitted", "selected", "completed", "running"}
 
 
 def now():
@@ -136,8 +137,8 @@ def update_tracker(root, record):
 
 
 def report_path(root, experiment):
-    if not re.fullmatch(r"(?:E\d{3,}|SMOKE\d{3,})", experiment):
-        raise ValueError("Use a unique ID such as E001 (SMOKE001 is reserved for isolated tests)")
+    if not re.fullmatch(r"(?:E\d{3,}|R\d{3,}|SMOKE\d{3,})", experiment):
+        raise ValueError("Use E### for preserved mock history, R### for live REACT runs, or SMOKE### for isolated tests")
     return Path(root) / "outputs/reports" / f"{experiment}.json"
 
 
@@ -145,7 +146,7 @@ def reserve_experiment(root, experiment, config, hypothesis, change, parent=None
     if not hypothesis.strip() or not change.strip():
         raise ValueError("A hypothesis and change description are required")
     if experiment.startswith("SMOKE") != config.smoke_test:
-        raise ValueError("SMOKE IDs require smoke_test=true; competition runs require E IDs")
+        raise ValueError("SMOKE IDs require smoke_test=true; live/mock runs use E### or R###")
     path = report_path(root, experiment)
     ledger = Path(root) / "experiments/experiments.csv"
     if ledger.exists():
@@ -182,6 +183,6 @@ def save_frame(path, frame):
 
 def checked_record(root, experiment):
     record = read_json(report_path(root, experiment))
-    if record["status"] != "completed":
-        raise ValueError(f"{experiment} is not completed")
+    if record["status"] not in {"completed", "candidate", "promoted", "submitted", "selected"}:
+        raise ValueError(f"{experiment} is not a completed experiment")
     return record

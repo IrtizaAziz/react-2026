@@ -1,0 +1,20 @@
+{
+  "experiment_id": "E006",
+  "submission_path": "submissions/sub_E006_catboost_title_cv0p828278.csv",
+  "sha256": "b3fdd72ab052db7e32de73f55667f97b9574c14c7b3c23669c8f6cd566d99e6d",
+  "sample_sha256": "7a262a7f4cb807f53911dccc84257ed3976b21b7b50ffc468b58446bff8bb6a4",
+  "prediction_sha256": "89e35a663e895a6445847a69e92fac690942d04184abbad7793fba1e67beb5ae",
+  "git_commit": "d01c63347865adb64ac6de6d67ec298fa11c8fbf",
+  "config": {
+    "sample_file": "data/raw/gender_submission.csv",
+    "submission_columns": [
+      "Survived"
+    ],
+    "submission_kind": "label",
+    "submission_alignment": "id",
+    "positive_class": 1,
+    "label_threshold": 0.5
+  },
+  "kaggle_notebook_version": null,
+  "uploaded": false
+}

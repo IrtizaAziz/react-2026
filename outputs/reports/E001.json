@@ -1,0 +1,266 @@
+{
+  "experiment_id": "E001",
+  "timestamp": "2026-09-04T10:44:20.362397+00:00",
+  "status": "completed",
+  "hypothesis": "A simple regularized linear model using basic passenger attributes should establish a trustworthy, interpretable baseline and verify the full competition pipeline.",
+  "change_description": "Initial non-entity logistic-regression baseline with fold-local median numeric imputation, most-frequent categorical imputation, and one-hot encoding for the seven approved passenger attributes.",
+  "parent_experiment": null,
+  "model": "logistic",
+  "config": {
+    "train_file": "data/raw/train.csv",
+    "test_file": "data/raw/test.csv",
+    "sample_file": "data/raw/gender_submission.csv",
+    "target": "Survived",
+    "id_columns": [
+      "PassengerId"
+    ],
+    "features": [
+      "Pclass",
+      "Sex",
+      "Age",
+      "SibSp",
+      "Parch",
+      "Fare",
+      "Embarked"
+    ],
+    "task": "classification",
+    "metric": "accuracy",
+    "metric_direction": "higher",
+    "metric_params": {},
+    "custom_metric": null,
+    "custom_metric_kind": null,
+    "prediction_kind": "probability",
+    "class_order": [
+      0,
+      1
+    ],
+    "validation_type": "stratified",
+    "validation_rationale": "Accepted E001-only validation: StratifiedKFold with five folds, shuffle=True, and seed=42 for the simple non-entity baseline.",
+    "n_splits": 5,
+    "shuffle": true,
+    "seed": 42,
+    "group_column": null,
+    "time_column": null,
+    "time_gap": 0,
+    "splits_file": null,
+    "model": "logistic",
+    "model_params": {
+      "C": 1.0,
+      "penalty": "l2",
+      "solver": "lbfgs"
+    },
+    "text_column": null,
+    "predict_test": true,
+    "aggregation": "mean",
+    "submission_columns": [
+      "Survived"
+    ],
+    "submission_kind": "label",
+    "submission_alignment": "id",
+    "positive_class": 1,
+    "label_threshold": 0.5,
+    "smoke_test": false
+  },
+  "parameters": {
+    "C": 1.0,
+    "penalty": "l2",
+    "solver": "lbfgs"
+  },
+  "validation_method": "stratified",
+  "n_folds": 5,
+  "seed": 42,
+  "provenance_path": "outputs/reports/E001/",
+  "git_commit": "d01c63347865adb64ac6de6d67ec298fa11c8fbf",
+  "git_dirty": true,
+  "git_note": null,
+  "source_hashes": {
+    "__init__.py": "a9aeb022698dcebd09ee1a054d513e28a0cb349fb61a2788fbf4765a8232b54c",
+    "audit.py": "6912f91334c265cd1c4541f5668bf94a880cb69fb13047fb5425608bf513c850",
+    "config.py": "8663186e2e0c882871ac6f1dad98844f039804f83a9549ad3356505eb78e9566",
+    "data.py": "fae14fda05fcd29aedf46711f5e95a3afbb1f71cde3c954d74b180c2786b48dd",
+    "ensemble.py": "a5c25d7bc790af46fe8a4b8694320dd5ed1aea3113c4f3a96f8b1bed01d62bf4",
+    "export_notebook.py": "85e2401c284e7d3f82f4e3498ca4074a5423cf0cccd7fc4f0ce7a45d92c7bf07",
+    "features.py": "cf826632230a1a7d36e34eb323a827c8e1cbde01afed0566da404d612cbca362",
+    "metrics.py": "1caa11d7c514b3de41cf5f2add27b79dd1613f5aa740e9d1a06f2d7e282cb01b",
+    "predict.py": "7b9c7ee39d66da3ec796afb47c417f1593ed5779707031c7ec83e94322a33ad1",
+    "replay.py": "cc27f59e198d44a924e19f1bc03a55a7bd1782c3f32d561020ccb463aafc51ce",
+    "submission.py": "f8c9c9b6fe997f338f720289e37645fbcad4ecd8051a8278643969b4a9160364",
+    "train.py": "51ef0284d01f53a34d27db801d073351d0bbb4b77173b3138622d987f7525e19",
+    "utils.py": "5d80e068f8c36889db45493ef0391f6bfef0e7db12d17fcf34588b8dde92409d",
+    "validation.py": "0b58930c5a9f69444ff73c0e6cc41fac6bf0bb4faefa7c1f5bbe272f822c9780"
+  },
+  "train_fingerprint": {
+    "sha256": "7d118fef8b6ccf7f81111877bc388536f7b1e498a655e3d649d19aaa010e9f6f",
+    "rows": 891,
+    "columns": [
+      "PassengerId",
+      "Survived",
+      "Pclass",
+      "Name",
+      "Sex",
+      "Age",
+      "SibSp",
+      "Parch",
+      "Ticket",
+      "Fare",
+      "Cabin",
+      "Embarked"
+    ]
+  },
+  "split_signature": "c8757e74ad71a45c9f11daef6b77bea44260963183472e118d34dd8448464497",
+  "splits_path": "outputs/reports/E001/splits.json",
+  "model_paths": [
+    "outputs/models/E001/fold_0.pkl",
+    "outputs/models/E001/fold_1.pkl",
+    "outputs/models/E001/fold_2.pkl",
+    "outputs/models/E001/fold_3.pkl",
+    "outputs/models/E001/fold_4.pkl"
+  ],
+  "model_hashes": {
+    "outputs/models/E001/fold_0.pkl": "79e58a91004774eda7dde130de3e94a2b028907684225d6f09d60f06eeac5590",
+    "outputs/models/E001/fold_1.pkl": "507572f9c5a316e980250c8d7f0090ba4b234f2752d61f259fa990c51d0093ab",
+    "outputs/models/E001/fold_2.pkl": "cda4166b7f3c307dea1006be00ecb9b58a28e1cfbf45da31fd993781db5804b6",
+    "outputs/models/E001/fold_3.pkl": "aa89a9268b992b262016d760b69ae70be7237fcdc04d764252177499959f5270",
+    "outputs/models/E001/fold_4.pkl": "52ede054bab77b29188d48fc2751a1eb61917b95462ce9b09c25af7959bace8e"
+  },
+  "fold_scores": [
+    0.770949720670391,
+    0.8033707865168539,
+    0.7921348314606742,
+    0.7808988764044944,
+    0.8202247191011236
+  ],
+  "cv_mean": 0.7935157868307073,
+  "cv_std": 0.017209351470805104,
+  "cv_std_definition": "population std (ddof=0)",
+  "oof_coverage": 1.0,
+  "oof_path": "outputs/oof/E001.csv",
+  "training_seconds": 0.5371680999996897,
+  "fitted_model_parameters": [
+    {
+      "C": 1.0,
+      "class_weight": null,
+      "dual": false,
+      "fit_intercept": true,
+      "intercept_scaling": 1,
+      "l1_ratio": 0.0,
+      "max_iter": 1000,
+      "n_jobs": null,
+      "penalty": "l2",
+      "random_state": 42,
+      "solver": "lbfgs",
+      "tol": 0.0001,
+      "verbose": 0,
+      "warm_start": false
+    },
+    {
+      "C": 1.0,
+      "class_weight": null,
+      "dual": false,
+      "fit_intercept": true,
+      "intercept_scaling": 1,
+      "l1_ratio": 0.0,
+      "max_iter": 1000,
+      "n_jobs": null,
+      "penalty": "l2",
+      "random_state": 42,
+      "solver": "lbfgs",
+      "tol": 0.0001,
+      "verbose": 0,
+      "warm_start": false
+    },
+    {
+      "C": 1.0,
+      "class_weight": null,
+      "dual": false,
+      "fit_intercept": true,
+      "intercept_scaling": 1,
+      "l1_ratio": 0.0,
+      "max_iter": 1000,
+      "n_jobs": null,
+      "penalty": "l2",
+      "random_state": 42,
+      "solver": "lbfgs",
+      "tol": 0.0001,
+      "verbose": 0,
+      "warm_start": false
+    },
+    {
+      "C": 1.0,
+      "class_weight": null,
+      "dual": false,
+      "fit_intercept": true,
+      "intercept_scaling": 1,
+      "l1_ratio": 0.0,
+      "max_iter": 1000,
+      "n_jobs": null,
+      "penalty": "l2",
+      "random_state": 42,
+      "solver": "lbfgs",
+      "tol": 0.0001,
+      "verbose": 0,
+      "warm_start": false
+    },
+    {
+      "C": 1.0,
+      "class_weight": null,
+      "dual": false,
+      "fit_intercept": true,
+      "intercept_scaling": 1,
+      "l1_ratio": 0.0,
+      "max_iter": 1000,
+      "n_jobs": null,
+      "penalty": "l2",
+      "random_state": 42,
+      "solver": "lbfgs",
+      "tol": 0.0001,
+      "verbose": 0,
+      "warm_start": false
+    }
+  ],
+  "prediction_path": "outputs/predictions/E001.csv",
+  "test_fingerprint": {
+    "sha256": "56023b9948236f3c7a1c9448fcf418b283e109ef177fa8c7e069158dd7dd52b2",
+    "rows": 418,
+    "columns": [
+      "PassengerId",
+      "Pclass",
+      "Name",
+      "Sex",
+      "Age",
+      "SibSp",
+      "Parch",
+      "Ticket",
+      "Fare",
+      "Cabin",
+      "Embarked"
+    ]
+  },
+  "inference": {
+    "test_file": "data/raw/test.csv",
+    "aggregation": "mean"
+  },
+  "submissions": [
+    {
+      "experiment_id": "E001",
+      "submission_path": "submissions/sub_E001_logistic_baseline_cv0p793516.csv",
+      "sha256": "bd6fa8fcc469724e0b46f5d135453ecbee77adc6827d1077f27f7d8ec7cd48d7",
+      "sample_sha256": "7a262a7f4cb807f53911dccc84257ed3976b21b7b50ffc468b58446bff8bb6a4",
+      "prediction_sha256": "1f95e1deb1c79890cae680cbf01e713914d8f4f02f396fb0b043b2e4314721cc",
+      "git_commit": "d01c63347865adb64ac6de6d67ec298fa11c8fbf",
+      "config": {
+        "sample_file": "data/raw/gender_submission.csv",
+        "submission_columns": [
+          "Survived"
+        ],
+        "submission_kind": "label",
+        "submission_alignment": "id",
+        "positive_class": 1,
+        "label_threshold": 0.5
+      },
+      "kaggle_notebook_version": null,
+      "uploaded": false
+    }
+  ],
+  "submission_path": "submissions/sub_E001_logistic_baseline_cv0p793516.csv"
+}

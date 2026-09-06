@@ -1,0 +1,20 @@
+{
+  "experiment_id": "E001",
+  "submission_path": "submissions/sub_E001_logistic_baseline_cv0p793516.csv",
+  "sha256": "bd6fa8fcc469724e0b46f5d135453ecbee77adc6827d1077f27f7d8ec7cd48d7",
+  "sample_sha256": "7a262a7f4cb807f53911dccc84257ed3976b21b7b50ffc468b58446bff8bb6a4",
+  "prediction_sha256": "1f95e1deb1c79890cae680cbf01e713914d8f4f02f396fb0b043b2e4314721cc",
+  "git_commit": "d01c63347865adb64ac6de6d67ec298fa11c8fbf",
+  "config": {
+    "sample_file": "data/raw/gender_submission.csv",
+    "submission_columns": [
+      "Survived"
+    ],
+    "submission_kind": "label",
+    "submission_alignment": "id",
+    "positive_class": 1,
+    "label_threshold": 0.5
+  },
+  "kaggle_notebook_version": null,
+  "uploaded": false
+}

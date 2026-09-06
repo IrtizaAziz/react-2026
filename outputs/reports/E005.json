@@ -1,0 +1,291 @@
+{
+  "experiment_id": "E005",
+  "timestamp": "2026-09-04T11:05:31.301406+00:00",
+  "status": "completed",
+  "hypothesis": "Replacement for failed E003/E004: a nonlinear CatBoost model may capture interactions among the E002 passenger, fare, and family-structure features and provide stronger performance or useful prediction diversity relative to logistic regression.",
+  "change_description": "Repeat the intended E003 CatBoost comparison after passing an untracked one-fold adapter preflight: 300 iterations, depth 5, learning rate 0.05, l2_leaf_reg 5.0, native categorical handling, and E001's saved folds. No tuning or additional features.",
+  "parent_experiment": "E002",
+  "model": "catboost",
+  "config": {
+    "train_file": "data/raw/train.csv",
+    "test_file": "data/raw/test.csv",
+    "sample_file": "data/raw/gender_submission.csv",
+    "target": "Survived",
+    "id_columns": [
+      "PassengerId"
+    ],
+    "features": [
+      "Pclass",
+      "Sex",
+      "Age",
+      "SibSp",
+      "Parch",
+      "Fare",
+      "Embarked",
+      "FamilySize",
+      "IsAlone"
+    ],
+    "row_features": [
+      "FamilySize",
+      "IsAlone"
+    ],
+    "categorical_features": [
+      "Pclass",
+      "Sex",
+      "Embarked",
+      "IsAlone"
+    ],
+    "task": "classification",
+    "metric": "accuracy",
+    "metric_direction": "higher",
+    "metric_params": {},
+    "custom_metric": null,
+    "custom_metric_kind": null,
+    "prediction_kind": "probability",
+    "class_order": [
+      0,
+      1
+    ],
+    "validation_type": "stratified",
+    "validation_rationale": "Accepted E001-only validation: StratifiedKFold with five folds, shuffle=True, and seed=42 for the simple non-entity baseline.",
+    "n_splits": 5,
+    "shuffle": true,
+    "seed": 42,
+    "group_column": null,
+    "time_column": null,
+    "time_gap": 0,
+    "splits_file": "outputs/reports/E001/splits.json",
+    "model": "catboost",
+    "model_params": {
+      "iterations": 300,
+      "depth": 5,
+      "learning_rate": 0.05,
+      "l2_leaf_reg": 5.0,
+      "loss_function": "Logloss",
+      "thread_count": 1
+    },
+    "text_column": null,
+    "predict_test": true,
+    "aggregation": "mean",
+    "submission_columns": [
+      "Survived"
+    ],
+    "submission_kind": "label",
+    "submission_alignment": "id",
+    "positive_class": 1,
+    "label_threshold": 0.5,
+    "smoke_test": false
+  },
+  "parameters": {
+    "iterations": 300,
+    "depth": 5,
+    "learning_rate": 0.05,
+    "l2_leaf_reg": 5.0,
+    "loss_function": "Logloss",
+    "thread_count": 1
+  },
+  "validation_method": "stratified",
+  "n_folds": 5,
+  "seed": 42,
+  "provenance_path": "outputs/reports/E005/",
+  "git_commit": "d01c63347865adb64ac6de6d67ec298fa11c8fbf",
+  "git_dirty": true,
+  "git_note": null,
+  "source_hashes": {
+    "__init__.py": "a9aeb022698dcebd09ee1a054d513e28a0cb349fb61a2788fbf4765a8232b54c",
+    "audit.py": "6912f91334c265cd1c4541f5668bf94a880cb69fb13047fb5425608bf513c850",
+    "config.py": "99b0ffb7e89801811ae63db267a30d763a732ad45e666b6d222e658dbee92ec4",
+    "data.py": "cee5b3e7a031e0e76ece336bbd659a3e0b5d5393fe5872c6ca9966e2fbe86ec9",
+    "ensemble.py": "a5c25d7bc790af46fe8a4b8694320dd5ed1aea3113c4f3a96f8b1bed01d62bf4",
+    "export_notebook.py": "85e2401c284e7d3f82f4e3498ca4074a5423cf0cccd7fc4f0ce7a45d92c7bf07",
+    "features.py": "fb4ce97166512fc7b694335e511e9374e72c5613a504215f31257f7871b2e81e",
+    "metrics.py": "1caa11d7c514b3de41cf5f2add27b79dd1613f5aa740e9d1a06f2d7e282cb01b",
+    "predict.py": "7b9c7ee39d66da3ec796afb47c417f1593ed5779707031c7ec83e94322a33ad1",
+    "replay.py": "cc27f59e198d44a924e19f1bc03a55a7bd1782c3f32d561020ccb463aafc51ce",
+    "submission.py": "f8c9c9b6fe997f338f720289e37645fbcad4ecd8051a8278643969b4a9160364",
+    "train.py": "3c0e39900e43fa0220c16eb2e93feba1abe82a6cba094fa3a9ee04d546c374df",
+    "utils.py": "5d80e068f8c36889db45493ef0391f6bfef0e7db12d17fcf34588b8dde92409d",
+    "validation.py": "0b58930c5a9f69444ff73c0e6cc41fac6bf0bb4faefa7c1f5bbe272f822c9780"
+  },
+  "train_fingerprint": {
+    "sha256": "7d118fef8b6ccf7f81111877bc388536f7b1e498a655e3d649d19aaa010e9f6f",
+    "rows": 891,
+    "columns": [
+      "PassengerId",
+      "Survived",
+      "Pclass",
+      "Name",
+      "Sex",
+      "Age",
+      "SibSp",
+      "Parch",
+      "Ticket",
+      "Fare",
+      "Cabin",
+      "Embarked"
+    ]
+  },
+  "split_signature": "c8757e74ad71a45c9f11daef6b77bea44260963183472e118d34dd8448464497",
+  "splits_path": "outputs/reports/E005/splits.json",
+  "model_paths": [
+    "outputs/models/E005/fold_0.pkl",
+    "outputs/models/E005/fold_1.pkl",
+    "outputs/models/E005/fold_2.pkl",
+    "outputs/models/E005/fold_3.pkl",
+    "outputs/models/E005/fold_4.pkl"
+  ],
+  "model_hashes": {
+    "outputs/models/E005/fold_0.pkl": "6ff112ea83fbe483472f415fa6989853664905a4a22a80fb17ed9cbb6670d67b",
+    "outputs/models/E005/fold_1.pkl": "0fdac64f9d3ae614380103edeabdd453b1346b8e7f3134fe95e5524b8e915d30",
+    "outputs/models/E005/fold_2.pkl": "536c98d7e7bb9367ce3043a52ed6ab529ef402e9b5c2ef1874298b4bedaa0945",
+    "outputs/models/E005/fold_3.pkl": "3cc987449d8216a97ceaadf77fb6a390d4a45f2405945979a4619810533a5dc3",
+    "outputs/models/E005/fold_4.pkl": "a023ce01709af995605fd7e2fedf7ce38e4f1b5ba33f8c243518c2563c1951aa"
+  },
+  "fold_scores": [
+    0.8379888268156425,
+    0.848314606741573,
+    0.797752808988764,
+    0.8314606741573034,
+    0.8426966292134831
+  ],
+  "cv_mean": 0.8316427091833531,
+  "cv_std": 0.017826794423995925,
+  "public_lb": 0.77511,
+  "cv_std_definition": "population std (ddof=0)",
+  "oof_coverage": 1.0,
+  "oof_path": "outputs/oof/E005.csv",
+  "training_seconds": 40.60476410000001,
+  "fitted_model_parameters": [
+    {
+      "iterations": 300,
+      "learning_rate": 0.05,
+      "depth": 5,
+      "l2_leaf_reg": 5.0,
+      "loss_function": "Logloss",
+      "thread_count": 1,
+      "random_seed": 42,
+      "verbose": false,
+      "allow_writing_files": false,
+      "cat_features": [
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "iterations": 300,
+      "learning_rate": 0.05,
+      "depth": 5,
+      "l2_leaf_reg": 5.0,
+      "loss_function": "Logloss",
+      "thread_count": 1,
+      "random_seed": 42,
+      "verbose": false,
+      "allow_writing_files": false,
+      "cat_features": [
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "iterations": 300,
+      "learning_rate": 0.05,
+      "depth": 5,
+      "l2_leaf_reg": 5.0,
+      "loss_function": "Logloss",
+      "thread_count": 1,
+      "random_seed": 42,
+      "verbose": false,
+      "allow_writing_files": false,
+      "cat_features": [
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "iterations": 300,
+      "learning_rate": 0.05,
+      "depth": 5,
+      "l2_leaf_reg": 5.0,
+      "loss_function": "Logloss",
+      "thread_count": 1,
+      "random_seed": 42,
+      "verbose": false,
+      "allow_writing_files": false,
+      "cat_features": [
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "iterations": 300,
+      "learning_rate": 0.05,
+      "depth": 5,
+      "l2_leaf_reg": 5.0,
+      "loss_function": "Logloss",
+      "thread_count": 1,
+      "random_seed": 42,
+      "verbose": false,
+      "allow_writing_files": false,
+      "cat_features": [
+        5,
+        6,
+        7,
+        8
+      ]
+    }
+  ],
+  "prediction_path": "outputs/predictions/E005.csv",
+  "test_fingerprint": {
+    "sha256": "56023b9948236f3c7a1c9448fcf418b283e109ef177fa8c7e069158dd7dd52b2",
+    "rows": 418,
+    "columns": [
+      "PassengerId",
+      "Pclass",
+      "Name",
+      "Sex",
+      "Age",
+      "SibSp",
+      "Parch",
+      "Ticket",
+      "Fare",
+      "Cabin",
+      "Embarked"
+    ]
+  },
+  "inference": {
+    "test_file": "data/raw/test.csv",
+    "aggregation": "mean"
+  },
+  "submissions": [
+    {
+      "experiment_id": "E005",
+      "submission_path": "submissions/sub_E005_catboost_catboost_replacement_cv0p831643.csv",
+      "sha256": "780f1a52313400e2419a2a2789701576a84612565c6eca8a477fa9acd16530d7",
+      "sample_sha256": "7a262a7f4cb807f53911dccc84257ed3976b21b7b50ffc468b58446bff8bb6a4",
+      "prediction_sha256": "82534882a12abd37f45d5e4199b1c0c35b5110ce9fff82f78a7e9c904cffc6b3",
+      "git_commit": "d01c63347865adb64ac6de6d67ec298fa11c8fbf",
+      "config": {
+        "sample_file": "data/raw/gender_submission.csv",
+        "submission_columns": [
+          "Survived"
+        ],
+        "submission_kind": "label",
+        "submission_alignment": "id",
+        "positive_class": 1,
+        "label_threshold": 0.5
+      },
+      "kaggle_notebook_version": null,
+      "uploaded": true,
+      "public_lb": 0.77511
+    }
+  ],
+  "submission_path": "submissions/sub_E005_catboost_catboost_replacement_cv0p831643.csv"
+}

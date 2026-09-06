@@ -1,47 +1,98 @@
 # REACT 2026 Datathon
 
-## Confirmed rules
+## Competition status and rules
 
-Source: the supplied brief and the local organizer rulebook, ../REACT_2026_DATATHON_RULEBOOK.md. Check launch materials for updates and record any differences explicitly.
+Source: the live Kaggle Competition Overview and official competition rules. They take precedence over older repository assumptions.
 
 - Platform: Kaggle Community Competition.
 - Opens: 06 September 2026, 08:00 AM.
-- Closes: 07 September 2026, 11:59 PM.
-- Deadline timezone: not explicitly stated in the supplied text; verify against the Kaggle deadline.
-- Maximum five submissions per day per team. Daily reset boundary: verify on Kaggle.
-- Public leaderboard: 60% of test data; private: remaining 40%.
-- Online qualification depends on private ranking. Up to two submissions may be selected for private scoring. Selection is a human action.
-- External datasets not supplied by organizers are prohibited. No external-data fine-tuning.
-- Public pretrained models/backbones are permitted; load them directly inside the submitted notebook and disclose source/exact model in the method summary.
-- No test labels, leaked labels, test-set probing/de-anonymization, manual labeling, or hand-corrected predictions.
-- Test data cannot enter training/validation; legitimate schema/distribution analysis and inference are permitted.
-- No private cross-team sharing of code, data, or predictions.
-- Top teams must provide reproducible training and inference in an exact committed Kaggle Notebook version that generated the submitted result. Share privately with the organizers.
-- The local rulebook specifies the top 15 teams and a notebook plus 1–2-page method summary deadline of 08 September 2026, 10:00 AM.
-- Each participant needs a phone-verified Kaggle account. Form the competition Team before its first submission, using the registered team name; the invitation arrives at launch.
-- Rulebook wording says the leaderboard metric is “higher is better.” The implementation intentionally leaves direction unknown until the actual Evaluation definition is checked, as instructed in the brief.
+- Closes: 07 September 2026, 11:59 PM. The deadline timezone remains unresolved here; verify it on Kaggle.
+- Maximum 5 submissions per day per team.
+- Public leaderboard: 60% of the test set. Private leaderboard: the remaining 40%.
+- Up to 2 submissions may be selected for private scoring. The private leaderboard determines online ranking.
+- Top 15 teams are subject to reproducibility verification before advancing onsite.
+- No external datasets, external fraud-label sources, or fine-tuning on external data.
+- No cross-team sharing of code, data, or predictions.
+- No de-anonymization or attempts to reverse-engineer the organizer's fraud-generation process.
+- No manual test labeling, hand-corrected predictions, test-label leakage, or test-set probing.
+- Public pretrained models/backbones are permitted when loaded in the submitted notebook and disclosed with their exact source/model.
+- Top teams must provide reproducible training and inference from the exact committed Kaggle Notebook version that produced the submitted result.
 
-## Revealed problem information
+## Task and submission
 
-- Target: UNKNOWN
-- Task: UNKNOWN
-- Metric: UNKNOWN
-- Metric direction verified against Evaluation: UNKNOWN
-- Metric implementation and official worked-example check: UNKNOWN
-- Submission format: UNKNOWN
-- Dataset structure: UNKNOWN
-- Special restrictions: UNKNOWN
-- Competition URL / Evaluation URL: UNKNOWN
+- Task: binary fraud detection.
+- For every row in `test.csv`, predict the probability that `fraud = 1`.
+- Submission columns are exactly:
 
-## Reasonable assumptions
+  ```text
+  transaction_id,fraud
+  ```
 
-## Strategy decisions
+- `fraud` must be a probability in `[0,1]`, not a hard class label.
 
-No competition strategy selected. Record dated evidence, alternatives, and the team's decision here after launch. Baseline model adapters and validation helpers are available capabilities, not approved strategies.
+## Official metric
 
-## Implementation decisions already approved
+- Metric: PR-AUC / Average Precision.
+- Official implementation corresponds to `sklearn.metrics.average_precision_score`.
+- Higher is better.
+- Fraud prevalence is roughly 1.5–2%.
 
-- Local modular Python source, plus a self-contained notebook exporter.
-- Tiny synthetic integration fit/replay for isolated smoke testing.
-- Descriptive drift checks only; no fitting with test data.
-- No automatic Kaggle submission or final selection.
+## Dataset structure
+
+Official files:
+
+- `train.csv`
+- `test.csv`
+- `sample_submission.csv`
+- `data_dictionary.csv`
+
+Raw transaction fields include, at minimum:
+
+- transaction ID
+- customer ID
+- timestamp
+- amount in BDT
+- merchant ID
+- merchant category
+- device ID
+- device type
+- coarse location
+- payment method
+- transaction type
+- customer account age in days
+
+Small amounts of missingness exist in `merchant_category`, `device_type`, and `location`.
+
+## Temporal structure
+
+The dataset is explicitly chronological, and every test transaction occurs strictly after every train transaction.
+
+- Train range: `2026-01-01 00:00:43` → `2026-07-15 23:58:21`
+- Test range: `2026-07-16 00:00:21` → `2026-09-15 22:34:38.341114`
+
+Fraud behavior may drift over time; do not assume the test distribution is identical to train.
+
+## Leakage and validation constraints
+
+For a transaction at time `t`, historical engineered features may use only information strictly before `t`.
+
+Prohibited:
+
+- target leakage
+- future-label leakage
+- temporal leakage from future transactions
+- fitting models, encoders, scalers, or target-related statistics using `test.csv`
+- random K-fold validation
+
+Appropriate validation families include time-based holdout, walk-forward, expanding-window, and purged/embargoed validation.
+
+Raw, non-target information from earlier rows in the test period may be used for strictly past-only sequential features for later test rows. For example, an earlier test-period transaction may become part of a device or customer's known history when scoring a later test transaction. This must never involve target information.
+
+## Core modeling challenge
+
+Only raw transaction-level fields are provided; behavioral, historical, and aggregated features are not supplied. The challenge is to construct leakage-safe historical signals around customers, time/activity patterns, devices, merchants, locations, and relationships between entities.
+
+## Remaining unresolved items
+
+- The official deadline timezone should be verified against Kaggle.
+- Exact feature names beyond those explicitly confirmed above should be taken from the released files and `data_dictionary.csv` rather than inferred.

@@ -9,7 +9,7 @@ from .utils import object_hash, read_json, save_json
 
 def split_settings(config):
     keys = ["validation_type", "validation_rationale", "n_splits", "shuffle", "seed",
-            "group_column", "time_column", "time_gap", "target"]
+            "group_column", "time_column", "time_gap", "time_valid_fraction", "target"]
     return {key: getattr(config, key) for key in keys}
 
 
@@ -30,7 +30,7 @@ def make_splits(frame, config, fingerprint, *, save_to=None, reuse=None):
         if config.task != "classification" or y.value_counts().min() < config.n_splits:
             raise ValueError("Stratification requires classification and at least n_splits rows per class")
     times = None
-    if kind == "time":
+    if kind in {"time", "time_holdout"}:
         if config.shuffle or not config.time_column or config.time_column not in frame:
             raise ValueError("Time validation requires time_column and shuffle=false")
         values = frame[config.time_column]
@@ -65,10 +65,22 @@ def make_splits(frame, config, fingerprint, *, save_to=None, reuse=None):
             splitter = cls(**common, **random)
         elif kind == "time":
             splitter = model_selection.TimeSeriesSplit(**common, gap=config.time_gap)
+        elif kind == "time_holdout":
+            if config.n_splits != 1:
+                raise ValueError("time_holdout requires n_splits=1")
+            ordered = np.argsort(times.to_numpy(), kind="stable")
+            valid_size = max(1, int(np.ceil(len(ordered) * config.time_valid_fraction)))
+            valid_start = len(ordered) - valid_size
+            train_end = valid_start - config.time_gap
+            if train_end < 1:
+                raise ValueError("time_holdout leaves no training rows after the configured gap")
+            pairs = [(ordered[:train_end], ordered[valid_start:])]
+            splitter = None
         else:
             raise ValueError("validation_type must be kfold, stratified, group, stratified_group, or time")
-        order = np.argsort(times.to_numpy(), kind="stable") if times is not None else np.arange(n)
-        pairs = [(order[a], order[b]) for a, b in splitter.split(frame.iloc[order], y.iloc[order], groups)]
+        if kind != "time_holdout":
+            order = np.argsort(times.to_numpy(), kind="stable") if times is not None else np.arange(n)
+            pairs = [(order[a], order[b]) for a, b in splitter.split(frame.iloc[order], y.iloc[order], groups)]
     if len(pairs) != config.n_splits:
         raise ValueError("Saved split count differs from configured n_splits")
     assignment = np.full(n, -1, dtype=int)
@@ -85,7 +97,7 @@ def make_splits(frame, config, fingerprint, *, save_to=None, reuse=None):
         if config.task == "classification" and set(y.iloc[train]) != set(config.class_order):
             raise ValueError(f"Fold {fold} training data lacks a configured class; revise validation explicitly")
         assignment[valid] = fold
-    if kind != "time" and (assignment == -1).any():
+    if kind not in {"time", "time_holdout"} and (assignment == -1).any():
         raise ValueError("Non-temporal CV must cover every row exactly once")
     payload = {"settings": settings, "data_fingerprint": fingerprint,
                "splits": [{"train": a.tolist(), "valid": b.tolist()} for a, b in pairs],

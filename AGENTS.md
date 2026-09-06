@@ -2,6 +2,10 @@
 
 This is a short university Kaggle competition. Keep code fast, readable, reproducible, and easy to modify. The two team members work together; do not divide responsibilities between them. Never silently make competition-strategy decisions. Present evidence and alternatives when a decision is ambiguous.
 
+## Required reading at the start of every Codex session
+
+Read, in order: `COMPETITION.md`, `CURRENT_STATE.md` (and `reports/CURRENT_STATE.md` when report context is needed), `reports/APPROACHES.md`, `reports/LEARNINGS.md`, `experiments/experiments.csv`, then the relevant recent report and source files. Do not restart the competition reasoning from zero or reinterpret immutable experiments without evidence.
+
 ## Non-negotiable rules
 
 1. Never use test labels or leaked information.
@@ -38,7 +42,7 @@ When the problem statement and competition files arrive, stop generic setup work
 3. Establish task, target, IDs, and submission semantics from evidence.
 4. Implement and verify the official metric exactly; Evaluation overrides helper assumptions.
 5. Investigate leakage and time/groups/entities/users/machines/locations/patients/sessions/duplicates.
-6. Recommend validation with justification and obtain the team's decision before accepting random K-fold.
+6. Recommend chronological holdout or expanding-window validation for the live fraud task, with justification; do not accept shuffled random K-fold as the default.
 7. Run the first baseline to verify the complete pipeline. Only then prioritize experiments by expected information gain and leaderboard value.
 
 ## Experiment, leaderboard, and final-selection policy
@@ -56,3 +60,5 @@ Do not invent a task, target, metric, direction, or validation strategy. Keep as
 After each meaningful stage, run proportionate checks, report what was created and any assumptions, identify remaining human decisions, and state the next highest-value action. Do not train on dummy/external data to develop competition models. The user explicitly permits a tiny locally generated synthetic integration fit and replay solely for smoke testing, in temporary directories outside the competition tracker.
 
 No automatic uploads, account actions, final selections, external datasets, or pretrained downloads are part of starter verification.
+
+Live experiment IDs use `R001`, `R002`, ... . Preserve mock `E001`–`E006` and synthetic `SMOKE###` history unchanged.

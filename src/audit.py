@@ -51,6 +51,25 @@ def brief(value):
     return str(value).replace("\n", " ").replace("|", "\\|")[:180]
 
 
+def time_candidates(frame):
+    """Find columns that look time-like by values, then use names only as a hint."""
+    candidates = []
+    for column in frame:
+        series = frame[column]
+        name_hint = bool(re.search(r"date|time|timestamp|occur|event|created|updated", str(column), re.I))
+        if pd.api.types.is_datetime64_any_dtype(series):
+            candidates.append(column)
+            continue
+        if name_hint and pd.api.types.is_numeric_dtype(series):
+            candidates.append(column)
+            continue
+        if name_hint and not pd.api.types.is_numeric_dtype(series):
+            parsed = pd.to_datetime(series, errors="coerce", utc=True)
+            if parsed.notna().mean() >= .95:
+                candidates.append(column)
+    return candidates
+
+
 def audit(root=ROOT, *, config=None, full=False, max_rows=100000, seed=42):
     root = Path(root)
     if max_rows < 1:
@@ -185,6 +204,33 @@ def audit(root=ROOT, *, config=None, full=False, max_rows=100000, seed=42):
                 distance = float((fa.reindex(keys, fill_value=0)-fb.reindex(keys, fill_value=0)).abs().sum()/2)
                 only_a, only_b = fa.index.difference(fb.index), fb.index.difference(fa.index)
                 lines.append(f"  Category drift diagnostic: total variation={distance:.4f}; train-only={len(only_a)} {brief(list(only_a[:10]))}; test-only={len(only_b)} {brief(list(only_b[:10]))}.")
+        lines += ["", "### Value-based time diagnostics"]
+        time_columns = sorted(set(time_candidates(train) + time_candidates(test)), key=str)
+        if not time_columns:
+            lines.append("No value-validated datetime candidates found; inspect data_dictionary.csv and ordering columns manually.")
+        for column in time_columns:
+            if column not in train or column not in test:
+                lines.append(f"- {column}: present in only one role; inspect before using for chronology.")
+                continue
+            a, b = train[column], test[column]
+            if pd.api.types.is_numeric_dtype(a) and pd.api.types.is_numeric_dtype(b):
+                ta, tb = a, b
+            else:
+                ta, tb = pd.to_datetime(a, errors="coerce", utc=True), pd.to_datetime(b, errors="coerce", utc=True)
+            if ta.isna().any() or tb.isna().any():
+                lines.append(f"- {column}: could not parse all values as time; missing/invalid train={int(ta.isna().sum())}, test={int(tb.isna().sum())}.")
+                continue
+            overlap = not (ta.max() < tb.min() or tb.max() < ta.min())
+            lines.append(f"- {column}: train range={ta.min()} → {ta.max()}; test range={tb.min()} → {tb.max()}; overlap={overlap}; train_sorted={ta.is_monotonic_increasing}; test_sorted={tb.is_monotonic_increasing}; train_unique={ta.is_unique}; test_unique={tb.is_unique}.")
+            if overlap:
+                risks.append(("HIGH", f"{column}: train/test time ranges overlap; chronological holdout assumptions need evidence"))
+            if not ta.is_monotonic_increasing:
+                risks.append(("MEDIUM", f"{column}: train rows are not already chronologically sorted"))
+        entity_columns = [c for c in set(id_candidates(train) + id_candidates(test)) if c in train and c in test]
+        lines += ["", "### Candidate entity overlap"]
+        for column in sorted(entity_columns, key=str):
+            train_values, test_values = set(train[column].dropna().astype(str)), set(test[column].dropna().astype(str))
+            lines.append(f"- {column}: train_unique={len(train_values)}; test_unique={len(test_values)}; shared_values={len(train_values & test_values)}; repeated_train_rows={int(train[column].duplicated(keep=False).sum())}.")
     if target and train is not None and target in train:
         y = train[target]
         lines += ["", f"### Target analysis: {target}", f"Classes/unique values: {y.nunique()}; missing labels: {y.isna().sum()}."]
