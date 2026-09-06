@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import traceback; from src.config import load_config, ROOT; from src.data import load_training; from src.validation import make_splits; from src.train import assert_static_contract; c=load_config(ROOT/"config_r004.json"); f,fp=load_training(c,ROOT); pairs,_,s=make_splits(f,c,fp,reuse=c.path(ROOT,c.splits_file)); print("loaded",len(f),flush=True); print(assert_static_contract(c,f,pairs),flush=True)
+                                                                                                                                                                                                                                                                        ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\IRTIZA\Downloads\Datathon\react-2026\src\validation.py", line 48, in make_splits
+    raise ValueError("Saved splits do not match this dataset/order or validation configuration")
+ValueError: Saved splits do not match this dataset/order or validation configuration

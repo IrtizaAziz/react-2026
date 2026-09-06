@@ -1,13 +1,12 @@
-# Current state
+# Current state — live Stage 1
 
-This file mirrors the root `CURRENT_STATE.md` for tools and future sessions that expect reports to be self-contained. The root file remains the editable source of truth for the rehearsal snapshot.
+The live competition is binary fraud probability prediction scored by `sklearn.metrics.average_precision_score` (higher is better). The supplied files are resolved from the verified workspace root via `config_live_stage1.json`.
 
-- Best mock experiment: E005 CatBoost, 0.831643 accuracy CV; manually supplied public LB 0.77511.
-- E006 raw Title comparison: rejected at 0.828278 CV.
-- E003 and E004: preserved failed CatBoost integration attempts; never reuse their IDs.
-- Validation: E001–E006 use the locked five-fold stratified split (seed 42). Entity-derived features require grouped sensitivity checks.
-- Highest-value next rehearsal: run the synthetic notebook in a fresh Kaggle runtime, save an exact notebook version, and verify replay.
-- Live launch facts: fraud detection, explicitly time-ordered data, expected `train.csv`, `test.csv`, `sample_submission.csv`, and `data_dictionary.csv`.
-- Live submission schema: exactly `transaction_id,fraud`; `fraud` must be a probability in `[0,1]`.
-- Live unknowns: official metric/direction, timestamp column, target prevalence, train/test continuity, repeated entities, and historical-only feature restrictions.
-- Live experiments use `R001`, `R002`, ...; E001–E006 remain immutable mock history.
+Stage 1 locks the static feature profile and two `calendar_time` folds:
+
+- F1: train `< 2026-03-14`; validate `[2026-03-14, 2026-05-15)`.
+- F2: train `< 2026-05-15`; validate `[2026-05-15, 2026-07-16)`.
+
+`reports/live_foundation.json` and `outputs/reports/live_foundation_splits.json` are the source of truth for the resulting file hashes, split signature, and exact counts. Stage 1 does not train a model, reserve an R ID, make predictions, create a submission, or contact Kaggle.
+
+The E001–E006 Titanic rehearsal, its scores, and any mock counters remain preserved historical artifacts. They are not comparable to live Average Precision runs. Live work starts at R001 after the Stage 1 review.

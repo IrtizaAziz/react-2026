@@ -1,6 +1,6 @@
 # REACT 2026 starter
 
-A local-first competition workspace. The live notice confirms fraud detection and time-ordered data, but the exact metric, timestamp semantics, and final validation remain unset until Kaggle Evaluation/Data are inspected. Read **AGENTS.md**, **COMPETITION.md**, and **CURRENT_STATE.md** before working.
+A local-first competition workspace. Stage 1 locks the live fraud task to Average Precision, static features, and two reviewed timestamp windows. Read **AGENTS.md**, **COMPETITION.md**, [CURRENT_STATE.md](CURRENT_STATE.md), and `reports/live_foundation.json` before working.
 
 ## Install and verify
 
@@ -19,14 +19,14 @@ Smoke tests generate tiny fixtures in temporary directories and use SMOKE IDs ou
 
 ## Inspect organizer files
 
-Place only organizer-supplied files in `data/raw/` after launch:
+The supplied live files are in the workspace root, one inspected level above this Git checkout. The live Stage 1 config uses those verified relative paths:
 
 ```powershell
 python src/audit.py
-python src/audit.py --train data/raw/train.csv --test data/raw/test.csv --sample data/raw/sample_submission.csv
+python src/live_foundation.py --config config_live_stage1.json
 ```
 
-The report is `reports/data_audit.md`; older audits are preserved. Defaults scan CSV/TSV/JSONL and retain up to 100,000 deterministic sampled rows for diagnostics. Other table formats may be loaded fully before sampling. Use `--full` only when practical. Sample-based duplicate counts cannot establish absence. Ambiguous target/file roles remain unresolved. Audit never trains, transfers test labels, selects CV, or changes features.
+This records hashes for all four supplied files and the exact F1/F2 calendar split metadata without training, creating predictions, or reserving an experiment ID. The report is `reports/live_foundation.json`; the immutable split artifact is `outputs/reports/live_foundation_splits.json`.
 
 ## Configure after launch
 
@@ -41,8 +41,8 @@ Edit that JSON (or `DEFAULT_CONFIG` in `src/config.py`). Set:
 - `train_file`, `target`, `features`, `task` (`regression` or `classification`), and ID columns. Paths are relative to the project root unless absolute.
 - `metric`, `metric_direction` (`higher`/`lower`), and any official metric parameters. Built-in names: `mae`, `mse`, `rmse`, `r2`, `accuracy`, `f1`, `precision`, `recall`, `log_loss`, `roc_auc`, `average_precision`. They are helpers, not the official definition.
 - `prediction_kind`: `value`, `probability`, `label`, or `decision`. Classification requires explicit `class_order`; binary ranking/label conversion also needs `positive_class`. Binary probability-to-label conversion requires `label_threshold`. Multiclass probability columns follow `class_order`; argmax chooses the first class in a tie.
-- `validation_type`: `kfold`, `stratified`, `group`, `stratified_group`, or `time`; also `validation_rationale`, `n_splits`, and `shuffle`. Group methods require `group_column`; time requires `time_column`, no shuffle, and optional `time_gap` in rows. Time CV sorts stably, rejects tied boundary timestamps, and reports irregular spacing. Initial unvalidated rows keep fold -1 and missing OOF predictions.
-- For the live fraud task, use `time_holdout` with `n_splits=1` for a chronological holdout or `time` for expanding-window validation. Both require `shuffle=false`; `time_gap` is configurable and must be justified from leakage analysis. Do not use shuffled random CV by default.
+- `validation_type`: `kfold`, `stratified`, `group`, `stratified_group`, `time`, `time_holdout`, or `calendar_time`. `calendar_time` uses explicit half-open timestamp intervals and never splits tied timestamps at a boundary. Initial unvalidated rows keep fold `-1` and missing OOF predictions.
+- The approved live configuration is `config_live_stage1.json`: F1 trains before 2026-03-14 and validates through 2026-05-14; F2 trains before 2026-05-15 and validates through 2026-07-15. Do not use shuffled random CV.
 - `model`, `model_params`, and explicit seed (starter default 42). Model names: `linear`, `logistic`, `random_forest`, `extra_trees`, `catboost`, `lightgbm`, `xgboost`, `tfidf_logistic`, `tfidf_linear`. For TF-IDF set `features` to `[text_column]`. The tabular starter uses fold-local imputation, scaling, and one-hot encoding even for optional boosters; native categorical handling is a future controlled experiment.
 
 For a custom official metric, add `src/official_metric.py` with `score(y_true, predictions, **params) -> float`, set `metric="custom"`, `custom_metric="src.official_metric:score"`, `custom_metric_kind`, and direction. The function receives original training labels and configured prediction outputs. Test it against the official example. No runtime guess selects a metric or averaging convention.

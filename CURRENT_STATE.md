@@ -4,52 +4,52 @@ Competition:
 REACT 2026 Datathon
 
 Problem:
-Closed mock REACT 2026 launch rehearsal using the supplied Kaggle Titanic files
+Live REACT 2026 fraud detection. E001–E006 remain a closed Titanic rehearsal and are historical evidence only.
 
 Target:
-Survived (binary: 0 = did not survive, 1 = survived)
+fraud (binary: 0 = nonfraud, 1 = fraud)
 
 Task type:
 Binary classification
 
 Official metric:
-Mock metric: accuracy
+Average Precision via sklearn.metrics.average_precision_score; higher is better.
 
 Higher/lower better:
 higher
 
 Train shape:
-891 rows x 12 columns
+731,942 rows x 13 columns
 
 Test shape:
-418 rows x 11 columns
+262,648 rows x 12 columns
 
 Submission format:
-CSV with 418 rows and columns PassengerId, Survived; PassengerId must align to test.csv
+CSV with 262,648 rows and exactly transaction_id,fraud; fraud is a probability in [0,1].
 
 Validation strategy:
-ACCEPTED FOR E001 ONLY: StratifiedKFold, 5 folds, shuffle=True, seed=42, accuracy. Any ticket/family/surname-derived feature requires grouped leakage/sensitivity validation.
+STAGE 1 LOCKED: calendar_time expanding folds. F1 train < 2026-03-14, validate [2026-03-14, 2026-05-15); F2 train < 2026-05-15, validate [2026-05-15, 2026-07-16). See config_live_stage1.json and reports/live_foundation.json.
 
-Best experiment:
-E005 (selected best mock experiment)
+Best live experiment:
+None. Stage 1 contains no training run.
 
-Best CV:
-0.831643 accuracy (E005; 5-fold population standard deviation 0.017827)
+Best live CV:
+None.
 
-Best public LB:
-0.77511 (E005; manually supplied)
+Best live public LB:
+None; zero live submissions are recorded for today.
 
 Submissions used today:
-2 / 5
+0 / 5 live; verify Kaggle's displayed quota/reset boundary before uploading.
 
 Final submissions selected:
-E005 (mock selection)
+None for live competition.
 
 Known leakage risks:
-PassengerId is a sequential train/test split marker (train 1--891; test 892--1309). Name is unique per row. Ticket and surname identify related entities across splits (115 shared tickets; 144 shared surnames). Do not use PassengerId; handle learned preprocessing fold-locally; assess group leakage before using ticket/family-derived features.
+Historical features must use strictly earlier timestamps; equal-timestamp rows cannot update one another. Transaction IDs are chronological identifiers and excluded from features. OOF warmup rows remain unpredicted; fold AP and pooled covered OOF AP are separate quantities.
 
 Current highest-priority task:
-Mock rehearsal is closed: E005 is selected; E006 remains rejected; E003/E004 remain preserved as failed. Live launch facts: fraud detection, time-ordered data, expected files train/test/sample/data_dictionary, exact sample schema transaction_id/fraud with fraud probability in [0,1]. Exact metric, timestamp, entity structure, and final temporal validation remain unknown until Kaggle Evaluation/Data are inspected.
+Stage 1 foundation is complete once tests and live metadata are verified. R001 is not yet approved to run; it must use the locked static feature profile and calendar folds.
 
 Live experiment namespace:
 Use R001, R002, ... for real REACT runs. Preserve E001–E006 unchanged as mock history.

@@ -1,0 +1,161 @@
+{
+  "stage": "live_foundation",
+  "training_performed": false,
+  "experiment_id_reserved": null,
+  "config": {
+    "train_file": "../train.csv",
+    "test_file": "../test.csv",
+    "sample_file": "../sample_submission.csv",
+    "target": "fraud",
+    "id_columns": [
+      "transaction_id"
+    ],
+    "features": [
+      "amount_bdt",
+      "log_amount_bdt",
+      "account_age_days",
+      "hour",
+      "weekday",
+      "is_weekend",
+      "merchant_category",
+      "device_type",
+      "location",
+      "payment_method",
+      "transaction_type",
+      "merchant_category_missing",
+      "device_type_missing",
+      "location_missing"
+    ],
+    "row_features": [],
+    "categorical_features": [
+      "merchant_category",
+      "device_type",
+      "location",
+      "payment_method",
+      "transaction_type"
+    ],
+    "task": "classification",
+    "metric": "average_precision",
+    "metric_direction": "higher",
+    "metric_params": {},
+    "custom_metric": null,
+    "custom_metric_kind": null,
+    "prediction_kind": "probability",
+    "class_order": [
+      0,
+      1
+    ],
+    "validation_type": "calendar_time",
+    "validation_rationale": "Two expanding 62-day half-open timestamp windows match the observed test horizon; F2 is the recent primary view.",
+    "n_splits": 2,
+    "shuffle": false,
+    "seed": 42,
+    "group_column": null,
+    "time_column": "timestamp",
+    "time_gap": 0,
+    "time_valid_fraction": 0.2,
+    "calendar_folds": [
+      {
+        "train_before": "2026-03-14",
+        "valid_start": "2026-03-14",
+        "valid_end": "2026-05-15"
+      },
+      {
+        "train_before": "2026-05-15",
+        "valid_start": "2026-05-15",
+        "valid_end": "2026-07-16"
+      }
+    ],
+    "feature_profile": "react2026_static",
+    "splits_file": null,
+    "model": "catboost",
+    "model_params": {
+      "iterations": 800,
+      "depth": 6,
+      "learning_rate": 0.05,
+      "l2_leaf_reg": 10,
+      "bootstrap_type": "Bernoulli",
+      "subsample": 0.8,
+      "thread_count": 8,
+      "one_hot_max_size": 64
+    },
+    "text_column": null,
+    "predict_test": false,
+    "aggregation": null,
+    "submission_columns": [
+      "fraud"
+    ],
+    "submission_kind": "probability",
+    "submission_alignment": "id",
+    "positive_class": 1,
+    "label_threshold": null,
+    "smoke_test": false
+  },
+  "input_hashes": {
+    "train.csv": "06823ea80cceade018b2428e0c7c9cb89e4efae45fcad8cbf61e8b27b350df20",
+    "test.csv": "ebac681e2af6a375f126ad5bfdc154b0584adbc893845fb7edf20b8465484c6b",
+    "sample_submission.csv": "67b151c4948c313bced4a6d1ca9e96edbdaeb020f72ecb4dc6404d01f4394f12",
+    "data_dictionary.csv": "90dcdec3dde03a2a94feaa36dd01f44c2d0619d83dd96e608a95e2fe114446f8"
+  },
+  "input_fingerprints": {
+    "train": {
+      "sha256": "06823ea80cceade018b2428e0c7c9cb89e4efae45fcad8cbf61e8b27b350df20",
+      "rows": 731942,
+      "columns": [
+        "transaction_id",
+        "customer_id",
+        "timestamp",
+        "amount_bdt",
+        "merchant_id",
+        "merchant_category",
+        "device_id",
+        "device_type",
+        "location",
+        "payment_method",
+        "transaction_type",
+        "account_age_days",
+        "fraud"
+      ]
+    },
+    "test": {
+      "sha256": "ebac681e2af6a375f126ad5bfdc154b0584adbc893845fb7edf20b8465484c6b",
+      "rows": 262648,
+      "columns": [
+        "transaction_id",
+        "customer_id",
+        "timestamp",
+        "amount_bdt",
+        "merchant_id",
+        "merchant_category",
+        "device_id",
+        "device_type",
+        "location",
+        "payment_method",
+        "transaction_type",
+        "account_age_days"
+      ]
+    },
+    "sample": {
+      "rows": 262648,
+      "columns": [
+        "transaction_id",
+        "fraud"
+      ]
+    }
+  },
+  "split_signature": "6fb939b019dfe071ce44a3b6e2c82c87bdf17aafaa5dec714c1b703e77cd7e47",
+  "splits_path": "outputs/reports/live_foundation_splits.json",
+  "fold_counts": [
+    {
+      "fold": 1,
+      "train_rows": 259769,
+      "valid_rows": 232108
+    },
+    {
+      "fold": 2,
+      "train_rows": 491877,
+      "valid_rows": 240065
+    }
+  ],
+  "warmup_rows": 259769
+}

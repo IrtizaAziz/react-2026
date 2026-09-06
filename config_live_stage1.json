@@ -1,0 +1,38 @@
+{
+  "train_file": "../train.csv",
+  "test_file": "../test.csv",
+  "sample_file": "../sample_submission.csv",
+  "target": "fraud",
+  "id_columns": ["transaction_id"],
+  "features": [
+    "amount_bdt", "log_amount_bdt", "account_age_days", "hour", "weekday", "is_weekend",
+    "merchant_category", "device_type", "location", "payment_method", "transaction_type",
+    "merchant_category_missing", "device_type_missing", "location_missing"
+  ],
+  "feature_profile": "react2026_static",
+  "categorical_features": ["merchant_category", "device_type", "location", "payment_method", "transaction_type"],
+  "task": "classification",
+  "metric": "average_precision",
+  "metric_direction": "higher",
+  "metric_params": {},
+  "prediction_kind": "probability",
+  "class_order": [0, 1],
+  "positive_class": 1,
+  "validation_type": "calendar_time",
+  "validation_rationale": "Two expanding 62-day half-open timestamp windows match the observed test horizon; F2 is the recent primary view.",
+  "n_splits": 2,
+  "shuffle": false,
+  "seed": 42,
+  "time_column": "timestamp",
+  "calendar_folds": [
+    {"train_before": "2026-03-14", "valid_start": "2026-03-14", "valid_end": "2026-05-15"},
+    {"train_before": "2026-05-15", "valid_start": "2026-05-15", "valid_end": "2026-07-16"}
+  ],
+  "model": "catboost",
+  "model_params": {"iterations": 800, "depth": 6, "learning_rate": 0.05, "l2_leaf_reg": 10, "bootstrap_type": "Bernoulli", "subsample": 0.8, "thread_count": 8, "one_hot_max_size": 64},
+  "predict_test": false,
+  "submission_columns": ["fraud"],
+  "submission_kind": "probability",
+  "submission_alignment": "id",
+  "smoke_test": false
+}

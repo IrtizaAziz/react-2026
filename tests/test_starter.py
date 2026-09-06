@@ -21,14 +21,17 @@ import pandas as pd
 
 from src.audit import audit, sampled_table
 from src.config import Config, ROOT, load_config
+from src.compare import comparison
+from src.customer_history import FEATURES as CUSTOMER_HISTORY_FEATURES, customer_history_chunked, customer_history_from_prior_stream, customer_history_oracle, customer_history_production
+from src.customer_relationships import FEATURES as CUSTOMER_RELATIONSHIP_FEATURES, customer_relationship_chunked, customer_relationship_from_prior_stream, customer_relationship_oracle, customer_relationship_production
 from src.ensemble import blend_experiments, compatible_artifacts
 from src.export_notebook import export_notebook, code, markdown, notebook
 from src.features import build_pipeline
 from src.metrics import score, metric_definition
 from src.predict import predict_experiment, read_predictions, save_predictions
-from src.replay import compare_predictions
+from src.replay import compare_predictions, replay_oof_score
 from src.submission import build_submission, generate_submission, validate_probabilities
-from src.train import train_experiment
+from src.train import _catboost_model_feature_order, _feature_importance, train_experiment
 from src.utils import checked_record, read_json, save_json, sha256
 from src.validation import make_splits
 from src.temporal import past_group_count, past_group_mean
@@ -239,6 +242,152 @@ class StarterTests(unittest.TestCase):
         means = past_group_mean(frame, "entity", "value", "time")
         self.assertTrue(np.isnan(means.iloc[0]))
         self.assertEqual(means.iloc[1], 0)
+
+    def test_calendar_time_split_integrity(self):
+        frame = pd.DataFrame({"id": ["a", "b", "c", "d", "e", "f"],
+                              "target": [0, 1, 0, 1, 0, 1],
+                              "timestamp": ["2026-01-01", "2026-03-13 23:59:59", "2026-03-14",
+                                            "2026-05-14 23:59:59", "2026-05-15", "2026-07-15 23:59:59"]})
+        config = replace(self.config, validation_type="calendar_time", shuffle=False, time_column="timestamp", n_splits=2,
+                         class_order=[0, 1], positive_class=1,
+                         calendar_folds=[{"train_before": "2026-03-14", "valid_start": "2026-03-14", "valid_end": "2026-05-15"},
+                                         {"train_before": "2026-05-15", "valid_start": "2026-05-15", "valid_end": "2026-07-16"}])
+        config.validate()
+        pairs, assignment, payload = make_splits(frame, config, {"synthetic": "calendar"})
+        self.assertEqual([(len(a), len(b)) for a, b in pairs], [(2, 2), (4, 2)])
+        self.assertEqual(assignment.tolist(), [-1, -1, 0, 0, 1, 1])
+        self.assertEqual(payload["splits"][1]["valid_time_min"], "2026-05-15 00:00:00+00:00")
+
+    def test_average_precision_positive_class_and_partial_oof_replay(self):
+        config = replace(self.config, train_file="train.csv", target="fraud", id_columns=["transaction_id"],
+                         features=["number"], task="classification", metric="average_precision", metric_direction="higher",
+                         prediction_kind="probability", class_order=[0, 1], positive_class=1,
+                         validation_type="calendar_time", validation_rationale="synthetic", n_splits=2, shuffle=False,
+                         time_column="timestamp", calendar_folds=[{"train_before": "2026-01-02", "valid_start": "2026-01-02", "valid_end": "2026-01-03"},
+                                                                      {"train_before": "2026-01-03", "valid_start": "2026-01-03", "valid_end": "2026-01-04"}], model="logistic")
+        self.assertEqual(score([0, 1], [[.9, .1], [.1, .9]], config), 1.0)
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            training = pd.DataFrame({"transaction_id": list("abcde"), "timestamp": pd.date_range("2026-01-01", periods=5, freq="D"),
+                                     "number": np.arange(5), "fraud": [0, 0, 1, 0, 1]})
+            training.to_csv(root / "train.csv", index=False)
+            predictions = np.array([[np.nan, np.nan], [np.nan, np.nan], [.9, .1], [.8, .2], [.1, .9]])
+            oof_path = root / "oof.csv"
+            save_predictions(oof_path, training, predictions, config, {"synthetic": True}, folds=np.array([-1, -1, 0, 0, 1]), split_signature="split")
+            record = {"oof_path": "oof.csv", "fold_scores": [0.5, 1.0], "cv_mean": 0.75, "split_signature": "split"}
+            replay = replay_oof_score(record, record, root, config, rtol=1e-9, atol=1e-12)
+            self.assertTrue(replay["within_tolerance"])
+            self.assertEqual(replay["replayed_fold_scores"], [0.5, 1.0])
+            self.assertIn("pooled_covered_oof_score", replay)
+
+    def test_static_feature_importance_uses_explicit_feature_order(self):
+        class Model:
+            def get_feature_importance(self):
+                return np.array([.2, .8])
+        class Preprocess:
+            def get_feature_names_out(self):
+                raise AssertionError("Static importance must not use sklearn feature-name introspection")
+        class Pipeline:
+            named_steps = {"model": Model(), "preprocess": Preprocess()}
+        result = _feature_importance(Pipeline(), ["amount_bdt", "hour"])
+        self.assertEqual(result, [{"feature": "hour", "importance": .8}, {"feature": "amount_bdt", "importance": .2}])
+        catboost_config = replace(self.config, model="catboost", features=["amount_bdt", "merchant_category", "hour"],
+                                  categorical_features=["merchant_category"])
+        self.assertEqual(_catboost_model_feature_order(catboost_config), ["amount_bdt", "hour", "merchant_category"])
+
+    def test_customer_history_is_strictly_past_and_matches_oracle(self):
+        base = pd.DataFrame({"transaction_id": ["a", "b", "c", "d", "e", "f", "g"],
+                             "timestamp": [1, 1, 2, 3600, 3600, 7200, 7201],
+                             "customer_id": ["x", "x", "x", "x", "y", "x", "y"],
+                             "amount_bdt": [10., 30., 50., 70., 9., 90., 12.],
+                             "fraud": [0, 1, 0, 1, 0, 1, 0]})
+        oracle = customer_history_oracle(base.timestamp, base.customer_id, base.amount_bdt)
+        production = customer_history_production(base.timestamp, base.customer_id, base.amount_bdt)
+        pd.testing.assert_frame_equal(oracle, production)
+        self.assertEqual(production.customer_prior_count.tolist()[:3], [0, 0, 2])
+        self.assertTrue(np.isnan(production.customer_prior_mean_amount.iloc[0]))
+        self.assertTrue(np.isnan(production.customer_prior_mean_amount.iloc[1]))
+        self.assertEqual(production.customer_prior_mean_amount.iloc[2], 20.)
+        self.assertEqual(production.customer_seconds_since_last.iloc[3], 3598.)
+        shuffled = pd.concat([base.iloc[[1, 0]], base.iloc[2:]], ignore_index=True)
+        shuffled_features = customer_history_production(shuffled.timestamp, shuffled.customer_id, shuffled.amount_bdt)
+        original_by_id = pd.concat([base[["transaction_id"]], production], axis=1).set_index("transaction_id").sort_index()
+        shuffled_by_id = pd.concat([shuffled[["transaction_id"]], shuffled_features], axis=1).set_index("transaction_id").sort_index()
+        pd.testing.assert_frame_equal(original_by_id, shuffled_by_id)
+        changed = base.copy(); changed.loc[1, "amount_bdt"] = 999.
+        changed_features = customer_history_production(changed.timestamp, changed.customer_id, changed.amount_bdt)
+        pd.testing.assert_series_equal(production.iloc[0], changed_features.iloc[0])
+        future = pd.concat([base, pd.DataFrame({"transaction_id": ["h"], "timestamp": [9999], "customer_id": ["x"], "amount_bdt": [1.], "fraud": [1]})], ignore_index=True)
+        future_features = customer_history_production(future.timestamp, future.customer_id, future.amount_bdt)
+        pd.testing.assert_frame_equal(production, future_features.iloc[:len(base)].reset_index(drop=True))
+        permuted_fraud = base.assign(fraud=1 - base.fraud)
+        pd.testing.assert_frame_equal(production, customer_history_production(permuted_fraud.timestamp, permuted_fraud.customer_id, permuted_fraud.amount_bdt))
+        chunked = customer_history_chunked([base.iloc[:2], base.iloc[2:5], base.iloc[5:]])
+        pd.testing.assert_frame_equal(production, chunked)
+        continued = customer_history_from_prior_stream(
+            base.iloc[:3].timestamp, base.iloc[:3].customer_id, base.iloc[:3].amount_bdt,
+            base.iloc[3:].timestamp, base.iloc[3:].customer_id, base.iloc[3:].amount_bdt,
+        )
+        pd.testing.assert_frame_equal(production.iloc[3:].reset_index(drop=True), continued)
+        self.assertEqual(set(production.columns), set(CUSTOMER_HISTORY_FEATURES))
+        for timestamps, customers, amounts in [
+            ([0, 3600, 3600, 7200], ["a", "b", "a", "a"], [1., 2., 3., 4.]),
+            ([5, 5, 6, 8, 8, 9], ["a", "b", "a", "b", "a", "b"], [5., 4., 3., 2., 1., 0.]),
+        ]:
+            pd.testing.assert_frame_equal(
+                customer_history_oracle(timestamps, customers, amounts),
+                customer_history_production(timestamps, customers, amounts),
+            )
+
+    def test_customer_relationships_are_strictly_past_and_match_oracle(self):
+        base = pd.DataFrame({"transaction_id": ["a", "b", "c", "d", "e", "f", "g"],
+                             "timestamp": [1, 1, 2, 2, 3600, 3600, 7200],
+                             "customer_id": ["x", "x", "x", "x", "x", "y", "x"],
+                             "device_id": ["d1", "d1", "d1", "d2", "d1", "d1", "d1"],
+                             "location": ["l1", "l1", "l1", "l2", "l1", "l1", "l1"],
+                             "fraud": [0, 1, 0, 1, 0, 1, 0]})
+        oracle = customer_relationship_oracle(base.timestamp, base.customer_id, base.device_id, base.location)
+        production = customer_relationship_production(base.timestamp, base.customer_id, base.device_id, base.location)
+        pd.testing.assert_frame_equal(oracle, production)
+        self.assertEqual(production.customer_device_prior_count.tolist()[:4], [0, 0, 2, 0])
+        self.assertEqual(production.customer_location_prior_count.tolist()[:4], [0, 0, 2, 0])
+        self.assertTrue(np.isnan(production.customer_device_count_share.iloc[0]))
+        self.assertEqual(production.customer_device_count_share.iloc[2], 1.)
+        shuffled = pd.concat([base.iloc[[1, 0]], base.iloc[2:]], ignore_index=True)
+        shuffled_features = customer_relationship_production(shuffled.timestamp, shuffled.customer_id, shuffled.device_id, shuffled.location)
+        original_by_id = pd.concat([base[["transaction_id"]], production], axis=1).set_index("transaction_id").sort_index()
+        shuffled_by_id = pd.concat([shuffled[["transaction_id"]], shuffled_features], axis=1).set_index("transaction_id").sort_index()
+        pd.testing.assert_frame_equal(original_by_id, shuffled_by_id)
+        changed = base.copy(); changed.loc[1, "device_id"] = "d9"; changed.loc[1, "location"] = "l9"
+        pd.testing.assert_series_equal(production.iloc[0], customer_relationship_production(changed.timestamp, changed.customer_id, changed.device_id, changed.location).iloc[0])
+        future = pd.concat([base, base.iloc[[0]].assign(timestamp=9999, transaction_id="h")], ignore_index=True)
+        pd.testing.assert_frame_equal(production, customer_relationship_production(future.timestamp, future.customer_id, future.device_id, future.location).iloc[:len(base)].reset_index(drop=True))
+        permuted = base.assign(fraud=1 - base.fraud)
+        pd.testing.assert_frame_equal(production, customer_relationship_production(permuted.timestamp, permuted.customer_id, permuted.device_id, permuted.location))
+        chunked = customer_relationship_chunked([base.iloc[:2], base.iloc[2:5], base.iloc[5:]])
+        pd.testing.assert_frame_equal(production, chunked)
+        continued = customer_relationship_from_prior_stream(base.iloc[:2].timestamp, base.iloc[:2].customer_id, base.iloc[:2].device_id, base.iloc[:2].location,
+                                                            base.iloc[2:].timestamp, base.iloc[2:].customer_id, base.iloc[2:].device_id, base.iloc[2:].location)
+        pd.testing.assert_frame_equal(production.iloc[2:].reset_index(drop=True), continued)
+        self.assertEqual(set(production.columns), set(CUSTOMER_RELATIONSHIP_FEATURES))
+
+    def test_comparison_keeps_mock_and_live_metrics_separate(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "experiments").mkdir()
+            (root / "outputs/reports").mkdir(parents=True)
+            live = replace(self.config, metric="average_precision", metric_direction="higher", target="fraud",
+                           validation_type="calendar_time", shuffle=False, time_column="time", calendar_folds=[
+                               {"train_before": "2026-01-02", "valid_start": "2026-01-02", "valid_end": "2026-01-03"},
+                               {"train_before": "2026-01-03", "valid_start": "2026-01-03", "valid_end": "2026-01-04"}])
+            for experiment, config, metric in [("E999", self.config, .99), ("R001", live, .1)]:
+                record = {"experiment_id": experiment, "config": config.to_dict(), "train_fingerprint": {"live": experiment.startswith("R")},
+                          "split_signature": "live" if experiment.startswith("R") else "mock"}
+                save_json(root / "outputs/reports" / f"{experiment}.json", record, exclusive=True)
+            (root / "experiments/experiments.csv").write_text(
+                "experiment_id,status,cv_mean,cv_std,training_seconds,model\nE999,completed,0.99,0,0,logistic\nR001,completed,0.1,0,0,logistic\n", encoding="utf-8")
+            table, _ = comparison(root)
+            self.assertEqual(table["experiment"].tolist(), ["R001"])
 
     def test_audit_ambiguity_sample_labels_and_duplicates(self):
         with tempfile.TemporaryDirectory() as directory, contextlib.redirect_stdout(io.StringIO()):

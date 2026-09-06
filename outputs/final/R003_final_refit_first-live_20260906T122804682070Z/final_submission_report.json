@@ -1,0 +1,348 @@
+{
+  "kind": "R003_final_refit_submission",
+  "validated_experiment": "R003",
+  "validated_r003_report_sha256": "d30197c23fdc8f9c8bb59dff99ee310bbfd9b8c36c7154f240c9e16b0320088c",
+  "config": {
+    "train_file": "../train.csv",
+    "test_file": "../test.csv",
+    "sample_file": "../sample_submission.csv",
+    "target": "fraud",
+    "id_columns": [
+      "transaction_id"
+    ],
+    "features": [
+      "amount_bdt",
+      "log_amount_bdt",
+      "account_age_days",
+      "hour",
+      "weekday",
+      "is_weekend",
+      "merchant_category",
+      "device_type",
+      "location",
+      "payment_method",
+      "transaction_type",
+      "merchant_category_missing",
+      "device_type_missing",
+      "location_missing",
+      "customer_prior_count",
+      "customer_first_seen",
+      "customer_seconds_since_last",
+      "customer_observed_age_seconds",
+      "customer_prior_mean_amount",
+      "customer_prior_mean_log_amount",
+      "customer_prior_std_log_amount",
+      "customer_amount_to_prior_mean",
+      "customer_log_amount_minus_prior_mean",
+      "customer_log_amount_zscore"
+    ],
+    "row_features": [],
+    "categorical_features": [
+      "merchant_category",
+      "device_type",
+      "location",
+      "payment_method",
+      "transaction_type"
+    ],
+    "task": "classification",
+    "metric": "average_precision",
+    "metric_direction": "higher",
+    "metric_params": {},
+    "custom_metric": null,
+    "custom_metric_kind": null,
+    "prediction_kind": "probability",
+    "class_order": [
+      0,
+      1
+    ],
+    "validation_type": "calendar_time",
+    "validation_rationale": "Two expanding 62-day half-open timestamp windows match the observed test horizon; F2 is the recent primary view.",
+    "n_splits": 2,
+    "shuffle": false,
+    "seed": 42,
+    "group_column": null,
+    "time_column": "timestamp",
+    "time_gap": 0,
+    "time_valid_fraction": 0.2,
+    "calendar_folds": [
+      {
+        "train_before": "2026-03-14",
+        "valid_start": "2026-03-14",
+        "valid_end": "2026-05-15"
+      },
+      {
+        "train_before": "2026-05-15",
+        "valid_start": "2026-05-15",
+        "valid_end": "2026-07-16"
+      }
+    ],
+    "feature_profile": "react2026_static_customer_history",
+    "execution_fold_order": [
+      1,
+      0
+    ],
+    "diagnostic_windows": [
+      {
+        "name": "F2_early_half",
+        "fold": 1,
+        "start": "2026-05-15",
+        "end": "2026-06-15"
+      },
+      {
+        "name": "F2_late_half",
+        "fold": 1,
+        "start": "2026-06-15",
+        "end": "2026-07-16"
+      },
+      {
+        "name": "July_1_15",
+        "fold": 1,
+        "start": "2026-07-01",
+        "end": "2026-07-16"
+      }
+    ],
+    "debug_expected_fold_scores": {},
+    "splits_file": "outputs/reports/live_foundation_splits.json",
+    "model": "catboost",
+    "model_params": {
+      "loss_function": "Logloss",
+      "iterations": 800,
+      "depth": 6,
+      "learning_rate": 0.05,
+      "l2_leaf_reg": 10,
+      "bootstrap_type": "Bernoulli",
+      "subsample": 0.8,
+      "thread_count": 8,
+      "task_type": "CPU",
+      "one_hot_max_size": 64
+    },
+    "text_column": null,
+    "predict_test": false,
+    "aggregation": null,
+    "submission_columns": [
+      "fraud"
+    ],
+    "submission_kind": "probability",
+    "submission_alignment": "id",
+    "positive_class": 1,
+    "label_threshold": null,
+    "smoke_test": false
+  },
+  "feature_manifest": [
+    "amount_bdt",
+    "log_amount_bdt",
+    "account_age_days",
+    "hour",
+    "weekday",
+    "is_weekend",
+    "merchant_category",
+    "device_type",
+    "location",
+    "payment_method",
+    "transaction_type",
+    "merchant_category_missing",
+    "device_type_missing",
+    "location_missing",
+    "customer_prior_count",
+    "customer_first_seen",
+    "customer_seconds_since_last",
+    "customer_observed_age_seconds",
+    "customer_prior_mean_amount",
+    "customer_prior_mean_log_amount",
+    "customer_prior_std_log_amount",
+    "customer_amount_to_prior_mean",
+    "customer_log_amount_minus_prior_mean",
+    "customer_log_amount_zscore"
+  ],
+  "source_hashes": {
+    "__init__.py": "a9aeb022698dcebd09ee1a054d513e28a0cb349fb61a2788fbf4765a8232b54c",
+    "audit.py": "14d46163cb0181c41b65d9b9fa8119eedf82ea512426df61b345ee9c2ee477f7",
+    "autogluon_adapter.py": "0d3bf0b21a76387138d05c24b5b84668b93f4fa6d6743ddc329c758006ee758b",
+    "compare.py": "0f70c45408f61ee0704daf115509b058f883c5a5885f7de2290c3b2874b564d2",
+    "config.py": "6565f61e0c7e86bed224aedac2726c67df01da9a768164152ebd8dfdcdde07fd",
+    "customer_history.py": "1e43ea1b15c7b86c4187917bdc35fe40f30ffbdd4695458d4f2125ae82b7c779",
+    "data.py": "9f61b836fd05f2b3c1ce7c5abd9c281f8b2db1ca03460486ff0e63267fe789de",
+    "ensemble.py": "7c26fd12d633440c29b05e14dbd71d0c7904f2a42d8850c88e7164286315f63f",
+    "export_notebook.py": "85e2401c284e7d3f82f4e3498ca4074a5423cf0cccd7fc4f0ce7a45d92c7bf07",
+    "features.py": "fb4ce97166512fc7b694335e511e9374e72c5613a504215f31257f7871b2e81e",
+    "final_r003_submission.py": "ce42d59bc76833396dcad85c8a0089b14c3071ad4088e2ff68a5eec6b34465d4",
+    "live_foundation.py": "c3267085abbfcbc1a88c366686babb2a24d983d78a8f35c9514ffe8b8e3e4a54",
+    "metrics.py": "1caa11d7c514b3de41cf5f2add27b79dd1613f5aa740e9d1a06f2d7e282cb01b",
+    "predict.py": "30cd1dcd52004eb8fa9dd2474abfd804f2c5f4352372c5916631bde7b5188463",
+    "replay.py": "27d3fd61440345e8026fa1a958853f54289a25dd5287ce74f58b17c40b87f894",
+    "screen.py": "9466c2c19dffbd33790f2ea314b0a6ec8f353d8dba30841bd68f88c619282909",
+    "submission.py": "d61cc034fe449509994a0eb841aa8a8737471d1c9c606a37d4c788fc96534438",
+    "temporal.py": "6d05d82450a93ad7ebf60ed5d6e04c1cc3c51655a855315f147ea7f39c9caa81",
+    "train.py": "c90574f452defaee055cba76fa9708444df1149062fd35fe9b64d33b4ebdb545",
+    "utils.py": "d91d748a7059adaaeb5804084ae8b25304fa4665c4e49dfb412f93df4d408d80",
+    "validation.py": "d96feaf1e3145999c8db666929c06398a83ee6b0726d667b26d4bcbaa3c81e90"
+  },
+  "environment": {
+    "python": "3.14.4",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "packages": {
+      "catboost": "1.2.10",
+      "cloudpickle": "3.1.2",
+      "contourpy": "1.3.3",
+      "cycler": "0.12.1",
+      "fonttools": "4.64.0",
+      "graphviz": "0.21",
+      "joblib": "1.6.0",
+      "kiwisolver": "1.5.1",
+      "matplotlib": "3.11.1",
+      "narwhals": "2.25.0",
+      "numpy": "2.5.2",
+      "packaging": "26.3",
+      "pandas": "3.0.5",
+      "pillow": "12.3.0",
+      "pip": "26.0.1",
+      "plotly": "7.0.0",
+      "pyparsing": "3.3.2",
+      "python-dateutil": "2.9.0.post0",
+      "scikit-learn": "1.9.0",
+      "scipy": "1.18.1",
+      "six": "1.17.0",
+      "threadpoolctl": "3.6.0",
+      "tzdata": "2026.3"
+    },
+    "core_packages": {
+      "numpy": "2.5.2",
+      "pandas": "3.0.5",
+      "scikit-learn": "1.9.0"
+    },
+    "used_optional_packages": {
+      "catboost": "1.2.10"
+    }
+  },
+  "train_fingerprint": {
+    "sha256": "06823ea80cceade018b2428e0c7c9cb89e4efae45fcad8cbf61e8b27b350df20",
+    "rows": 731942,
+    "columns": [
+      "transaction_id",
+      "customer_id",
+      "timestamp",
+      "amount_bdt",
+      "merchant_id",
+      "merchant_category",
+      "device_id",
+      "device_type",
+      "location",
+      "payment_method",
+      "transaction_type",
+      "account_age_days",
+      "fraud"
+    ]
+  },
+  "test_fingerprint": {
+    "sha256": "ebac681e2af6a375f126ad5bfdc154b0584adbc893845fb7edf20b8465484c6b",
+    "rows": 262648,
+    "columns": [
+      "transaction_id",
+      "customer_id",
+      "timestamp",
+      "amount_bdt",
+      "merchant_id",
+      "merchant_category",
+      "device_id",
+      "device_type",
+      "location",
+      "payment_method",
+      "transaction_type",
+      "account_age_days"
+    ]
+  },
+  "final_fit": {
+    "rows": 731942,
+    "uses_all_labeled_rows": true,
+    "uses_fold_models": false,
+    "model_path": "outputs\\final\\R003_final_refit_first-live_20260906T122804682070Z\\model.pkl",
+    "model_sha256": "897dc1739f5d311964ff04272537440e18f88eb672d7bce993d0008896f52c51",
+    "runtime_seconds": 42.802637400000094,
+    "fitted_parameters": {
+      "iterations": 800,
+      "learning_rate": 0.05,
+      "depth": 6,
+      "l2_leaf_reg": 10,
+      "loss_function": "Logloss",
+      "thread_count": 8,
+      "random_seed": 42,
+      "verbose": false,
+      "one_hot_max_size": 64,
+      "allow_writing_files": false,
+      "task_type": "CPU",
+      "bootstrap_type": "Bernoulli",
+      "subsample": 0.8,
+      "cat_features": [
+        19,
+        20,
+        21,
+        22,
+        23
+      ]
+    }
+  },
+  "causal_test_history": {
+    "train_before_test": true,
+    "test_processed_chronologically": true,
+    "test_timestamp_tie_count": 16970,
+    "test_timestamp_batches": 254061,
+    "test_history_generation_seconds": 5.733909200000198,
+    "history_uses_raw_fields_only": [
+      "timestamp",
+      "customer_id",
+      "amount_bdt"
+    ],
+    "same_timestamp_batch_update": "predict/query entire batch before updating raw state",
+    "test_row_order_restored": true
+  },
+  "prediction": {
+    "path": "outputs\\final\\R003_final_refit_first-live_20260906T122804682070Z\\test_predictions.csv",
+    "sha256": "9aa3e91ea4315f4355f588daf7da04b5d3235b02e4e9843c3fafb451917bb535",
+    "identity_hash": "fd1a878575de7fc01a56ba3612b229e0ed6c5fcbe673c177c12bd585c00b5c3b",
+    "rows": 262648,
+    "min": 0.0007928348345555437,
+    "max": 0.9999722627529696,
+    "mean": 0.015237938820583595,
+    "quantiles": {
+      "0": 0.0007928348345555437,
+      "0.001": 0.0016672947800943521,
+      "0.01": 0.002750625304271869,
+      "0.05": 0.0038057711639336083,
+      "0.5": 0.0070835211526049475,
+      "0.95": 0.016610326245016464,
+      "0.99": 0.1817951274399228,
+      "0.999": 0.9992705912518377,
+      "1": 0.9999722627529696
+    }
+  },
+  "submission": {
+    "path": "submissions\\sub_R003_catboost_final_refit_causal_history_first-live_20260906T122804682070Z.csv",
+    "sha256": "f527e49e54d2d3d22e98dbc4aace5291350510a05bc237a91e8158d212ddb5ee",
+    "rows": 262648,
+    "columns": [
+      "transaction_id",
+      "fraud"
+    ],
+    "sample_sha256": "67b151c4948c313bced4a6d1ca9e96edbdaeb020f72ecb4dc6404d01f4394f12",
+    "uploaded": false
+  },
+  "runtime_seconds": {
+    "total": 97.7483112000009,
+    "final_fit": 42.802637400000094,
+    "test_feature_generation": 5.733909200000198
+  },
+  "causal_assertions": {
+    "no_target_in_test": true,
+    "no_test_rows_in_fit": true,
+    "test_preprocessing_not_fitted": true,
+    "strictly_before_timestamp": true,
+    "tied_timestamps_isolated": true
+  },
+  "notebook": {
+    "path": "notebooks\\reproduce_R003_final_refit_first-live_20260906T122804682070Z_reproducible.ipynb",
+    "sha256": "21cb5634866c21fd4068359fd8c186aed75511557cf08b645e33bbc18d148690",
+    "status": "ready for a human to run and commit as a Kaggle notebook version; not uploaded",
+    "supersedes": "initial notebook package omitted the immutable R003 report required by the final refit configuration check"
+  },
+  "notebook_reproduction_source": "package/source plus validated_R003_report.json"
+}

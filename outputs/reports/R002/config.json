@@ -1,0 +1,118 @@
+{
+  "train_file": "../train.csv",
+  "test_file": "../test.csv",
+  "sample_file": "../sample_submission.csv",
+  "target": "fraud",
+  "id_columns": [
+    "transaction_id"
+  ],
+  "features": [
+    "amount_bdt",
+    "log_amount_bdt",
+    "account_age_days",
+    "hour",
+    "weekday",
+    "is_weekend",
+    "merchant_category",
+    "device_type",
+    "location",
+    "payment_method",
+    "transaction_type",
+    "merchant_category_missing",
+    "device_type_missing",
+    "location_missing"
+  ],
+  "row_features": [],
+  "categorical_features": [
+    "merchant_category",
+    "device_type",
+    "location",
+    "payment_method",
+    "transaction_type"
+  ],
+  "task": "classification",
+  "metric": "average_precision",
+  "metric_direction": "higher",
+  "metric_params": {},
+  "custom_metric": null,
+  "custom_metric_kind": null,
+  "prediction_kind": "probability",
+  "class_order": [
+    0,
+    1
+  ],
+  "validation_type": "calendar_time",
+  "validation_rationale": "Two expanding 62-day half-open timestamp windows match the observed test horizon; F2 is the recent primary view.",
+  "n_splits": 2,
+  "shuffle": false,
+  "seed": 42,
+  "group_column": null,
+  "time_column": "timestamp",
+  "time_gap": 0,
+  "time_valid_fraction": 0.2,
+  "calendar_folds": [
+    {
+      "train_before": "2026-03-14",
+      "valid_start": "2026-03-14",
+      "valid_end": "2026-05-15"
+    },
+    {
+      "train_before": "2026-05-15",
+      "valid_start": "2026-05-15",
+      "valid_end": "2026-07-16"
+    }
+  ],
+  "feature_profile": "react2026_static",
+  "execution_fold_order": [
+    1,
+    0
+  ],
+  "diagnostic_windows": [
+    {
+      "name": "F2_early_half",
+      "fold": 1,
+      "start": "2026-05-15",
+      "end": "2026-06-15"
+    },
+    {
+      "name": "F2_late_half",
+      "fold": 1,
+      "start": "2026-06-15",
+      "end": "2026-07-16"
+    },
+    {
+      "name": "July_1_15",
+      "fold": 1,
+      "start": "2026-07-01",
+      "end": "2026-07-16"
+    }
+  ],
+  "debug_expected_fold_scores": {
+    "F2": 0.31538714
+  },
+  "splits_file": "outputs/reports/live_foundation_splits.json",
+  "model": "catboost",
+  "model_params": {
+    "loss_function": "Logloss",
+    "iterations": 800,
+    "depth": 6,
+    "learning_rate": 0.05,
+    "l2_leaf_reg": 10,
+    "bootstrap_type": "Bernoulli",
+    "subsample": 0.8,
+    "thread_count": 8,
+    "task_type": "CPU",
+    "one_hot_max_size": 64
+  },
+  "text_column": null,
+  "predict_test": false,
+  "aggregation": null,
+  "submission_columns": [
+    "fraud"
+  ],
+  "submission_kind": "probability",
+  "submission_alignment": "id",
+  "positive_class": 1,
+  "label_threshold": null,
+  "smoke_test": false
+}

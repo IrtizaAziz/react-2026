@@ -1,0 +1,16 @@
+{
+  "recorded_cv_mean": 0.6209940721658112,
+  "replayed_cv_mean": 0.6209940721658112,
+  "recorded_fold_scores": [
+    0.6671089439497933,
+    0.5748792003818289
+  ],
+  "replayed_fold_scores": [
+    0.6671089439497933,
+    0.5748792003818289
+  ],
+  "folds_within_tolerance": true,
+  "cv_mean_within_tolerance": true,
+  "pooled_covered_oof_score": 0.6212310327232262,
+  "within_tolerance": true
+}
