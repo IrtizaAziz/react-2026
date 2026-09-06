@@ -15,6 +15,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 import warnings
+from types import SimpleNamespace
 
 import numpy as np
 import pandas as pd
@@ -25,6 +26,8 @@ from src.compare import comparison
 from src.customer_history import FEATURES as CUSTOMER_HISTORY_FEATURES, customer_history_chunked, customer_history_from_prior_stream, customer_history_oracle, customer_history_production
 from src.customer_relationships import FEATURES as CUSTOMER_RELATIONSHIP_FEATURES, customer_relationship_chunked, customer_relationship_from_prior_stream, customer_relationship_oracle, customer_relationship_production
 from src.customer_relationships import DEVICE_GLOBAL_FEATURES, device_global_chunked, device_global_from_prior_stream, device_global_oracle, device_global_production
+from src.velocity import FEATURES as VELOCITY_FEATURES, velocity_chunked, velocity_from_prior_stream, velocity_oracle, velocity_production
+from src.velocity import BROAD_FEATURES, broad_velocity_chunked, broad_velocity_oracle, broad_velocity_production
 from src.ensemble import blend_experiments, compatible_artifacts
 from src.export_notebook import export_notebook, code, markdown, notebook
 from src.features import build_pipeline
@@ -32,10 +35,11 @@ from src.metrics import score, metric_definition
 from src.predict import predict_experiment, read_predictions, save_predictions
 from src.replay import compare_predictions, replay_oof_score
 from src.submission import build_submission, generate_submission, validate_probabilities
-from src.train import _catboost_model_feature_order, _feature_importance, train_experiment
+from src.train import _catboost_model_feature_order, _feature_importance, _lightgbm_transformed_feature_order, train_experiment
 from src.utils import checked_record, read_json, save_json, sha256
 from src.validation import make_splits
 from src.temporal import past_group_count, past_group_mean
+from src.data import REACT2026_STATIC_FEATURES, REACT2026_CUSTOMER_HISTORY_FEATURES, REACT2026_CUSTOMER_RELATIONSHIP_FEATURES, REACT2026_DEVICE_GLOBAL_FEATURES, REACT2026_VELOCITY_FEATURES, REACT2026_MERCHANT_ONEHOT_PROFILE
 
 
 class StarterTests(unittest.TestCase):
@@ -409,6 +413,104 @@ class StarterTests(unittest.TestCase):
                                                      base.iloc[4:].timestamp, base.iloc[4:].customer_id, base.iloc[4:].device_id)
         pd.testing.assert_frame_equal(production.iloc[4:].reset_index(drop=True), continued)
         self.assertEqual(set(production.columns), set(DEVICE_GLOBAL_FEATURES))
+
+    def test_one_hour_velocity_is_strictly_prior_and_matches_oracle(self):
+        # Numeric timestamps are seconds.  The exact left boundary is included;
+        # the t=3600 peers are mutually isolated until their entire batch ends.
+        base = pd.DataFrame({"transaction_id": list("abcdefgh"),
+                             "timestamp": [0, 1, 3599, 3600, 3600, 3601, 7200, 7201],
+                             "customer_id": ["c", "c", "x", "c", "c", "c", "c", "c"],
+                             "device_id": ["d", "x", "d", "d", "d", "d", "d", "d"],
+                             "fraud": [0, 1, 0, 1, 0, 1, 0, 1]})
+        oracle = velocity_oracle(base.timestamp, base.customer_id, base.device_id)
+        production = velocity_production(base.timestamp, base.customer_id, base.device_id)
+        pd.testing.assert_frame_equal(oracle, production)
+        self.assertEqual(production.customer_prior_1h_count.tolist(), [0, 1, 0, 2, 2, 3, 3, 2])
+        self.assertEqual(production.device_prior_1h_count.tolist(), [0, 0, 1, 2, 2, 3, 3, 2])
+        # t=0 remains visible at t=3600; it expires only after the boundary.
+        self.assertEqual(production.customer_prior_1h_count.iloc[3], 2)
+        self.assertEqual(production.customer_prior_1h_count.iloc[7], 2)
+        self.assertEqual(production.iloc[3].tolist(), production.iloc[4].tolist())
+        # Equal-time row permutation cannot affect features attached to IDs.
+        shuffled = pd.concat([base.iloc[:3], base.iloc[[4, 3]], base.iloc[5:]], ignore_index=True)
+        shuffled_features = velocity_production(shuffled.timestamp, shuffled.customer_id, shuffled.device_id)
+        pd.testing.assert_frame_equal(pd.concat([base[["transaction_id"]], production], axis=1).set_index("transaction_id").sort_index(),
+                                      pd.concat([shuffled[["transaction_id"]], shuffled_features], axis=1).set_index("transaction_id").sort_index())
+        # Future rows and labels are outside the velocity API and cannot alter prior output.
+        future = pd.concat([base, base.iloc[[0]].assign(timestamp=9999, transaction_id="z")], ignore_index=True)
+        pd.testing.assert_frame_equal(production, velocity_production(future.timestamp, future.customer_id, future.device_id).iloc[:len(base)].reset_index(drop=True))
+        pd.testing.assert_frame_equal(production, velocity_production(base.timestamp, base.customer_id, base.device_id))
+        # Splitting through tied batches preserves full-stream semantics.
+        chunked = velocity_chunked([base.iloc[:4], base.iloc[4:6], base.iloc[6:]])
+        pd.testing.assert_frame_equal(production, chunked)
+        continued = velocity_from_prior_stream(base.iloc[:3].timestamp, base.iloc[:3].customer_id, base.iloc[:3].device_id,
+                                                base.iloc[3:].timestamp, base.iloc[3:].customer_id, base.iloc[3:].device_id)
+        pd.testing.assert_frame_equal(production.iloc[3:].reset_index(drop=True), continued)
+        # Datetime nanoseconds and numeric seconds normalize to exactly the same window.
+        datetime_features = velocity_production(pd.to_datetime(base.timestamp, unit="s"), base.customer_id, base.device_id)
+        pd.testing.assert_frame_equal(production, datetime_features)
+        self.assertEqual(set(production.columns), set(VELOCITY_FEATURES))
+
+    def test_broad_velocity_windows_ratios_and_causal_contract(self):
+        # Numeric inputs are seconds; this includes both exact 24h and 7d left boundaries.
+        base = pd.DataFrame({"transaction_id": list("abcdefgh"),
+                             "timestamp": [0, 3600, 86399, 86400, 86400, 604799, 604800, 604801],
+                             "customer_id": ["c"] * 8, "device_id": ["d"] * 8,
+                             "fraud": [0, 1, 0, 1, 0, 1, 0, 1]})
+        oracle = broad_velocity_oracle(base.timestamp, base.customer_id, base.device_id)
+        production = broad_velocity_production(base.timestamp, base.customer_id, base.device_id)
+        pd.testing.assert_frame_equal(oracle, production)
+        for prefix in ("customer", "device"):
+            self.assertEqual(production[f"{prefix}_prior_1h_count"].tolist(), [0, 1, 0, 1, 1, 0, 1, 2])
+            self.assertEqual(production[f"{prefix}_prior_24h_count"].tolist(), [0, 1, 2, 3, 3, 0, 1, 2])
+            self.assertEqual(production[f"{prefix}_prior_7d_count"].tolist(), [0, 1, 2, 3, 3, 5, 6, 6])
+            self.assertTrue(np.isfinite(production[f"{prefix}_1h_vs_7d_rate_ratio"]).all())
+        # Same-timestamp peers observe the identical frozen state.
+        pd.testing.assert_series_equal(production.iloc[3], production.iloc[4], check_names=False)
+        shuffled = pd.concat([base.iloc[:3], base.iloc[[4, 3]], base.iloc[5:]], ignore_index=True)
+        shuffled_features = broad_velocity_production(shuffled.timestamp, shuffled.customer_id, shuffled.device_id)
+        pd.testing.assert_frame_equal(pd.concat([base[["transaction_id"]], production], axis=1).set_index("transaction_id").sort_index(),
+                                      pd.concat([shuffled[["transaction_id"]], shuffled_features], axis=1).set_index("transaction_id").sort_index())
+        future = pd.concat([base, base.iloc[[0]].assign(timestamp=9_999_999, transaction_id="z")], ignore_index=True)
+        pd.testing.assert_frame_equal(production, broad_velocity_production(future.timestamp, future.customer_id, future.device_id).iloc[:len(base)].reset_index(drop=True))
+        # Labels never enter the API; chunking through a tied batch and datetime nanoseconds agree exactly.
+        pd.testing.assert_frame_equal(production, broad_velocity_chunked([base.iloc[:4], base.iloc[4:6], base.iloc[6:]]))
+        pd.testing.assert_frame_equal(production, broad_velocity_production(pd.to_datetime(base.timestamp, unit="s"), base.customer_id, base.device_id))
+        self.assertEqual(set(production.columns), set([*VELOCITY_FEATURES, *BROAD_FEATURES]))
+
+    def test_r009_merchant_onehot_profile_is_narrow_and_target_independent(self):
+        features = [*REACT2026_STATIC_FEATURES, *REACT2026_CUSTOMER_HISTORY_FEATURES,
+                    *REACT2026_CUSTOMER_RELATIONSHIP_FEATURES, *REACT2026_DEVICE_GLOBAL_FEATURES,
+                    *REACT2026_VELOCITY_FEATURES, "merchant_id"]
+        config = replace(self.config, features=features,
+                         categorical_features=["merchant_category", "device_type", "location", "payment_method", "transaction_type", "merchant_id"],
+                         feature_profile=REACT2026_MERCHANT_ONEHOT_PROFILE,
+                         model="catboost", model_params={"one_hot_max_size": 5000})
+        config.validate()
+        self.assertEqual(config.model_params["one_hot_max_size"], 5000)
+        self.assertNotIn("customer_id", config.features)
+        self.assertNotIn("device_id", config.features)
+        self.assertNotIn("transaction_id", config.features)
+        self.assertNotIn("fraud", config.features)
+        forbidden = replace(config, features=[*features, "device_id"])
+        with self.assertRaises(ValueError):
+            forbidden.validate()
+
+    def test_lightgbm_importance_uses_locked_onehot_order_without_introspection(self):
+        config = replace(self.config, model="lightgbm", features=["number", "category"],
+                         categorical_features=["category"])
+        preprocessing = build_pipeline(config).named_steps["preprocess"]
+        frame = pd.DataFrame({"number": [2., 1., 3.], "category": ["b", "a", "b"]})
+        preprocessing.fit(frame)
+        pipeline = SimpleNamespace(named_steps={"preprocess": preprocessing,
+                                                 "model": SimpleNamespace(feature_importances_=np.array([3., 7., 11.]))})
+        expected_order = ["number", "category_a", "category_b"]
+        self.assertEqual(_lightgbm_transformed_feature_order(pipeline, config), expected_order)
+        with patch.object(preprocessing, "get_feature_names_out", side_effect=AssertionError("unsupported introspection")):
+            importance = _feature_importance(pipeline, config.features, config=config)
+        self.assertEqual(len(importance), len(expected_order))
+        self.assertEqual({row["feature"] for row in importance}, set(expected_order))
+        self.assertEqual(importance[0], {"feature": "category_b", "importance": 11.0})
 
     def test_comparison_keeps_mock_and_live_metrics_separate(self):
         with tempfile.TemporaryDirectory() as directory:

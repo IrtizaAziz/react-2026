@@ -31,10 +31,10 @@ Validation strategy:
 STAGE 1 LOCKED: calendar_time expanding folds. F1 train < 2026-03-14, validate [2026-03-14, 2026-05-15); F2 train < 2026-05-15, validate [2026-05-15, 2026-07-16). See config_live_stage1.json and reports/live_foundation.json.
 
 Best live experiment:
-None. Stage 1 contains no training run.
+R007 remains the local standalone recent-period lead. R008's broader velocity family and R009's native one-hot raw merchant identity did not add value; R011 LightGBM is slightly weaker standalone but has moderately different ranks for a later explicitly controlled OOF-blend review. No submission was prepared or uploaded.
 
 Best live CV:
-None.
+R007: F1 0.75433429; F2 0.69000428; historical S = 0.70930329. R008: F1 0.75539812; F2 0.68970116; S = 0.70941025. R009: F1 0.74293462; F2 0.66854805; S = 0.69086402. R011: F1 0.75030502; F2 0.68834761; S = 0.70193461.
 
 Best live public LB:
 None; zero live submissions are recorded for today.
@@ -49,7 +49,7 @@ Known leakage risks:
 Historical features must use strictly earlier timestamps; equal-timestamp rows cannot update one another. Transaction IDs are chronological identifiers and excluded from features. OOF warmup rows remain unpredicted; fold AP and pooled covered OOF AP are separate quantities.
 
 Current highest-priority task:
-Stage 1 foundation is complete once tests and live metadata are verified. R001 is not yet approved to run; it must use the locked static feature profile and calendar folds.
+Human review of R007 versus the submitted R005 incumbent. R011 is not a standalone submission candidate, but its F2/F1 rank correlations with R007 (Spearman 0.631/0.651) support an explicitly authorized later fixed-weight OOF blend experiment; no blend has been created.
 
 Live experiment namespace:
 Use R001, R002, ... for real REACT runs. Preserve E001–E006 unchanged as mock history.

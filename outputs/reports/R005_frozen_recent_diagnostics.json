@@ -1,0 +1,51 @@
+{
+  "kind": "R005_frozen_recent_diagnostics",
+  "experiment": "R005",
+  "metric": "average_precision_unweighted",
+  "oof_sha256": "e975ad47a9bda5e701588cf9807e5bd1d16bfd280878b0e04a3139e1a1463780",
+  "prediction_identity_hash": "97c9a8e9db26fb93d6e4f27fc3fd6fa7a0df435f6b7855306ed9e40982c1deec",
+  "split_signature": "6fb939b019dfe071ce44a3b6e2c82c87bdf17aafaa5dec714c1b703e77cd7e47",
+  "diagnostics": {
+    "June_15_30": {
+      "start": "2026-06-15",
+      "end": "2026-07-01",
+      "rows": 62254,
+      "positives": 1146,
+      "average_precision": 0.7285341421057925
+    },
+    "July_1_7": {
+      "start": "2026-07-01",
+      "end": "2026-07-08",
+      "rows": 27535,
+      "positives": 404,
+      "average_precision": 0.4530946071906058
+    },
+    "July_8_15": {
+      "start": "2026-07-08",
+      "end": "2026-07-16",
+      "rows": 31930,
+      "positives": 522,
+      "average_precision": 0.515105539721911
+    }
+  },
+  "paired_comparison_blocks": [
+    {
+      "name": "June_15_30",
+      "start": "2026-06-15",
+      "end": "2026-07-01",
+      "fold": 1
+    },
+    {
+      "name": "July_1_7",
+      "start": "2026-07-01",
+      "end": "2026-07-08",
+      "fold": 1
+    },
+    {
+      "name": "July_8_15",
+      "start": "2026-07-08",
+      "end": "2026-07-16",
+      "fold": 1
+    }
+  ]
+}

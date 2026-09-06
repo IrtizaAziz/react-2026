@@ -1,0 +1,48 @@
+[
+  {
+    "iterations": 800,
+    "learning_rate": 0.05,
+    "depth": 6,
+    "l2_leaf_reg": 10,
+    "loss_function": "Logloss",
+    "thread_count": 8,
+    "random_seed": 42,
+    "verbose": false,
+    "one_hot_max_size": 5000,
+    "allow_writing_files": false,
+    "task_type": "CPU",
+    "bootstrap_type": "Bernoulli",
+    "subsample": 0.8,
+    "cat_features": [
+      36,
+      37,
+      38,
+      39,
+      40,
+      41
+    ]
+  },
+  {
+    "iterations": 800,
+    "learning_rate": 0.05,
+    "depth": 6,
+    "l2_leaf_reg": 10,
+    "loss_function": "Logloss",
+    "thread_count": 8,
+    "random_seed": 42,
+    "verbose": false,
+    "one_hot_max_size": 5000,
+    "allow_writing_files": false,
+    "task_type": "CPU",
+    "bootstrap_type": "Bernoulli",
+    "subsample": 0.8,
+    "cat_features": [
+      36,
+      37,
+      38,
+      39,
+      40,
+      41
+    ]
+  }
+]
