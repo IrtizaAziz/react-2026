@@ -78,13 +78,19 @@ REACT2026_CUSTOMER_RELATIONSHIP_FEATURES = [
     "customer_device_prior_count", "customer_device_new", "customer_device_seconds_since_last", "customer_device_count_share",
     "customer_location_prior_count", "customer_location_new", "customer_location_seconds_since_last", "customer_location_count_share",
 ]
+REACT2026_DEVICE_GLOBAL_FEATURES = [
+    "device_prior_count", "device_prior_distinct_customer_count",
+    "device_prior_distinct_customer_count_excluding_current", "device_seconds_since_last",
+    "device_observed_age_seconds", "device_prior_other_customer_transaction_count",
+    "customer_share_of_device_prior_transactions",
+]
 
 
 def add_feature_profile(frame, profile):
     """Materialize approved deterministic features without observing other rows."""
     if profile is None:
         return frame
-    if profile not in {"react2026_static", "react2026_static_customer_history", "react2026_static_customer_history_relationships"}:
+    if profile not in {"react2026_static", "react2026_static_customer_history", "react2026_static_customer_history_relationships", "react2026_static_customer_history_relationships_device_global"}:
         raise ValueError(f"Unknown feature profile: {profile}")
     require_columns(frame, ["timestamp", "amount_bdt", "account_age_days", *REACT2026_STATIC_CATEGORICALS], "REACT 2026 static inputs")
     result = frame.copy()
@@ -103,7 +109,20 @@ def add_feature_profile(frame, profile):
         for column in relationships:
             result[column] = relationships[column].to_numpy(copy=False)
         result.attrs["customer_relationship_generation_seconds"] = time.perf_counter() - relationship_start
-    if profile in {"react2026_static_customer_history", "react2026_static_customer_history_relationships"}:
+    if profile == "react2026_static_customer_history_relationships_device_global":
+        require_columns(result, ["customer_id", "device_id", "location"], "REACT 2026 R005 relationship inputs")
+        from .customer_relationships import customer_relationship_production, device_global_production
+        relationship_start = time.perf_counter()
+        relationships = customer_relationship_production(result["timestamp"], result["customer_id"], result["device_id"], result["location"])
+        for column in relationships:
+            result[column] = relationships[column].to_numpy(copy=False)
+        result.attrs["customer_relationship_generation_seconds"] = time.perf_counter() - relationship_start
+        device_start = time.perf_counter()
+        devices = device_global_production(result["timestamp"], result["customer_id"], result["device_id"])
+        for column in devices:
+            result[column] = devices[column].to_numpy(copy=False)
+        result.attrs["device_global_generation_seconds"] = time.perf_counter() - device_start
+    if profile in {"react2026_static_customer_history", "react2026_static_customer_history_relationships", "react2026_static_customer_history_relationships_device_global"}:
         require_columns(result, ["customer_id"], "REACT 2026 customer-history inputs")
         from .customer_history import customer_history_production
         history_start = time.perf_counter()
@@ -115,7 +134,7 @@ def add_feature_profile(frame, profile):
 
 
 def validate_feature_profile(frame, config):
-    if config.feature_profile not in {"react2026_static", "react2026_static_customer_history", "react2026_static_customer_history_relationships"}:
+    if config.feature_profile not in {"react2026_static", "react2026_static_customer_history", "react2026_static_customer_history_relationships", "react2026_static_customer_history_relationships_device_global"}:
         return
     forbidden = {"transaction_id", "customer_id", "device_id", "merchant_id", "timestamp", config.target}
     if forbidden & set(config.features):
@@ -131,13 +150,13 @@ def load_training(config, root):
     fingerprint = {"sha256": sha256(path), "rows": len(frame), "columns": list(frame.columns)}
     frame = add_row_features(frame, config.row_features)
     held_ids = {}
-    if config.feature_profile == "react2026_static_customer_history_relationships":
+    if config.feature_profile in {"react2026_static_customer_history_relationships", "react2026_static_customer_history_relationships_device_global"}:
         # Preserve OOF alignment IDs outside the state-engine working frame.
         held_ids = {column: frame.pop(column) for column in config.id_columns}
         if "merchant_id" in frame:
             frame.pop("merchant_id")
     frame = add_feature_profile(frame, config.feature_profile)
-    if config.feature_profile == "react2026_static_customer_history_relationships":
+    if config.feature_profile in {"react2026_static_customer_history_relationships", "react2026_static_customer_history_relationships_device_global"}:
         # Pair state is now materialized; these high-cardinality raw IDs are
         # prohibited model inputs and are no longer needed for folds or OOF IDs.
         for column, values in held_ids.items():

@@ -106,16 +106,19 @@ class Config:
         if any(not isinstance(key, str) or not key.startswith("F") or not 0 <= int(key[1:]) - 1 < self.n_splits
                for key in self.debug_expected_fold_scores):
             raise ValueError("debug_expected_fold_scores keys must name configured folds, such as F2")
-        if self.feature_profile in {"react2026_static", "react2026_static_customer_history", "react2026_static_customer_history_relationships"}:
+        if self.feature_profile in {"react2026_static", "react2026_static_customer_history", "react2026_static_customer_history_relationships", "react2026_static_customer_history_relationships_device_global"}:
             expected = {"amount_bdt", "log_amount_bdt", "account_age_days", "hour", "weekday", "is_weekend",
                         "merchant_category", "device_type", "location", "payment_method", "transaction_type",
                         "merchant_category_missing", "device_type_missing", "location_missing"}
-            if self.feature_profile in {"react2026_static_customer_history", "react2026_static_customer_history_relationships"}:
+            if self.feature_profile in {"react2026_static_customer_history", "react2026_static_customer_history_relationships", "react2026_static_customer_history_relationships_device_global"}:
                 from .data import REACT2026_CUSTOMER_HISTORY_FEATURES
                 expected.update(REACT2026_CUSTOMER_HISTORY_FEATURES)
-            if self.feature_profile == "react2026_static_customer_history_relationships":
+            if self.feature_profile in {"react2026_static_customer_history_relationships", "react2026_static_customer_history_relationships_device_global"}:
                 from .data import REACT2026_CUSTOMER_RELATIONSHIP_FEATURES
                 expected.update(REACT2026_CUSTOMER_RELATIONSHIP_FEATURES)
+            if self.feature_profile == "react2026_static_customer_history_relationships_device_global":
+                from .data import REACT2026_DEVICE_GLOBAL_FEATURES
+                expected.update(REACT2026_DEVICE_GLOBAL_FEATURES)
             if set(self.features) != expected:
                 raise ValueError("REACT 2026 feature profile does not match its approved feature set")
             categories = {"merchant_category", "device_type", "location", "payment_method", "transaction_type"}

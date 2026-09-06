@@ -14,7 +14,7 @@ import traceback
 import numpy as np
 from sklearn.base import clone
 from .config import ROOT, load_config
-from .data import REACT2026_CUSTOMER_HISTORY_FEATURES, REACT2026_CUSTOMER_RELATIONSHIP_FEATURES, REACT2026_STATIC_FEATURES, load_training
+from .data import REACT2026_CUSTOMER_HISTORY_FEATURES, REACT2026_CUSTOMER_RELATIONSHIP_FEATURES, REACT2026_DEVICE_GLOBAL_FEATURES, REACT2026_STATIC_FEATURES, load_training
 from .features import build_pipeline
 from .metrics import metric_definition, score
 from .predict import model_predictions, predict_experiment, save_predictions
@@ -25,14 +25,16 @@ from .validation import make_splits
 
 def assert_static_contract(config, frame, pairs):
     """Fail before fitting if the reviewed R001 static-only contract is violated."""
-    if config.feature_profile not in {"react2026_static", "react2026_static_customer_history", "react2026_static_customer_history_relationships"}:
+    if config.feature_profile not in {"react2026_static", "react2026_static_customer_history", "react2026_static_customer_history_relationships", "react2026_static_customer_history_relationships_device_global"}:
         return {}
     forbidden = {"transaction_id", "customer_id", "device_id", "merchant_id", "timestamp", config.target}
     expected = set(REACT2026_STATIC_FEATURES)
-    if config.feature_profile in {"react2026_static_customer_history", "react2026_static_customer_history_relationships"}:
+    if config.feature_profile in {"react2026_static_customer_history", "react2026_static_customer_history_relationships", "react2026_static_customer_history_relationships_device_global"}:
         expected.update(REACT2026_CUSTOMER_HISTORY_FEATURES)
-    if config.feature_profile == "react2026_static_customer_history_relationships":
+    if config.feature_profile in {"react2026_static_customer_history_relationships", "react2026_static_customer_history_relationships_device_global"}:
         expected.update(REACT2026_CUSTOMER_RELATIONSHIP_FEATURES)
+    if config.feature_profile == "react2026_static_customer_history_relationships_device_global":
+        expected.update(REACT2026_DEVICE_GLOBAL_FEATURES)
     if set(config.features) != expected or forbidden & set(config.features):
         raise ValueError("Static feature contract includes an unexpected or prohibited feature")
     if {"class_weights", "scale_pos_weight", "auto_class_weights"} & set(config.model_params):
@@ -48,6 +50,7 @@ def assert_static_contract(config, frame, pairs):
             "historical_features_absent": config.feature_profile == "react2026_static",
             "approved_customer_history_only": config.feature_profile == "react2026_static_customer_history",
             "approved_customer_history_and_relationships_only": config.feature_profile == "react2026_static_customer_history_relationships",
+            "approved_customer_history_relationships_and_device_global_only": config.feature_profile == "react2026_static_customer_history_relationships_device_global",
             "class_weighting_absent": True, "categorical_cardinality_by_fold": cardinalities,
             "preprocessing_fit_scope": "training rows only"}
 
@@ -97,6 +100,7 @@ def train_experiment(config, experiment, hypothesis, change, *, root=ROOT, paren
         record.update(train_fingerprint=fingerprint, split_signature=splits["signature"], pre_fit_assertions=pre_fit_assertions,
                       customer_history_generation_seconds=frame.attrs.get("customer_history_generation_seconds"),
                       customer_relationship_generation_seconds=frame.attrs.get("customer_relationship_generation_seconds"),
+                      device_global_generation_seconds=frame.attrs.get("device_global_generation_seconds"),
                       splits_path=f"{record['provenance_path']}splits.json", model_paths=[], model_hashes={})
         scores, oof, fitted_parameters = [None] * len(pairs), None, [None] * len(pairs)
         fold_runtime_seconds, fold_prediction_paths, feature_importances, fold_replays = [None] * len(pairs), {}, {}, {}

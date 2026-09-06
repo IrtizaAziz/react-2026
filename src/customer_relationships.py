@@ -10,6 +10,13 @@ FEATURES = [
     "customer_location_prior_count", "customer_location_new", "customer_location_seconds_since_last", "customer_location_count_share",
 ]
 
+DEVICE_GLOBAL_FEATURES = [
+    "device_prior_count", "device_prior_distinct_customer_count",
+    "device_prior_distinct_customer_count_excluding_current", "device_seconds_since_last",
+    "device_observed_age_seconds", "device_prior_other_customer_transaction_count",
+    "customer_share_of_device_prior_transactions",
+]
+
 
 def _values(values, missing):
     return pd.Series(values).astype("string").fillna(missing).to_numpy(dtype=str)
@@ -132,3 +139,113 @@ def customer_relationship_chunked(chunks):
     if len(pending):
         outputs.append(_oracle_with_state(pending["timestamp"], pending["customer_id"], pending["device_id"], pending["location"], state).set_axis(pending.index))
     return pd.concat(outputs).sort_index() if outputs else pd.DataFrame(columns=FEATURES)
+
+
+def _device_global_empty(n):
+    out = {name: np.full(n, np.nan, dtype=np.float32) for name in DEVICE_GLOBAL_FEATURES}
+    for name in ("device_prior_count", "device_prior_distinct_customer_count",
+                 "device_prior_distinct_customer_count_excluding_current",
+                 "device_prior_other_customer_transaction_count"):
+        out[name] = np.zeros(n, dtype=np.int32)
+    return out
+
+
+def _device_global_oracle_with_state(timestamp, customer_id, device_id, state):
+    """Small strictly-past oracle; state contains no labels or arbitrary frames."""
+    times, customers, devices, _ = _input_arrays(timestamp, customer_id, device_id, [""] * len(timestamp))
+    out, start = _device_global_empty(len(times)), 0
+    device_state = state.setdefault("devices", {})
+    pair_counts = state.setdefault("device_customer_counts", {})
+    while start < len(times):
+        end = start + 1
+        while end < len(times) and times[end] == times[start]:
+            end += 1
+        for i in range(start, end):
+            count, customers_seen, first, last = device_state.get(devices[i], (0, set(), None, None))
+            pair_count = pair_counts.get((customers[i], devices[i]), 0)
+            out["device_prior_count"][i] = count
+            out["device_prior_distinct_customer_count"][i] = len(customers_seen)
+            out["device_prior_distinct_customer_count_excluding_current"][i] = len(customers_seen) - int(pair_count > 0)
+            out["device_prior_other_customer_transaction_count"][i] = count - pair_count
+            if count:
+                out["device_seconds_since_last"][i] = (times[i] - last) / 1_000_000_000
+                out["device_observed_age_seconds"][i] = (times[i] - first) / 1_000_000_000
+                out["customer_share_of_device_prior_transactions"][i] = pair_count / count
+        for i in range(start, end):
+            count, customers_seen, first, _ = device_state.get(devices[i], (0, set(), times[i], None))
+            customers_seen = set(customers_seen)
+            customers_seen.add(customers[i])
+            device_state[devices[i]] = (count + 1, customers_seen, first, times[i])
+            key = (customers[i], devices[i])
+            pair_counts[key] = pair_counts.get(key, 0) + 1
+        start = end
+    return pd.DataFrame(out)
+
+
+def device_global_oracle(timestamp, customer_id, device_id):
+    return _device_global_oracle_with_state(timestamp, customer_id, device_id, {})
+
+
+def device_global_production(timestamp, customer_id, device_id):
+    """Vectorized timestamp-batched device support/sharing state for R005."""
+    times, customers, devices, _ = _input_arrays(timestamp, customer_id, device_id, [""] * len(timestamp))
+    customer_codes, _ = pd.factorize(customers, sort=False)
+    device_codes, device_values = pd.factorize(devices, sort=False)
+    pair_codes = _pair_codes(customer_codes, device_codes)
+    n_devices, n_pairs, n = len(device_values), int(pair_codes.max()) + 1 if len(pair_codes) else 0, len(times)
+    device_count = np.zeros(n_devices, dtype=np.int64)
+    device_distinct = np.zeros(n_devices, dtype=np.int64)
+    device_first = np.full(n_devices, -1, dtype=np.int64)
+    device_last = np.full(n_devices, -1, dtype=np.int64)
+    pair_count = np.zeros(n_pairs, dtype=np.int64)
+    pair_device = np.empty(n_pairs, dtype=np.int64)
+    pair_device[pair_codes] = device_codes
+    out = _device_global_empty(n)
+    starts = np.r_[0, np.flatnonzero(times[1:] != times[:-1]) + 1]
+    ends = np.r_[starts[1:], n]
+    for start, end in zip(starts, ends):
+        current, d, p = times[start], device_codes[start:end], pair_codes[start:end]
+        prior_device, prior_pair = device_count[d], pair_count[p]
+        seen = prior_device > 0
+        out["device_prior_count"][start:end] = prior_device
+        out["device_prior_distinct_customer_count"][start:end] = device_distinct[d]
+        out["device_prior_distinct_customer_count_excluding_current"][start:end] = device_distinct[d] - (prior_pair > 0)
+        out["device_prior_other_customer_transaction_count"][start:end] = prior_device - prior_pair
+        out["device_seconds_since_last"][start:end] = np.where(seen, (current - device_last[d]) / 1_000_000_000, np.nan)
+        out["device_observed_age_seconds"][start:end] = np.where(seen, (current - device_first[d]) / 1_000_000_000, np.nan)
+        out["customer_share_of_device_prior_transactions"][start:end] = np.divide(
+            prior_pair, prior_device, out=np.full(end - start, np.nan, dtype=np.float32), where=seen)
+        unique_pairs, inverse = np.unique(p, return_inverse=True)
+        new_pairs = pair_count[unique_pairs] == 0
+        pair_count[unique_pairs] += np.bincount(inverse, minlength=len(unique_pairs))
+        if new_pairs.any():
+            device_distinct += np.bincount(pair_device[unique_pairs[new_pairs]], minlength=n_devices)
+        unique_devices, inverse_device = np.unique(d, return_inverse=True)
+        device_count[unique_devices] += np.bincount(inverse_device, minlength=len(unique_devices))
+        device_first[unique_devices[device_first[unique_devices] < 0]] = current
+        device_last[unique_devices] = current
+    return pd.DataFrame(out)
+
+
+def device_global_from_prior_stream(prior_timestamp, prior_customer_id, prior_device_id,
+                                    current_timestamp, current_customer_id, current_device_id):
+    state = {}
+    _device_global_oracle_with_state(prior_timestamp, prior_customer_id, prior_device_id, state)
+    return _device_global_oracle_with_state(current_timestamp, current_customer_id, current_device_id, state)
+
+
+def device_global_chunked(chunks):
+    state, pending, outputs = {}, pd.DataFrame(), []
+    for chunk in chunks:
+        combined = pd.concat([pending, chunk.copy()])
+        if not len(combined):
+            continue
+        times = _timestamp_ns(combined["timestamp"])
+        ready_end = np.searchsorted(times, times[-1], side="left")
+        if ready_end:
+            ready = combined.iloc[:ready_end]
+            outputs.append(_device_global_oracle_with_state(ready["timestamp"], ready["customer_id"], ready["device_id"], state).set_axis(ready.index))
+        pending = combined.iloc[ready_end:]
+    if len(pending):
+        outputs.append(_device_global_oracle_with_state(pending["timestamp"], pending["customer_id"], pending["device_id"], state).set_axis(pending.index))
+    return pd.concat(outputs).sort_index() if outputs else pd.DataFrame(columns=DEVICE_GLOBAL_FEATURES)

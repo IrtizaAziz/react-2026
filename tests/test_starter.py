@@ -24,6 +24,7 @@ from src.config import Config, ROOT, load_config
 from src.compare import comparison
 from src.customer_history import FEATURES as CUSTOMER_HISTORY_FEATURES, customer_history_chunked, customer_history_from_prior_stream, customer_history_oracle, customer_history_production
 from src.customer_relationships import FEATURES as CUSTOMER_RELATIONSHIP_FEATURES, customer_relationship_chunked, customer_relationship_from_prior_stream, customer_relationship_oracle, customer_relationship_production
+from src.customer_relationships import DEVICE_GLOBAL_FEATURES, device_global_chunked, device_global_from_prior_stream, device_global_oracle, device_global_production
 from src.ensemble import blend_experiments, compatible_artifacts
 from src.export_notebook import export_notebook, code, markdown, notebook
 from src.features import build_pipeline
@@ -370,6 +371,44 @@ class StarterTests(unittest.TestCase):
                                                             base.iloc[2:].timestamp, base.iloc[2:].customer_id, base.iloc[2:].device_id, base.iloc[2:].location)
         pd.testing.assert_frame_equal(production.iloc[2:].reset_index(drop=True), continued)
         self.assertEqual(set(production.columns), set(CUSTOMER_RELATIONSHIP_FEATURES))
+
+    def test_device_global_history_is_strictly_past_and_matches_oracle(self):
+        # Includes globally unseen devices, a known device/new customer, tied first
+        # uses by two customers, and repeated same-device rows in a tied batch.
+        base = pd.DataFrame({"transaction_id": list("abcdefgh"),
+                             "timestamp": [1, 2, 3, 3, 4, 4, 5, 6],
+                             "customer_id": ["a", "a", "b", "c", "a", "a", "b", "d"],
+                             "device_id": ["new", "shared", "shared", "shared", "shared", "shared", "shared", "new"],
+                             "fraud": [0, 1, 0, 1, 0, 1, 0, 1]})
+        oracle = device_global_oracle(base.timestamp, base.customer_id, base.device_id)
+        production = device_global_production(base.timestamp, base.customer_id, base.device_id)
+        pd.testing.assert_frame_equal(oracle, production)
+        self.assertEqual(production.device_prior_count.tolist()[:4], [0, 0, 1, 1])
+        self.assertEqual(production.device_prior_distinct_customer_count.tolist()[2:4], [1, 1])
+        self.assertEqual(production.device_prior_distinct_customer_count_excluding_current.tolist()[2:4], [1, 1])
+        self.assertTrue(np.isnan(production.device_seconds_since_last.iloc[0]))
+        self.assertTrue(np.isnan(production.customer_share_of_device_prior_transactions.iloc[0]))
+        # The tied rows at t=4 observe the identical pre-t=4 state.
+        self.assertEqual(production.device_prior_count.iloc[4], production.device_prior_count.iloc[5])
+        self.assertEqual(production.device_prior_distinct_customer_count.iloc[4], production.device_prior_distinct_customer_count.iloc[5])
+        self.assertEqual(production.device_prior_distinct_customer_count.iloc[6], 3)
+        self.assertEqual(production.device_prior_other_customer_transaction_count.iloc[4], 2)
+        self.assertAlmostEqual(production.customer_share_of_device_prior_transactions.iloc[4], 1 / 3)
+        # Permuting an equal-timestamp batch, future rows, and labels cannot alter
+        # preceding features; output is aligned by the stable transaction identifier.
+        shuffled = pd.concat([base.iloc[:2], base.iloc[[3, 2]], base.iloc[4:]], ignore_index=True)
+        shuffled_features = device_global_production(shuffled.timestamp, shuffled.customer_id, shuffled.device_id)
+        pd.testing.assert_frame_equal(pd.concat([base[["transaction_id"]], production], axis=1).set_index("transaction_id").sort_index(),
+                                      pd.concat([shuffled[["transaction_id"]], shuffled_features], axis=1).set_index("transaction_id").sort_index())
+        future = pd.concat([base, base.iloc[[0]].assign(timestamp=999, transaction_id="z")], ignore_index=True)
+        pd.testing.assert_frame_equal(production, device_global_production(future.timestamp, future.customer_id, future.device_id).iloc[:len(base)].reset_index(drop=True))
+        pd.testing.assert_frame_equal(production, device_global_production(base.timestamp, base.customer_id, base.device_id))
+        chunked = device_global_chunked([base.iloc[:3], base.iloc[3:6], base.iloc[6:]])
+        pd.testing.assert_frame_equal(production, chunked)
+        continued = device_global_from_prior_stream(base.iloc[:4].timestamp, base.iloc[:4].customer_id, base.iloc[:4].device_id,
+                                                     base.iloc[4:].timestamp, base.iloc[4:].customer_id, base.iloc[4:].device_id)
+        pd.testing.assert_frame_equal(production.iloc[4:].reset_index(drop=True), continued)
+        self.assertEqual(set(production.columns), set(DEVICE_GLOBAL_FEATURES))
 
     def test_comparison_keeps_mock_and_live_metrics_separate(self):
         with tempfile.TemporaryDirectory() as directory:
