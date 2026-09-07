@@ -61,6 +61,8 @@ Do not invent a task, target, metric, direction, or validation strategy. Keep as
 
 After each meaningful stage, run proportionate checks, report what was created and any assumptions, identify remaining human decisions, and state the next highest-value action. Do not train on dummy/external data to develop competition models. The user explicitly permits a tiny locally generated synthetic integration fit and replay solely for smoke testing, in temporary directories outside the competition tracker.
 
+**Artifact-location rule:** Generated experiment artifacts may be gitignored and machine-local. Before declaring an OOF/model/cache/submission “missing,” inspect the active filesystem and `reports/CANONICAL_ARTIFACT_INVENTORY.md`. If an artifact is absent from the current checkout but canonical-machine status is unknown, say “not present in this checkout,” not “missing globally.” Immutable run artifacts and a fresh canonical-machine inventory override stale strategy/snapshot inventories. Refresh the canonical inventory after material artifact recovery or generation.
+
 No automatic uploads, account actions, final selections, external datasets, or pretrained downloads are part of starter verification.
 
 Live experiment IDs use `R001`, `R002`, ... . Preserve mock `E001`–`E006` and synthetic `SMOKE###` history unchanged.
