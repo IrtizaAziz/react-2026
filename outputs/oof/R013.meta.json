@@ -1,0 +1,36 @@
+{
+  "prediction_kind": "probability",
+  "class_order": [
+    0,
+    1
+  ],
+  "prediction_columns": [
+    "pred_0",
+    "pred_1"
+  ],
+  "id_columns": [
+    "transaction_id"
+  ],
+  "data_fingerprint": {
+    "sha256": "06823ea80cceade018b2428e0c7c9cb89e4efae45fcad8cbf61e8b27b350df20",
+    "rows": 731942,
+    "columns": [
+      "transaction_id",
+      "customer_id",
+      "timestamp",
+      "amount_bdt",
+      "merchant_id",
+      "merchant_category",
+      "device_id",
+      "device_type",
+      "location",
+      "payment_method",
+      "transaction_type",
+      "account_age_days",
+      "fraud"
+    ]
+  },
+  "identity_hash": "97c9a8e9db26fb93d6e4f27fc3fd6fa7a0df435f6b7855306ed9e40982c1deec",
+  "split_signature": "6fb939b019dfe071ce44a3b6e2c82c87bdf17aafaa5dec714c1b703e77cd7e47",
+  "sha256": "cd95277c7d5b24e5c23a5b2bffb038b7675a29f9b98b89679402701f8bcc7fea"
+}
