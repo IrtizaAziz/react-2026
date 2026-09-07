@@ -1,0 +1,1053 @@
+{
+  "experiment_id": "R037",
+  "parent": "R029",
+  "incumbent": "R017",
+  "metrics": {
+    "F2": 0.7320796160027179,
+    "F1": 0.7972458108717863,
+    "F2_early": 0.7896219828362528,
+    "F2_late_corrected": 0.6798095442681332,
+    "July_1_15": 0.5137430539769212,
+    "June_15_30": 0.8125494117759114,
+    "July_1_7": 0.48594023906190786,
+    "July_8_15": 0.5351492038255623
+  },
+  "delta_vs_parent": {
+    "F2": -0.0003959998261495734,
+    "F1": -0.0003253485102107101,
+    "F2_early": -0.0016329811173538822,
+    "F2_late_corrected": 0.00028346798286571495,
+    "July_1_15": 0.0015610624771947856,
+    "June_15_30": -0.0003234362087836118,
+    "July_1_7": 0.008111954127451915,
+    "July_8_15": -0.003047354512312528
+  },
+  "delta_vs_incumbent": {
+    "F2": 0.0024854230978220704,
+    "F1": 0.007416845017749529,
+    "F2_early": 0.0006774083193590297,
+    "F2_late_corrected": 0.003285248213488412,
+    "July_1_15": 0.0044620227591768424,
+    "June_15_30": 0.002415916587949374,
+    "July_1_7": 0.013735295174878426,
+    "July_8_15": -0.0019070248091501707
+  },
+  "classification": "COMPETITIVE-BLEND-ELIGIBLE",
+  "submission_gate_pass": false,
+  "submission_gates": {
+    "July_1_15": true,
+    "F2_late_corrected": true,
+    "F2": false,
+    "F1": true,
+    "July_1_7": true,
+    "July_8_15": true
+  },
+  "early_stop_policy": {
+    "F2": 0.01,
+    "F2_late_corrected": 0.005,
+    "July_1_15": 0.005
+  },
+  "early_stopped": false,
+  "certification_reused": false,
+  "feature_importances": {
+    "F2": [
+      {
+        "feature": "amount_bdt",
+        "importance": 963.0
+      },
+      {
+        "feature": "account_age_days",
+        "importance": 947.0
+      },
+      {
+        "feature": "device_seconds_since_last",
+        "importance": 877.0
+      },
+      {
+        "feature": "merchant_seconds_since_last",
+        "importance": 863.0
+      },
+      {
+        "feature": "device_observed_age_seconds",
+        "importance": 825.0
+      },
+      {
+        "feature": "customer_prior_std_log_amount",
+        "importance": 822.0
+      },
+      {
+        "feature": "merchant_new_customer_share_24h",
+        "importance": 797.0
+      },
+      {
+        "feature": "customer_seconds_since_last",
+        "importance": 794.0
+      },
+      {
+        "feature": "merchant_seconds_since_last_new_customer",
+        "importance": 780.0
+      },
+      {
+        "feature": "customer_log_amount_minus_prior_mean",
+        "importance": 777.0
+      },
+      {
+        "feature": "customer_amount_to_prior_mean",
+        "importance": 731.0
+      },
+      {
+        "feature": "hour",
+        "importance": 729.0
+      },
+      {
+        "feature": "customer_merchant_seconds_since_last",
+        "importance": 708.0
+      },
+      {
+        "feature": "customer_observed_age_seconds",
+        "importance": 707.0
+      },
+      {
+        "feature": "customer_log_amount_zscore",
+        "importance": 697.0
+      },
+      {
+        "feature": "customer_prior_mean_amount",
+        "importance": 661.0
+      },
+      {
+        "feature": "customer_prior_mean_log_amount",
+        "importance": 625.0
+      },
+      {
+        "feature": "device_prior_count",
+        "importance": 622.0
+      },
+      {
+        "feature": "customer_share_of_device_prior_transactions",
+        "importance": 586.0
+      },
+      {
+        "feature": "merchant_prior_transaction_count",
+        "importance": 583.0
+      },
+      {
+        "feature": "customer_location_seconds_since_last",
+        "importance": 557.0
+      },
+      {
+        "feature": "merchant_prior_unique_customers",
+        "importance": 555.0
+      },
+      {
+        "feature": "customer_merchant_share_of_customer_history",
+        "importance": 541.0
+      },
+      {
+        "feature": "customer_device_count_share",
+        "importance": 482.0
+      },
+      {
+        "feature": "customer_device_seconds_since_last",
+        "importance": 475.0
+      },
+      {
+        "feature": "merchant_transactions_24h",
+        "importance": 462.0
+      },
+      {
+        "feature": "device_prior_other_customer_transaction_count",
+        "importance": 440.0
+      },
+      {
+        "feature": "customer_location_count_share",
+        "importance": 412.0
+      },
+      {
+        "feature": "customer_prior_count",
+        "importance": 394.0
+      },
+      {
+        "feature": "weekday",
+        "importance": 381.0
+      },
+      {
+        "feature": "customer_location_prior_count",
+        "importance": 368.0
+      },
+      {
+        "feature": "merchant_unique_customers_24h",
+        "importance": 363.0
+      },
+      {
+        "feature": "customer_device_prior_count",
+        "importance": 358.0
+      },
+      {
+        "feature": "device_prior_distinct_customer_count_excluding_current",
+        "importance": 348.0
+      },
+      {
+        "feature": "device_prior_distinct_customer_count",
+        "importance": 265.0
+      },
+      {
+        "feature": "customer_merchant_prior_count",
+        "importance": 217.0
+      },
+      {
+        "feature": "customer_prior_1h_count",
+        "importance": 123.0
+      },
+      {
+        "feature": "location_LOC_023",
+        "importance": 118.0
+      },
+      {
+        "feature": "log_amount_bdt",
+        "importance": 105.0
+      },
+      {
+        "feature": "transaction_type_purchase",
+        "importance": 101.0
+      },
+      {
+        "feature": "location_LOC_041",
+        "importance": 81.0
+      },
+      {
+        "feature": "payment_method_mobile_wallet",
+        "importance": 80.0
+      },
+      {
+        "feature": "location_LOC_017",
+        "importance": 73.0
+      },
+      {
+        "feature": "device_type_mobile_app",
+        "importance": 69.0
+      },
+      {
+        "feature": "payment_method_bank_transfer",
+        "importance": 62.0
+      },
+      {
+        "feature": "location_LOC_028",
+        "importance": 53.0
+      },
+      {
+        "feature": "merchant_category_education",
+        "importance": 51.0
+      },
+      {
+        "feature": "device_type_web",
+        "importance": 51.0
+      },
+      {
+        "feature": "location_LOC_038",
+        "importance": 49.0
+      },
+      {
+        "feature": "merchant_category_electronics",
+        "importance": 45.0
+      },
+      {
+        "feature": "transaction_type_p2p_transfer",
+        "importance": 45.0
+      },
+      {
+        "feature": "transaction_type_bill_payment",
+        "importance": 43.0
+      },
+      {
+        "feature": "merchant_category_financial_services",
+        "importance": 41.0
+      },
+      {
+        "feature": "location_LOC_010",
+        "importance": 41.0
+      },
+      {
+        "feature": "location_LOC_034",
+        "importance": 36.0
+      },
+      {
+        "feature": "transaction_type_cash_withdrawal",
+        "importance": 36.0
+      },
+      {
+        "feature": "payment_method_credit_card",
+        "importance": 35.0
+      },
+      {
+        "feature": "payment_method_debit_card",
+        "importance": 33.0
+      },
+      {
+        "feature": "payment_method_qr_code",
+        "importance": 33.0
+      },
+      {
+        "feature": "device_type_pos_terminal",
+        "importance": 30.0
+      },
+      {
+        "feature": "location_LOC_006",
+        "importance": 30.0
+      },
+      {
+        "feature": "location_LOC_002",
+        "importance": 29.0
+      },
+      {
+        "feature": "location_LOC_003",
+        "importance": 29.0
+      },
+      {
+        "feature": "device_prior_1h_count",
+        "importance": 28.0
+      },
+      {
+        "feature": "merchant_category_pharmacy",
+        "importance": 28.0
+      },
+      {
+        "feature": "transaction_type_topup",
+        "importance": 28.0
+      },
+      {
+        "feature": "device_type_atm",
+        "importance": 27.0
+      },
+      {
+        "feature": "location_LOC_036",
+        "importance": 26.0
+      },
+      {
+        "feature": "merchant_category_restaurant",
+        "importance": 25.0
+      },
+      {
+        "feature": "location_LOC_007",
+        "importance": 25.0
+      },
+      {
+        "feature": "location_LOC_018",
+        "importance": 25.0
+      },
+      {
+        "feature": "location_LOC_032",
+        "importance": 25.0
+      },
+      {
+        "feature": "location_LOC_042",
+        "importance": 25.0
+      },
+      {
+        "feature": "location_LOC_011",
+        "importance": 24.0
+      },
+      {
+        "feature": "location_LOC_012",
+        "importance": 24.0
+      },
+      {
+        "feature": "location_LOC_035",
+        "importance": 24.0
+      },
+      {
+        "feature": "location_LOC_027",
+        "importance": 23.0
+      },
+      {
+        "feature": "location_LOC_016",
+        "importance": 22.0
+      },
+      {
+        "feature": "location_LOC_022",
+        "importance": 22.0
+      },
+      {
+        "feature": "device_type_missing",
+        "importance": 21.0
+      },
+      {
+        "feature": "merchant_category_grocery",
+        "importance": 20.0
+      },
+      {
+        "feature": "merchant_category_telecom_topup",
+        "importance": 19.0
+      },
+      {
+        "feature": "location_LOC_001",
+        "importance": 19.0
+      },
+      {
+        "feature": "location_LOC_037",
+        "importance": 19.0
+      },
+      {
+        "feature": "location_missing",
+        "importance": 18.0
+      },
+      {
+        "feature": "device_type_ussd",
+        "importance": 17.0
+      },
+      {
+        "feature": "location_LOC_004",
+        "importance": 17.0
+      },
+      {
+        "feature": "location_LOC_040",
+        "importance": 17.0
+      },
+      {
+        "feature": "location_LOC_008",
+        "importance": 16.0
+      },
+      {
+        "feature": "location_LOC_044",
+        "importance": 14.0
+      },
+      {
+        "feature": "location_LOC_019",
+        "importance": 13.0
+      },
+      {
+        "feature": "location_LOC_024",
+        "importance": 13.0
+      },
+      {
+        "feature": "location_LOC_005",
+        "importance": 12.0
+      },
+      {
+        "feature": "location_LOC_015",
+        "importance": 11.0
+      },
+      {
+        "feature": "location_LOC_033",
+        "importance": 11.0
+      },
+      {
+        "feature": "merchant_category_fashion",
+        "importance": 10.0
+      },
+      {
+        "feature": "location_LOC_021",
+        "importance": 10.0
+      },
+      {
+        "feature": "merchant_category_travel",
+        "importance": 9.0
+      },
+      {
+        "feature": "location_LOC_025",
+        "importance": 9.0
+      },
+      {
+        "feature": "location_LOC_043",
+        "importance": 9.0
+      },
+      {
+        "feature": "location_LOC_000",
+        "importance": 8.0
+      },
+      {
+        "feature": "is_weekend",
+        "importance": 7.0
+      },
+      {
+        "feature": "merchant_category_entertainment",
+        "importance": 6.0
+      },
+      {
+        "feature": "merchant_category_fuel",
+        "importance": 6.0
+      },
+      {
+        "feature": "merchant_category_missing",
+        "importance": 5.0
+      },
+      {
+        "feature": "location_LOC_014",
+        "importance": 4.0
+      },
+      {
+        "feature": "customer_location_new",
+        "importance": 3.0
+      },
+      {
+        "feature": "merchant_category_utility_bill",
+        "importance": 3.0
+      },
+      {
+        "feature": "location_LOC_009",
+        "importance": 3.0
+      },
+      {
+        "feature": "location_LOC_029",
+        "importance": 3.0
+      },
+      {
+        "feature": "customer_merchant_is_new",
+        "importance": 2.0
+      },
+      {
+        "feature": "location_LOC_013",
+        "importance": 2.0
+      },
+      {
+        "feature": "location_LOC_026",
+        "importance": 2.0
+      },
+      {
+        "feature": "location_LOC_039",
+        "importance": 2.0
+      },
+      {
+        "feature": "customer_first_seen",
+        "importance": 1.0
+      },
+      {
+        "feature": "customer_device_new",
+        "importance": 1.0
+      },
+      {
+        "feature": "location_LOC_020",
+        "importance": 1.0
+      },
+      {
+        "feature": "location_LOC_030",
+        "importance": 1.0
+      },
+      {
+        "feature": "location_LOC_031",
+        "importance": 1.0
+      }
+    ],
+    "F1": [
+      {
+        "feature": "amount_bdt",
+        "importance": 1180.0
+      },
+      {
+        "feature": "account_age_days",
+        "importance": 1170.0
+      },
+      {
+        "feature": "device_seconds_since_last",
+        "importance": 1008.0
+      },
+      {
+        "feature": "merchant_new_customer_share_24h",
+        "importance": 911.0
+      },
+      {
+        "feature": "merchant_seconds_since_last_new_customer",
+        "importance": 889.0
+      },
+      {
+        "feature": "device_observed_age_seconds",
+        "importance": 864.0
+      },
+      {
+        "feature": "merchant_seconds_since_last",
+        "importance": 852.0
+      },
+      {
+        "feature": "hour",
+        "importance": 833.0
+      },
+      {
+        "feature": "customer_prior_std_log_amount",
+        "importance": 784.0
+      },
+      {
+        "feature": "customer_seconds_since_last",
+        "importance": 762.0
+      },
+      {
+        "feature": "customer_log_amount_minus_prior_mean",
+        "importance": 753.0
+      },
+      {
+        "feature": "customer_observed_age_seconds",
+        "importance": 706.0
+      },
+      {
+        "feature": "customer_amount_to_prior_mean",
+        "importance": 689.0
+      },
+      {
+        "feature": "customer_merchant_seconds_since_last",
+        "importance": 644.0
+      },
+      {
+        "feature": "customer_prior_mean_log_amount",
+        "importance": 627.0
+      },
+      {
+        "feature": "customer_prior_mean_amount",
+        "importance": 619.0
+      },
+      {
+        "feature": "merchant_prior_unique_customers",
+        "importance": 590.0
+      },
+      {
+        "feature": "customer_location_seconds_since_last",
+        "importance": 588.0
+      },
+      {
+        "feature": "merchant_prior_transaction_count",
+        "importance": 588.0
+      },
+      {
+        "feature": "customer_log_amount_zscore",
+        "importance": 578.0
+      },
+      {
+        "feature": "device_prior_count",
+        "importance": 511.0
+      },
+      {
+        "feature": "customer_share_of_device_prior_transactions",
+        "importance": 476.0
+      },
+      {
+        "feature": "customer_merchant_share_of_customer_history",
+        "importance": 470.0
+      },
+      {
+        "feature": "merchant_unique_customers_24h",
+        "importance": 461.0
+      },
+      {
+        "feature": "merchant_transactions_24h",
+        "importance": 454.0
+      },
+      {
+        "feature": "customer_device_seconds_since_last",
+        "importance": 422.0
+      },
+      {
+        "feature": "weekday",
+        "importance": 398.0
+      },
+      {
+        "feature": "customer_device_count_share",
+        "importance": 388.0
+      },
+      {
+        "feature": "customer_location_count_share",
+        "importance": 386.0
+      },
+      {
+        "feature": "device_prior_other_customer_transaction_count",
+        "importance": 371.0
+      },
+      {
+        "feature": "customer_location_prior_count",
+        "importance": 342.0
+      },
+      {
+        "feature": "customer_device_prior_count",
+        "importance": 291.0
+      },
+      {
+        "feature": "customer_prior_count",
+        "importance": 289.0
+      },
+      {
+        "feature": "device_prior_distinct_customer_count_excluding_current",
+        "importance": 275.0
+      },
+      {
+        "feature": "device_prior_distinct_customer_count",
+        "importance": 206.0
+      },
+      {
+        "feature": "location_LOC_023",
+        "importance": 136.0
+      },
+      {
+        "feature": "log_amount_bdt",
+        "importance": 135.0
+      },
+      {
+        "feature": "customer_merchant_prior_count",
+        "importance": 132.0
+      },
+      {
+        "feature": "customer_prior_1h_count",
+        "importance": 127.0
+      },
+      {
+        "feature": "location_LOC_041",
+        "importance": 102.0
+      },
+      {
+        "feature": "device_type_web",
+        "importance": 85.0
+      },
+      {
+        "feature": "location_LOC_017",
+        "importance": 82.0
+      },
+      {
+        "feature": "payment_method_mobile_wallet",
+        "importance": 74.0
+      },
+      {
+        "feature": "transaction_type_purchase",
+        "importance": 73.0
+      },
+      {
+        "feature": "device_type_mobile_app",
+        "importance": 72.0
+      },
+      {
+        "feature": "transaction_type_bill_payment",
+        "importance": 66.0
+      },
+      {
+        "feature": "transaction_type_p2p_transfer",
+        "importance": 66.0
+      },
+      {
+        "feature": "location_LOC_028",
+        "importance": 62.0
+      },
+      {
+        "feature": "payment_method_bank_transfer",
+        "importance": 61.0
+      },
+      {
+        "feature": "payment_method_debit_card",
+        "importance": 60.0
+      },
+      {
+        "feature": "payment_method_credit_card",
+        "importance": 52.0
+      },
+      {
+        "feature": "merchant_category_electronics",
+        "importance": 48.0
+      },
+      {
+        "feature": "merchant_category_education",
+        "importance": 47.0
+      },
+      {
+        "feature": "location_LOC_010",
+        "importance": 47.0
+      },
+      {
+        "feature": "location_LOC_038",
+        "importance": 46.0
+      },
+      {
+        "feature": "merchant_category_financial_services",
+        "importance": 44.0
+      },
+      {
+        "feature": "merchant_category_pharmacy",
+        "importance": 43.0
+      },
+      {
+        "feature": "location_LOC_002",
+        "importance": 39.0
+      },
+      {
+        "feature": "device_prior_1h_count",
+        "importance": 37.0
+      },
+      {
+        "feature": "device_type_pos_terminal",
+        "importance": 37.0
+      },
+      {
+        "feature": "device_type_atm",
+        "importance": 36.0
+      },
+      {
+        "feature": "location_LOC_034",
+        "importance": 36.0
+      },
+      {
+        "feature": "transaction_type_topup",
+        "importance": 36.0
+      },
+      {
+        "feature": "transaction_type_cash_withdrawal",
+        "importance": 35.0
+      },
+      {
+        "feature": "payment_method_qr_code",
+        "importance": 33.0
+      },
+      {
+        "feature": "merchant_category_restaurant",
+        "importance": 32.0
+      },
+      {
+        "feature": "merchant_category_grocery",
+        "importance": 30.0
+      },
+      {
+        "feature": "location_LOC_006",
+        "importance": 30.0
+      },
+      {
+        "feature": "device_type_missing",
+        "importance": 26.0
+      },
+      {
+        "feature": "location_LOC_003",
+        "importance": 25.0
+      },
+      {
+        "feature": "location_LOC_036",
+        "importance": 25.0
+      },
+      {
+        "feature": "location_LOC_015",
+        "importance": 24.0
+      },
+      {
+        "feature": "location_missing",
+        "importance": 22.0
+      },
+      {
+        "feature": "device_type_ussd",
+        "importance": 22.0
+      },
+      {
+        "feature": "location_LOC_033",
+        "importance": 21.0
+      },
+      {
+        "feature": "location_LOC_040",
+        "importance": 21.0
+      },
+      {
+        "feature": "location_LOC_042",
+        "importance": 21.0
+      },
+      {
+        "feature": "location_LOC_027",
+        "importance": 20.0
+      },
+      {
+        "feature": "location_LOC_016",
+        "importance": 19.0
+      },
+      {
+        "feature": "location_LOC_035",
+        "importance": 18.0
+      },
+      {
+        "feature": "merchant_category_telecom_topup",
+        "importance": 17.0
+      },
+      {
+        "feature": "location_LOC_021",
+        "importance": 17.0
+      },
+      {
+        "feature": "merchant_category_fashion",
+        "importance": 16.0
+      },
+      {
+        "feature": "merchant_category_travel",
+        "importance": 16.0
+      },
+      {
+        "feature": "location_LOC_004",
+        "importance": 16.0
+      },
+      {
+        "feature": "location_LOC_022",
+        "importance": 16.0
+      },
+      {
+        "feature": "location_LOC_008",
+        "importance": 15.0
+      },
+      {
+        "feature": "location_LOC_025",
+        "importance": 14.0
+      },
+      {
+        "feature": "location_LOC_012",
+        "importance": 13.0
+      },
+      {
+        "feature": "location_LOC_005",
+        "importance": 12.0
+      },
+      {
+        "feature": "location_LOC_013",
+        "importance": 12.0
+      },
+      {
+        "feature": "merchant_category_entertainment",
+        "importance": 11.0
+      },
+      {
+        "feature": "location_LOC_037",
+        "importance": 11.0
+      },
+      {
+        "feature": "location_LOC_000",
+        "importance": 10.0
+      },
+      {
+        "feature": "location_LOC_024",
+        "importance": 10.0
+      },
+      {
+        "feature": "location_LOC_044",
+        "importance": 10.0
+      },
+      {
+        "feature": "location_LOC_009",
+        "importance": 9.0
+      },
+      {
+        "feature": "location_LOC_014",
+        "importance": 9.0
+      },
+      {
+        "feature": "location_LOC_026",
+        "importance": 9.0
+      },
+      {
+        "feature": "is_weekend",
+        "importance": 8.0
+      },
+      {
+        "feature": "location_LOC_001",
+        "importance": 8.0
+      },
+      {
+        "feature": "location_LOC_039",
+        "importance": 8.0
+      },
+      {
+        "feature": "location_LOC_007",
+        "importance": 7.0
+      },
+      {
+        "feature": "customer_device_new",
+        "importance": 6.0
+      },
+      {
+        "feature": "location_LOC_032",
+        "importance": 6.0
+      },
+      {
+        "feature": "customer_location_new",
+        "importance": 5.0
+      },
+      {
+        "feature": "merchant_category_fuel",
+        "importance": 5.0
+      },
+      {
+        "feature": "location_LOC_018",
+        "importance": 5.0
+      },
+      {
+        "feature": "merchant_category_utility_bill",
+        "importance": 4.0
+      },
+      {
+        "feature": "customer_merchant_is_new",
+        "importance": 3.0
+      },
+      {
+        "feature": "location_LOC_020",
+        "importance": 3.0
+      },
+      {
+        "feature": "location_LOC_030",
+        "importance": 2.0
+      },
+      {
+        "feature": "location_LOC_031",
+        "importance": 2.0
+      },
+      {
+        "feature": "location_LOC_043",
+        "importance": 2.0
+      },
+      {
+        "feature": "location_LOC_011",
+        "importance": 1.0
+      },
+      {
+        "feature": "location_LOC_019",
+        "importance": 1.0
+      },
+      {
+        "feature": "location_LOC_029",
+        "importance": 1.0
+      },
+      {
+        "feature": "merchant_category_missing",
+        "importance": 0.0
+      },
+      {
+        "feature": "customer_first_seen",
+        "importance": 0.0
+      }
+    ]
+  },
+  "fold_replays": {
+    "F2": {
+      "fold": 1,
+      "rows": 240065,
+      "average_precision": 0.7320796160027179,
+      "prediction_identity_hash": "0606cde313e41ee15fe26aef6dfad447c3c0075e5238596c749a319b7e507f73",
+      "verified": true
+    },
+    "F1": {
+      "fold": 0,
+      "rows": 232108,
+      "average_precision": 0.7972458108717863,
+      "prediction_identity_hash": "4085284aa4cab60972514aeff2232d128d7e046385c283c448011272907c5473",
+      "verified": true
+    }
+  },
+  "runtime_seconds": 33.67849370000022,
+  "reference_runs": {
+    "R020": {
+      "compatible": false,
+      "reason": "decision metrics are unavailable"
+    }
+  },
+  "diversity": {
+    "F2": {
+      "rows": 240065,
+      "pearson": 0.986765281084518,
+      "spearman": 0.6014056568499638,
+      "top_1000_overlap": 807,
+      "top_5000_overlap": 4357
+    },
+    "July": {
+      "rows": 59465,
+      "pearson": 0.9815158542868306,
+      "spearman": 0.5991012480589554,
+      "top_1000_overlap": 898,
+      "top_5000_overlap": 4030
+    }
+  },
+  "diagnostics_path": null,
+  "diagnostics_error": null,
+  "test_inference": false,
+  "submission_created": false
+}

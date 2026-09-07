@@ -1,0 +1,14 @@
+{
+  "experiment_id": "R039",
+  "members": [
+    "R029",
+    "R037"
+  ],
+  "weights": [
+    0.75,
+    0.25
+  ],
+  "method": "weighted_probability",
+  "test_predictions": "NOT GENERATED",
+  "submission": "NOT GENERATED"
+}

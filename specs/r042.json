@@ -1,0 +1,13 @@
+{
+  "experiment_id": "R042",
+  "parent": "R029",
+  "feature_module": "src.merchant_acceleration",
+  "added_features": [
+    "merchant_transactions_1h",
+    "merchant_log_rate_change_1h_vs_previous_1h"
+  ],
+  "hypothesis": "A merchant may become suspicious when its transaction activity rises sharply relative to its immediately preceding short-term baseline; explicit last-hour volume and adjacent-hour log-rate change may capture temporal dynamics beyond R029.",
+  "incumbent": "R029",
+  "predict_test": false,
+  "reference_runs": ["R040"]
+}

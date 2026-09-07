@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "matrix_path": "outputs\\feature_matrices\\R029.pkl",
+  "matrix_sha256": "ab767d22d77a44ef3514e8580d9287be720b210475037158514883c1c249771c",
+  "rows": 731942,
+  "feature_count": 52,
+  "exact_feature_order": true,
+  "transaction_ids_order": true,
+  "labels_exact": true
+}

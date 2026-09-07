@@ -1,0 +1,31 @@
+{
+  "experiment_id": "R037",
+  "parent": "R029",
+  "prepared_parent": "R029",
+  "feature_module": "",
+  "added_features": [],
+  "hypothesis": "LightGBM on R029's exact 52-feature causal representation may improve temporal fraud ranking or provide complementary OOF rankings versus CatBoost without changing the information set.",
+  "incumbent": "R017",
+  "reference_runs": ["R020"],
+  "predict_test": false,
+  "model_override": {
+    "model": "lightgbm",
+    "model_params": {
+      "objective": "binary",
+      "n_estimators": 800,
+      "learning_rate": 0.05,
+      "num_leaves": 31,
+      "min_child_samples": 100,
+      "reg_lambda": 5,
+      "colsample_bytree": 0.9,
+      "subsample": 0.8,
+      "subsample_freq": 1,
+      "random_state": 42,
+      "n_jobs": 8,
+      "deterministic": true,
+      "force_col_wise": true,
+      "verbosity": -1
+    },
+    "categorical_features": ["merchant_category", "device_type", "location", "payment_method", "transaction_type"]
+  }
+}

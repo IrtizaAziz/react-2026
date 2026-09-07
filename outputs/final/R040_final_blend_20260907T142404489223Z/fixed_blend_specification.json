@@ -1,0 +1,10 @@
+{
+  "formula": "fraud_R040 = 0.75 * fraud_R029 + 0.25 * fraud_R037",
+  "weights": {
+    "R029": 0.75,
+    "R037": 0.25
+  },
+  "rank_blending": false,
+  "calibration": false,
+  "clipping": false
+}

@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "rows": 262648,
+  "method": "explicit transaction_id one_to_one merge then sample-order restoration",
+  "r029_id_order_matches_sample": true,
+  "r037_id_order_matches_sample": true,
+  "id_sets_exact": true,
+  "duplicate_ids": false
+}

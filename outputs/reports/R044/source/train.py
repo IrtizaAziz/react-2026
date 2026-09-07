@@ -1,0 +1,579 @@
+"""Explicit CV training. Test inference happens only after all fitting is complete."""
+if __package__ in {None, ""}:
+    import sys
+    from pathlib import Path
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+    __package__ = "src"
+
+import argparse
+import copy
+from pathlib import Path
+import pickle
+import time
+import traceback
+import numpy as np
+import pandas as pd
+from sklearn.base import clone
+from .config import ROOT, load_config
+from .data import REACT2026_CUSTOMER_HISTORY_FEATURES, REACT2026_CUSTOMER_RELATIONSHIP_FEATURES, REACT2026_DEVICE_GLOBAL_FEATURES, REACT2026_STATIC_FEATURES, REACT2026_VELOCITY_FEATURES, REACT2026_BROAD_VELOCITY_FEATURES, REACT2026_CUSTOMER_AMOUNT_30D_FEATURES, REACT2026_CUSTOMER_AMOUNT_30D_PROFILE, REACT2026_CUSTOMER_MERCHANT_FEATURES, REACT2026_CUSTOMER_MERCHANT_PROFILE, REACT2026_CUSTOMER_CATEGORY_FEATURES, REACT2026_CUSTOMER_CATEGORY_PROFILE, REACT2026_DEVICE_RECENT_SHARING_FEATURES, REACT2026_DEVICE_RECENT_SHARING_PROFILE, REACT2026_MERCHANT_HISTORY_FEATURES, REACT2026_MERCHANT_HISTORY_PROFILE, REACT2026_MERCHANT_AMOUNT_HISTORY_FEATURES, REACT2026_MERCHANT_AMOUNT_HISTORY_PROFILE, REACT2026_MERCHANT_NEW_CUSTOMERS_FEATURES, REACT2026_MERCHANT_NEW_CUSTOMERS_PROFILE, REACT2026_DEVICE_LOCATION_FEATURES, REACT2026_DEVICE_LOCATION_PROFILE, REACT2026_MERCHANT_ONEHOT_PROFILE, load_training
+from .features import build_pipeline
+from .metrics import metric_definition, score
+from .predict import model_predictions, predict_experiment, save_predictions
+from .replay import replay_fold_score
+from .utils import environment, finish_record, reserve_experiment, save_json, seed_everything, sha256, snapshot_source
+from .validation import make_splits
+
+
+def assert_static_contract(config, frame, pairs):
+    """Fail before fitting if the reviewed R001 static-only contract is violated."""
+    if config.feature_profile not in {"react2026_static", "react2026_static_customer_history", "react2026_static_customer_history_relationships", "react2026_static_customer_history_relationships_device_global", "react2026_static_customer_history_relationships_device_global_velocity", "react2026_static_customer_history_relationships_device_global_broad_velocity", REACT2026_MERCHANT_ONEHOT_PROFILE, REACT2026_CUSTOMER_AMOUNT_30D_PROFILE, REACT2026_CUSTOMER_MERCHANT_PROFILE, REACT2026_CUSTOMER_CATEGORY_PROFILE}:
+        return {}
+    forbidden = {"transaction_id", "customer_id", "device_id", "timestamp", config.target}
+    if config.feature_profile != REACT2026_MERCHANT_ONEHOT_PROFILE:
+        forbidden.add("merchant_id")
+    expected = set(REACT2026_STATIC_FEATURES)
+    if config.feature_profile in {"react2026_static_customer_history", "react2026_static_customer_history_relationships", "react2026_static_customer_history_relationships_device_global", "react2026_static_customer_history_relationships_device_global_velocity", "react2026_static_customer_history_relationships_device_global_broad_velocity", REACT2026_MERCHANT_ONEHOT_PROFILE, REACT2026_CUSTOMER_AMOUNT_30D_PROFILE, REACT2026_CUSTOMER_MERCHANT_PROFILE, REACT2026_CUSTOMER_CATEGORY_PROFILE}:
+        expected.update(REACT2026_CUSTOMER_HISTORY_FEATURES)
+    if config.feature_profile in {"react2026_static_customer_history_relationships", "react2026_static_customer_history_relationships_device_global", "react2026_static_customer_history_relationships_device_global_velocity", "react2026_static_customer_history_relationships_device_global_broad_velocity", REACT2026_MERCHANT_ONEHOT_PROFILE, REACT2026_CUSTOMER_AMOUNT_30D_PROFILE, REACT2026_CUSTOMER_MERCHANT_PROFILE, REACT2026_CUSTOMER_CATEGORY_PROFILE}:
+        expected.update(REACT2026_CUSTOMER_RELATIONSHIP_FEATURES)
+    if config.feature_profile in {"react2026_static_customer_history_relationships_device_global", "react2026_static_customer_history_relationships_device_global_velocity", "react2026_static_customer_history_relationships_device_global_broad_velocity", REACT2026_MERCHANT_ONEHOT_PROFILE, REACT2026_CUSTOMER_AMOUNT_30D_PROFILE, REACT2026_CUSTOMER_MERCHANT_PROFILE, REACT2026_CUSTOMER_CATEGORY_PROFILE}:
+        expected.update(REACT2026_DEVICE_GLOBAL_FEATURES)
+    if config.feature_profile == "react2026_static_customer_history_relationships_device_global_velocity":
+        expected.update(REACT2026_VELOCITY_FEATURES)
+    if config.feature_profile == REACT2026_CUSTOMER_AMOUNT_30D_PROFILE:
+        expected.update(REACT2026_VELOCITY_FEATURES); expected.update(REACT2026_CUSTOMER_AMOUNT_30D_FEATURES)
+    if config.feature_profile == REACT2026_CUSTOMER_MERCHANT_PROFILE:
+        expected.update(REACT2026_VELOCITY_FEATURES); expected.update(REACT2026_CUSTOMER_MERCHANT_FEATURES)
+    if config.feature_profile == REACT2026_CUSTOMER_CATEGORY_PROFILE:
+        expected.update(REACT2026_VELOCITY_FEATURES); expected.update(REACT2026_CUSTOMER_MERCHANT_FEATURES); expected.update(REACT2026_CUSTOMER_CATEGORY_FEATURES)
+    if config.feature_profile == "react2026_static_customer_history_relationships_device_global_broad_velocity":
+        expected.update(REACT2026_VELOCITY_FEATURES); expected.update(REACT2026_BROAD_VELOCITY_FEATURES)
+    if config.feature_profile == REACT2026_MERCHANT_ONEHOT_PROFILE:
+        expected.update(REACT2026_VELOCITY_FEATURES); expected.add("merchant_id")
+    if set(config.features) != expected or forbidden & set(config.features):
+        raise ValueError("Static feature contract includes an unexpected or prohibited feature")
+    if {"class_weights", "scale_pos_weight", "auto_class_weights"} & set(config.model_params):
+        raise ValueError("R001 static baseline forbids class weighting")
+    cardinalities = []
+    merchant_cardinalities = []
+    for training, _ in pairs:
+        values = {column: int(frame.iloc[training][column].nunique(dropna=False)) for column in config.categorical_features}
+        if any(value > (5000 if config.feature_profile == REACT2026_MERCHANT_ONEHOT_PROFILE and column == "merchant_id" else 64) for column, value in values.items()):
+            raise ValueError("A static categorical exceeds the approved 64-category limit in a training fold")
+        cardinalities.append(values)
+        if config.feature_profile == REACT2026_MERCHANT_ONEHOT_PROFILE:
+            merchant_cardinalities.append(values["merchant_id"])
+    if config.feature_profile == REACT2026_MERCHANT_ONEHOT_PROFILE:
+        if config.model_params.get("one_hot_max_size") != 5000:
+            raise ValueError("R009 merchant identity requires one_hot_max_size=5000")
+    return {"feature_profile": config.feature_profile, "features": list(config.features),
+            "prohibited_features_absent": True,
+            "historical_features_absent": config.feature_profile == "react2026_static",
+            "approved_customer_history_only": config.feature_profile == "react2026_static_customer_history",
+            "approved_customer_history_and_relationships_only": config.feature_profile == "react2026_static_customer_history_relationships",
+            "approved_customer_history_relationships_and_device_global_only": config.feature_profile == "react2026_static_customer_history_relationships_device_global",
+            "approved_customer_history_relationships_device_global_and_velocity_only": config.feature_profile == "react2026_static_customer_history_relationships_device_global_velocity",
+            "approved_customer_amount_30d_extension_only": config.feature_profile == REACT2026_CUSTOMER_AMOUNT_30D_PROFILE,
+            "approved_customer_merchant_extension_only": config.feature_profile == REACT2026_CUSTOMER_MERCHANT_PROFILE,
+            "approved_customer_category_extension_only": config.feature_profile == REACT2026_CUSTOMER_CATEGORY_PROFILE,
+            "merchant_id_only_identity_exception": config.feature_profile == REACT2026_MERCHANT_ONEHOT_PROFILE,
+            "merchant_cardinality_by_fold": merchant_cardinalities,
+            "merchant_one_hot_threshold": 5000 if config.feature_profile == REACT2026_MERCHANT_ONEHOT_PROFILE else None,
+            "merchant_ctr_or_target_statistics_absent": config.feature_profile == REACT2026_MERCHANT_ONEHOT_PROFILE,
+            "class_weighting_absent": True, "categorical_cardinality_by_fold": cardinalities,
+            "preprocessing_fit_scope": "training rows only"}
+
+
+def _lightgbm_transformed_feature_order(pipeline, config):
+    """Explicit OneHotEncoder output order; avoids custom-transformer introspection."""
+    preprocessing = pipeline.named_steps["preprocess"]
+    numeric = [name for name in config.features if name not in config.categorical_features]
+    encoder = preprocessing.named_transformers_["categorical"].named_steps["encode"]
+    categories = encoder.categories_
+    if len(categories) != len(config.categorical_features):
+        raise ValueError("LightGBM categorical feature order is incomplete")
+    categorical = [f"{column}_{value}" for column, values in zip(config.categorical_features, categories) for value in values]
+    return [*numeric, *categorical]
+
+
+def _feature_importance(pipeline, feature_names, *, config=None):
+    model = pipeline.named_steps["model"]
+    if not hasattr(model, "get_feature_importance"):
+        if not hasattr(model, "feature_importances_"):
+            return []
+    if config is not None and config.model == "lightgbm":
+        transformed = _lightgbm_transformed_feature_order(pipeline, config)
+        values = np.asarray(model.feature_importances_, dtype=float)
+        if len(transformed) != len(values):
+            raise ValueError("LightGBM transformed-feature importances are misaligned")
+        return [{"feature": name, "importance": float(value)} for name, value in
+                sorted(zip(transformed, values), key=lambda item: item[1], reverse=True)]
+    # The CatBoost preprocessor preserves the explicit numeric-then-categorical
+    # config order. Avoid sklearn feature-name introspection because the small
+    # category-cleaning FunctionTransformer intentionally has no name adapter.
+    names = list(feature_names)
+    return [{"feature": name, "importance": float(value)} for name, value in
+            sorted(zip(names, model.get_feature_importance()), key=lambda item: item[1], reverse=True)]
+
+
+def _assert_r010_feature_parity(config, frame, root):
+    """Prove LightGBM receives R007's identical pre-transformation matrix."""
+    if not (config.model == "lightgbm" and config.feature_profile == "react2026_static_customer_history_relationships_device_global_velocity"):
+        return {}
+    parent = load_config(Path(root) / "config_r007.json")
+    if list(config.features) != list(parent.features) or config.feature_profile != parent.feature_profile:
+        raise ValueError("R010 must retain R007's exact feature manifest and profile")
+    parent_frame, parent_fingerprint = load_training(parent, root)
+    if not frame.index.equals(parent_frame.index) or not frame[config.target].equals(parent_frame[parent.target]):
+        raise ValueError("R010 rows or labels differ from R007")
+    pd.testing.assert_frame_equal(frame[config.features], parent_frame[parent.features], check_dtype=True, check_exact=True)
+    return {"r007_feature_matrix_identical_before_model_transformation": True,
+            "r007_train_fingerprint_identical": parent_fingerprint,
+            "no_target_dependent_categorical_encoding": True,
+            "preprocessing_fit_scope": "training rows only; OneHotEncoder(handle_unknown=ignore)",
+            "r008_r009_r006_information_absent": True}
+
+
+def _assert_r012_feature_parity(config, frame, root, splits):
+    """Prove R012 appends only its six reviewed features to the R007 matrix."""
+    if config.feature_profile != REACT2026_CUSTOMER_AMOUNT_30D_PROFILE:
+        return {}
+    parent = load_config(Path(root) / "config_r007.json")
+    if list(config.features[:len(parent.features)]) != list(parent.features) or list(config.features[len(parent.features):]) != REACT2026_CUSTOMER_AMOUNT_30D_FEATURES:
+        raise ValueError("R012 must retain R007's ordered 41-feature manifest and append exactly six 30-day features")
+    if len(config.features) != 47 or config.model != parent.model or config.model_params != parent.model_params:
+        raise ValueError("R012 must have 47 features and R007's exact CatBoost configuration")
+    if splits["signature"] != "6fb939b019dfe071ce44a3b6e2c82c87bdf17aafaa5dec714c1b703e77cd7e47":
+        raise ValueError("R012 temporal split signature does not match R007")
+    parent_frame, parent_fingerprint = load_training(parent, root)
+    if not frame.index.equals(parent_frame.index) or not frame[config.target].equals(parent_frame[parent.target]):
+        raise ValueError("R012 rows or labels differ from R007")
+    pd.testing.assert_frame_equal(frame[parent.features], parent_frame[parent.features], check_dtype=True, check_exact=True)
+    return {"r007_41_feature_columns_bitwise_unchanged": True,
+            "feature_manifest_matches_config": True,
+            "saved_temporal_split_signature_matches_r007": True,
+            "r007_train_fingerprint_identical": parent_fingerprint,
+            "new_feature_count": 6,
+            "total_feature_count": 47}
+
+
+def _assert_r013_feature_parity(config, frame, root, splits):
+    """Prove R013 appends only the reviewed customer--merchant features."""
+    if config.feature_profile != REACT2026_CUSTOMER_MERCHANT_PROFILE:
+        return {}
+    parent = load_config(Path(root) / "config_r007.json")
+    if list(config.features[:len(parent.features)]) != list(parent.features) or list(config.features[len(parent.features):]) != REACT2026_CUSTOMER_MERCHANT_FEATURES:
+        raise ValueError("R013 must retain R007's ordered 41-feature manifest and append exactly four customer-merchant features")
+    if len(config.features) != 45 or config.model != parent.model or config.model_params != parent.model_params:
+        raise ValueError("R013 must have 45 features and R007's exact CatBoost configuration")
+    if splits["signature"] != "6fb939b019dfe071ce44a3b6e2c82c87bdf17aafaa5dec714c1b703e77cd7e47":
+        raise ValueError("R013 temporal split signature does not match R007")
+    parent_frame, parent_fingerprint = load_training(parent, root)
+    if not frame.index.equals(parent_frame.index) or not frame[config.target].equals(parent_frame[parent.target]):
+        raise ValueError("R013 rows or labels differ from R007")
+    pd.testing.assert_frame_equal(frame[parent.features], parent_frame[parent.features], check_dtype=True, check_exact=True)
+    return {"r007_41_feature_columns_bitwise_unchanged": True,
+            "feature_manifest_matches_config": True,
+            "saved_temporal_split_signature_matches_r007": True,
+            "r007_train_fingerprint_identical": parent_fingerprint,
+            "new_feature_count": 4, "total_feature_count": 45,
+            "r012_30d_amount_features_absent": True}
+
+def _assert_r014_feature_parity(config, frame, root, splits):
+    if config.feature_profile != REACT2026_CUSTOMER_CATEGORY_PROFILE: return {}
+    parent = load_config(Path(root) / "config_r013.json")
+    if list(config.features[:len(parent.features)]) != list(parent.features) or list(config.features[len(parent.features):]) != REACT2026_CUSTOMER_CATEGORY_FEATURES:
+        raise ValueError("R014 must retain R013's ordered 45-feature manifest and append exactly four customer-category features")
+    if len(config.features) != 49 or config.model != parent.model or config.model_params != parent.model_params:
+        raise ValueError("R014 must have 49 features and R013's exact CatBoost configuration")
+    if splits["signature"] != "6fb939b019dfe071ce44a3b6e2c82c87bdf17aafaa5dec714c1b703e77cd7e47": raise ValueError("R014 split signature does not match R013")
+    parent_frame, fingerprint = load_training(parent, root)
+    if not frame.index.equals(parent_frame.index) or not frame[config.target].equals(parent_frame[parent.target]): raise ValueError("R014 rows or labels differ from R013")
+    pd.testing.assert_frame_equal(frame[parent.features], parent_frame[parent.features], check_dtype=True, check_exact=True)
+    return {"r013_45_feature_columns_bitwise_unchanged": True, "feature_manifest_matches_config": True,
+            "saved_temporal_split_signature_matches_r013": True, "r013_train_fingerprint_identical": fingerprint,
+            "new_feature_count": 4, "total_feature_count": 49, "r012_30d_amount_features_absent": True}
+
+def _assert_r015_feature_parity(config, frame, root, splits):
+    if config.feature_profile != REACT2026_DEVICE_RECENT_SHARING_PROFILE: return {}
+    parent=load_config(Path(root)/"config_r013.json")
+    if list(config.features[:len(parent.features)])!=list(parent.features) or list(config.features[len(parent.features):])!=REACT2026_DEVICE_RECENT_SHARING_FEATURES: raise ValueError("R015 manifest must append exactly five features to R013")
+    if len(config.features)!=50 or config.model_params!=parent.model_params: raise ValueError("R015 must retain R013 CatBoost parameters")
+    if splits["signature"]!="6fb939b019dfe071ce44a3b6e2c82c87bdf17aafaa5dec714c1b703e77cd7e47": raise ValueError("R015 split mismatch")
+    parent_frame,fingerprint=load_training(parent,root); pd.testing.assert_frame_equal(frame[parent.features],parent_frame[parent.features],check_dtype=True,check_exact=True)
+    return {"r013_45_feature_columns_bitwise_unchanged":True,"saved_temporal_split_signature_matches_r013":True,"feature_manifest_matches_config":True,"r013_train_fingerprint_identical":fingerprint,"new_feature_count":5,"total_feature_count":50,"lifetime_device_distinct_customer_count_reused":True}
+
+
+def _assert_r017_feature_parity(config, frame, root, splits):
+    # This is deliberately CatBoost-specific: R017's model-recipe parity must
+    # remain intact when later experiments reuse its causal feature profile.
+    if not (config.feature_profile == REACT2026_MERCHANT_HISTORY_PROFILE and config.model == "catboost"): return {}
+    parent = load_config(Path(root) / "config_r013.json"); parent_frame, fingerprint = load_training(parent, root)
+    if list(config.features[:len(parent.features)]) != list(parent.features) or list(config.features[len(parent.features):]) != REACT2026_MERCHANT_HISTORY_FEATURES: raise ValueError("R017 must append exactly five merchant-history features to R013")
+    if len(config.features) != 50 or config.model_params != parent.model_params: raise ValueError("R017 must retain R013 CatBoost parameters")
+    if splits["signature"] != "6fb939b019dfe071ce44a3b6e2c82c87bdf17aafaa5dec714c1b703e77cd7e47": raise ValueError("R017 split mismatch")
+    pd.testing.assert_frame_equal(frame[parent.features], parent_frame[parent.features], check_dtype=True, check_exact=True)
+    if not frame.transaction_id.astype(str).equals(parent_frame.transaction_id.astype(str)): raise ValueError("R017 row/ID alignment mismatch")
+    return {"r013_45_feature_columns_bitwise_unchanged": True, "saved_temporal_split_signature_matches_r013": True, "feature_manifest_matches_config": True, "r013_train_fingerprint_identical": fingerprint, "new_feature_count": 5, "total_feature_count": 50, "row_id_alignment_matches_r013": True, "merchant_amount_statistics_absent": True, "raw_merchant_id_absent": True, "target_histories_absent": True}
+
+
+def _assert_r022_feature_parity(config, frame, root, splits):
+    """Prove R022 retains R017 exactly and appends only merchant amount history."""
+    if config.feature_profile != REACT2026_MERCHANT_AMOUNT_HISTORY_PROFILE:
+        return {}
+    parent = load_config(Path(root) / "config_r017.json")
+    parent_frame, fingerprint = load_training(parent, root)
+    if list(config.features[:len(parent.features)]) != list(parent.features) or list(config.features[len(parent.features):]) != REACT2026_MERCHANT_AMOUNT_HISTORY_FEATURES:
+        raise ValueError("R022 must append exactly five merchant amount-history features to R017")
+    if len(config.features) != 55 or config.model != parent.model or config.model_params != parent.model_params:
+        raise ValueError("R022 must retain R017's exact CatBoost recipe and have 55 features")
+    if splits["signature"] != "6fb939b019dfe071ce44a3b6e2c82c87bdf17aafaa5dec714c1b703e77cd7e47":
+        raise ValueError("R022 split mismatch")
+    pd.testing.assert_frame_equal(frame[parent.features], parent_frame[parent.features], check_dtype=True, check_exact=True)
+    if not frame.transaction_id.astype(str).equals(parent_frame.transaction_id.astype(str)):
+        raise ValueError("R022 row/ID alignment mismatch")
+    return {"r017_exact_50_feature_columns_bitwise_unchanged": True,
+            "saved_temporal_split_signature_matches_r017": True,
+            "feature_manifest_matches_config": True,
+            "r017_train_fingerprint_identical": fingerprint,
+            "new_feature_count": 5, "total_feature_count": 55,
+            "row_id_alignment_matches_r017": True, "raw_merchant_id_absent": True,
+            "target_histories_absent": True}
+
+
+def _assert_r024_feature_parity(config, frame, root, splits):
+    """Prove R024 is R017 plus only device--location familiarity."""
+    if config.feature_profile != REACT2026_DEVICE_LOCATION_PROFILE:
+        return {}
+    parent = load_config(Path(root) / "config_r017.json")
+    parent_frame, fingerprint = load_training(parent, root)
+    if list(config.features[:len(parent.features)]) != list(parent.features) or list(config.features[len(parent.features):]) != REACT2026_DEVICE_LOCATION_FEATURES:
+        raise ValueError("R024 must append exactly four device-location features to R017")
+    if len(config.features) != 54 or config.model != parent.model or config.model_params != parent.model_params:
+        raise ValueError("R024 must retain R017's exact CatBoost recipe and have 54 features")
+    if splits["signature"] != "6fb939b019dfe071ce44a3b6e2c82c87bdf17aafaa5dec714c1b703e77cd7e47":
+        raise ValueError("R024 split mismatch")
+    pd.testing.assert_frame_equal(frame[parent.features], parent_frame[parent.features], check_dtype=True, check_exact=True)
+    if not frame.transaction_id.astype(str).equals(parent_frame.transaction_id.astype(str)):
+        raise ValueError("R024 row/ID alignment mismatch")
+    return {"r017_exact_50_feature_columns_bitwise_unchanged": True,
+            "saved_temporal_split_signature_matches_r017": True,
+            "feature_manifest_matches_config": True, "r017_train_fingerprint_identical": fingerprint,
+            "new_feature_count": 4, "total_feature_count": 54, "row_id_alignment_matches_r017": True,
+            "device_merchant_features_absent": True, "merchant_location_features_absent": True,
+            "location_global_aggregates_absent": True, "target_histories_absent": True}
+
+
+def _assert_r025_feature_parity(config, frame, root, splits):
+    """Prove R025 is R017 plus only merchant-side new-customer composition."""
+    if config.feature_profile != REACT2026_MERCHANT_NEW_CUSTOMERS_PROFILE:
+        return {}
+    parent = load_config(Path(root) / "config_r017.json")
+    parent_frame, fingerprint = load_training(parent, root)
+    if list(config.features[:len(parent.features)]) != list(parent.features) or list(config.features[len(parent.features):]) != REACT2026_MERCHANT_NEW_CUSTOMERS_FEATURES:
+        raise ValueError("R025 must retain R017 and append exactly five merchant new-customer features")
+    if len(config.features) != 55 or config.model != parent.model or config.model_params != parent.model_params:
+        raise ValueError("R025 must retain R017's exact CatBoost recipe and have 55 features")
+    if splits["signature"] != "6fb939b019dfe071ce44a3b6e2c82c87bdf17aafaa5dec714c1b703e77cd7e47":
+        raise ValueError("R025 split mismatch")
+    pd.testing.assert_frame_equal(frame[parent.features], parent_frame[parent.features], check_dtype=True, check_exact=True)
+    if not frame.transaction_id.astype(str).equals(parent_frame.transaction_id.astype(str)):
+        raise ValueError("R025 row/ID alignment mismatch")
+    return {"r017_exact_50_feature_columns_bitwise_unchanged": True,
+            "saved_temporal_split_signature_matches_r017": True,
+            "feature_manifest_matches_config": True, "r017_train_fingerprint_identical": fingerprint,
+            "new_feature_count": 5, "total_feature_count": 55, "row_id_alignment_matches_r017": True,
+            "merchant_amount_statistics_absent": True, "additional_merchant_transaction_windows_absent": True,
+            "device_location_customer_turnover_interactions_absent": True, "target_histories_absent": True}
+
+
+def _assert_r018_feature_parity(config, frame, root, splits):
+    """Model-neutral proof that R018 consumes R017's exact causal matrix."""
+    if not (config.feature_profile == REACT2026_MERCHANT_HISTORY_PROFILE and config.model == "lightgbm"):
+        return {}
+    parent = load_config(Path(root) / "config_r017.json")
+    recipe = load_config(Path(root) / "config_r011.json")
+    parent_frame, parent_fingerprint = load_training(parent, root)
+    if list(config.features) != list(parent.features) or len(config.features) != 50:
+        raise ValueError("R018 must retain R017's exact ordered 50-feature manifest")
+    if list(config.categorical_features) != list(parent.categorical_features):
+        raise ValueError("R018 categorical feature roles differ from R017")
+    if config.model_params != recipe.model_params:
+        raise ValueError("R018 must retain R011's exact LightGBM parameters")
+    if config.supervised_weighting is not None:
+        raise ValueError("R018 forbids sample or class weighting")
+    if splits["signature"] != "6fb939b019dfe071ce44a3b6e2c82c87bdf17aafaa5dec714c1b703e77cd7e47":
+        raise ValueError("R018 split signature differs from locked R017 folds")
+    if not frame.index.equals(parent_frame.index):
+        raise ValueError("R018 row alignment differs from R017")
+    if not frame.transaction_id.astype(str).equals(parent_frame.transaction_id.astype(str)):
+        raise ValueError("R018 transaction_id alignment differs from R017")
+    if not frame[config.target].equals(parent_frame[parent.target]):
+        raise ValueError("R018 labels differ from R017")
+    pd.testing.assert_frame_equal(frame[config.features], parent_frame[parent.features], check_dtype=True, check_exact=True)
+    numeric = [name for name in config.features if name not in config.categorical_features]
+    if not all(pd.api.types.is_numeric_dtype(frame[name]) for name in numeric):
+        raise ValueError("R018 numeric role differs from R017")
+    return {"r017_exact_ordered_50_feature_manifest": True,
+            "r017_exact_numeric_categorical_roles": True,
+            "r017_exact_feature_values_and_dtypes": True,
+            "r017_exact_row_transaction_id_alignment": True,
+            "r017_exact_labels": True,
+            "locked_f1_f2_split_signature_matches_r017": True,
+            "r011_exact_lightgbm_parameters": True,
+            "no_sample_or_class_weights": True,
+            "feature_count": 50}
+
+
+def _catboost_model_feature_order(config):
+    """Return the reviewed ColumnTransformer output order for CatBoost only."""
+    categorical = list(config.categorical_features)
+    return [column for column in config.features if column not in categorical] + categorical
+
+
+def fold_recency_weights(timestamps, validation_start):
+    """Normalized 60-day exponential supervised weights; never used by features or scoring."""
+    times = pd.to_datetime(timestamps, errors="raise", utc=True)
+    anchor = pd.Timestamp(validation_start, tz="UTC")
+    age_days = (anchor - times).dt.total_seconds().to_numpy(dtype=float) / 86400.0
+    if (age_days < 0).any(): raise ValueError("Training timestamps cannot be after validation start")
+    weights = np.exp2(-age_days / 60.0); weights /= weights.mean()
+    if not np.isfinite(weights).all() or (weights <= 0).any() or not np.isclose(weights.mean(), 1.0): raise ValueError("Invalid normalized recency weights")
+    return weights
+
+
+def early_screen_scores(frame, predictions, assignment, config, fold):
+    """Score a pre-registered screen; F<n> means the complete validation fold."""
+    screen = config.early_stop_screen
+    if screen is None or fold != screen["fold"]:
+        return {}
+    timestamps = np.asarray(frame[config.time_column].astype("string"))
+    result = {}
+    for name in screen["references"]:
+        if name == f"F{fold + 1}":
+            mask = assignment == fold
+        else:
+            window = next((item for item in config.diagnostic_windows if item["name"] == name and item["fold"] == fold), None)
+            if window is None:
+                raise ValueError(f"Early-stop screen window {name} is not a configured diagnostic")
+            mask = ((assignment == fold) & (timestamps >= window["start"]) & (timestamps < window["end"]))
+        result[name] = float(score(frame.loc[mask, config.target], predictions[mask], config))
+    return result
+
+
+def train_experiment(config, experiment, hypothesis, change, *, root=ROOT, parent=None,
+                     prepared_frame=None, prepared_fingerprint=None, provenance_extra=None):
+    """Train normally, or from a caller-verified in-memory feature matrix.
+
+    ``prepared_frame`` is intentionally an additive escape hatch for the
+    spec-driven feature runner.  That runner performs its own immutable parent
+    parity checks before reservation; historical configurations continue to
+    use the ordinary data loader unchanged.
+    """
+    root = Path(root)
+    config.validate()
+    metric_definition(config)
+    template = build_pipeline(config)  # Optional dependencies checked before reserving the ID.
+    if prepared_frame is None:
+        frame, fingerprint = load_training(config, root)
+    else:
+        if prepared_fingerprint is None:
+            raise ValueError("A prepared feature frame requires its verified input fingerprint")
+        frame, fingerprint = prepared_frame, prepared_fingerprint
+    reuse = config.path(root, config.splits_file) if config.splits_file else None
+    pairs, assignment, splits = make_splits(frame, config, fingerprint, reuse=reuse)
+    pre_fit_assertions = assert_static_contract(config, frame, pairs)
+    pre_fit_assertions.update(_assert_r010_feature_parity(config, frame, root))
+    pre_fit_assertions.update(_assert_r012_feature_parity(config, frame, root, splits))
+    pre_fit_assertions.update(_assert_r013_feature_parity(config, frame, root, splits))
+    pre_fit_assertions.update(_assert_r014_feature_parity(config, frame, root, splits))
+    pre_fit_assertions.update(_assert_r015_feature_parity(config, frame, root, splits))
+    pre_fit_assertions.update(_assert_r017_feature_parity(config, frame, root, splits))
+    pre_fit_assertions.update(_assert_r022_feature_parity(config, frame, root, splits))
+    pre_fit_assertions.update(_assert_r024_feature_parity(config, frame, root, splits))
+    pre_fit_assertions.update(_assert_r025_feature_parity(config, frame, root, splits))
+    pre_fit_assertions.update(_assert_r018_feature_parity(config, frame, root, splits))
+    if config.task == "classification":
+        if set(frame[config.target]) != set(config.class_order):
+            raise ValueError("class_order does not match the training labels")
+        encoded_y = frame[config.target].map({label: i for i, label in enumerate(config.class_order)})
+    else:
+        encoded_y = frame[config.target]
+    record = reserve_experiment(root, experiment, config, hypothesis, change, parent)
+    start = time.perf_counter()
+    try:
+        seed_everything(config.seed)
+        provenance = root / record["provenance_path"]
+        if provenance_extra:
+            record["feature_experiment_provenance"] = provenance_extra
+        record["source_hashes"] = snapshot_source(provenance / "source")
+        save_json(provenance / "config.json", config.to_dict(), exclusive=True)
+        save_json(provenance / "environment.json", environment(used_packages=[config.model]), exclusive=True)
+        save_json(provenance / "splits.json", splits, exclusive=True)
+        record.update(train_fingerprint=fingerprint, split_signature=splits["signature"], pre_fit_assertions=pre_fit_assertions,
+                      customer_history_generation_seconds=frame.attrs.get("customer_history_generation_seconds"),
+                      customer_relationship_generation_seconds=frame.attrs.get("customer_relationship_generation_seconds"),
+                      device_global_generation_seconds=frame.attrs.get("device_global_generation_seconds"),
+                      velocity_generation_seconds=frame.attrs.get("velocity_generation_seconds"),
+                      customer_amount_30d_generation_seconds=frame.attrs.get("customer_amount_30d_generation_seconds"),
+                      customer_merchant_generation_seconds=frame.attrs.get("customer_merchant_generation_seconds"),
+                      customer_category_generation_seconds=frame.attrs.get("customer_category_generation_seconds"),
+                      merchant_history_generation_seconds=frame.attrs.get("merchant_history_generation_seconds"),
+                      merchant_amount_history_generation_seconds=frame.attrs.get("merchant_amount_history_generation_seconds"),
+                      device_location_generation_seconds=frame.attrs.get("device_location_generation_seconds"),
+                      splits_path=f"{record['provenance_path']}splits.json", model_paths=[], model_hashes={})
+        scores, oof, fitted_parameters = [None] * len(pairs), None, [None] * len(pairs)
+        fold_runtime_seconds, fold_prediction_paths, feature_importances, fold_replays = [None] * len(pairs), {}, {}, {}
+        model_dir = root / "outputs/models" / experiment
+        model_dir.mkdir(parents=True, exist_ok=False)
+        log = []
+        execution_order = config.execution_fold_order or list(range(len(pairs)))
+        for fold in execution_order:
+            training, valid = pairs[fold]
+            # CatBoost normalizes cat_features internally, which violates sklearn.clone's
+            # constructor-parameter identity check. A deep copy remains unfitted and keeps
+            # each fold isolated; all other estimators retain standard sklearn cloning.
+            pipeline = copy.deepcopy(template) if config.model == "catboost" else clone(template)
+            fold_start = time.perf_counter()
+            weights = None
+            if config.supervised_weighting == "exponential_recent_60d":
+                valid_start = config.calendar_folds[fold]["valid_start"]
+                weights = fold_recency_weights(frame.iloc[training][config.time_column], valid_start)
+                if np.any(np.diff(weights[np.argsort(pd.to_datetime(frame.iloc[training][config.time_column]).to_numpy())]) < 0):
+                    raise ValueError("Newer rows must receive greater or equal recency weight")
+            pipeline.fit(frame.iloc[training][config.features], encoded_y.iloc[training], **({"model__sample_weight": weights} if weights is not None else {}))
+            predictions = np.asarray(model_predictions(pipeline, frame.iloc[valid][config.features], config))
+            if config.prediction_kind == "probability" and (predictions.shape != (len(valid), len(config.class_order)) or not np.isfinite(predictions).all()):
+                raise ValueError("Positive-class probability mapping or prediction shape is invalid")
+            if oof is None:
+                shape = (len(frame), *predictions.shape[1:])
+                oof = np.full(shape, None, dtype=object) if config.prediction_kind == "label" else np.full(shape, np.nan)
+            oof[valid] = predictions
+            fold_score = score(frame.iloc[valid][config.target], predictions, config)
+            scores[fold] = fold_score
+            fold_runtime_seconds[fold] = time.perf_counter() - fold_start
+            message = f"{experiment} canonical fold {fold + 1}/{len(pairs)}: {fold_score:.8g}"
+            print(message)
+            log.append(message)
+            relative = f"outputs/models/{experiment}/fold_{fold}.pkl"
+            with (root / relative).open("xb") as handle:
+                pickle.dump(pipeline, handle, protocol=pickle.HIGHEST_PROTOCOL)
+            record["model_paths"].append(relative)
+            record["model_hashes"][relative] = sha256(root / relative)
+            fitted_parameters[fold] = pipeline.named_steps["model"].get_params()
+            if config.feature_profile == REACT2026_MERCHANT_ONEHOT_PROFILE:
+                applied = pipeline.named_steps["model"].get_all_params().get("one_hot_max_size")
+                if applied != 5000:
+                    raise ValueError("R009 fitted CatBoost model did not retain one_hot_max_size=5000")
+                record.setdefault("merchant_one_hot_model_metadata", {})[f"F{fold + 1}"] = {
+                    "one_hot_max_size": applied,
+                    "merchant_training_cardinality": int(frame.iloc[training]["merchant_id"].nunique(dropna=False)),
+                    "merchant_ctr_or_target_statistics_used": False,
+                    "basis": "CatBoost one_hot_max_size covers merchant cardinality; CatBoost does not calculate CTRs for one-hot categorical features",
+                    "categorical_features": list(config.categorical_features),
+                }
+            feature_importances[f"F{fold + 1}"] = _feature_importance(
+                pipeline,
+                _catboost_model_feature_order(config) if config.model == "catboost" else config.features,
+                config=config,
+            )
+            fold_path = f"outputs/oof/{experiment}/F{fold + 1}.csv"
+            save_predictions(root / fold_path, frame.iloc[valid], predictions, config, fingerprint,
+                             folds=np.full(len(valid), fold, dtype=int), split_signature=splits["signature"], row_numbers=valid)
+            fold_prediction_paths[f"F{fold + 1}"] = fold_path
+            replay = replay_fold_score(root / fold_path, root, config, expected_fold=fold, split_signature=splits["signature"])
+            if not np.isclose(replay["average_precision"], fold_score, rtol=1e-9, atol=1e-12):
+                raise ValueError("Saved fold prediction replay differs from the in-memory fold score")
+            reference = config.debug_expected_fold_scores.get(f"F{fold + 1}")
+            if reference is not None and not np.isclose(fold_score, float(reference), rtol=0, atol=1e-6):
+                raise ValueError(f"Fold F{fold + 1} differs materially from the approved debugging reference")
+            fold_replays[f"F{fold + 1}"] = replay
+            if weights is not None:
+                record.setdefault("supervised_weight_diagnostics", {})[f"F{fold + 1}"] = {"validation_start": config.calendar_folds[fold]["valid_start"], "half_life_days": 60, "min": float(weights.min()), "median": float(np.median(weights)), "mean": float(weights.mean()), "max": float(weights.max()), "finite": bool(np.isfinite(weights).all()), "strictly_positive": bool((weights > 0).all())}
+            # A pre-registered screen is evaluated only after its designated
+            # fold has been trained and replayed. It prevents an F1 fit from
+            # rescuing a rejected recent-period challenger.
+            screen = config.early_stop_screen
+            if screen is not None and fold == screen["fold"]:
+                screen_scores = early_screen_scores(frame, oof, assignment, config, fold)
+                deltas = {name: screen_scores[name] - float(reference) for name, reference in screen["references"].items()}
+                failures = {name: delta for name, delta in deltas.items() if delta < -float(screen["maximum_drops"][name])}
+                record["f2_screen"] = {"fold": fold, "scores": screen_scores, "references": screen["references"], "maximum_drops": screen["maximum_drops"], "deltas_vs_r017": deltas, "passed": not failures, "failures": failures}
+                if failures:
+                    oof_path = f"outputs/oof/{experiment}.csv"
+                    save_predictions(root / oof_path, frame, oof, config, fingerprint, folds=assignment, split_signature=splits["signature"])
+                    record.update(status="completed", classification="LOSE", early_stopped=True, early_stop_reason="Pre-registered F2 loss screen failed; F1 was not fitted.", fold_scores=scores, oof_path=oof_path, fold_prediction_paths=fold_prediction_paths, fold_runtime_seconds=fold_runtime_seconds, feature_importances=feature_importances, fold_replays=fold_replays, fitted_model_parameters=fitted_parameters, training_seconds=time.perf_counter() - start)
+                    save_json(provenance / "model_parameters.json", fitted_parameters, exclusive=True)
+                    (provenance / "training.log").write_text("\n".join(log) + "\n", encoding="utf-8")
+                    finish_record(root, record)
+                    return record
+        oof_path = f"outputs/oof/{experiment}.csv"
+        save_predictions(root / oof_path, frame, oof, config, fingerprint, folds=assignment, split_signature=splits["signature"])
+        covered = assignment >= 0
+        pooled_covered_oof_score = score(frame.loc[covered, config.target], oof[covered], config)
+        diagnostics = {}
+        timestamps = np.asarray(frame[config.time_column].astype("string")) if config.time_column else None
+        for window in config.diagnostic_windows:
+            mask = ((assignment == window["fold"]) & (timestamps >= window["start"]) & (timestamps < window["end"]))
+            if not mask.any():
+                raise ValueError(f"Diagnostic window {window['name']} contains no rows")
+            diagnostics[window["name"]] = {"fold": window["fold"], "rows": int(mask.sum()),
+                                           "positives": int(frame.loc[mask, config.target].sum()),
+                                           "average_precision": float(score(frame.loc[mask, config.target], oof[mask], config))}
+        working_score = float(0.3 * scores[0] + 0.7 * scores[1]) if config.validation_type == "calendar_time" and len(scores) == 2 else None
+        record.update(status="completed", fold_scores=scores, cv_mean=float(np.mean(scores)),
+                      cv_std=float(np.std(scores, ddof=0)), cv_std_definition="population std (ddof=0)",
+                      oof_coverage=float(np.mean(assignment >= 0)), oof_path=oof_path,
+                      pooled_covered_oof_score=float(pooled_covered_oof_score),
+                      fold_prediction_paths=fold_prediction_paths, fold_runtime_seconds=fold_runtime_seconds,
+                      feature_importances=feature_importances, fold_replays=fold_replays, diagnostics=diagnostics,
+                      working_score={"name": "S", "formula": "0.3*F1 + 0.7*F2", "value": working_score,
+                                     "purpose": "internal model-selection heuristic"} if working_score is not None else None,
+                      training_seconds=time.perf_counter() - start,
+                      fitted_model_parameters=fitted_parameters)
+        save_json(provenance / "model_parameters.json", fitted_parameters, exclusive=True)
+        (provenance / "training.log").write_text("\n".join(log) + "\n", encoding="utf-8")
+        finish_record(root, record)
+    except BaseException as exc:
+        record.update(status="failed", error=f"{type(exc).__name__}: {exc}", traceback=traceback.format_exc(),
+                      training_seconds=time.perf_counter() - start)
+        finish_record(root, record)
+        raise
+    if config.predict_test:
+        try:
+            record = predict_experiment(root, experiment, aggregation=config.aggregation)
+        except Exception as exc:
+            record["inference_error"] = f"{type(exc).__name__}: {exc}"
+            finish_record(root, record)
+            raise
+    print(f"CV {record['cv_mean']:.8g} +/- {record['cv_std']:.8g}; OOF coverage {record['oof_coverage']:.1%}")
+    return record
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--root", type=Path, default=ROOT)
+    parser.add_argument("--config", type=Path)
+    parser.add_argument("--model")
+    parser.add_argument("--experiment", required=True)
+    parser.add_argument("--seed", type=int)
+    parser.add_argument("--hypothesis", required=True)
+    parser.add_argument("--change", required=True)
+    parser.add_argument("--parent")
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument("--predict-test", action="store_true", default=None)
+    group.add_argument("--no-test-inference", dest="predict_test", action="store_false")
+    parser.add_argument("--aggregation", choices=["mean"])
+    args = parser.parse_args()
+    try:
+        config = load_config(args.config)
+        for key in ("model", "seed", "predict_test", "aggregation"):
+            if getattr(args, key) is not None:
+                setattr(config, key, getattr(args, key))
+        train_experiment(config, args.experiment, args.hypothesis, args.change, root=args.root, parent=args.parent)
+    except (ValueError, OSError, ImportError, TypeError) as exc:
+        parser.exit(2, f"Training stopped: {exc}\n")
+
+
+if __name__ == "__main__":
+    main()

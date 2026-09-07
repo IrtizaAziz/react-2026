@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "identity": "7e50a353ee577defed0d7d89d98d57923463d5ee2b91bee78f5a0827dba53217",
+  "module": "src.merchant_acceleration",
+  "module_source_sha256": {
+    "C:\\Users\\IRTIZA\\Downloads\\Datathon\\react-2026\\src\\customer_history.py": "1e43ea1b15c7b86c4187917bdc35fe40f30ffbdd4695458d4f2125ae82b7c779",
+    "C:\\Users\\IRTIZA\\Downloads\\Datathon\\react-2026\\src\\merchant_acceleration.py": "5db3ee72cdbb44635a1be78b56be39226abebf5193050eb1b8e1458a8b15d6c6"
+  },
+  "AVAILABLE_FEATURES": [
+    "merchant_transactions_1h",
+    "merchant_log_rate_change_1h_vs_previous_1h"
+  ],
+  "results": {
+    "oracle": true,
+    "strict_past": true,
+    "equal_timestamp_isolation": true,
+    "permutation_invariance": true,
+    "duplicate_same_timestamp_pair": true,
+    "future_independence": true,
+    "future_value_mutation_independence": true,
+    "label_independence": true,
+    "chunk_vs_whole": true,
+    "raw_frame_compatibility": true,
+    "requested_subset_order": true,
+    "zero_history": true,
+    "exact_window_boundaries": true
+  },
+  "runner_policy_version": "react-feature-experiment-v1"
+}

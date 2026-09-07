@@ -1,0 +1,53 @@
+{
+  "experiment_id": "R042",
+  "parent": "R029",
+  "reference": "R040",
+  "metrics": {
+    "F1": 0.797093070185603,
+    "F2": 0.7323561446298569,
+    "F2 early": 0.7914631587733141,
+    "corrected late": 0.6787872803384349,
+    "June 15-30": 0.8127159642750217,
+    "July": 0.5105907224709995,
+    "July 1-7": 0.47644486289809324,
+    "July 8-15": 0.5367118306700357
+  },
+  "deltas_vs_R029": {
+    "F1": -0.000478089196393916,
+    "F2": -0.00011947119901012382,
+    "F2 early": 0.00020819481970713039,
+    "corrected late": -0.0007387959468330152,
+    "June 15-30": -0.00015688370967326115,
+    "July": -0.0015912690287265274,
+    "July 1-7": -0.0013834220363627692,
+    "July 8-15": -0.0014847276678393584
+  },
+  "deltas_vs_R040": {
+    "F1": -0.004838170428853594,
+    "F2": -0.0016363732898196925,
+    "F2 early": -0.0015513815556176258,
+    "corrected late": -0.0019497027703082592,
+    "June 15-30": -0.0013020716473947092,
+    "July": -0.003065939403652629,
+    "July 1-7": -0.004775931465553995,
+    "July 8-15": -0.0016109385803593224
+  },
+  "material_endgame_bar": {
+    "pass": false,
+    "F2_delta_ge_0.0020": false,
+    "corrected_late_delta_ge_0.0020": false,
+    "July_delta_ge_0.0030": false,
+    "July_1_7_delta_gt_0": false,
+    "July_8_15_delta_gt_0": false,
+    "F1_delta_ge_-0.0020": true,
+    "causal_replay_provenance": true
+  },
+  "classification": "LOSE",
+  "certification": "all required causal and replay checks passed",
+  "parent_cache_sha256": "ab767d22d77a44ef3514e8580d9287be720b210475037158514883c1c249771c",
+  "total_features": 54,
+  "test_predictions": false,
+  "submission": false,
+  "final_refit": false,
+  "next_experiment_created": false
+}

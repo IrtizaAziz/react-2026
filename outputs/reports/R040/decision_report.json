@@ -1,0 +1,120 @@
+{
+  "experiment_id": "R040",
+  "parent": "R029",
+  "execution_mode": "blend",
+  "preflight": {
+    "mode": "blend",
+    "parent": "R029",
+    "members": [
+      "R029",
+      "R037"
+    ],
+    "weights": [
+      0.75,
+      0.25
+    ],
+    "method": "weighted",
+    "split_signature": "6fb939b019dfe071ce44a3b6e2c82c87bdf17aafaa5dec714c1b703e77cd7e47",
+    "oof": [
+      {
+        "member": "R029",
+        "path": "C:\\Users\\IRTIZA\\Downloads\\Datathon\\react-2026\\outputs\\oof\\R029.csv",
+        "sha256": "4b0b84bf54e0a1df3d91fed73d6ee83a329cf3aba8287ad39f0dc46b34862302",
+        "metadata": {
+          "prediction_kind": "probability",
+          "class_order": [
+            0,
+            1
+          ],
+          "prediction_columns": [
+            "pred_0",
+            "pred_1"
+          ],
+          "id_columns": [
+            "transaction_id"
+          ],
+          "data_fingerprint": {
+            "sha256": "06823ea80cceade018b2428e0c7c9cb89e4efae45fcad8cbf61e8b27b350df20",
+            "rows": 731942,
+            "columns": [
+              "transaction_id",
+              "customer_id",
+              "timestamp",
+              "amount_bdt",
+              "merchant_id",
+              "merchant_category",
+              "device_id",
+              "device_type",
+              "location",
+              "payment_method",
+              "transaction_type",
+              "account_age_days",
+              "fraud"
+            ]
+          },
+          "identity_hash": "97c9a8e9db26fb93d6e4f27fc3fd6fa7a0df435f6b7855306ed9e40982c1deec",
+          "split_signature": "6fb939b019dfe071ce44a3b6e2c82c87bdf17aafaa5dec714c1b703e77cd7e47",
+          "sha256": "4b0b84bf54e0a1df3d91fed73d6ee83a329cf3aba8287ad39f0dc46b34862302"
+        }
+      },
+      {
+        "member": "R037",
+        "path": "C:\\Users\\IRTIZA\\Downloads\\Datathon\\react-2026\\outputs\\oof\\R037.csv",
+        "sha256": "3896471ec37952da350317491157d308f5d7b8ef071f97b71d87917319695413",
+        "metadata": {
+          "prediction_kind": "probability",
+          "class_order": [
+            0,
+            1
+          ],
+          "prediction_columns": [
+            "pred_0",
+            "pred_1"
+          ],
+          "id_columns": [
+            "transaction_id"
+          ],
+          "data_fingerprint": {
+            "sha256": "06823ea80cceade018b2428e0c7c9cb89e4efae45fcad8cbf61e8b27b350df20",
+            "rows": 731942,
+            "columns": [
+              "transaction_id",
+              "customer_id",
+              "timestamp",
+              "amount_bdt",
+              "merchant_id",
+              "merchant_category",
+              "device_id",
+              "device_type",
+              "location",
+              "payment_method",
+              "transaction_type",
+              "account_age_days",
+              "fraud"
+            ]
+          },
+          "identity_hash": "97c9a8e9db26fb93d6e4f27fc3fd6fa7a0df435f6b7855306ed9e40982c1deec",
+          "split_signature": "6fb939b019dfe071ce44a3b6e2c82c87bdf17aafaa5dec714c1b703e77cd7e47",
+          "sha256": "3896471ec37952da350317491157d308f5d7b8ef071f97b71d87917319695413"
+        }
+      }
+    ],
+    "test_inference_disabled": true,
+    "weight_search": false,
+    "canonical_covered_rows": 472173,
+    "canonical_uncovered_rows": 259769,
+    "expected_null_masks_match": true,
+    "experiment_id": "R040"
+  },
+  "metrics": {
+    "mean": 0.7679618792670666
+  },
+  "deltas_vs_parent": {
+    "mean": 0.0029384916616344015
+  },
+  "decision": "FLAT-MIXED",
+  "decision_rule": "WIN requires F2 >= +0.002 and no negative recent-period deltas; LOSE flags a recent delta below -0.002.",
+  "runtime_seconds": 4.726688499999909,
+  "test_inference": false,
+  "submission_created": false
+}

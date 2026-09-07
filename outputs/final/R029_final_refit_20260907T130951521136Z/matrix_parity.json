@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "saved_matrix_sha256": "ab767d22d77a44ef3514e8580d9287be720b210475037158514883c1c249771c",
+  "rows": 731942,
+  "features": 52,
+  "ids_order": true,
+  "feature_order": true,
+  "values_dtypes_exact": true,
+  "train_fingerprint": {
+    "sha256": "06823ea80cceade018b2428e0c7c9cb89e4efae45fcad8cbf61e8b27b350df20",
+    "rows": 731942,
+    "columns": [
+      "transaction_id",
+      "customer_id",
+      "timestamp",
+      "amount_bdt",
+      "merchant_id",
+      "merchant_category",
+      "device_id",
+      "device_type",
+      "location",
+      "payment_method",
+      "transaction_type",
+      "account_age_days",
+      "fraud"
+    ]
+  }
+}

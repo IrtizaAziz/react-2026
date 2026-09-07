@@ -1,0 +1,7 @@
+{
+  "mask_identity": true,
+  "covered_rows": 472173,
+  "uncovered_rows": 259769,
+  "expected_locked_temporal_fold_mask": true,
+  "uncovered_predictions_preserved_null": true
+}

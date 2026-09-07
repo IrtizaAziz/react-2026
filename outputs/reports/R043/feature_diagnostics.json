@@ -1,0 +1,109 @@
+{
+  "standard_window_descriptive_diagnostics": {
+    "F2": {
+      "rows": 240065,
+      "abs_deviation_zero_fraction": 0.9985628892175036,
+      "abs_deviation_nonzero_fraction": 0.0014371107824964072,
+      "abs_deviation_nonzero_positive_count": 309,
+      "abs_deviation_nonzero_fraud_prevalence": 0.8956521739130435,
+      "abs_deviation_nonzero_median": 30.0,
+      "abs_deviation_nonzero_p90": 65.0,
+      "mode_share_nonzero_distribution": {
+        "min": 0.3333333432674408,
+        "median": 1.0,
+        "p90": 1.0,
+        "max": 1.0
+      }
+    },
+    "F2_early": {
+      "rows": 118346,
+      "abs_deviation_zero_fraction": 0.998833927635915,
+      "abs_deviation_nonzero_fraction": 0.0011660723640849711,
+      "abs_deviation_nonzero_positive_count": 120,
+      "abs_deviation_nonzero_fraud_prevalence": 0.8695652173913043,
+      "abs_deviation_nonzero_median": 26.5,
+      "abs_deviation_nonzero_p90": 54.0,
+      "mode_share_nonzero_distribution": {
+        "min": 0.3333333432674408,
+        "median": 1.0,
+        "p90": 1.0,
+        "max": 1.0
+      }
+    },
+    "F2_late_corrected": {
+      "rows": 121719,
+      "abs_deviation_zero_fraction": 0.9982993616444433,
+      "abs_deviation_nonzero_fraction": 0.001700638355556651,
+      "abs_deviation_nonzero_positive_count": 189,
+      "abs_deviation_nonzero_fraud_prevalence": 0.9130434782608695,
+      "abs_deviation_nonzero_median": 34.0,
+      "abs_deviation_nonzero_p90": 71.0,
+      "mode_share_nonzero_distribution": {
+        "min": 0.5,
+        "median": 1.0,
+        "p90": 1.0,
+        "max": 1.0
+      }
+    },
+    "June_15_30": {
+      "rows": 62254,
+      "abs_deviation_zero_fraction": 0.9969319240530728,
+      "abs_deviation_nonzero_fraction": 0.0030680759469271053,
+      "abs_deviation_nonzero_positive_count": 178,
+      "abs_deviation_nonzero_fraud_prevalence": 0.9319371727748691,
+      "abs_deviation_nonzero_median": 34.0,
+      "abs_deviation_nonzero_p90": 71.0,
+      "mode_share_nonzero_distribution": {
+        "min": 0.5,
+        "median": 1.0,
+        "p90": 1.0,
+        "max": 1.0
+      }
+    },
+    "July_1_15": {
+      "rows": 59465,
+      "abs_deviation_zero_fraction": 0.999730934162953,
+      "abs_deviation_nonzero_fraction": 0.00026906583704700243,
+      "abs_deviation_nonzero_positive_count": 11,
+      "abs_deviation_nonzero_fraud_prevalence": 0.6875,
+      "abs_deviation_nonzero_median": 28.0,
+      "abs_deviation_nonzero_p90": 64.5,
+      "mode_share_nonzero_distribution": {
+        "min": 0.5,
+        "median": 1.0,
+        "p90": 1.0,
+        "max": 1.0
+      }
+    },
+    "July_1_7": {
+      "rows": 27535,
+      "abs_deviation_zero_fraction": 0.9994552387869984,
+      "abs_deviation_nonzero_fraction": 0.0005447612130016343,
+      "abs_deviation_nonzero_positive_count": 11,
+      "abs_deviation_nonzero_fraud_prevalence": 0.7333333333333333,
+      "abs_deviation_nonzero_median": 29.0,
+      "abs_deviation_nonzero_p90": 66.0,
+      "mode_share_nonzero_distribution": {
+        "min": 0.5384615659713745,
+        "median": 1.0,
+        "p90": 1.0,
+        "max": 1.0
+      }
+    },
+    "July_8_15": {
+      "rows": 31930,
+      "abs_deviation_zero_fraction": 0.999968681490761,
+      "abs_deviation_nonzero_fraction": 3.1318509238960225e-05,
+      "abs_deviation_nonzero_positive_count": 0,
+      "abs_deviation_nonzero_fraud_prevalence": 0.0,
+      "abs_deviation_nonzero_median": 13.0,
+      "abs_deviation_nonzero_p90": 13.0,
+      "mode_share_nonzero_distribution": {
+        "min": 0.5,
+        "median": 0.5,
+        "p90": 0.5,
+        "max": 0.5
+      }
+    }
+  }
+}

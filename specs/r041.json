@@ -1,0 +1,9 @@
+{
+  "experiment_id": "R041",
+  "parent": "R029",
+  "feature_module": "src.merchant_location",
+  "added_features": ["merchant_location_prior_count", "merchant_location_share_of_merchant_history"],
+  "hypothesis": "Merchant-location historical support and merchant-normalized location share may capture spatial merchant behavior not represented by existing customer-location, merchant-global, or pair familiarity features.",
+  "incumbent": "R017",
+  "predict_test": false
+}

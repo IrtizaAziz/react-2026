@@ -1,0 +1,63 @@
+{
+  "kind": "R040_final_fixed_blend_submission",
+  "r029_member": {
+    "path": "outputs\\final\\R029_final_refit_20260907T130951521136Z\\test_predictions.csv",
+    "sha256": "0d4e94287d30817a717b071860734a5ed80bb8b1d5e88b26f2fa2f9a8aca571c",
+    "verified": true
+  },
+  "r037_matrix_parity": {
+    "passed": true,
+    "matrix_path": "outputs\\feature_matrices\\R029.pkl",
+    "matrix_sha256": "ab767d22d77a44ef3514e8580d9287be720b210475037158514883c1c249771c",
+    "rows": 731942,
+    "feature_count": 52,
+    "exact_feature_order": true,
+    "transaction_ids_order": true,
+    "labels_exact": true
+  },
+  "r037_final_model": {
+    "path": "outputs\\final\\R040_final_blend_20260907T142404489223Z\\R037_final_fit_model.pkl",
+    "sha256": "6cae2b2e857c3683164851665a0f4bd971b11c480df0a5f33c36e81b301c33ce"
+  },
+  "r037_preprocessor": {
+    "path": "outputs\\final\\R040_final_blend_20260907T142404489223Z\\R037_fitted_preprocessing.pkl",
+    "sha256": "8655915cafbd6ae24ecda76e0611698c202c43720de398daa0852e7c815e2644"
+  },
+  "r037_test_predictions": {
+    "path": "outputs\\final\\R040_final_blend_20260907T142404489223Z\\R037_test_predictions.csv",
+    "sha256": "4eee11f931f7e157daa6f7274c4a26c87b1db6f06a9215f446c1cc636c7459d9"
+  },
+  "alignment": {
+    "passed": true,
+    "rows": 262648,
+    "method": "explicit transaction_id one_to_one merge then sample-order restoration",
+    "r029_id_order_matches_sample": true,
+    "r037_id_order_matches_sample": true,
+    "id_sets_exact": true,
+    "duplicate_ids": false
+  },
+  "blend": {
+    "R029": 0.75,
+    "R037": 0.25
+  },
+  "r040_predictions": {
+    "path": "outputs\\final\\R040_final_blend_20260907T142404489223Z\\R040_blended_test_predictions.csv",
+    "sha256": "6f939c57248bc2efc87ff26a3d1ec883b6d26ae9a7bf967da94fea555d2fc614"
+  },
+  "submission": {
+    "path": "submissions\\submission_R040_20260907T142404489223Z.csv",
+    "sha256": "6f939c57248bc2efc87ff26a3d1ec883b6d26ae9a7bf967da94fea555d2fc614",
+    "rows": 262648,
+    "columns": [
+      "transaction_id",
+      "fraud"
+    ],
+    "sample_order_exact": true,
+    "uploaded": false
+  },
+  "test_fitting": false,
+  "equal_timestamp_isolation": true,
+  "no_historical_artifacts_overwritten": true,
+  "launcher_sha256": "92f372f1864b919203f2815cf3b3c12035e6e55375f1f0608ef7931932fd308d",
+  "elapsed_seconds": 250.12380400000075
+}

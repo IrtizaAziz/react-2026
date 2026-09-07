@@ -1,0 +1,20 @@
+{
+  "pearson_correlations": {
+    "merchant_location_prior_count": {
+      "merchant_prior_transaction_count": 0.6437992173387578,
+      "merchant_prior_unique_customers": 0.6193190814139499,
+      "customer_location_prior_count": 0.07384122716633634,
+      "customer_location_count_share": 0.050109749322005376,
+      "customer_merchant_prior_count": 0.118313559461996,
+      "customer_merchant_share_of_customer_history": 0.11364135954287499
+    },
+    "merchant_location_share_of_merchant_history": {
+      "merchant_prior_transaction_count": -0.07130881774769933,
+      "merchant_prior_unique_customers": -0.08979950757430818,
+      "customer_location_prior_count": 0.0636799408919237,
+      "customer_location_count_share": 0.1326881419798158,
+      "customer_merchant_prior_count": 0.04009701897341808,
+      "customer_merchant_share_of_customer_history": 0.05448595950461601
+    }
+  }
+}

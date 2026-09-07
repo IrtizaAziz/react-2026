@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "identity": "90027514266aa174273d45c326f3a578a19a96e9b2055e42ff7792b50772a150",
+  "module": "src.customer_account_consistency",
+  "module_source_sha256": {
+    "C:\\Users\\IRTIZA\\Downloads\\Datathon\\react-2026\\src\\customer_account_consistency.py": "affb1d68628027971c8308cf71f95b6e3392cb0181f6b8dee2efdee7649a1ea5",
+    "C:\\Users\\IRTIZA\\Downloads\\Datathon\\react-2026\\src\\customer_history.py": "1e43ea1b15c7b86c4187917bdc35fe40f30ffbdd4695458d4f2125ae82b7c779"
+  },
+  "AVAILABLE_FEATURES": [
+    "customer_creation_day_signed_deviation",
+    "customer_creation_day_abs_deviation",
+    "customer_creation_day_mode_share"
+  ],
+  "results": {
+    "oracle": true,
+    "strict_past": true,
+    "equal_timestamp_isolation": true,
+    "permutation_invariance": true,
+    "duplicate_same_timestamp_pair": true,
+    "future_independence": true,
+    "future_value_mutation_independence": true,
+    "label_independence": true,
+    "raw_frame_compatibility": true,
+    "requested_subset_order": true,
+    "zero_history_behavior": true,
+    "modal_tie_earliest": true,
+    "mode_robustness": true,
+    "calendar_day_semantics": true,
+    "denominator_parity": true,
+    "chunk_vs_whole": true
+  },
+  "runner_policy_version": "react-feature-experiment-v1"
+}

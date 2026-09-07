@@ -1,0 +1,16 @@
+{
+  "pearson_correlations": {
+    "merchant_transactions_1h": {
+      "merchant_prior_transaction_count": 0.7454938109814785,
+      "merchant_transactions_24h": 0.9094274391718012,
+      "merchant_unique_customers_24h": 0.909433374165433,
+      "merchant_seconds_since_last": -0.13166295587061583
+    },
+    "merchant_log_rate_change_1h_vs_previous_1h": {
+      "merchant_prior_transaction_count": 0.2080781489373723,
+      "merchant_transactions_24h": 0.26130349518420865,
+      "merchant_unique_customers_24h": 0.2622061635873688,
+      "merchant_seconds_since_last": -0.15435055309659382
+    }
+  }
+}

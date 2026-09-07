@@ -1,0 +1,12 @@
+{
+  "implementation": "frozen_R029_final_feature_generation",
+  "train_seeded_raw_state": true,
+  "test_processed_chronologically": true,
+  "strict_less_than_timestamp": true,
+  "equal_timestamp_isolation": true,
+  "test_labels_used": false,
+  "test_fitting": false,
+  "timestamp_batches": 254061,
+  "tie_rows": 16970,
+  "original_sample_order_restored": true
+}

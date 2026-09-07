@@ -1,0 +1,11 @@
+{
+  "rows": 262648,
+  "columns": [
+    "transaction_id",
+    "fraud"
+  ],
+  "test_fitting": false,
+  "probabilities_finite": true,
+  "probabilities_in_unit_interval": true,
+  "sha256": "4eee11f931f7e157daa6f7274c4a26c87b1db6f06a9215f446c1cc636c7459d9"
+}

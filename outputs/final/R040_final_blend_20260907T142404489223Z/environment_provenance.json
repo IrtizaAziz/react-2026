@@ -1,0 +1,8 @@
+{
+  "python": "3.14.4 (tags/v3.14.4:23116f9, Apr  7 2026, 14:10:54) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "win32",
+  "lightgbm": "4.7.0",
+  "sklearn": "1.9.0",
+  "matrix_sha256": "ab767d22d77a44ef3514e8580d9287be720b210475037158514883c1c249771c",
+  "r029_prediction_sha256": "0d4e94287d30817a717b071860734a5ed80bb8b1d5e88b26f2fa2f9a8aca571c"
+}

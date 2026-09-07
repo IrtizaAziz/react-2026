@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "identity": "9f3c94d288c0585d505d35655ab2668d306a014375367a6a4d88e18ba2debadc",
+  "module": "src.merchant_location",
+  "module_source_sha256": {
+    "C:\\Users\\IRTIZA\\Downloads\\Datathon\\react-2026\\src\\customer_history.py": "1e43ea1b15c7b86c4187917bdc35fe40f30ffbdd4695458d4f2125ae82b7c779",
+    "C:\\Users\\IRTIZA\\Downloads\\Datathon\\react-2026\\src\\customer_relationships.py": "c83515d9c37621532aae8fc321b2c55bcf4271663f808a71af2b1090ad4ecf31",
+    "C:\\Users\\IRTIZA\\Downloads\\Datathon\\react-2026\\src\\merchant_history.py": "08505e5b18f7722b71e5c9a5847478267a6cd5e6cb85311eb9a2f4c93999ae36",
+    "C:\\Users\\IRTIZA\\Downloads\\Datathon\\react-2026\\src\\merchant_location.py": "cb2e1079e74a1f839d7b1ef933b7319447084e52bd6084b32cd503479f9bcc9a"
+  },
+  "AVAILABLE_FEATURES": [
+    "merchant_location_prior_count",
+    "merchant_location_share_of_merchant_history"
+  ],
+  "results": {
+    "oracle": true,
+    "strict_past": true,
+    "equal_timestamp_isolation": true,
+    "permutation_invariance": true,
+    "duplicate_same_timestamp_pair": true,
+    "future_independence": true,
+    "future_value_mutation_independence": true,
+    "label_independence": true,
+    "chunk_vs_whole": true,
+    "raw_frame_compatibility": true,
+    "requested_subset_order": true,
+    "zero_history_behavior": true,
+    "denominator_parity": true
+  },
+  "runner_policy_version": "react-feature-experiment-v1"
+}

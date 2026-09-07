@@ -1,0 +1,12 @@
+{
+  "experiment_id": "R044",
+  "parent": "R040",
+  "members": ["R040", "R041"],
+  "weights": [0.75, 0.25],
+  "method": "fixed_weighted_probability",
+  "hypothesis": "R044 is the preregistered fixed OOF probability blend 0.75 * R040 + 0.25 * R041.",
+  "predict_test": false,
+  "submission": false,
+  "weight_search": false,
+  "reference_runs": ["R040", "R041", "R029"]
+}

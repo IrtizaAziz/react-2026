@@ -1,0 +1,213 @@
+{
+  "experiment_id": "R044",
+  "formula": "0.75 * R040_probability + 0.25 * R041_probability",
+  "integrity": {
+    "identical_oof_transaction_ids_order_and_rows": true,
+    "identical_labels": true,
+    "identical_fold_assignments": true,
+    "identical_split_signature": true,
+    "identical_scored_null_coverage_mask": true,
+    "canonical_scored_rows": 472173,
+    "canonical_null_rows": 259769,
+    "probabilities_finite_and_in_unit_interval": true,
+    "source_artifact_hashes_and_provenance_verified": true,
+    "fixed_formula_replay": "PASS (maximum CSV round-trip difference 1.1102230246251565e-16; tolerance 1e-15)"
+  },
+  "metrics": {
+    "F1": 0.8036429609216047,
+    "F2": 0.7348861783737387,
+    "F2_early": 0.7944449244244715,
+    "F2_late_corrected": 0.6812727109881376,
+    "June_15_30": 0.8146904923423441,
+    "July": 0.5140680856448943,
+    "July_1_7": 0.481163825635042,
+    "July_8_15": 0.5389140521715857
+  },
+  "deltas": {
+    "R040": {
+      "F1": 0.001711720307148057,
+      "F2": 0.0008936604540621396,
+      "F2_early": 0.0014303840955397495,
+      "F2_late_corrected": 0.0005357278793943765,
+      "June_15_30": 0.0006724564199277472,
+      "July": 0.0004114237702421697,
+      "July_1_7": -5.6968728605222285e-05,
+      "July_8_15": 0.0005912829211907056
+    },
+    "R041": {
+      "F1": 0.00033195406050878784,
+      "F2": 0.0005724229214756349,
+      "F2_early": -3.196001999616893e-05,
+      "F2_late_corrected": 0.0008772959771694566,
+      "June_15_30": 0.0005270498604617035,
+      "July": 0.0015887062534738483,
+      "July_1_7": 0.003394757830188111,
+      "July_8_15": -0.0001427928608301876
+    },
+    "R029": {
+      "F1": 0.006071801539607735,
+      "F2": 0.002410562544871264,
+      "F2_early": 0.0031899604708647278,
+      "F2_late_corrected": 0.0017466347028700646,
+      "June_15_30": 0.0018176443576490842,
+      "July": 0.001886094145167827,
+      "July_1_7": 0.0033355407005860593,
+      "July_8_15": 0.0007174938337108916
+    }
+  },
+  "diversity_R040_vs_R041": {
+    "F2": {
+      "rows": 240065,
+      "pearson": 0.9969149249715261,
+      "spearman": 0.8011046177028875,
+      "top_1000_overlap": 930,
+      "top_5000_overlap": 4691
+    },
+    "July": {
+      "rows": 59465,
+      "pearson": 0.9951795407669296,
+      "spearman": 0.7947021328597607,
+      "top_1000_overlap": 945,
+      "top_5000_overlap": 4268
+    }
+  },
+  "submission_worthy": {
+    "pass": true,
+    "gates": {
+      "F2": true,
+      "corrected_late": true,
+      "July": true,
+      "July_1_7": true,
+      "July_8_15": true,
+      "F1": true,
+      "integrity_replay": true
+    }
+  },
+  "clear_win": {
+    "pass": false
+  },
+  "classification": "SUBMISSION-WORTHY",
+  "test_predictions": "NOT GENERATED",
+  "submission": "NOT GENERATED",
+  "oof_metadata": {
+    "prediction_kind": "probability",
+    "class_order": [
+      0,
+      1
+    ],
+    "prediction_columns": [
+      "pred_0",
+      "pred_1"
+    ],
+    "id_columns": [
+      "transaction_id"
+    ],
+    "data_fingerprint": {
+      "sha256": "06823ea80cceade018b2428e0c7c9cb89e4efae45fcad8cbf61e8b27b350df20",
+      "rows": 731942,
+      "columns": [
+        "transaction_id",
+        "customer_id",
+        "timestamp",
+        "amount_bdt",
+        "merchant_id",
+        "merchant_category",
+        "device_id",
+        "device_type",
+        "location",
+        "payment_method",
+        "transaction_type",
+        "account_age_days",
+        "fraud"
+      ]
+    },
+    "identity_hash": "97c9a8e9db26fb93d6e4f27fc3fd6fa7a0df435f6b7855306ed9e40982c1deec",
+    "split_signature": "6fb939b019dfe071ce44a3b6e2c82c87bdf17aafaa5dec714c1b703e77cd7e47",
+    "sha256": "6c7db7b5f7c1133ea6cfa0b648a5440222ee32d58f993a80091a2484dce34f2b"
+  },
+  "source_artifact_hashes": {
+    "R040": {
+      "oof_path": "outputs/oof/R040.csv",
+      "oof_sha256": "26e863829ebc9d458aba994942a848fdc9ec98ae5d09a1ecf5c1b02f260832f9",
+      "metadata_sha256": "3bef4888e1d1689e49f01f2721633a59978317cbe90793106e96dc579466ef27",
+      "metadata": {
+        "prediction_kind": "probability",
+        "class_order": [
+          0,
+          1
+        ],
+        "prediction_columns": [
+          "pred_0",
+          "pred_1"
+        ],
+        "id_columns": [
+          "transaction_id"
+        ],
+        "data_fingerprint": {
+          "sha256": "06823ea80cceade018b2428e0c7c9cb89e4efae45fcad8cbf61e8b27b350df20",
+          "rows": 731942,
+          "columns": [
+            "transaction_id",
+            "customer_id",
+            "timestamp",
+            "amount_bdt",
+            "merchant_id",
+            "merchant_category",
+            "device_id",
+            "device_type",
+            "location",
+            "payment_method",
+            "transaction_type",
+            "account_age_days",
+            "fraud"
+          ]
+        },
+        "identity_hash": "97c9a8e9db26fb93d6e4f27fc3fd6fa7a0df435f6b7855306ed9e40982c1deec",
+        "split_signature": "6fb939b019dfe071ce44a3b6e2c82c87bdf17aafaa5dec714c1b703e77cd7e47",
+        "sha256": "26e863829ebc9d458aba994942a848fdc9ec98ae5d09a1ecf5c1b02f260832f9"
+      }
+    },
+    "R041": {
+      "oof_path": "outputs/oof/R041.csv",
+      "oof_sha256": "f921fbdc4f38c427391708942415aee1b637507d41807af7bea6181d2c62cd77",
+      "metadata_sha256": "b69fea63597ad7ef603432f7392012f2e050e1db6c3b00bf65b2a9a5622d1d56",
+      "metadata": {
+        "prediction_kind": "probability",
+        "class_order": [
+          0,
+          1
+        ],
+        "prediction_columns": [
+          "pred_0",
+          "pred_1"
+        ],
+        "id_columns": [
+          "transaction_id"
+        ],
+        "data_fingerprint": {
+          "sha256": "06823ea80cceade018b2428e0c7c9cb89e4efae45fcad8cbf61e8b27b350df20",
+          "rows": 731942,
+          "columns": [
+            "transaction_id",
+            "customer_id",
+            "timestamp",
+            "amount_bdt",
+            "merchant_id",
+            "merchant_category",
+            "device_id",
+            "device_type",
+            "location",
+            "payment_method",
+            "transaction_type",
+            "account_age_days",
+            "fraud"
+          ]
+        },
+        "identity_hash": "97c9a8e9db26fb93d6e4f27fc3fd6fa7a0df435f6b7855306ed9e40982c1deec",
+        "split_signature": "6fb939b019dfe071ce44a3b6e2c82c87bdf17aafaa5dec714c1b703e77cd7e47",
+        "sha256": "f921fbdc4f38c427391708942415aee1b637507d41807af7bea6181d2c62cd77"
+      }
+    }
+  },
+  "runtime_seconds": 5.75255130000005
+}

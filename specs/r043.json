@@ -1,0 +1,14 @@
+{
+  "experiment_id": "R043",
+  "parent": "R029",
+  "feature_module": "src.customer_account_consistency",
+  "added_features": [
+    "customer_creation_day_signed_deviation",
+    "customer_creation_day_abs_deviation",
+    "customer_creation_day_mode_share"
+  ],
+  "hypothesis": "A transaction whose calendar-day implied account creation date sharply disagrees with its customer's strictly-prior modal implied creation day may expose account-identity metadata inconsistency associated with fraud.",
+  "incumbent": "R029",
+  "predict_test": false,
+  "reference_runs": ["R040"]
+}
