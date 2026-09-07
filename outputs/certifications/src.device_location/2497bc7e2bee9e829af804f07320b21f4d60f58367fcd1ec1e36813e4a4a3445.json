@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "identity": "2497bc7e2bee9e829af804f07320b21f4d60f58367fcd1ec1e36813e4a4a3445",
+  "module": "src.device_location",
+  "module_source_sha256": {
+    "C:\\Users\\IRTIZA\\Downloads\\Datathon\\react-2026\\src\\customer_history.py": "1e43ea1b15c7b86c4187917bdc35fe40f30ffbdd4695458d4f2125ae82b7c779",
+    "C:\\Users\\IRTIZA\\Downloads\\Datathon\\react-2026\\src\\customer_relationships.py": "c83515d9c37621532aae8fc321b2c55bcf4271663f808a71af2b1090ad4ecf31",
+    "C:\\Users\\IRTIZA\\Downloads\\Datathon\\react-2026\\src\\device_location.py": "ec49b6abc31f85e98d17ecd5715075e27566c164aaf162494a4af8d6893d9997"
+  },
+  "AVAILABLE_FEATURES": [
+    "device_location_prior_count",
+    "device_location_is_new",
+    "device_location_seconds_since_last",
+    "device_location_share_of_device_history"
+  ],
+  "results": {
+    "strict_past": true,
+    "oracle": true,
+    "equal_timestamp_isolation": true,
+    "permutation_invariance": true,
+    "duplicate_same_timestamp_pair": true,
+    "future_independence": true,
+    "label_independence": true,
+    "chunk_vs_whole": true,
+    "missing_location_sentinel": true
+  },
+  "runner_policy_version": "react-feature-experiment-v1"
+}

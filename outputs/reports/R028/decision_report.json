@@ -1,0 +1,514 @@
+{
+  "experiment_id": "R028",
+  "parent": "R026",
+  "incumbent": "R017",
+  "metrics": {
+    "F2": 0.7318237296624752,
+    "F1": 0.7968039532373361,
+    "F2_early": 0.7906488707072336,
+    "F2_late_corrected": 0.6788330713604487,
+    "July_1_15": 0.51207971779166,
+    "June_15_30": 0.8116140423947731,
+    "July_1_7": 0.4763243269469008,
+    "July_8_15": 0.5390237002732592
+  },
+  "delta_vs_parent": {
+    "F2": 3.377773802404338e-05,
+    "F1": 0.0021223076630428883,
+    "F2_early": 8.275279783132028e-05,
+    "F2_late_corrected": -5.008844387444089e-05,
+    "July_1_15": 0.001404661507682925,
+    "June_15_30": -0.0010075212776148312,
+    "July_1_7": 0.002242073376476139,
+    "July_8_15": 0.0008001448835874836
+  },
+  "delta_vs_incumbent": {
+    "F2": 0.00222953675757942,
+    "F1": 0.00697498738329938,
+    "F2_early": 0.001704296190339738,
+    "F2_late_corrected": 0.0023087753058038674,
+    "July_1_15": 0.0027986865739155764,
+    "June_15_30": 0.0014805472068110115,
+    "July_1_7": 0.004119383059871362,
+    "July_8_15": 0.001967471638546714
+  },
+  "classification": "FLAT-MIXED",
+  "submission_gate_pass": false,
+  "submission_gates": {
+    "July_1_15": false,
+    "F2_late_corrected": true,
+    "F2": false,
+    "F1": true,
+    "July_1_7": true,
+    "July_8_15": true
+  },
+  "early_stop_policy": {
+    "F2": 0.01,
+    "F2_late_corrected": 0.005,
+    "July_1_15": 0.005
+  },
+  "early_stopped": false,
+  "certification_reused": false,
+  "feature_importances": {
+    "F2": [
+      {
+        "feature": "customer_log_amount_minus_prior_mean",
+        "importance": 10.106072905973356
+      },
+      {
+        "feature": "customer_location_count_share",
+        "importance": 9.875763892467921
+      },
+      {
+        "feature": "merchant_new_customer_share_24h",
+        "importance": 5.763743727718904
+      },
+      {
+        "feature": "customer_device_count_share",
+        "importance": 4.941336732735862
+      },
+      {
+        "feature": "location",
+        "importance": 4.834103258188808
+      },
+      {
+        "feature": "hour",
+        "importance": 3.491804856396866
+      },
+      {
+        "feature": "customer_device_prior_count",
+        "importance": 3.410342047877102
+      },
+      {
+        "feature": "customer_share_of_device_prior_transactions",
+        "importance": 3.3720793862884424
+      },
+      {
+        "feature": "amount_bdt",
+        "importance": 2.9513981403371865
+      },
+      {
+        "feature": "device_prior_distinct_customer_count_excluding_current",
+        "importance": 2.90816795059528
+      },
+      {
+        "feature": "customer_location_prior_count",
+        "importance": 2.8177942772196505
+      },
+      {
+        "feature": "log_amount_bdt",
+        "importance": 2.708738939404934
+      },
+      {
+        "feature": "customer_amount_to_prior_mean",
+        "importance": 2.6369207606570533
+      },
+      {
+        "feature": "merchant_seconds_since_last",
+        "importance": 2.6079641118454564
+      },
+      {
+        "feature": "customer_seconds_since_last",
+        "importance": 2.457188310095004
+      },
+      {
+        "feature": "device_observed_age_seconds",
+        "importance": 2.365102085194043
+      },
+      {
+        "feature": "merchant_prior_transaction_count",
+        "importance": 2.3229606119815243
+      },
+      {
+        "feature": "customer_prior_1h_count",
+        "importance": 2.2493546744741013
+      },
+      {
+        "feature": "customer_log_amount_zscore",
+        "importance": 2.021235651355167
+      },
+      {
+        "feature": "customer_seconds_since_last_new_merchant",
+        "importance": 1.9183068603896205
+      },
+      {
+        "feature": "merchant_prior_unique_customers",
+        "importance": 1.855861373017007
+      },
+      {
+        "feature": "customer_location_new",
+        "importance": 1.4999444449836221
+      },
+      {
+        "feature": "device_prior_count",
+        "importance": 1.421452444679299
+      },
+      {
+        "feature": "device_prior_distinct_customer_count",
+        "importance": 1.4093515124783629
+      },
+      {
+        "feature": "device_prior_1h_count",
+        "importance": 1.387414993115017
+      },
+      {
+        "feature": "customer_device_seconds_since_last",
+        "importance": 1.2535945566066253
+      },
+      {
+        "feature": "customer_location_seconds_since_last",
+        "importance": 1.2467292943020285
+      },
+      {
+        "feature": "customer_device_new",
+        "importance": 1.102680899067103
+      },
+      {
+        "feature": "merchant_transactions_24h",
+        "importance": 1.1014302808550631
+      },
+      {
+        "feature": "customer_prior_count",
+        "importance": 1.0747633908440777
+      },
+      {
+        "feature": "customer_prior_std_log_amount",
+        "importance": 1.0630937162413028
+      },
+      {
+        "feature": "merchant_unique_customers_24h",
+        "importance": 1.0064582875718733
+      },
+      {
+        "feature": "customer_merchant_share_of_customer_history",
+        "importance": 0.9794098309381348
+      },
+      {
+        "feature": "device_seconds_since_last",
+        "importance": 0.9101570711182191
+      },
+      {
+        "feature": "customer_merchant_seconds_since_last",
+        "importance": 0.8314731827089722
+      },
+      {
+        "feature": "account_age_days",
+        "importance": 0.7862111355552496
+      },
+      {
+        "feature": "device_prior_other_customer_transaction_count",
+        "importance": 0.7515598916213958
+      },
+      {
+        "feature": "customer_prior_mean_log_amount",
+        "importance": 0.6632023972244353
+      },
+      {
+        "feature": "merchant_category",
+        "importance": 0.5765782576520995
+      },
+      {
+        "feature": "customer_observed_age_seconds",
+        "importance": 0.5584643458057441
+      },
+      {
+        "feature": "customer_prior_mean_amount",
+        "importance": 0.5468254308797346
+      },
+      {
+        "feature": "customer_merchant_prior_count",
+        "importance": 0.4295340236386714
+      },
+      {
+        "feature": "customer_first_seen",
+        "importance": 0.41471971538849955
+      },
+      {
+        "feature": "weekday",
+        "importance": 0.36409048211757067
+      },
+      {
+        "feature": "payment_method",
+        "importance": 0.3498035670687527
+      },
+      {
+        "feature": "transaction_type",
+        "importance": 0.3185813087745801
+      },
+      {
+        "feature": "device_type",
+        "importance": 0.15683805482150318
+      },
+      {
+        "feature": "customer_merchant_is_new",
+        "importance": 0.11523352524057616
+      },
+      {
+        "feature": "device_type_missing",
+        "importance": 0.05476452820476542
+      },
+      {
+        "feature": "is_weekend",
+        "importance": 0.006344813683735701
+      },
+      {
+        "feature": "location_missing",
+        "importance": 0.0030540625996873455
+      },
+      {
+        "feature": "merchant_category_missing",
+        "importance": 0.0
+      }
+    ],
+    "F1": [
+      {
+        "feature": "customer_location_count_share",
+        "importance": 10.716499399695005
+      },
+      {
+        "feature": "customer_log_amount_minus_prior_mean",
+        "importance": 7.813839327320266
+      },
+      {
+        "feature": "hour",
+        "importance": 5.834467668494936
+      },
+      {
+        "feature": "location",
+        "importance": 5.2369063582833455
+      },
+      {
+        "feature": "customer_device_count_share",
+        "importance": 4.698659632032871
+      },
+      {
+        "feature": "log_amount_bdt",
+        "importance": 4.4248631678299555
+      },
+      {
+        "feature": "amount_bdt",
+        "importance": 4.310979470463788
+      },
+      {
+        "feature": "merchant_new_customer_share_24h",
+        "importance": 3.6722826502986767
+      },
+      {
+        "feature": "customer_location_new",
+        "importance": 3.1916364740191456
+      },
+      {
+        "feature": "merchant_seconds_since_last",
+        "importance": 2.5691400894005905
+      },
+      {
+        "feature": "customer_location_prior_count",
+        "importance": 2.4808409363307873
+      },
+      {
+        "feature": "customer_amount_to_prior_mean",
+        "importance": 2.442514920855973
+      },
+      {
+        "feature": "customer_seconds_since_last",
+        "importance": 2.3413853481814675
+      },
+      {
+        "feature": "device_prior_distinct_customer_count_excluding_current",
+        "importance": 2.1320373675295983
+      },
+      {
+        "feature": "customer_seconds_since_last_new_merchant",
+        "importance": 1.8861569355538175
+      },
+      {
+        "feature": "merchant_prior_transaction_count",
+        "importance": 1.8410210587656044
+      },
+      {
+        "feature": "device_prior_count",
+        "importance": 1.77563092117224
+      },
+      {
+        "feature": "customer_prior_mean_log_amount",
+        "importance": 1.7148565051642877
+      },
+      {
+        "feature": "device_prior_distinct_customer_count",
+        "importance": 1.6626959149279161
+      },
+      {
+        "feature": "customer_device_prior_count",
+        "importance": 1.6557816389671065
+      },
+      {
+        "feature": "customer_prior_std_log_amount",
+        "importance": 1.6480573659956574
+      },
+      {
+        "feature": "customer_device_new",
+        "importance": 1.5713757428593667
+      },
+      {
+        "feature": "customer_prior_1h_count",
+        "importance": 1.5569609139127332
+      },
+      {
+        "feature": "customer_share_of_device_prior_transactions",
+        "importance": 1.5077387751725493
+      },
+      {
+        "feature": "account_age_days",
+        "importance": 1.4355328246700143
+      },
+      {
+        "feature": "customer_location_seconds_since_last",
+        "importance": 1.4085374013049874
+      },
+      {
+        "feature": "customer_log_amount_zscore",
+        "importance": 1.3912911689500849
+      },
+      {
+        "feature": "device_observed_age_seconds",
+        "importance": 1.3454673453438637
+      },
+      {
+        "feature": "merchant_prior_unique_customers",
+        "importance": 1.2796046489144366
+      },
+      {
+        "feature": "merchant_unique_customers_24h",
+        "importance": 1.2036103805153981
+      },
+      {
+        "feature": "device_prior_1h_count",
+        "importance": 1.1735664273545645
+      },
+      {
+        "feature": "device_seconds_since_last",
+        "importance": 1.159240185188331
+      },
+      {
+        "feature": "customer_merchant_share_of_customer_history",
+        "importance": 1.1504094856740261
+      },
+      {
+        "feature": "customer_device_seconds_since_last",
+        "importance": 1.1036737826266534
+      },
+      {
+        "feature": "customer_prior_count",
+        "importance": 1.0388738125033397
+      },
+      {
+        "feature": "customer_merchant_seconds_since_last",
+        "importance": 0.8579280811155507
+      },
+      {
+        "feature": "customer_observed_age_seconds",
+        "importance": 0.8437899105073783
+      },
+      {
+        "feature": "merchant_transactions_24h",
+        "importance": 0.8391168100656309
+      },
+      {
+        "feature": "device_prior_other_customer_transaction_count",
+        "importance": 0.817936134759842
+      },
+      {
+        "feature": "merchant_category",
+        "importance": 0.7904475408457838
+      },
+      {
+        "feature": "transaction_type",
+        "importance": 0.7717408255628144
+      },
+      {
+        "feature": "customer_prior_mean_amount",
+        "importance": 0.7563688980912135
+      },
+      {
+        "feature": "weekday",
+        "importance": 0.5727547386611621
+      },
+      {
+        "feature": "payment_method",
+        "importance": 0.5604219982201979
+      },
+      {
+        "feature": "device_type",
+        "importance": 0.25168807350435335
+      },
+      {
+        "feature": "customer_merchant_prior_count",
+        "importance": 0.23781272056013517
+      },
+      {
+        "feature": "customer_first_seen",
+        "importance": 0.14833692255670736
+      },
+      {
+        "feature": "device_type_missing",
+        "importance": 0.10897603919589745
+      },
+      {
+        "feature": "is_weekend",
+        "importance": 0.06500888976090874
+      },
+      {
+        "feature": "location_missing",
+        "importance": 0.0015363703190084063
+      },
+      {
+        "feature": "merchant_category_missing",
+        "importance": 0.0
+      },
+      {
+        "feature": "customer_merchant_is_new",
+        "importance": 0.0
+      }
+    ]
+  },
+  "fold_replays": {
+    "F2": {
+      "fold": 1,
+      "rows": 240065,
+      "average_precision": 0.7318237296624752,
+      "prediction_identity_hash": "0606cde313e41ee15fe26aef6dfad447c3c0075e5238596c749a319b7e507f73",
+      "verified": true
+    },
+    "F1": {
+      "fold": 0,
+      "rows": 232108,
+      "average_precision": 0.7968039532373361,
+      "prediction_identity_hash": "4085284aa4cab60972514aeff2232d128d7e046385c283c448011272907c5473",
+      "verified": true
+    }
+  },
+  "runtime_seconds": 57.49950579999859,
+  "reference_runs": {
+    "R023": {
+      "compatible": true,
+      "metrics": {
+        "F1": 0.7902095672408987,
+        "F2": 0.7287341012145063,
+        "F2_early": 0.787651107503251,
+        "F2_late_corrected": 0.6760231698130265,
+        "July_1_15": 0.5085631659936115
+      },
+      "delta_vs_reference": {
+        "F1": 0.0065943859964373575,
+        "F2": 0.003089628447968895,
+        "F2_early": 0.002997763203982595,
+        "F2_late_corrected": 0.002809901547422222,
+        "July_1_15": 0.0035165517980484395
+      }
+    }
+  },
+  "diagnostics_path": null,
+  "diagnostics_error": null,
+  "test_inference": false,
+  "submission_created": false
+}

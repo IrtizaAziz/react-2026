@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "identity": "b307e198831a68ddf835c1adecb2787ac42be28b87dd28cc030066e5e59c6080",
+  "module": "src.device_recent_sharing",
+  "module_source_sha256": {
+    "C:\\Users\\IRTIZA\\Downloads\\Datathon\\react-2026\\src\\customer_history.py": "1e43ea1b15c7b86c4187917bdc35fe40f30ffbdd4695458d4f2125ae82b7c779",
+    "C:\\Users\\IRTIZA\\Downloads\\Datathon\\react-2026\\src\\customer_relationships.py": "c83515d9c37621532aae8fc321b2c55bcf4271663f808a71af2b1090ad4ecf31",
+    "C:\\Users\\IRTIZA\\Downloads\\Datathon\\react-2026\\src\\device_recent_sharing.py": "00933ba3078c84aba8db39a45b728a5ecffaa81aecda78673a7dfcfa458f2836"
+  },
+  "AVAILABLE_FEATURES": [
+    "device_unique_customers_24h",
+    "device_unique_customers_7d",
+    "device_other_customers_24h",
+    "device_other_customers_7d",
+    "device_7d_unique_to_lifetime_unique_ratio"
+  ],
+  "results": {
+    "strict_past": true,
+    "equal_timestamp_isolation": true,
+    "oracle": true,
+    "permutation_invariance": true,
+    "duplicate_same_timestamp_pair": true,
+    "future_independence": true,
+    "label_independence": true,
+    "chunk_vs_whole": true,
+    "excluding_current_customer": true,
+    "raw_frame_compatibility": true
+  },
+  "runner_policy_version": "react-feature-experiment-v1"
+}

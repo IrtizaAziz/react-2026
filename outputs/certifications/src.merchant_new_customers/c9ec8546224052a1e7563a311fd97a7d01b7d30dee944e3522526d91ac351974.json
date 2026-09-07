@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "identity": "c9ec8546224052a1e7563a311fd97a7d01b7d30dee944e3522526d91ac351974",
+  "module": "src.merchant_new_customers",
+  "module_source_sha256": {
+    "C:\\Users\\IRTIZA\\Downloads\\Datathon\\react-2026\\src\\merchant_new_customers.py": "0932f5473e640259972d5628a989c77becbcd13ce25fc0fd3740e123bafef707"
+  },
+  "AVAILABLE_FEATURES": [
+    "merchant_new_customers_24h",
+    "merchant_new_customers_7d",
+    "merchant_new_customer_share_24h",
+    "merchant_new_customer_share_7d",
+    "merchant_seconds_since_last_new_customer"
+  ],
+  "results": {
+    "strict_past": true,
+    "oracle": true,
+    "equal_timestamp_isolation": true,
+    "permutation_invariance": true,
+    "future_independence": true,
+    "label_independence": true,
+    "chunk_vs_whole": true
+  },
+  "runner_policy_version": "react-feature-experiment-v1"
+}

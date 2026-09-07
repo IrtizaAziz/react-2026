@@ -1,0 +1,14 @@
+{
+  "experiment_id": "R028",
+  "parent": "R026",
+  "feature_module": "src.customer_new_merchants",
+  "added_features": [
+    "customer_seconds_since_last_new_merchant"
+  ],
+  "hypothesis": "The time since a customer last formed a new merchant relationship captures relationship-change recency beyond R026, while the rolling new-merchant count and share features bundled in R023 may have diluted this signal.",
+  "incumbent": "R017",
+  "reference_runs": [
+    "R023"
+  ],
+  "predict_test": false
+}

@@ -1,0 +1,12 @@
+{
+  "experiment_id": "R035",
+  "parent": "R029",
+  "feature_module": "src.device_merchant",
+  "added_features": [
+    "device_merchant_prior_count",
+    "device_merchant_share_of_device_history"
+  ],
+  "hypothesis": "Device?merchant familiarity captures whether a device is interacting with merchants that are normal for its own strictly prior history, adding a distinct pair-context signal beyond R029's customer, device, merchant, and merchant-composition features.",
+  "incumbent": "R017",
+  "predict_test": false
+}

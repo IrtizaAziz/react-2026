@@ -1,0 +1,11 @@
+{
+  "experiment_id": "R026",
+  "parent": "R017",
+  "feature_module": "src.merchant_new_customers",
+  "added_features": [
+    "merchant_new_customer_share_24h"
+  ],
+  "hypothesis": "The merchant's 24-hour share of new customers captures incremental customer-composition signal beyond R017's merchant scale and activity features, while redundant raw influx features in R025 may have diluted its contribution.",
+  "incumbent": "R017",
+  "predict_test": false
+}

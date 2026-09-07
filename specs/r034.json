@@ -1,0 +1,12 @@
+{
+  "experiment_id": "R034",
+  "parent": "R029",
+  "feature_module": "src.customer_temporal_habits",
+  "added_features": [
+    "customer_daypart_share",
+    "customer_weekday_share"
+  ],
+  "hypothesis": "A transaction that occurs at an unusual time relative to the customer's own strictly prior temporal habits provides incremental fraud-ranking signal beyond R029's behavioral, relationship, merchant, and composition features.",
+  "incumbent": "R017",
+  "predict_test": false
+}

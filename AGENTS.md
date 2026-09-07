@@ -55,6 +55,8 @@ Near the deadline, compare candidates using CV, variance, robustness, validation
 
 ## Working and verification
 
+For every live REACT experiment, invoke `python -m src.react_runner supervise ...` rather than `run` directly. The supervisor launches the immutable runner unchanged, emits a 60-second terminal heartbeat, and reports the final artifact status; never poll PowerShell process IDs manually. After launching a post-fit report command, use `python -m src.react_runner wait-for <repository-relative-artifact-path>` rather than manual sleep/path checks.
+
 Do not invent a task, target, metric, direction, or validation strategy. Keep assumptions separate from confirmed facts. Update CURRENT_STATE.md as verified facts arrive, without silently declaring a best model or changing counters.
 
 After each meaningful stage, run proportionate checks, report what was created and any assumptions, identify remaining human decisions, and state the next highest-value action. Do not train on dummy/external data to develop competition models. The user explicitly permits a tiny locally generated synthetic integration fit and replay solely for smoke testing, in temporary directories outside the competition tracker.

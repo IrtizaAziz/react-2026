@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "identity": "6dceda8e39172237aabcaeb8802d48c6337c3410d9aed51b46b4c6ae0ca437d0",
+  "module": "src.customer_temporal_habits",
+  "module_source_sha256": {
+    "C:\\Users\\IRTIZA\\Downloads\\Datathon\\react-2026\\src\\customer_temporal_habits.py": "50eb81f731a2a39fd38c3a569bde5c26244f77592f1ed9649d2e9877a7b56e61"
+  },
+  "AVAILABLE_FEATURES": [
+    "customer_daypart_share",
+    "customer_weekday_share"
+  ],
+  "results": {
+    "oracle": true,
+    "strict_past": true,
+    "equal_timestamp_isolation": true,
+    "permutation_invariance": true,
+    "duplicate_same_timestamp_pair": true,
+    "future_independence": true,
+    "label_independence": true,
+    "chunk_vs_whole": true,
+    "raw_frame_compatibility": true
+  },
+  "runner_policy_version": "react-feature-experiment-v1"
+}

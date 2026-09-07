@@ -83,6 +83,42 @@ Screening is directional evidence only; it does not create an experiment or repl
 
 The ledger is for one experiment process at a time. Brief locking protects edits; do not run concurrent training commands or edit the tracker while a command is updating it. A crashed stale lock requires confirming no process is active before removing that specific lock. No model is automatically declared best.
 
+## Low-token feature experiments
+
+The spec-driven REACT runner is the default path for a future temporal feature experiment. It never reads test data, makes test predictions, creates a submission, or changes a locked fold. It inherits the parent model recipe exactly, so it cannot combine a model change with a feature change.
+
+For a genuinely new temporal mechanism, implement one generic feature module with `AVAILABLE_FEATURES`, `build_features(raw_frame, requested_features)`, and `certification_cases()`. The certification cases must cover oracle parity, strict-past behavior, equal-timestamp isolation, permutation invariance, future independence, label independence, and chunk-versus-whole equivalence. A later ablation may reuse that same certified engine and select only an ordered subset of `AVAILABLE_FEATURES`; no engine rewrite is needed.
+
+Write a small JSON spec (illustrative only; this repository does **not** create R026):
+
+```json
+{
+  "experiment_id": "R026",
+  "parent": "R017",
+  "feature_module": "src.feature_modules.some_temporal_mechanism",
+  "added_features": ["some_strictly_past_feature"],
+  "hypothesis": "The selected strictly-past feature improves recent fraud ranking.",
+  "predict_test": false
+}
+```
+
+Then run the local workflow:
+
+```powershell
+python -m src.react_runner preflight --spec specs/r026.json
+python -m src.react_runner supervise --spec specs/r026.json --authorize R026
+```
+
+`--authorize` must exactly match both the spec ID and the next unused immutable R-ID immediately before reservation. The runner checks raw-input readability and hashes before reserving an ID, verifies/reuses feature certification by source hash, verifies a parent-matrix cache when one is available, runs F2 first, performs the fixed incumbent screen, conditionally runs F1, replays OOF predictions, calculates parent and incumbent deltas, applies submission gates, and writes immutable provenance plus `decision_report.json`. Use `--recertify` to force the full causal suite. A cache with a bad hash/schema/dtype/ID/label/split fingerprint is rejected rather than trusted; without a cache the runner rebuilds only when the required frozen parent-source files are byte-identical to the checkout, otherwise it stops safely.
+
+After accepting an experiment as the next feature-development parent, materialize its training matrix once before deriving the next experiment:
+
+```powershell
+python -m src.react_runner cache-parent --run R026
+```
+
+The command accepts only completed immutable R-IDs, rebuilds from recorded frozen source, validates provenance and alignment, never trains or creates predictions, and refuses to overwrite an existing cache. Use `--verify-only` to validate an existing cache without writing it.
+
 ## Predict and generate a submission
 
 Test inference is a separate stage after all model fitting:

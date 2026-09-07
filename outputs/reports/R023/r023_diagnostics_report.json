@@ -1,0 +1,115 @@
+{
+  "experiment_id": "R023",
+  "parent": "R017",
+  "scores": {
+    "F1": 0.7902095672408987,
+    "F2": 0.7287341012145063,
+    "F2_early": 0.787651107503251,
+    "F2_late_corrected": 0.6760231698130265,
+    "July": 0.5085631659936115,
+    "June_15_30": 0.8095716944735812,
+    "July_1_7": 0.47060119829942426,
+    "July_8_15": 0.5372500564958975
+  },
+  "deltas_vs_R017": {
+    "F1": 0.00038060138686202283,
+    "F2": -0.0008600916903894751,
+    "F2_early": -0.0012934670136428572,
+    "F2_late_corrected": -0.0005011262416183548,
+    "July": -0.0007178652241328631,
+    "June_15_30": -0.0005618007143808335,
+    "July_1_7": -0.0016037455876051765,
+    "July_8_15": 0.00019382786118504747
+  },
+  "decision": "FLAT-MIXED",
+  "decision_hierarchy": [
+    "July",
+    "corrected F2 late",
+    "F2",
+    "F1",
+    "both July subperiods"
+  ],
+  "operational_gates": {
+    "July_at_least_plus_0.003": false,
+    "F2_late_at_least_plus_0.002": false,
+    "F2_at_least_plus_0.003": false,
+    "no_meaningful_F1_degradation": true,
+    "neither_July_subperiod_materially_worse": true
+  },
+  "operational_gates_cleared": false,
+  "customer_new_merchants_7d_support_F2": {
+    "zero": {
+      "rows": 191589,
+      "positives": 2641,
+      "fraud_prevalence": 0.013784716241537875,
+      "average_precision": 0.6505597774250166
+    },
+    "one": {
+      "rows": 38168,
+      "positives": 787,
+      "fraud_prevalence": 0.020619367009012787,
+      "average_precision": 0.7989765876707063
+    },
+    "two_to_three": {
+      "rows": 8985,
+      "positives": 469,
+      "fraud_prevalence": 0.05219810795770729,
+      "average_precision": 0.9476315854354076
+    },
+    "four_plus": {
+      "rows": 1323,
+      "positives": 131,
+      "fraud_prevalence": 0.09901738473167045,
+      "average_precision": 0.9505685217351235
+    }
+  },
+  "new_feature_importances": {
+    "F2": [
+      {
+        "feature": "customer_seconds_since_last_new_merchant",
+        "importance": 1.6888184205569419
+      },
+      {
+        "feature": "customer_new_merchant_share_30d",
+        "importance": 0.238057649193444
+      },
+      {
+        "feature": "customer_new_merchants_30d",
+        "importance": 0.1581377738243725
+      },
+      {
+        "feature": "customer_new_merchants_7d",
+        "importance": 0.13227213495873086
+      },
+      {
+        "feature": "customer_new_merchant_share_7d",
+        "importance": 0.12242589006629444
+      }
+    ],
+    "F1": [
+      {
+        "feature": "customer_seconds_since_last_new_merchant",
+        "importance": 1.7655604314463975
+      },
+      {
+        "feature": "customer_new_merchant_share_30d",
+        "importance": 0.8027405992735439
+      },
+      {
+        "feature": "customer_new_merchant_share_7d",
+        "importance": 0.4578162500087132
+      },
+      {
+        "feature": "customer_new_merchants_30d",
+        "importance": 0.39182331336134274
+      },
+      {
+        "feature": "customer_new_merchants_7d",
+        "importance": 0.11694404315567494
+      }
+    ]
+  },
+  "oof_row_transaction_id_alignment": true,
+  "test_inference": false,
+  "submission_created": false
+}

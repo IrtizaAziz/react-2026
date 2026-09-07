@@ -1,0 +1,15 @@
+{
+  "experiment_id": "R033",
+  "parent": "R029",
+  "feature_module": "src.device_recent_sharing",
+  "added_features": [
+    "device_other_customers_24h"
+  ],
+  "hypothesis": "Acute cross-customer device sharing provides incremental fraud-ranking signal beyond R029's merchant customer-composition features, so combining the independently useful device-sharing signal from R032 with the promoted merchant-composition lineage may produce additive recent-period gains.",
+  "incumbent": "R017",
+  "reference_runs": [
+    "R032",
+    "R026"
+  ],
+  "predict_test": false
+}

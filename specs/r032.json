@@ -1,0 +1,14 @@
+{
+  "experiment_id": "R032",
+  "parent": "R026",
+  "feature_module": "src.device_recent_sharing",
+  "added_features": [
+    "device_other_customers_24h"
+  ],
+  "hypothesis": "The number of other customers using a device in the prior 24 hours captures acute cross-customer device sharing beyond R026, while the broader R015 recent-sharing package may have diluted this concentrated signal.",
+  "incumbent": "R017",
+  "reference_runs": [
+    "R015"
+  ],
+  "predict_test": false
+}

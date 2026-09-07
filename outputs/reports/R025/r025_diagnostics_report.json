@@ -1,0 +1,145 @@
+{
+  "experiment_id": "R025",
+  "parent": "R017",
+  "scores": {
+    "F1": 0.7979730357694419,
+    "F2": 0.7309301083657691,
+    "F2_early": 0.7900010308105502,
+    "F2_late_corrected": 0.6774907691636698,
+    "July": 0.5098570268862513,
+    "June_15_30": 0.8105158589999475,
+    "July_1_7": 0.4741796389413031,
+    "July_8_15": 0.5369053434280204
+  },
+  "deltas_vs_R017": {
+    "F1": 0.008144069915405172,
+    "F2": 0.0013359154608733048,
+    "F2_early": 0.0010564562936563604,
+    "F2_late_corrected": 0.000966473109024979,
+    "July": 0.0005759956685069678,
+    "June_15_30": 0.00038236381198542,
+    "July_1_7": 0.0019746950542736674,
+    "July_8_15": -0.00015088520669204186
+  },
+  "decision": "FLAT-MIXED",
+  "decision_hierarchy": [
+    "July",
+    "corrected F2 late",
+    "F2",
+    "F1",
+    "both July subperiods"
+  ],
+  "scarce_submission_gates": {
+    "July >= +0.003": false,
+    "corrected F2 late >= +0.002": false,
+    "F2 >= +0.003": false,
+    "no meaningful F1 degradation": true,
+    "neither July subperiod materially worse": true
+  },
+  "scarce_submission_gates_cleared": false,
+  "merchant_new_customer_influx_buckets_F2": {
+    "no recent new customers": {
+      "rows": 37791,
+      "positives": 695,
+      "fraud_prevalence": 0.018390622105792384,
+      "average_precision": 0.7453797410829477
+    },
+    "low influx (1)": {
+      "rows": 13662,
+      "positives": 250,
+      "fraud_prevalence": 0.0182989313424096,
+      "average_precision": 0.7529170777525663
+    },
+    "moderate influx (2-4)": {
+      "rows": 21448,
+      "positives": 616,
+      "fraud_prevalence": 0.028720626631853787,
+      "average_precision": 0.8323617283740941
+    },
+    "high influx (5+)": {
+      "rows": 167164,
+      "positives": 2467,
+      "fraud_prevalence": 0.01475796224067383,
+      "average_precision": 0.6987398373005972
+    }
+  },
+  "spearman_correlations_F2_new_features_vs_R017_merchant_scale": {
+    "merchant_prior_transaction_count": {
+      "merchant_new_customers_24h": 0.950100176088942,
+      "merchant_new_customers_7d": 0.9661427940778834,
+      "merchant_new_customer_share_24h": -0.1216105382036423,
+      "merchant_new_customer_share_7d": -0.49505006072734437,
+      "merchant_seconds_since_last_new_customer": -0.7639557491504164
+    },
+    "merchant_prior_unique_customers": {
+      "merchant_new_customers_24h": 0.9509212272937158,
+      "merchant_new_customers_7d": 0.9669416567837955,
+      "merchant_new_customer_share_24h": -0.11970365921083956,
+      "merchant_new_customer_share_7d": -0.49147385720666203,
+      "merchant_seconds_since_last_new_customer": -0.7650193332280452
+    },
+    "merchant_transactions_24h": {
+      "merchant_new_customers_24h": 0.9654118710330606,
+      "merchant_new_customers_7d": 0.9748918759807527,
+      "merchant_new_customer_share_24h": -0.10322944704905404,
+      "merchant_new_customer_share_7d": -0.48802265461024197,
+      "merchant_seconds_since_last_new_customer": -0.7727935872856797
+    },
+    "merchant_unique_customers_24h": {
+      "merchant_new_customers_24h": 0.9660492890841889,
+      "merchant_new_customers_7d": 0.9753770050533354,
+      "merchant_new_customer_share_24h": -0.10270929535367108,
+      "merchant_new_customer_share_7d": -0.4879238136368515,
+      "merchant_seconds_since_last_new_customer": -0.7730146716401619
+    }
+  },
+  "new_feature_importances_descriptive_only": {
+    "F2": [
+      {
+        "feature": "merchant_new_customer_share_24h",
+        "importance": 5.801404739024912
+      },
+      {
+        "feature": "merchant_seconds_since_last_new_customer",
+        "importance": 1.4874852767429214
+      },
+      {
+        "feature": "merchant_new_customer_share_7d",
+        "importance": 1.066548256133243
+      },
+      {
+        "feature": "merchant_new_customers_24h",
+        "importance": 0.7989280596274969
+      },
+      {
+        "feature": "merchant_new_customers_7d",
+        "importance": 0.5131019146738444
+      }
+    ],
+    "F1": [
+      {
+        "feature": "merchant_new_customer_share_24h",
+        "importance": 3.2196415098015887
+      },
+      {
+        "feature": "merchant_seconds_since_last_new_customer",
+        "importance": 1.5356785508562358
+      },
+      {
+        "feature": "merchant_new_customers_24h",
+        "importance": 1.081075757466192
+      },
+      {
+        "feature": "merchant_new_customers_7d",
+        "importance": 0.851280615956702
+      },
+      {
+        "feature": "merchant_new_customer_share_7d",
+        "importance": 0.7811728206207827
+      }
+    ]
+  },
+  "oof_row_transaction_id_alignment": true,
+  "test_inference": false,
+  "submission_created": false
+}

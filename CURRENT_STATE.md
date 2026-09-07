@@ -36,6 +36,12 @@ R017 is the local standalone lead on the locked folds: it appends five strictly-
 Best live CV:
 R017: F1 0.78982897; F2 0.72959419; historical S = 0.74766462. R013: F1 0.76266259; F2 0.70630069; S = 0.72320926. R007: F1 0.75433429; F2 0.69000428; S = 0.70930329. R011: F1 0.75030502; F2 0.68834761; S = 0.70193461.
 
+Latest immutable OOF ensemble:
+R021 is the preregistered 0.75*R017 + 0.25*R020 blend, evaluated without retraining, test inference, or submission. It improves R017 on F1 (+0.00541234), F2 (+0.00224244), and July (+0.00212758), but is PROMISING-BUT-BELOW-SUBMISSION-GATE under the pre-established scarce-submission gates: July is below roughly +0.003, corrected F2 late is +0.00186691 (below roughly +0.002), and F2 is below roughly +0.003. R017 remains the primary incumbent; R021 is not a submission candidate on these gates.
+
+Latest feature experiment:
+R025 appends five strictly-past merchant-side new-customer relationship-composition features to R017. It is FLAT-MIXED versus R017: F2 +0.001336, corrected F2 late +0.000966, July +0.000576, and F1 +0.008144. It passes the non-degradation checks but does not clear the fixed July, corrected-late, or F2 scarce-submission gates. No test predictions or submission were created.
+
 Best live public LB:
 None; zero live submissions are recorded for today.
 

@@ -1,0 +1,186 @@
+{
+  "train_file": "train.csv",
+  "test_file": "test.csv",
+  "sample_file": "sample_submission.csv",
+  "target": "fraud",
+  "id_columns": [
+    "transaction_id"
+  ],
+  "features": [
+    "amount_bdt",
+    "log_amount_bdt",
+    "account_age_days",
+    "hour",
+    "weekday",
+    "is_weekend",
+    "merchant_category",
+    "device_type",
+    "location",
+    "payment_method",
+    "transaction_type",
+    "merchant_category_missing",
+    "device_type_missing",
+    "location_missing",
+    "customer_prior_count",
+    "customer_first_seen",
+    "customer_seconds_since_last",
+    "customer_observed_age_seconds",
+    "customer_prior_mean_amount",
+    "customer_prior_mean_log_amount",
+    "customer_prior_std_log_amount",
+    "customer_amount_to_prior_mean",
+    "customer_log_amount_minus_prior_mean",
+    "customer_log_amount_zscore",
+    "customer_device_prior_count",
+    "customer_device_new",
+    "customer_device_seconds_since_last",
+    "customer_device_count_share",
+    "customer_location_prior_count",
+    "customer_location_new",
+    "customer_location_seconds_since_last",
+    "customer_location_count_share",
+    "device_prior_count",
+    "device_prior_distinct_customer_count",
+    "device_prior_distinct_customer_count_excluding_current",
+    "device_seconds_since_last",
+    "device_observed_age_seconds",
+    "device_prior_other_customer_transaction_count",
+    "customer_share_of_device_prior_transactions",
+    "customer_prior_1h_count",
+    "device_prior_1h_count",
+    "customer_merchant_prior_count",
+    "customer_merchant_is_new",
+    "customer_merchant_seconds_since_last",
+    "customer_merchant_share_of_customer_history",
+    "merchant_prior_transaction_count",
+    "merchant_seconds_since_last",
+    "merchant_prior_unique_customers",
+    "merchant_transactions_24h",
+    "merchant_unique_customers_24h",
+    "merchant_new_customer_share_24h",
+    "device_other_customers_24h"
+  ],
+  "row_features": [],
+  "categorical_features": [
+    "merchant_category",
+    "device_type",
+    "location",
+    "payment_method",
+    "transaction_type"
+  ],
+  "task": "classification",
+  "metric": "average_precision",
+  "metric_direction": "higher",
+  "metric_params": {},
+  "custom_metric": null,
+  "custom_metric_kind": null,
+  "prediction_kind": "probability",
+  "class_order": [
+    0,
+    1
+  ],
+  "validation_type": "calendar_time",
+  "validation_rationale": "Two expanding 62-day half-open timestamp windows match the observed test horizon; F2 is the recent primary view.",
+  "n_splits": 2,
+  "shuffle": false,
+  "seed": 42,
+  "group_column": null,
+  "time_column": "timestamp",
+  "time_gap": 0,
+  "time_valid_fraction": 0.2,
+  "calendar_folds": [
+    {
+      "train_before": "2026-03-14",
+      "valid_start": "2026-03-14",
+      "valid_end": "2026-05-15"
+    },
+    {
+      "train_before": "2026-05-15",
+      "valid_start": "2026-05-15",
+      "valid_end": "2026-07-16"
+    }
+  ],
+  "feature_profile": null,
+  "execution_fold_order": [
+    1,
+    0
+  ],
+  "diagnostic_windows": [
+    {
+      "name": "F2_early",
+      "fold": 1,
+      "start": "2026-05-15",
+      "end": "2026-06-15"
+    },
+    {
+      "name": "F2_late_corrected",
+      "fold": 1,
+      "start": "2026-06-15",
+      "end": "2026-07-16"
+    },
+    {
+      "name": "July_1_15",
+      "fold": 1,
+      "start": "2026-07-01",
+      "end": "2026-07-16"
+    },
+    {
+      "name": "June_15_30",
+      "fold": 1,
+      "start": "2026-06-15",
+      "end": "2026-07-01"
+    },
+    {
+      "name": "July_1_7",
+      "fold": 1,
+      "start": "2026-07-01",
+      "end": "2026-07-08"
+    },
+    {
+      "name": "July_8_15",
+      "fold": 1,
+      "start": "2026-07-08",
+      "end": "2026-07-16"
+    }
+  ],
+  "debug_expected_fold_scores": {},
+  "splits_file": "outputs/reports/live_foundation_splits.json",
+  "model": "catboost",
+  "model_params": {
+    "loss_function": "Logloss",
+    "iterations": 800,
+    "depth": 6,
+    "learning_rate": 0.05,
+    "l2_leaf_reg": 10,
+    "bootstrap_type": "Bernoulli",
+    "subsample": 0.8,
+    "thread_count": 8,
+    "task_type": "CPU",
+    "one_hot_max_size": 64
+  },
+  "text_column": null,
+  "predict_test": false,
+  "aggregation": null,
+  "submission_columns": [
+    "fraud"
+  ],
+  "submission_kind": "probability",
+  "submission_alignment": "id",
+  "positive_class": 1,
+  "label_threshold": null,
+  "smoke_test": false,
+  "supervised_weighting": null,
+  "early_stop_screen": {
+    "fold": 1,
+    "references": {
+      "F2": 0.7295941929048958,
+      "F2_late_corrected": 0.6765242960546448,
+      "July_1_15": 0.5092810312177444
+    },
+    "maximum_drops": {
+      "F2": 0.01,
+      "F2_late_corrected": 0.005,
+      "July_1_15": 0.005
+    }
+  }
+}

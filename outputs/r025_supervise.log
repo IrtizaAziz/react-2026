@@ -1,0 +1,12 @@
+REACT supervise started: experiment=R025 pid=21712
+REACT supervise heartbeat: experiment=R025 elapsed=60s
+REACT supervise heartbeat: experiment=R025 elapsed=120s
+REACT supervise heartbeat: experiment=R025 elapsed=180s
+REACT supervise heartbeat: experiment=R025 elapsed=240s
+REACT supervise heartbeat: experiment=R025 elapsed=300s
+REACT supervise heartbeat: experiment=R025 elapsed=360s
+REACT supervise heartbeat: experiment=R025 elapsed=420s
+REACT supervise heartbeat: experiment=R025 elapsed=480s
+REACT supervise heartbeat: experiment=R025 elapsed=540s
+REACT supervise heartbeat: experiment=R025 elapsed=600s
+REACT supervise finished: experiment=R025 exit_code=2 status=completed F1=0.797973 F2=0.730930 report=C:\Users\IRTIZA\Downloads\Datathon\react-2026\outputs\reports\R025.json training_log=C:\Users\IRTIZA\Downloads\Datathon\react-2026\outputs\reports\R025\training.log

@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "identity": "8d03d80d66579a2ee5246a05c76bc118d5734fc6537f222197cc13665c3b5eea",
+  "module": "src.device_merchant",
+  "module_source_sha256": {
+    "C:\\Users\\IRTIZA\\Downloads\\Datathon\\react-2026\\src\\customer_history.py": "1e43ea1b15c7b86c4187917bdc35fe40f30ffbdd4695458d4f2125ae82b7c779",
+    "C:\\Users\\IRTIZA\\Downloads\\Datathon\\react-2026\\src\\customer_relationships.py": "c83515d9c37621532aae8fc321b2c55bcf4271663f808a71af2b1090ad4ecf31",
+    "C:\\Users\\IRTIZA\\Downloads\\Datathon\\react-2026\\src\\device_merchant.py": "21fc278c6d2edefa45f69610a63ef83f022d2f68b18fe4eeeea0fbc6af278a82"
+  },
+  "AVAILABLE_FEATURES": [
+    "device_merchant_prior_count",
+    "device_merchant_share_of_device_history"
+  ],
+  "results": {
+    "oracle": true,
+    "strict_past": true,
+    "equal_timestamp_isolation": true,
+    "permutation_invariance": true,
+    "duplicate_same_timestamp_pair": true,
+    "future_independence": true,
+    "label_independence": true,
+    "chunk_vs_whole": true,
+    "raw_frame_compatibility": true
+  },
+  "runner_policy_version": "react-feature-experiment-v1"
+}

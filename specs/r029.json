@@ -1,0 +1,14 @@
+{
+  "experiment_id": "R029",
+  "parent": "R026",
+  "feature_module": "src.merchant_new_customers",
+  "added_features": [
+    "merchant_seconds_since_last_new_customer"
+  ],
+  "hypothesis": "The time since a merchant last acquired a new customer captures temporal customer-composition change beyond R026's 24-hour new-customer share, while the broader R025 package may have diluted this recency signal.",
+  "incumbent": "R017",
+  "reference_runs": [
+    "R025"
+  ],
+  "predict_test": false
+}
