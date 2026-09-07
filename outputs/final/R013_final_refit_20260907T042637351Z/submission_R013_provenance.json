@@ -1,0 +1,80 @@
+{
+  "selected_experiment_id": "R013",
+  "profile": "react2026_static_customer_history_relationships_device_global_velocity_customer_merchant",
+  "config_hash": "c3f9617a5444291b56ba007e92d51fd9b0d5ff56007f9fe1118ac82929b9bcc3",
+  "source_hashes": {
+    "__init__.py": "a9aeb022698dcebd09ee1a054d513e28a0cb349fb61a2788fbf4765a8232b54c",
+    "audit.py": "14d46163cb0181c41b65d9b9fa8119eedf82ea512426df61b345ee9c2ee477f7",
+    "autogluon_adapter.py": "0d3bf0b21a76387138d05c24b5b84668b93f4fa6d6743ddc329c758006ee758b",
+    "compare.py": "0f70c45408f61ee0704daf115509b058f883c5a5885f7de2290c3b2874b564d2",
+    "config.py": "e5b6d8cdcb2f464e20d145d11e676ee6a58c57624ba359f58729d46ce9f20ad4",
+    "customer_amount_30d.py": "dcf4a81a665c746618662a5f7267c7d909734afeae5f8b5f75cf683979a3c080",
+    "customer_history.py": "1e43ea1b15c7b86c4187917bdc35fe40f30ffbdd4695458d4f2125ae82b7c779",
+    "customer_merchant.py": "d99c79578a3a0a75a49ac629bacec655b7f37f108941b5a7d191b500e909cd06",
+    "customer_relationships.py": "c83515d9c37621532aae8fc321b2c55bcf4271663f808a71af2b1090ad4ecf31",
+    "data.py": "cd21265c7b8cd76c205a10bd2a27ff2a1db57b80366446ce4c40af59c675ea21",
+    "ensemble.py": "7c26fd12d633440c29b05e14dbd71d0c7904f2a42d8850c88e7164286315f63f",
+    "export_notebook.py": "85e2401c284e7d3f82f4e3498ca4074a5423cf0cccd7fc4f0ce7a45d92c7bf07",
+    "features.py": "fb4ce97166512fc7b694335e511e9374e72c5613a504215f31257f7871b2e81e",
+    "final_r003_submission.py": "606f95075bc83a341f96f0fb532856392434dcbd8e6261887c09a0de76b52530",
+    "final_r004_submission.py": "490dc41405c70959adb31e7f49efab3c93498d0707f83a138589e5ab24b7231f",
+    "final_r005_submission.py": "fe096e460fde3f22e5b9cfb2653650a62ab67a57c83cf8d39af513c9b29c331c",
+    "live_foundation.py": "c3267085abbfcbc1a88c366686babb2a24d983d78a8f35c9514ffe8b8e3e4a54",
+    "metrics.py": "1caa11d7c514b3de41cf5f2add27b79dd1613f5aa740e9d1a06f2d7e282cb01b",
+    "predict.py": "30cd1dcd52004eb8fa9dd2474abfd804f2c5f4352372c5916631bde7b5188463",
+    "r012_report.py": "a1978f72ccf2c52e8ef9cf01b08023169fe2dc51c6871605e380bdf4f8187e39",
+    "replay.py": "27d3fd61440345e8026fa1a958853f54289a25dd5287ce74f58b17c40b87f894",
+    "screen.py": "9466c2c19dffbd33790f2ea314b0a6ec8f353d8dba30841bd68f88c619282909",
+    "submission.py": "d61cc034fe449509994a0eb841aa8a8737471d1c9c606a37d4c788fc96534438",
+    "temporal.py": "6d05d82450a93ad7ebf60ed5d6e04c1cc3c51655a855315f147ea7f39c9caa81",
+    "train.py": "6289936ec81535fca8b406ea59130d045487607363c826f46eeb9e1a40db9beb",
+    "utils.py": "d91d748a7059adaaeb5804084ae8b25304fa4665c4e49dfb412f93df4d408d80",
+    "validation.py": "d96feaf1e3145999c8db666929c06398a83ee6b0726d667b26d4bcbaa3c81e90",
+    "velocity.py": "ba5364c14925972267c04891deadd71e8ed09ace43d725f1fc8a055fa1782046"
+  },
+  "train_hash": "06823ea80cceade018b2428e0c7c9cb89e4efae45fcad8cbf61e8b27b350df20",
+  "test_hash": "ebac681e2af6a375f126ad5bfdc154b0584adbc893845fb7edf20b8465484c6b",
+  "feature_manifest_hash": "01e184661a2c78e6227a7dbff9fd8ae985e1f8dceee5d2f5970deda9e22a8e8f",
+  "model_final_fit_seed": 42,
+  "prediction": {
+    "min": 0.0006922687657563997,
+    "max": 0.9999938470382234,
+    "mean": 0.0192038197769956,
+    "rows": 262648
+  },
+  "submission": {
+    "path": "C:\\Users\\IRTIZA\\Downloads\\Datathon\\react-2026\\submissions\\submission_R013_20260906T223121570162Z.csv",
+    "sha256": "96ea2b8867cc8a53a3db4a43f62d183a73843b0471c56d935bc454c8060f94a9",
+    "columns": [
+      "transaction_id",
+      "fraud"
+    ],
+    "sample_sha256": "67b151c4948c313bced4a6d1ca9e96edbdaeb020f72ecb4dc6404d01f4394f12"
+  },
+  "checks": {
+    "foundation_train_test_hashes": true,
+    "r013_config_source_immutable": true,
+    "r013_exact_manifest": true,
+    "train_seeded_sequential_test_history": true,
+    "same_timestamp_test_rows_isolated": true,
+    "test_feature_order_matches_training": true,
+    "prediction_order_is_test_transaction_order": true,
+    "finite_bounded_predictions": true,
+    "sample_id_alignment": true,
+    "two_column_schema": true,
+    "prior_submission_not_overwritten": true
+  },
+  "final_fit": {
+    "uses_all_labeled_train_rows": true,
+    "uses_fold_models": false,
+    "model_path": "C:\\Users\\IRTIZA\\Downloads\\Datathon\\react-2026\\outputs\\final\\R013_final_refit_20260907T042637351Z\\R013_final_fit_model.pkl",
+    "model_sha256": "ddea4fae215487655b5fcf680641b88c2b0d81c43c0a41f5e2f2b4cdb8c9dd23",
+    "seconds": 43.97507089999999
+  },
+  "git": {
+    "git_commit": "3f82097746d7c3a9fed0673eb5357a385ff3a9a2",
+    "git_dirty": true,
+    "git_note": null
+  },
+  "total_seconds": 229.44726280000032
+}

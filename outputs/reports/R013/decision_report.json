@@ -1,0 +1,58 @@
+{
+  "experiment_id": "R013",
+  "parent": "R007",
+  "causal_parity_preflight": "passed",
+  "pair_history_f2": {
+    "new_customer_merchant_pair": {
+      "rows": 43754,
+      "positives": 1244,
+      "prevalence": 0.028431686245828952,
+      "average_precision": 0.762331656533173
+    },
+    "previously_seen_pair": {
+      "rows": 196311,
+      "positives": 2784,
+      "prevalence": 0.01418157922887663,
+      "average_precision": 0.680584331977789
+    }
+  },
+  "pair_count_buckets_f2": {
+    "0": {
+      "rows": 43754,
+      "positives": 1244,
+      "prevalence": 0.028431686245828952,
+      "average_precision": 0.762331656533173
+    },
+    "1": {
+      "rows": 26713,
+      "positives": 451,
+      "prevalence": 0.01688316549994385,
+      "average_precision": 0.7495764173468505
+    },
+    "2-4": {
+      "rows": 57129,
+      "positives": 906,
+      "prevalence": 0.015858845770099248,
+      "average_precision": 0.7116034963066216
+    },
+    ">=5": {
+      "rows": 112469,
+      "positives": 1427,
+      "prevalence": 0.012687940676986547,
+      "average_precision": 0.6402340630723452
+    }
+  },
+  "deltas_vs_r007": {
+    "F1": 0.008328297857272848,
+    "F2": 0.016296401277971606,
+    "mean": 0.012312349567622172,
+    "early": 0.012187002786835266,
+    "late": 0.020553595866208085,
+    "July": 0.002758021738473393,
+    "June_15_30": 0.03393057346061856,
+    "July_1_7": 0.004874708053823562,
+    "July_8_15": 0.0010682367519306846
+  },
+  "decision": "WIN",
+  "comparison_basis": "identical saved validation rows; original R007 artifacts unmodified"
+}

@@ -1,0 +1,46 @@
+{
+  "experiment_id": "R017",
+  "parent": "R013",
+  "submitted_incumbent": "R013",
+  "scores": {
+    "F1": 0.7898289658540367,
+    "F2": 0.7295941929048958,
+    "F2_early": 0.7889445745168938,
+    "F2_late": 0.6765242960546448,
+    "July": 0.5092810312177444,
+    "June_15_30": 0.8101334951879621,
+    "July_1_7": 0.47220494388702944,
+    "July_8_15": 0.5370562286347125
+  },
+  "deltas_vs_R013_and_submitted_incumbent": {
+    "F1": 0.027166377590212454,
+    "F2": 0.023293507220516707,
+    "F2_early": 0.021747679882117232,
+    "F2_late": 0.026580310356484005,
+    "July": 0.01122904083248455,
+    "June_15_30": 0.034247570605897115,
+    "July_1_7": 0.008411140295737252,
+    "July_8_15": 0.012834050389201823
+  },
+  "late_window_correction": "R017's immutable model/folds and OOF are unchanged; this post-fit calculation restores R013's locked F2_late definition [2026-06-15, 2026-07-16).",
+  "decision": "WIN",
+  "decision_priority": "July -> F2 late -> F2 -> F1",
+  "conclusion": "WIN: all decision-priority slices improve versus R013, including July and the corrected F2 late period.",
+  "oof_row_id_alignment": true,
+  "fold_replays_verified": {
+    "F2": {
+      "fold": 1,
+      "rows": 240065,
+      "average_precision": 0.7295941929048958,
+      "prediction_identity_hash": "0606cde313e41ee15fe26aef6dfad447c3c0075e5238596c749a319b7e507f73",
+      "verified": true
+    },
+    "F1": {
+      "fold": 0,
+      "rows": 232108,
+      "average_precision": 0.7898289658540367,
+      "prediction_identity_hash": "4085284aa4cab60972514aeff2232d128d7e046385c283c448011272907c5473",
+      "verified": true
+    }
+  }
+}

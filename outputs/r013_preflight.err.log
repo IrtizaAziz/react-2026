@@ -1,0 +1,8 @@
+test_pair_counts_recency_share_and_label_isolation (tests.test_r013_customer_merchant.R013CustomerMerchantTests.test_pair_counts_recency_share_and_label_isolation) ... ok
+test_r007_parity_manifest_and_saved_split (tests.test_r013_customer_merchant.R013CustomerMerchantTests.test_r007_parity_manifest_and_saved_split) ... ok
+test_tied_permutation_future_and_chunk_parity (tests.test_r013_customer_merchant.R013CustomerMerchantTests.test_tied_permutation_future_and_chunk_parity) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 304.767s
+
+OK

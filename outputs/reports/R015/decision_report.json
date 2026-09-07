@@ -1,0 +1,105 @@
+{
+  "experiment_id": "R015",
+  "parent": "R013",
+  "causal_parity_preflight": "passed",
+  "window_definition": "[t-window, t), timestamp-batched",
+  "device_other_customers_24h_f2": {
+    "0": {
+      "rows": 205246,
+      "positives": 3089,
+      "prevalence": 0.015050232404041979,
+      "average_precision": 0.674473421022684
+    },
+    "1": {
+      "rows": 32774,
+      "positives": 473,
+      "prevalence": 0.014432171843534508,
+      "average_precision": 0.5911048464566858
+    },
+    "2-4": {
+      "rows": 1900,
+      "positives": 326,
+      "prevalence": 0.17157894736842105,
+      "average_precision": 0.9807911478077325
+    },
+    ">=5": {
+      "rows": 145,
+      "positives": 140,
+      "prevalence": 0.9655172413793104,
+      "average_precision": 1.0
+    }
+  },
+  "device_other_customers_7d_f2": {
+    "0": {
+      "rows": 105394,
+      "positives": 1865,
+      "prevalence": 0.017695504487921513,
+      "average_precision": 0.742138020485449
+    },
+    "1": {
+      "rows": 100244,
+      "positives": 1178,
+      "prevalence": 0.011751326762699014,
+      "average_precision": 0.5408722056638273
+    },
+    "2-4": {
+      "rows": 34181,
+      "positives": 792,
+      "prevalence": 0.023170767385389545,
+      "average_precision": 0.7691265877194111
+    },
+    ">=5": {
+      "rows": 246,
+      "positives": 193,
+      "prevalence": 0.7845528455284553,
+      "average_precision": 0.9998402915329906
+    }
+  },
+  "device_unique_customers_7d_distribution_f2": {
+    "0": 41119,
+    "1": 105019,
+    "2": 72915,
+    "3": 18736,
+    "4": 1844,
+    "5": 228,
+    "6": 70,
+    "7": 38,
+    "8": 63,
+    "9": 26,
+    "10": 7
+  },
+  "ratio_distribution_f2": {
+    "min": 0.0,
+    "p50": 0.25,
+    "p90": 0.5,
+    "p99": 1.0,
+    "max": 1.0
+  },
+  "deltas_vs_r013": {
+    "F1": 0.0028434044460963204,
+    "F2": 0.0013244395151920108,
+    "mean": 0.002083921980644221,
+    "pooled": 0.002812848017397007,
+    "early": 0.002028746923041669,
+    "late": 0.0006842790140525468,
+    "July": -0.0011603692822684808,
+    "June_15_30": 0.0015191076981092566,
+    "July_1_7": -0.00039924349012304683,
+    "July_8_15": -0.0017002799690259973
+  },
+  "deltas_vs_r007": {
+    "F1": 0.011171702303369169,
+    "F2": 0.017620840793163617,
+    "mean": 0.014396271548266393,
+    "pooled": 0.014919250824226515,
+    "early": 0.014215749709876935,
+    "late": 0.021237874880260632,
+    "July": 0.0015976524562049121,
+    "June_15_30": 0.03544968115872782,
+    "July_1_7": 0.004475464563700515,
+    "July_8_15": -0.0006320432170953127
+  },
+  "decision": "FLAT",
+  "acceptance_rule": "F2 average-precision delta versus R013 >= 0.002",
+  "comparison_basis": "identical saved validation rows; prior artifacts unmodified"
+}

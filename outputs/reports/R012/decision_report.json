@@ -1,0 +1,39 @@
+{
+  "experiment_id": "R012",
+  "parent": "R007",
+  "causal_parity_preflight": "passed",
+  "support_diagnostics_f2": {
+    "0": {
+      "rows": 18966,
+      "positives": 316,
+      "prevalence": 0.0166613940736054,
+      "average_precision": 0.5917607527861007
+    },
+    "1-4": {
+      "rows": 84978,
+      "positives": 1381,
+      "prevalence": 0.016251265033302736,
+      "average_precision": 0.6813494853448328
+    },
+    ">=5": {
+      "rows": 136121,
+      "positives": 2331,
+      "prevalence": 0.017124470140536727,
+      "average_precision": 0.7055197881556207
+    }
+  },
+  "deltas_vs_r007": {
+    "F1": 8.527682089198851e-05,
+    "F2": -0.00170744022639302,
+    "mean": -0.0008110817027505712,
+    "early": -0.0019692171248134605,
+    "late": -0.0014767363426233526,
+    "July": -0.001206529244348331,
+    "June_15_30": -0.0015807878782624352,
+    "July_1_7": -0.0021614837408392984,
+    "July_8_15": -0.0004764366794651753
+  },
+  "decision": "FLAT-MIXED",
+  "next_predefined_branch": "customer-merchant familiarity from R007",
+  "comparison_basis": "identical saved validation rows; original R007 OOF artifact remains unmodified"
+}

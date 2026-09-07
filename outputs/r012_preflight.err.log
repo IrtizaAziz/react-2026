@@ -1,0 +1,8 @@
+test_causal_window_semantics_and_no_label_api (tests.test_r012_customer_amount_30d.R012CustomerAmount30DTests.test_causal_window_semantics_and_no_label_api) ... ok
+test_permutation_future_chunk_and_continuation_parity (tests.test_r012_customer_amount_30d.R012CustomerAmount30DTests.test_permutation_future_chunk_and_continuation_parity) ... ok
+test_r007_parity_manifest_and_saved_split (tests.test_r012_customer_amount_30d.R012CustomerAmount30DTests.test_r007_parity_manifest_and_saved_split) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 324.385s
+
+OK

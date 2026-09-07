@@ -1,0 +1,827 @@
+{
+  "experiment_id": "R015",
+  "timestamp": "2026-09-06T22:10:09.557241+00:00",
+  "status": "completed",
+  "hypothesis": "Recent distinct-customer device sharing improves fraud ranking beyond R013 lifetime device sharing.",
+  "change_description": "Append exactly five timestamp-batched recent distinct-customer device-sharing features to immutable R013; retain all R013 features, model settings, saved folds, and no test inference.",
+  "parent_experiment": "R013",
+  "model": "catboost",
+  "config": {
+    "train_file": "train.csv",
+    "test_file": "test.csv",
+    "sample_file": "sample_submission.csv",
+    "target": "fraud",
+    "id_columns": [
+      "transaction_id"
+    ],
+    "features": [
+      "amount_bdt",
+      "log_amount_bdt",
+      "account_age_days",
+      "hour",
+      "weekday",
+      "is_weekend",
+      "merchant_category",
+      "device_type",
+      "location",
+      "payment_method",
+      "transaction_type",
+      "merchant_category_missing",
+      "device_type_missing",
+      "location_missing",
+      "customer_prior_count",
+      "customer_first_seen",
+      "customer_seconds_since_last",
+      "customer_observed_age_seconds",
+      "customer_prior_mean_amount",
+      "customer_prior_mean_log_amount",
+      "customer_prior_std_log_amount",
+      "customer_amount_to_prior_mean",
+      "customer_log_amount_minus_prior_mean",
+      "customer_log_amount_zscore",
+      "customer_device_prior_count",
+      "customer_device_new",
+      "customer_device_seconds_since_last",
+      "customer_device_count_share",
+      "customer_location_prior_count",
+      "customer_location_new",
+      "customer_location_seconds_since_last",
+      "customer_location_count_share",
+      "device_prior_count",
+      "device_prior_distinct_customer_count",
+      "device_prior_distinct_customer_count_excluding_current",
+      "device_seconds_since_last",
+      "device_observed_age_seconds",
+      "device_prior_other_customer_transaction_count",
+      "customer_share_of_device_prior_transactions",
+      "customer_prior_1h_count",
+      "device_prior_1h_count",
+      "customer_merchant_prior_count",
+      "customer_merchant_is_new",
+      "customer_merchant_seconds_since_last",
+      "customer_merchant_share_of_customer_history",
+      "device_unique_customers_24h",
+      "device_unique_customers_7d",
+      "device_other_customers_24h",
+      "device_other_customers_7d",
+      "device_7d_unique_to_lifetime_unique_ratio"
+    ],
+    "row_features": [],
+    "categorical_features": [
+      "merchant_category",
+      "device_type",
+      "location",
+      "payment_method",
+      "transaction_type"
+    ],
+    "task": "classification",
+    "metric": "average_precision",
+    "metric_direction": "higher",
+    "metric_params": {},
+    "custom_metric": null,
+    "custom_metric_kind": null,
+    "prediction_kind": "probability",
+    "class_order": [
+      0,
+      1
+    ],
+    "validation_type": "calendar_time",
+    "validation_rationale": "Two expanding 62-day half-open timestamp windows match the observed test horizon; F2 is the recent primary view.",
+    "n_splits": 2,
+    "shuffle": false,
+    "seed": 42,
+    "group_column": null,
+    "time_column": "timestamp",
+    "time_gap": 0,
+    "time_valid_fraction": 0.2,
+    "calendar_folds": [
+      {
+        "train_before": "2026-03-14",
+        "valid_start": "2026-03-14",
+        "valid_end": "2026-05-15"
+      },
+      {
+        "train_before": "2026-05-15",
+        "valid_start": "2026-05-15",
+        "valid_end": "2026-07-16"
+      }
+    ],
+    "feature_profile": "react2026_static_customer_history_relationships_device_global_velocity_customer_merchant_device_recent_sharing",
+    "execution_fold_order": [
+      1,
+      0
+    ],
+    "diagnostic_windows": [
+      {
+        "name": "F2_early_half",
+        "fold": 1,
+        "start": "2026-05-15",
+        "end": "2026-06-15"
+      },
+      {
+        "name": "F2_late_half",
+        "fold": 1,
+        "start": "2026-06-15",
+        "end": "2026-07-16"
+      },
+      {
+        "name": "July_1_15",
+        "fold": 1,
+        "start": "2026-07-01",
+        "end": "2026-07-16"
+      },
+      {
+        "name": "June_15_30",
+        "fold": 1,
+        "start": "2026-06-15",
+        "end": "2026-07-01"
+      },
+      {
+        "name": "July_1_7",
+        "fold": 1,
+        "start": "2026-07-01",
+        "end": "2026-07-08"
+      },
+      {
+        "name": "July_8_15",
+        "fold": 1,
+        "start": "2026-07-08",
+        "end": "2026-07-16"
+      }
+    ],
+    "debug_expected_fold_scores": {},
+    "splits_file": "outputs/reports/live_foundation_splits.json",
+    "model": "catboost",
+    "model_params": {
+      "loss_function": "Logloss",
+      "iterations": 800,
+      "depth": 6,
+      "learning_rate": 0.05,
+      "l2_leaf_reg": 10,
+      "bootstrap_type": "Bernoulli",
+      "subsample": 0.8,
+      "thread_count": 8,
+      "task_type": "CPU",
+      "one_hot_max_size": 64
+    },
+    "text_column": null,
+    "predict_test": false,
+    "aggregation": null,
+    "submission_columns": [
+      "fraud"
+    ],
+    "submission_kind": "probability",
+    "submission_alignment": "id",
+    "positive_class": 1,
+    "label_threshold": null,
+    "smoke_test": false,
+    "supervised_weighting": null
+  },
+  "parameters": {
+    "loss_function": "Logloss",
+    "iterations": 800,
+    "depth": 6,
+    "learning_rate": 0.05,
+    "l2_leaf_reg": 10,
+    "bootstrap_type": "Bernoulli",
+    "subsample": 0.8,
+    "thread_count": 8,
+    "task_type": "CPU",
+    "one_hot_max_size": 64
+  },
+  "validation_method": "calendar_time",
+  "n_folds": 2,
+  "seed": 42,
+  "provenance_path": "outputs/reports/R015/",
+  "git_commit": "3f82097746d7c3a9fed0673eb5357a385ff3a9a2",
+  "git_dirty": true,
+  "git_note": null,
+  "source_hashes": {
+    "__init__.py": "a9aeb022698dcebd09ee1a054d513e28a0cb349fb61a2788fbf4765a8232b54c",
+    "audit.py": "14d46163cb0181c41b65d9b9fa8119eedf82ea512426df61b345ee9c2ee477f7",
+    "autogluon_adapter.py": "0d3bf0b21a76387138d05c24b5b84668b93f4fa6d6743ddc329c758006ee758b",
+    "compare.py": "0f70c45408f61ee0704daf115509b058f883c5a5885f7de2290c3b2874b564d2",
+    "config.py": "a23eefa7c99cdfa1848e9355aae5fae1f9c909b7042db7f2c7db02bc69c1aff9",
+    "customer_amount_30d.py": "dcf4a81a665c746618662a5f7267c7d909734afeae5f8b5f75cf683979a3c080",
+    "customer_category.py": "b4e54aa1e74e99f057bc0aecffde6cea32f411e58d789c3da0786e78b50195ec",
+    "customer_history.py": "1e43ea1b15c7b86c4187917bdc35fe40f30ffbdd4695458d4f2125ae82b7c779",
+    "customer_merchant.py": "d99c79578a3a0a75a49ac629bacec655b7f37f108941b5a7d191b500e909cd06",
+    "customer_relationships.py": "c83515d9c37621532aae8fc321b2c55bcf4271663f808a71af2b1090ad4ecf31",
+    "data.py": "64c83bbde3e1104e55cd34bc931784dd1c7fd20feea1ac8a55a729adcf773b0c",
+    "device_recent_sharing.py": "c1e7d2843619bd5b9f4185ab73693ba8309489e26a4e1be7328c9b1c70c919f5",
+    "ensemble.py": "7c26fd12d633440c29b05e14dbd71d0c7904f2a42d8850c88e7164286315f63f",
+    "export_notebook.py": "85e2401c284e7d3f82f4e3498ca4074a5423cf0cccd7fc4f0ce7a45d92c7bf07",
+    "features.py": "fb4ce97166512fc7b694335e511e9374e72c5613a504215f31257f7871b2e81e",
+    "final_r003_submission.py": "606f95075bc83a341f96f0fb532856392434dcbd8e6261887c09a0de76b52530",
+    "final_r004_submission.py": "490dc41405c70959adb31e7f49efab3c93498d0707f83a138589e5ab24b7231f",
+    "final_r005_submission.py": "fe096e460fde3f22e5b9cfb2653650a62ab67a57c83cf8d39af513c9b29c331c",
+    "live_foundation.py": "c3267085abbfcbc1a88c366686babb2a24d983d78a8f35c9514ffe8b8e3e4a54",
+    "metrics.py": "1caa11d7c514b3de41cf5f2add27b79dd1613f5aa740e9d1a06f2d7e282cb01b",
+    "predict.py": "30cd1dcd52004eb8fa9dd2474abfd804f2c5f4352372c5916631bde7b5188463",
+    "r012_report.py": "a1978f72ccf2c52e8ef9cf01b08023169fe2dc51c6871605e380bdf4f8187e39",
+    "r013_report.py": "33e770cfde1efd75a531a47162da3b0b9c52c14e4c4bd5e34d28f774a560766c",
+    "r014_report.py": "75d0457122b367f754d9d656e72e51f38d87047d9509e4e2399f07eb7f5d7819",
+    "replay.py": "27d3fd61440345e8026fa1a958853f54289a25dd5287ce74f58b17c40b87f894",
+    "screen.py": "9466c2c19dffbd33790f2ea314b0a6ec8f353d8dba30841bd68f88c619282909",
+    "submission.py": "d61cc034fe449509994a0eb841aa8a8737471d1c9c606a37d4c788fc96534438",
+    "temporal.py": "6d05d82450a93ad7ebf60ed5d6e04c1cc3c51655a855315f147ea7f39c9caa81",
+    "train.py": "7357999ec003ec22d524cf04c264a7338385fb7e5dacf2e52ee0e6d695364737",
+    "utils.py": "d91d748a7059adaaeb5804084ae8b25304fa4665c4e49dfb412f93df4d408d80",
+    "validation.py": "d96feaf1e3145999c8db666929c06398a83ee6b0726d667b26d4bcbaa3c81e90",
+    "velocity.py": "ba5364c14925972267c04891deadd71e8ed09ace43d725f1fc8a055fa1782046"
+  },
+  "train_fingerprint": {
+    "sha256": "06823ea80cceade018b2428e0c7c9cb89e4efae45fcad8cbf61e8b27b350df20",
+    "rows": 731942,
+    "columns": [
+      "transaction_id",
+      "customer_id",
+      "timestamp",
+      "amount_bdt",
+      "merchant_id",
+      "merchant_category",
+      "device_id",
+      "device_type",
+      "location",
+      "payment_method",
+      "transaction_type",
+      "account_age_days",
+      "fraud"
+    ]
+  },
+  "split_signature": "6fb939b019dfe071ce44a3b6e2c82c87bdf17aafaa5dec714c1b703e77cd7e47",
+  "pre_fit_assertions": {
+    "r013_45_feature_columns_bitwise_unchanged": true,
+    "saved_temporal_split_signature_matches_r013": true,
+    "feature_manifest_matches_config": true,
+    "r013_train_fingerprint_identical": {
+      "sha256": "06823ea80cceade018b2428e0c7c9cb89e4efae45fcad8cbf61e8b27b350df20",
+      "rows": 731942,
+      "columns": [
+        "transaction_id",
+        "customer_id",
+        "timestamp",
+        "amount_bdt",
+        "merchant_id",
+        "merchant_category",
+        "device_id",
+        "device_type",
+        "location",
+        "payment_method",
+        "transaction_type",
+        "account_age_days",
+        "fraud"
+      ]
+    },
+    "new_feature_count": 5,
+    "total_feature_count": 50,
+    "lifetime_device_distinct_customer_count_reused": true
+  },
+  "customer_history_generation_seconds": 30.21613670000079,
+  "customer_relationship_generation_seconds": 30.114980399999695,
+  "device_global_generation_seconds": 23.361975800000437,
+  "velocity_generation_seconds": 7.442549299999882,
+  "customer_amount_30d_generation_seconds": null,
+  "customer_merchant_generation_seconds": null,
+  "customer_category_generation_seconds": null,
+  "splits_path": "outputs/reports/R015/splits.json",
+  "model_paths": [
+    "outputs/models/R015/fold_1.pkl",
+    "outputs/models/R015/fold_0.pkl"
+  ],
+  "model_hashes": {
+    "outputs/models/R015/fold_1.pkl": "c6691e9e15b122bace657fd72fabae6471d2edeeca9f1cf679f94f2e1ba2a17c",
+    "outputs/models/R015/fold_0.pkl": "05cc4d35e54fc090b07bb3e195ca660c211058baf8db79d4e1b56e31138b4bcd"
+  },
+  "fold_scores": [
+    0.7655059927099206,
+    0.7076251251995711
+  ],
+  "cv_mean": 0.7365655589547458,
+  "cv_std": 0.028940433755174744,
+  "cv_std_definition": "population std (ddof=0)",
+  "oof_coverage": 0.6450961961466892,
+  "oof_path": "outputs/oof/R015.csv",
+  "pooled_covered_oof_score": 0.7363961092203559,
+  "fold_prediction_paths": {
+    "F2": "outputs/oof/R015/F2.csv",
+    "F1": "outputs/oof/R015/F1.csv"
+  },
+  "fold_runtime_seconds": [
+    17.583746000000247,
+    30.33088299999872
+  ],
+  "feature_importances": {
+    "F2": [
+      {
+        "feature": "customer_log_amount_minus_prior_mean",
+        "importance": 11.553159533245978
+      },
+      {
+        "feature": "customer_location_count_share",
+        "importance": 11.357708439174418
+      },
+      {
+        "feature": "hour",
+        "importance": 5.194058081995034
+      },
+      {
+        "feature": "location",
+        "importance": 4.875790891701024
+      },
+      {
+        "feature": "customer_device_prior_count",
+        "importance": 4.474250995832566
+      },
+      {
+        "feature": "customer_device_count_share",
+        "importance": 4.241941947365703
+      },
+      {
+        "feature": "customer_amount_to_prior_mean",
+        "importance": 4.146076509868215
+      },
+      {
+        "feature": "amount_bdt",
+        "importance": 3.4222903724531464
+      },
+      {
+        "feature": "customer_share_of_device_prior_transactions",
+        "importance": 3.199514423743169
+      },
+      {
+        "feature": "customer_location_prior_count",
+        "importance": 3.123759757668634
+      },
+      {
+        "feature": "customer_seconds_since_last",
+        "importance": 3.0886133433444387
+      },
+      {
+        "feature": "log_amount_bdt",
+        "importance": 2.777189260477731
+      },
+      {
+        "feature": "customer_merchant_share_of_customer_history",
+        "importance": 2.577296445863241
+      },
+      {
+        "feature": "device_observed_age_seconds",
+        "importance": 2.392935936242101
+      },
+      {
+        "feature": "customer_prior_1h_count",
+        "importance": 2.3016474007541925
+      },
+      {
+        "feature": "customer_location_seconds_since_last",
+        "importance": 2.0733039277699783
+      },
+      {
+        "feature": "device_prior_distinct_customer_count_excluding_current",
+        "importance": 2.0381921147211837
+      },
+      {
+        "feature": "customer_log_amount_zscore",
+        "importance": 2.0169556419708345
+      },
+      {
+        "feature": "customer_device_new",
+        "importance": 1.8392943859261106
+      },
+      {
+        "feature": "device_prior_distinct_customer_count",
+        "importance": 1.81195842236565
+      },
+      {
+        "feature": "customer_merchant_prior_count",
+        "importance": 1.4971930456007851
+      },
+      {
+        "feature": "customer_location_new",
+        "importance": 1.4726107296935276
+      },
+      {
+        "feature": "customer_prior_count",
+        "importance": 1.4704973122014011
+      },
+      {
+        "feature": "merchant_category",
+        "importance": 1.3750945110580746
+      },
+      {
+        "feature": "device_prior_count",
+        "importance": 1.3479039748207045
+      },
+      {
+        "feature": "customer_prior_std_log_amount",
+        "importance": 1.3046804415877478
+      },
+      {
+        "feature": "device_prior_1h_count",
+        "importance": 1.2514116329741207
+      },
+      {
+        "feature": "device_seconds_since_last",
+        "importance": 1.149812592077334
+      },
+      {
+        "feature": "customer_merchant_seconds_since_last",
+        "importance": 1.069694469538705
+      },
+      {
+        "feature": "device_unique_customers_24h",
+        "importance": 0.9696884754272231
+      },
+      {
+        "feature": "customer_device_seconds_since_last",
+        "importance": 0.900356422859706
+      },
+      {
+        "feature": "customer_prior_mean_log_amount",
+        "importance": 0.8061567804093425
+      },
+      {
+        "feature": "account_age_days",
+        "importance": 0.8037496481966138
+      },
+      {
+        "feature": "customer_observed_age_seconds",
+        "importance": 0.7833107162582499
+      },
+      {
+        "feature": "customer_merchant_is_new",
+        "importance": 0.7568291950569975
+      },
+      {
+        "feature": "device_other_customers_24h",
+        "importance": 0.6206214638200419
+      },
+      {
+        "feature": "weekday",
+        "importance": 0.6165331557323265
+      },
+      {
+        "feature": "customer_prior_mean_amount",
+        "importance": 0.5743927364582855
+      },
+      {
+        "feature": "device_7d_unique_to_lifetime_unique_ratio",
+        "importance": 0.562197373064319
+      },
+      {
+        "feature": "payment_method",
+        "importance": 0.5612020126265145
+      },
+      {
+        "feature": "device_prior_other_customer_transaction_count",
+        "importance": 0.5139407608333557
+      },
+      {
+        "feature": "transaction_type",
+        "importance": 0.3341018114302123
+      },
+      {
+        "feature": "device_other_customers_7d",
+        "importance": 0.20784275256840806
+      },
+      {
+        "feature": "device_type",
+        "importance": 0.1805947245372751
+      },
+      {
+        "feature": "customer_first_seen",
+        "importance": 0.11666444677825984
+      },
+      {
+        "feature": "is_weekend",
+        "importance": 0.1008733419363251
+      },
+      {
+        "feature": "device_unique_customers_7d",
+        "importance": 0.09715432399935348
+      },
+      {
+        "feature": "device_type_missing",
+        "importance": 0.043768462712860674
+      },
+      {
+        "feature": "location_missing",
+        "importance": 0.005184853258601011
+      },
+      {
+        "feature": "merchant_category_missing",
+        "importance": 0.0
+      }
+    ],
+    "F1": [
+      {
+        "feature": "customer_location_count_share",
+        "importance": 10.723095625633235
+      },
+      {
+        "feature": "customer_log_amount_minus_prior_mean",
+        "importance": 6.935419427742505
+      },
+      {
+        "feature": "hour",
+        "importance": 6.198112778325239
+      },
+      {
+        "feature": "log_amount_bdt",
+        "importance": 5.7769792049514095
+      },
+      {
+        "feature": "location",
+        "importance": 5.359203505004922
+      },
+      {
+        "feature": "customer_device_count_share",
+        "importance": 4.7387350226684335
+      },
+      {
+        "feature": "customer_amount_to_prior_mean",
+        "importance": 4.659214723464611
+      },
+      {
+        "feature": "customer_location_prior_count",
+        "importance": 3.8507114929068256
+      },
+      {
+        "feature": "amount_bdt",
+        "importance": 3.597371613636989
+      },
+      {
+        "feature": "customer_location_new",
+        "importance": 2.7090355445645082
+      },
+      {
+        "feature": "customer_device_prior_count",
+        "importance": 2.66761065669653
+      },
+      {
+        "feature": "customer_prior_1h_count",
+        "importance": 2.6166977336888912
+      },
+      {
+        "feature": "customer_seconds_since_last",
+        "importance": 2.615382512141793
+      },
+      {
+        "feature": "customer_log_amount_zscore",
+        "importance": 2.2517153301795743
+      },
+      {
+        "feature": "customer_prior_std_log_amount",
+        "importance": 2.0990456560586632
+      },
+      {
+        "feature": "device_prior_count",
+        "importance": 2.006132043696114
+      },
+      {
+        "feature": "customer_merchant_share_of_customer_history",
+        "importance": 1.9944647048442583
+      },
+      {
+        "feature": "customer_location_seconds_since_last",
+        "importance": 1.96058266110329
+      },
+      {
+        "feature": "merchant_category",
+        "importance": 1.8168835218867085
+      },
+      {
+        "feature": "device_observed_age_seconds",
+        "importance": 1.8155305461449065
+      },
+      {
+        "feature": "customer_prior_mean_log_amount",
+        "importance": 1.7254613333810072
+      },
+      {
+        "feature": "customer_share_of_device_prior_transactions",
+        "importance": 1.6844540107529598
+      },
+      {
+        "feature": "account_age_days",
+        "importance": 1.655115929802197
+      },
+      {
+        "feature": "device_prior_distinct_customer_count_excluding_current",
+        "importance": 1.5955718694106018
+      },
+      {
+        "feature": "customer_device_seconds_since_last",
+        "importance": 1.5827861262058833
+      },
+      {
+        "feature": "device_seconds_since_last",
+        "importance": 1.4114270954295005
+      },
+      {
+        "feature": "customer_prior_count",
+        "importance": 1.3510048162316624
+      },
+      {
+        "feature": "weekday",
+        "importance": 1.0825228978381607
+      },
+      {
+        "feature": "device_7d_unique_to_lifetime_unique_ratio",
+        "importance": 1.039146949221133
+      },
+      {
+        "feature": "customer_merchant_seconds_since_last",
+        "importance": 1.0309823429795628
+      },
+      {
+        "feature": "customer_observed_age_seconds",
+        "importance": 1.0228752445603797
+      },
+      {
+        "feature": "customer_prior_mean_amount",
+        "importance": 0.9432630335045943
+      },
+      {
+        "feature": "device_prior_1h_count",
+        "importance": 0.91652837083259
+      },
+      {
+        "feature": "device_prior_distinct_customer_count",
+        "importance": 0.8692426197395325
+      },
+      {
+        "feature": "transaction_type",
+        "importance": 0.8563471233389172
+      },
+      {
+        "feature": "device_prior_other_customer_transaction_count",
+        "importance": 0.85520990351029
+      },
+      {
+        "feature": "payment_method",
+        "importance": 0.810260891563176
+      },
+      {
+        "feature": "customer_merchant_prior_count",
+        "importance": 0.6329120324868388
+      },
+      {
+        "feature": "device_other_customers_24h",
+        "importance": 0.5113126831075878
+      },
+      {
+        "feature": "device_unique_customers_24h",
+        "importance": 0.44914203978700656
+      },
+      {
+        "feature": "customer_device_new",
+        "importance": 0.4418783560893846
+      },
+      {
+        "feature": "device_type",
+        "importance": 0.2817041578029427
+      },
+      {
+        "feature": "customer_first_seen",
+        "importance": 0.2288056055453583
+      },
+      {
+        "feature": "customer_merchant_is_new",
+        "importance": 0.15776767923117752
+      },
+      {
+        "feature": "device_other_customers_7d",
+        "importance": 0.1546369355222683
+      },
+      {
+        "feature": "device_type_missing",
+        "importance": 0.1409743474526618
+      },
+      {
+        "feature": "is_weekend",
+        "importance": 0.12632804731849206
+      },
+      {
+        "feature": "device_unique_customers_7d",
+        "importance": 0.043184580867483335
+      },
+      {
+        "feature": "location_missing",
+        "importance": 0.006951446714214149
+      },
+      {
+        "feature": "merchant_category_missing",
+        "importance": 0.00027722443304744406
+      }
+    ]
+  },
+  "fold_replays": {
+    "F2": {
+      "fold": 1,
+      "rows": 240065,
+      "average_precision": 0.7076251251995711,
+      "prediction_identity_hash": "0606cde313e41ee15fe26aef6dfad447c3c0075e5238596c749a319b7e507f73",
+      "verified": true
+    },
+    "F1": {
+      "fold": 0,
+      "rows": 232108,
+      "average_precision": 0.7655059927099206,
+      "prediction_identity_hash": "4085284aa4cab60972514aeff2232d128d7e046385c283c448011272907c5473",
+      "verified": true
+    }
+  },
+  "diagnostics": {
+    "F2_early_half": {
+      "fold": 1,
+      "rows": 118346,
+      "positives": 1956,
+      "average_precision": 0.7692256415578183
+    },
+    "F2_late_half": {
+      "fold": 1,
+      "rows": 121719,
+      "positives": 2072,
+      "average_precision": 0.6506282647122134
+    },
+    "July_1_15": {
+      "fold": 1,
+      "rows": 59465,
+      "positives": 926,
+      "average_precision": 0.49689162110299134
+    },
+    "June_15_30": {
+      "fold": 1,
+      "rows": 62254,
+      "positives": 1146,
+      "average_precision": 0.7774050322801742
+    },
+    "July_1_7": {
+      "fold": 1,
+      "rows": 27535,
+      "positives": 404,
+      "average_precision": 0.46339456010116914
+    },
+    "July_8_15": {
+      "fold": 1,
+      "rows": 31930,
+      "positives": 522,
+      "average_precision": 0.5225218982764847
+    }
+  },
+  "working_score": {
+    "name": "S",
+    "formula": "0.3*F1 + 0.7*F2",
+    "value": 0.7249893854526759,
+    "purpose": "internal model-selection heuristic"
+  },
+  "training_seconds": 54.772246300000916,
+  "fitted_model_parameters": [
+    {
+      "iterations": 800,
+      "learning_rate": 0.05,
+      "depth": 6,
+      "l2_leaf_reg": 10,
+      "loss_function": "Logloss",
+      "thread_count": 8,
+      "random_seed": 42,
+      "verbose": false,
+      "one_hot_max_size": 64,
+      "allow_writing_files": false,
+      "task_type": "CPU",
+      "bootstrap_type": "Bernoulli",
+      "subsample": 0.8,
+      "cat_features": [
+        45,
+        46,
+        47,
+        48,
+        49
+      ]
+    },
+    {
+      "iterations": 800,
+      "learning_rate": 0.05,
+      "depth": 6,
+      "l2_leaf_reg": 10,
+      "loss_function": "Logloss",
+      "thread_count": 8,
+      "random_seed": 42,
+      "verbose": false,
+      "one_hot_max_size": 64,
+      "allow_writing_files": false,
+      "task_type": "CPU",
+      "bootstrap_type": "Bernoulli",
+      "subsample": 0.8,
+      "cat_features": [
+        45,
+        46,
+        47,
+        48,
+        49
+      ]
+    }
+  ]
+}

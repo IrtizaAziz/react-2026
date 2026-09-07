@@ -1,0 +1,8 @@
+test_causal_permutation_future_chunk_and_continuation (tests.test_r014_customer_category.R014CustomerCategoryTests.test_causal_permutation_future_chunk_and_continuation) ... ok
+test_counts_recency_share_missing_and_label_isolation (tests.test_r014_customer_category.R014CustomerCategoryTests.test_counts_recency_share_missing_and_label_isolation) ... ok
+test_r013_parity_manifest_and_split (tests.test_r014_customer_category.R014CustomerCategoryTests.test_r013_parity_manifest_and_split) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 299.255s
+
+OK

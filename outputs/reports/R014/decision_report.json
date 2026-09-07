@@ -1,0 +1,96 @@
+{
+  "experiment_id": "R014",
+  "parent": "R013",
+  "causal_parity_preflight": "passed",
+  "missing_category_key": "__MISSING_CATEGORY__",
+  "category_history_f2": {
+    "new_customer_category": {
+      "rows": 28486,
+      "positives": 703,
+      "prevalence": 0.02467878958084673,
+      "average_precision": 0.7387288845113847
+    },
+    "previously_seen_category": {
+      "rows": 211579,
+      "positives": 3325,
+      "prevalence": 0.01571517022010691,
+      "average_precision": 0.699565071902674
+    }
+  },
+  "category_count_buckets_f2": {
+    "0": {
+      "rows": 28486,
+      "positives": 703,
+      "prevalence": 0.02467878958084673,
+      "average_precision": 0.7387288845113847
+    },
+    "1": {
+      "rows": 24648,
+      "positives": 491,
+      "prevalence": 0.019920480363518338,
+      "average_precision": 0.7437014415975635
+    },
+    "2-4": {
+      "rows": 54882,
+      "positives": 984,
+      "prevalence": 0.01792937575161255,
+      "average_precision": 0.7377669501002482
+    },
+    ">=5": {
+      "rows": 132049,
+      "positives": 1850,
+      "prevalence": 0.014009950851577824,
+      "average_precision": 0.6678250714086099
+    }
+  },
+  "merchant_new_x_category_new_f2": {
+    "merchant_new_category_new": {
+      "rows": 27477,
+      "positives": 681,
+      "prevalence": 0.024784365105360848,
+      "average_precision": 0.7388050519924165
+    },
+    "merchant_new_category_seen": {
+      "rows": 16277,
+      "positives": 563,
+      "prevalence": 0.03458868341832033,
+      "average_precision": 0.791025262352072
+    },
+    "merchant_seen_category_new": {
+      "rows": 1009,
+      "positives": 22,
+      "prevalence": 0.02180376610505451,
+      "average_precision": 0.7569056567826683
+    },
+    "merchant_seen_category_seen": {
+      "rows": 195302,
+      "positives": 2762,
+      "prevalence": 0.014142200284687306,
+      "average_precision": 0.6807462698363422
+    }
+  },
+  "deltas_vs_r013": {
+    "F1": 0.0016494920145644354,
+    "F2": 0.0003296407287545211,
+    "mean": 0.0009895663716594782,
+    "early": 0.0004678636980361972,
+    "late": 0.0004193122275176764,
+    "July": 0.0011216988721700627,
+    "June_15_30": -0.0002241777449630833,
+    "July_1_7": 2.5365074991567926e-05,
+    "July_8_15": 0.001777053468707046
+  },
+  "deltas_vs_r007": {
+    "F1": 0.009977789871837284,
+    "F2": 0.016626042006726127,
+    "mean": 0.01330191593928165,
+    "early": 0.012654866484871463,
+    "late": 0.02097290809372576,
+    "July": 0.0038797206106434556,
+    "June_15_30": 0.03370639571565548,
+    "July_1_7": 0.00490007312881513,
+    "July_8_15": 0.0028452902206377306
+  },
+  "decision": "FLAT-MIXED",
+  "comparison_basis": "identical saved validation rows; prior artifacts unmodified"
+}

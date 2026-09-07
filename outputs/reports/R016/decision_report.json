@@ -1,0 +1,35 @@
+{
+  "experiment_id": "R016",
+  "hypothesis": "A fixed 25% LightGBM contribution improves R013 ranking robustness because the two models make partially different errors.",
+  "metrics": {
+    "F1": 0.764950441917103,
+    "F2": 0.706863570717201,
+    "mean": 0.735907006317152,
+    "pooled": 0.7353725779675694,
+    "F2_early_half": 0.7684324980533519,
+    "F2_late_half": 0.6497745176005995,
+    "July_1_15": 0.5000029187779724,
+    "June_15_30": 0.7741835034334132,
+    "July_1_7": 0.46677548368759875,
+    "July_8_15": 0.5257069585920773
+  },
+  "deltas_vs_r013": {
+    "F1": 0.0022878536532787708,
+    "F2": 0.0005628850328218693,
+    "mean": 0.0014253693430503755,
+    "pooled": 0.0017893167646104713,
+    "F2_early_half": 0.001235603418575315,
+    "F2_late_half": -0.00016946809756135384,
+    "July_1_15": 0.001950928392712603,
+    "June_15_30": -0.0017024211486517116,
+    "July_1_7": 0.0029816800963065604,
+    "July_8_15": 0.0014847803465666276
+  },
+  "correlation": {
+    "pearson": 0.9726389860615503,
+    "rank_spearman": 0.7030469569282887
+  },
+  "decision": "FLAT-MIXED",
+  "decision_rule": "WIN requires F2 >= +0.002 with nonnegative late and July; fixed weights were not optimized",
+  "runtime_seconds": 4.535614899999928
+}
